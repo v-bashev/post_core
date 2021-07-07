@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: su.nsk.iae.post.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: su.nsk.iae.post.ide
+Bundle-Vendor: Institute of Automation and Electrometry SB RAS
+Bundle-Version: 0.1.1
+Bundle-SymbolicName: su.nsk.iae.post.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: su.nsk.iae.post,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: su.nsk.iae.post.ide.contentassist.antlr,
+ su.nsk.iae.post.ide.contentassist.antlr.internal
