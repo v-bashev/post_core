@@ -2,12 +2,67 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="poST" nsURI="http://www.nsk.su/iae/post/PoST" nsPrefix="poST">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="confs" upperBound="-1"
+        eType="#//Configuration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globVars" upperBound="-1"
         eType="#//GlobalVarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="programs" upperBound="-1"
         eType="#//Program" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fbs" upperBound="-1" eType="#//FunctionBlock"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="confGlobVars" upperBound="-1"
+        eType="#//GlobalVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resources" upperBound="-1"
+        eType="#//Resource" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Resource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resGlobVars" upperBound="-1"
+        eType="#//GlobalVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resStatement" eType="#//SingleResource"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleResource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//Task" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programConfs" upperBound="-1"
+        eType="#//ProgramConfiguration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="init" eType="#//TaskInitialization"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskInitialization">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="single" eType="#//Constant"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interval" eType="#//Constant"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="task" eType="#//Task"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="program" eType="#//Program"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agrs" eType="#//ProgramConfElements"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramConfElements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ProgramConfElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramConfElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programVar" eType="#//SymbolicVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assig" eType="#//AssignmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globVar" eType="#//SymbolicVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssignmentType">
+    <eLiterals name="in" literal=":="/>
+    <eLiterals name="out" value="1" literal="=>"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

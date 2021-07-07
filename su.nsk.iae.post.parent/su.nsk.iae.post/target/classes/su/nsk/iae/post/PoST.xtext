@@ -6,11 +6,64 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Model:
 	(
+		confs+=Configuration |
 		globVars+=GlobalVarDeclaration |
 		programs+=Program |
 		fbs+=FunctionBlock
 	)*;
-	
+
+/* ======================= START Configuration ======================= */
+
+Configuration:
+	'CONFIGURATION' name=ID
+		(
+			confGlobVars+=GlobalVarDeclaration
+			resources+=Resource
+		)*
+	'END_CONFIGURATION';
+
+Resource:
+	'RESOURCE' name=ID 'ON' type=ID
+		(resGlobVars+=GlobalVarDeclaration)?
+		resStatement=SingleResource
+	'END_RESOURCE';
+
+SingleResource:
+	{SingleResource} (
+		tasks+=Task ';'
+		programConfs+=ProgramConfiguration ';'
+	)*;
+
+Task:
+	'TASK' name=ID '(' init=TaskInitialization ')';
+
+TaskInitialization:
+	(SINGLE_DECLARATION ':=' single=Constant) | (INTERVAL_DECLARATION ':=' interval=Constant) 
+	',' PRIORITY_DECLARATION ':=' priority=INTEGER;
+
+terminal SINGLE_DECLARATION:
+	'SINGLE';
+
+terminal INTERVAL_DECLARATION:
+	'INTERVAL';
+
+terminal PRIORITY_DECLARATION:
+	'PRIORITY';
+
+ProgramConfiguration:
+	'PROGRAM' name=ID ('WITH' task=[Task])? ':' program=[Program] ('(' agrs=ProgramConfElements ')')?;
+
+ProgramConfElements:
+	elements+=ProgramConfElement (',' elements+=ProgramConfElement)*;
+
+ProgramConfElement:
+	programVar=[SymbolicVariable] assig=AssignmentType globVar=[SymbolicVariable];
+
+enum AssignmentType:
+	in=':=' | out='=>';
+
+/* ======================= END Configuration ======================= */
+
 /* ======================= START Program ======================= */
 	
 Program: 

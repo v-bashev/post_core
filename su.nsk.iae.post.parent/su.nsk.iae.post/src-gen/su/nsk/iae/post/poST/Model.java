@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link su.nsk.iae.post.poST.Model#getConfs <em>Confs</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Model#getGlobVars <em>Glob Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Model#getPrograms <em>Programs</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Model#getFbs <em>Fbs</em>}</li>
@@ -27,6 +28,18 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Model extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Confs</b></em>' containment reference list.
+   * The list contents are of type {@link su.nsk.iae.post.poST.Configuration}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Confs</em>' containment reference list.
+   * @see su.nsk.iae.post.poST.PoSTPackage#getModel_Confs()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Configuration> getConfs();
+
   /**
    * Returns the value of the '<em><b>Glob Vars</b></em>' containment reference list.
    * The list contents are of type {@link su.nsk.iae.post.poST.GlobalVarDeclaration}.

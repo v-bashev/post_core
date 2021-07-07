@@ -21,6 +21,7 @@ import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
+import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.Constant;
 import su.nsk.iae.post.poST.EquExpression;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
@@ -48,13 +49,18 @@ import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
 import su.nsk.iae.post.poST.Program;
+import su.nsk.iae.post.poST.ProgramConfElement;
+import su.nsk.iae.post.poST.ProgramConfElements;
+import su.nsk.iae.post.poST.ProgramConfiguration;
 import su.nsk.iae.post.poST.RealLiteral;
 import su.nsk.iae.post.poST.RepeatStatement;
 import su.nsk.iae.post.poST.ResetTimerStatement;
+import su.nsk.iae.post.poST.Resource;
 import su.nsk.iae.post.poST.SelectionStatement;
 import su.nsk.iae.post.poST.SetStateStatement;
 import su.nsk.iae.post.poST.SignedInteger;
 import su.nsk.iae.post.poST.SimpleSpecificationInit;
+import su.nsk.iae.post.poST.SingleResource;
 import su.nsk.iae.post.poST.StartProcessStatement;
 import su.nsk.iae.post.poST.State;
 import su.nsk.iae.post.poST.Statement;
@@ -62,6 +68,8 @@ import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.StopProcessStatement;
 import su.nsk.iae.post.poST.SubprogramControlStatement;
 import su.nsk.iae.post.poST.SymbolicVariable;
+import su.nsk.iae.post.poST.Task;
+import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -139,6 +147,46 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseModel(Model object)
       {
         return createModelAdapter();
+      }
+      @Override
+      public Adapter caseConfiguration(Configuration object)
+      {
+        return createConfigurationAdapter();
+      }
+      @Override
+      public Adapter caseResource(Resource object)
+      {
+        return createResourceAdapter();
+      }
+      @Override
+      public Adapter caseSingleResource(SingleResource object)
+      {
+        return createSingleResourceAdapter();
+      }
+      @Override
+      public Adapter caseTask(Task object)
+      {
+        return createTaskAdapter();
+      }
+      @Override
+      public Adapter caseTaskInitialization(TaskInitialization object)
+      {
+        return createTaskInitializationAdapter();
+      }
+      @Override
+      public Adapter caseProgramConfiguration(ProgramConfiguration object)
+      {
+        return createProgramConfigurationAdapter();
+      }
+      @Override
+      public Adapter caseProgramConfElements(ProgramConfElements object)
+      {
+        return createProgramConfElementsAdapter();
+      }
+      @Override
+      public Adapter caseProgramConfElement(ProgramConfElement object)
+      {
+        return createProgramConfElementAdapter();
       }
       @Override
       public Adapter caseProgram(Program object)
@@ -473,6 +521,126 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Configuration <em>Configuration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.Configuration
+   * @generated
+   */
+  public Adapter createConfigurationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Resource <em>Resource</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.Resource
+   * @generated
+   */
+  public Adapter createResourceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.SingleResource <em>Single Resource</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.SingleResource
+   * @generated
+   */
+  public Adapter createSingleResourceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Task <em>Task</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.Task
+   * @generated
+   */
+  public Adapter createTaskAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.TaskInitialization <em>Task Initialization</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.TaskInitialization
+   * @generated
+   */
+  public Adapter createTaskInitializationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProgramConfiguration <em>Program Configuration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProgramConfiguration
+   * @generated
+   */
+  public Adapter createProgramConfigurationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProgramConfElements <em>Program Conf Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProgramConfElements
+   * @generated
+   */
+  public Adapter createProgramConfElementsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProgramConfElement <em>Program Conf Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProgramConfElement
+   * @generated
+   */
+  public Adapter createProgramConfElementAdapter()
   {
     return null;
   }

@@ -19,11 +19,13 @@ import su.nsk.iae.post.poST.ArraySpecInit;
 import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
+import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
 import su.nsk.iae.post.poST.CompOperator;
+import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.Constant;
 import su.nsk.iae.post.poST.EquExpression;
 import su.nsk.iae.post.poST.EquOperator;
@@ -54,13 +56,18 @@ import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
 import su.nsk.iae.post.poST.Program;
+import su.nsk.iae.post.poST.ProgramConfElement;
+import su.nsk.iae.post.poST.ProgramConfElements;
+import su.nsk.iae.post.poST.ProgramConfiguration;
 import su.nsk.iae.post.poST.RealLiteral;
 import su.nsk.iae.post.poST.RepeatStatement;
 import su.nsk.iae.post.poST.ResetTimerStatement;
+import su.nsk.iae.post.poST.Resource;
 import su.nsk.iae.post.poST.SelectionStatement;
 import su.nsk.iae.post.poST.SetStateStatement;
 import su.nsk.iae.post.poST.SignedInteger;
 import su.nsk.iae.post.poST.SimpleSpecificationInit;
+import su.nsk.iae.post.poST.SingleResource;
 import su.nsk.iae.post.poST.StartProcessStatement;
 import su.nsk.iae.post.poST.State;
 import su.nsk.iae.post.poST.Statement;
@@ -68,6 +75,8 @@ import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.StopProcessStatement;
 import su.nsk.iae.post.poST.SubprogramControlStatement;
 import su.nsk.iae.post.poST.SymbolicVariable;
+import su.nsk.iae.post.poST.Task;
+import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -93,6 +102,62 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass modelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass configurationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass resourceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass singleResourceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass taskEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass taskInitializationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass programConfigurationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass programConfElementsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass programConfElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -519,6 +584,13 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EEnum assignmentTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EEnum compOperatorEEnum = null;
 
   /**
@@ -629,7 +701,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getModel_GlobVars()
+  public EReference getModel_Confs()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -640,7 +712,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getModel_Programs()
+  public EReference getModel_GlobVars()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(1);
   }
@@ -651,9 +723,350 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getModel_Fbs()
+  public EReference getModel_Programs()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getModel_Fbs()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getConfiguration()
+  {
+    return configurationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getConfiguration_Name()
+  {
+    return (EAttribute)configurationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConfiguration_ConfGlobVars()
+  {
+    return (EReference)configurationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConfiguration_Resources()
+  {
+    return (EReference)configurationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getResource()
+  {
+    return resourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getResource_Name()
+  {
+    return (EAttribute)resourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getResource_Type()
+  {
+    return (EAttribute)resourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getResource_ResGlobVars()
+  {
+    return (EReference)resourceEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getResource_ResStatement()
+  {
+    return (EReference)resourceEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSingleResource()
+  {
+    return singleResourceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSingleResource_Tasks()
+  {
+    return (EReference)singleResourceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSingleResource_ProgramConfs()
+  {
+    return (EReference)singleResourceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTask()
+  {
+    return taskEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTask_Name()
+  {
+    return (EAttribute)taskEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getTask_Init()
+  {
+    return (EReference)taskEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTaskInitialization()
+  {
+    return taskInitializationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getTaskInitialization_Single()
+  {
+    return (EReference)taskInitializationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getTaskInitialization_Interval()
+  {
+    return (EReference)taskInitializationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTaskInitialization_Priority()
+  {
+    return (EAttribute)taskInitializationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getProgramConfiguration()
+  {
+    return programConfigurationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getProgramConfiguration_Name()
+  {
+    return (EAttribute)programConfigurationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProgramConfiguration_Task()
+  {
+    return (EReference)programConfigurationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProgramConfiguration_Program()
+  {
+    return (EReference)programConfigurationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProgramConfiguration_Agrs()
+  {
+    return (EReference)programConfigurationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getProgramConfElements()
+  {
+    return programConfElementsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProgramConfElements_Elements()
+  {
+    return (EReference)programConfElementsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getProgramConfElement()
+  {
+    return programConfElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProgramConfElement_ProgramVar()
+  {
+    return (EReference)programConfElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getProgramConfElement_Assig()
+  {
+    return (EAttribute)programConfElementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProgramConfElement_GlobVar()
+  {
+    return (EReference)programConfElementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2499,6 +2912,17 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
+  public EEnum getAssignmentType()
+  {
+    return assignmentTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EEnum getCompOperator()
   {
     return compOperatorEEnum;
@@ -2580,9 +3004,48 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
+    createEReference(modelEClass, MODEL__CONFS);
     createEReference(modelEClass, MODEL__GLOB_VARS);
     createEReference(modelEClass, MODEL__PROGRAMS);
     createEReference(modelEClass, MODEL__FBS);
+
+    configurationEClass = createEClass(CONFIGURATION);
+    createEAttribute(configurationEClass, CONFIGURATION__NAME);
+    createEReference(configurationEClass, CONFIGURATION__CONF_GLOB_VARS);
+    createEReference(configurationEClass, CONFIGURATION__RESOURCES);
+
+    resourceEClass = createEClass(RESOURCE);
+    createEAttribute(resourceEClass, RESOURCE__NAME);
+    createEAttribute(resourceEClass, RESOURCE__TYPE);
+    createEReference(resourceEClass, RESOURCE__RES_GLOB_VARS);
+    createEReference(resourceEClass, RESOURCE__RES_STATEMENT);
+
+    singleResourceEClass = createEClass(SINGLE_RESOURCE);
+    createEReference(singleResourceEClass, SINGLE_RESOURCE__TASKS);
+    createEReference(singleResourceEClass, SINGLE_RESOURCE__PROGRAM_CONFS);
+
+    taskEClass = createEClass(TASK);
+    createEAttribute(taskEClass, TASK__NAME);
+    createEReference(taskEClass, TASK__INIT);
+
+    taskInitializationEClass = createEClass(TASK_INITIALIZATION);
+    createEReference(taskInitializationEClass, TASK_INITIALIZATION__SINGLE);
+    createEReference(taskInitializationEClass, TASK_INITIALIZATION__INTERVAL);
+    createEAttribute(taskInitializationEClass, TASK_INITIALIZATION__PRIORITY);
+
+    programConfigurationEClass = createEClass(PROGRAM_CONFIGURATION);
+    createEAttribute(programConfigurationEClass, PROGRAM_CONFIGURATION__NAME);
+    createEReference(programConfigurationEClass, PROGRAM_CONFIGURATION__TASK);
+    createEReference(programConfigurationEClass, PROGRAM_CONFIGURATION__PROGRAM);
+    createEReference(programConfigurationEClass, PROGRAM_CONFIGURATION__AGRS);
+
+    programConfElementsEClass = createEClass(PROGRAM_CONF_ELEMENTS);
+    createEReference(programConfElementsEClass, PROGRAM_CONF_ELEMENTS__ELEMENTS);
+
+    programConfElementEClass = createEClass(PROGRAM_CONF_ELEMENT);
+    createEReference(programConfElementEClass, PROGRAM_CONF_ELEMENT__PROGRAM_VAR);
+    createEAttribute(programConfElementEClass, PROGRAM_CONF_ELEMENT__ASSIG);
+    createEReference(programConfElementEClass, PROGRAM_CONF_ELEMENT__GLOB_VAR);
 
     programEClass = createEClass(PROGRAM);
     createEAttribute(programEClass, PROGRAM__NAME);
@@ -2812,6 +3275,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEAttribute(realLiteralEClass, REAL_LITERAL__VALUE);
 
     // Create enums
+    assignmentTypeEEnum = createEEnum(ASSIGNMENT_TYPE);
     compOperatorEEnum = createEEnum(COMP_OPERATOR);
     equOperatorEEnum = createEEnum(EQU_OPERATOR);
     addOperatorEEnum = createEEnum(ADD_OPERATOR);
@@ -2880,9 +3344,48 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModel_Confs(), this.getConfiguration(), null, "confs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_GlobVars(), this.getGlobalVarDeclaration(), null, "globVars", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Programs(), this.getProgram(), null, "programs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Fbs(), this.getFunctionBlock(), null, "fbs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConfiguration_ConfGlobVars(), this.getGlobalVarDeclaration(), null, "confGlobVars", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConfiguration_Resources(), this.getResource(), null, "resources", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(resourceEClass, Resource.class, "Resource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getResource_Name(), ecorePackage.getEString(), "name", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getResource_Type(), ecorePackage.getEString(), "type", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_ResGlobVars(), this.getGlobalVarDeclaration(), null, "resGlobVars", null, 0, -1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResource_ResStatement(), this.getSingleResource(), null, "resStatement", null, 0, 1, Resource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(singleResourceEClass, SingleResource.class, "SingleResource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSingleResource_Tasks(), this.getTask(), null, "tasks", null, 0, -1, SingleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSingleResource_ProgramConfs(), this.getProgramConfiguration(), null, "programConfs", null, 0, -1, SingleResource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTask_Name(), ecorePackage.getEString(), "name", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTask_Init(), this.getTaskInitialization(), null, "init", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(taskInitializationEClass, TaskInitialization.class, "TaskInitialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTaskInitialization_Single(), this.getConstant(), null, "single", null, 0, 1, TaskInitialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTaskInitialization_Interval(), this.getConstant(), null, "interval", null, 0, 1, TaskInitialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTaskInitialization_Priority(), ecorePackage.getEInt(), "priority", null, 0, 1, TaskInitialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(programConfigurationEClass, ProgramConfiguration.class, "ProgramConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getProgramConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProgramConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgramConfiguration_Task(), this.getTask(), null, "task", null, 0, 1, ProgramConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgramConfiguration_Program(), this.getProgram(), null, "program", null, 0, 1, ProgramConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgramConfiguration_Agrs(), this.getProgramConfElements(), null, "agrs", null, 0, 1, ProgramConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(programConfElementsEClass, ProgramConfElements.class, "ProgramConfElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getProgramConfElements_Elements(), this.getProgramConfElement(), null, "elements", null, 0, -1, ProgramConfElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(programConfElementEClass, ProgramConfElement.class, "ProgramConfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getProgramConfElement_ProgramVar(), this.getSymbolicVariable(), null, "programVar", null, 0, 1, ProgramConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getProgramConfElement_Assig(), this.getAssignmentType(), "assig", null, 0, 1, ProgramConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgramConfElement_GlobVar(), this.getSymbolicVariable(), null, "globVar", null, 0, 1, ProgramConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProgram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3112,6 +3615,10 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEAttribute(getRealLiteral_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, RealLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
+    initEEnum(assignmentTypeEEnum, AssignmentType.class, "AssignmentType");
+    addEEnumLiteral(assignmentTypeEEnum, AssignmentType.IN);
+    addEEnumLiteral(assignmentTypeEEnum, AssignmentType.OUT);
+
     initEEnum(compOperatorEEnum, CompOperator.class, "CompOperator");
     addEEnumLiteral(compOperatorEEnum, CompOperator.EQUAL);
     addEEnumLiteral(compOperatorEEnum, CompOperator.NOT_EQUAL);

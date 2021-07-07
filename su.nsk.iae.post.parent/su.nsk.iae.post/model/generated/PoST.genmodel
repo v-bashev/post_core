@@ -6,6 +6,10 @@
     copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="PoST" basePackage="su.nsk.iae.post" disposableProviderFactory="true"
       fileExtensions="post" ecorePackage="PoST.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PoST.ecore#//AssignmentType">
+      <genEnumLiterals ecoreEnumLiteral="PoST.ecore#//AssignmentType/in"/>
+      <genEnumLiterals ecoreEnumLiteral="PoST.ecore#//AssignmentType/out"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="PoST.ecore#//CompOperator">
       <genEnumLiterals ecoreEnumLiteral="PoST.ecore#//CompOperator/EQUAL"/>
       <genEnumLiterals ecoreEnumLiteral="PoST.ecore#//CompOperator/NOT_EQUAL"/>
@@ -30,9 +34,48 @@
       <genEnumLiterals ecoreEnumLiteral="PoST.ecore#//UnaryOperator/UNMINUS"/>
     </genEnums>
     <genClasses ecoreClass="PoST.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/confs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/globVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/programs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/fbs"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//Configuration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Configuration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Configuration/confGlobVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Configuration/resources"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//Resource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Resource/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Resource/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Resource/resGlobVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Resource/resStatement"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//SingleResource">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//SingleResource/tasks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//SingleResource/programConfs"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Task/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Task/init"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//TaskInitialization">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TaskInitialization/single"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TaskInitialization/interval"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TaskInitialization/priority"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ProgramConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ProgramConfiguration/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfiguration/task"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfiguration/program"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfiguration/agrs"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ProgramConfElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfElements/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ProgramConfElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfElement/programVar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ProgramConfElement/assig"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfElement/globVar"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Program">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Program/name"/>
