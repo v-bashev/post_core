@@ -1138,7 +1138,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     SingleResource returns SingleResource
 	 *
 	 * Constraint:
-	 *     (tasks+=Task programConfs+=ProgramConfiguration)*
+	 *     (tasks+=Task | programConfs+=ProgramConfiguration)*
 	 */
 	protected void sequence_SingleResource(ISerializationContext context, SingleResource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

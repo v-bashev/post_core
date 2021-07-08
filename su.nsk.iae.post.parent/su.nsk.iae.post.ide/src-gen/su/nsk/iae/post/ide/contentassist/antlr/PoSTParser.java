@@ -32,6 +32,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, PoSTGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getModelAccess().getAlternatives(), "rule__Model__Alternatives");
+			builder.put(grammarAccess.getSingleResourceAccess().getAlternatives_1(), "rule__SingleResource__Alternatives_1");
 			builder.put(grammarAccess.getTaskInitializationAccess().getAlternatives(), "rule__TaskInitialization__Alternatives");
 			builder.put(grammarAccess.getProgramConfElementAccess().getAlternatives(), "rule__ProgramConfElement__Alternatives");
 			builder.put(grammarAccess.getAttachVariableConfElementAccess().getAlternatives_2(), "rule__AttachVariableConfElement__Alternatives_2");
@@ -67,7 +68,8 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConfigurationAccess().getGroup_2(), "rule__Configuration__Group_2__0");
 			builder.put(grammarAccess.getResourceAccess().getGroup(), "rule__Resource__Group__0");
 			builder.put(grammarAccess.getSingleResourceAccess().getGroup(), "rule__SingleResource__Group__0");
-			builder.put(grammarAccess.getSingleResourceAccess().getGroup_1(), "rule__SingleResource__Group_1__0");
+			builder.put(grammarAccess.getSingleResourceAccess().getGroup_1_0(), "rule__SingleResource__Group_1_0__0");
+			builder.put(grammarAccess.getSingleResourceAccess().getGroup_1_1(), "rule__SingleResource__Group_1_1__0");
 			builder.put(grammarAccess.getTaskAccess().getGroup(), "rule__Task__Group__0");
 			builder.put(grammarAccess.getTaskInitializationAccess().getGroup_0(), "rule__TaskInitialization__Group_0__0");
 			builder.put(grammarAccess.getTaskInitializationAccess().getGroup_1(), "rule__TaskInitialization__Group_1__0");
@@ -189,8 +191,8 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getResourceAccess().getTypeAssignment_3(), "rule__Resource__TypeAssignment_3");
 			builder.put(grammarAccess.getResourceAccess().getResGlobVarsAssignment_4(), "rule__Resource__ResGlobVarsAssignment_4");
 			builder.put(grammarAccess.getResourceAccess().getResStatementAssignment_5(), "rule__Resource__ResStatementAssignment_5");
-			builder.put(grammarAccess.getSingleResourceAccess().getTasksAssignment_1_0(), "rule__SingleResource__TasksAssignment_1_0");
-			builder.put(grammarAccess.getSingleResourceAccess().getProgramConfsAssignment_1_2(), "rule__SingleResource__ProgramConfsAssignment_1_2");
+			builder.put(grammarAccess.getSingleResourceAccess().getTasksAssignment_1_0_0(), "rule__SingleResource__TasksAssignment_1_0_0");
+			builder.put(grammarAccess.getSingleResourceAccess().getProgramConfsAssignment_1_1_0(), "rule__SingleResource__ProgramConfsAssignment_1_1_0");
 			builder.put(grammarAccess.getTaskAccess().getNameAssignment_1(), "rule__Task__NameAssignment_1");
 			builder.put(grammarAccess.getTaskAccess().getInitAssignment_3(), "rule__Task__InitAssignment_3");
 			builder.put(grammarAccess.getTaskInitializationAccess().getSingleAssignment_0_2(), "rule__TaskInitialization__SingleAssignment_0_2");

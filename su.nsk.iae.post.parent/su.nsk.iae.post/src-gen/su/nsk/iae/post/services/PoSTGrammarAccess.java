@@ -204,24 +204,26 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.SingleResource");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cSingleResourceAction_0 = (Action)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cTasksAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cTasksTaskParserRuleCall_1_0_0 = (RuleCall)cTasksAssignment_1_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cProgramConfsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cProgramConfsProgramConfigurationParserRuleCall_1_2_0 = (RuleCall)cProgramConfsAssignment_1_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Assignment cTasksAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
+		private final RuleCall cTasksTaskParserRuleCall_1_0_0_0 = (RuleCall)cTasksAssignment_1_0_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cProgramConfsAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cProgramConfsProgramConfigurationParserRuleCall_1_1_0_0 = (RuleCall)cProgramConfsAssignment_1_1_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
 		
 		//SingleResource:
 		//    {SingleResource} (
-		//        tasks+=Task ';'
-		//        programConfs+=ProgramConfiguration ';'
+		//        (tasks+=Task ';') |
+		//        (programConfs+=ProgramConfiguration ';')
 		//    )*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{SingleResource} (
-		//    tasks+=Task ';'
-		//    programConfs+=ProgramConfiguration ';'
+		//    (tasks+=Task ';') |
+		//    (programConfs+=ProgramConfiguration ';')
 		//)*
 		public Group getGroup() { return cGroup; }
 		
@@ -229,28 +231,34 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		public Action getSingleResourceAction_0() { return cSingleResourceAction_0; }
 		
 		//(
-		//       tasks+=Task ';'
-		//       programConfs+=ProgramConfiguration ';'
+		//       (tasks+=Task ';') |
+		//       (programConfs+=ProgramConfiguration ';')
 		//   )*
-		public Group getGroup_1() { return cGroup_1; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//(tasks+=Task ';')
+		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//tasks+=Task
-		public Assignment getTasksAssignment_1_0() { return cTasksAssignment_1_0; }
+		public Assignment getTasksAssignment_1_0_0() { return cTasksAssignment_1_0_0; }
 		
 		//Task
-		public RuleCall getTasksTaskParserRuleCall_1_0_0() { return cTasksTaskParserRuleCall_1_0_0; }
+		public RuleCall getTasksTaskParserRuleCall_1_0_0_0() { return cTasksTaskParserRuleCall_1_0_0_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_1_1() { return cSemicolonKeyword_1_1; }
+		public Keyword getSemicolonKeyword_1_0_1() { return cSemicolonKeyword_1_0_1; }
+		
+		//(programConfs+=ProgramConfiguration ';')
+		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//programConfs+=ProgramConfiguration
-		public Assignment getProgramConfsAssignment_1_2() { return cProgramConfsAssignment_1_2; }
+		public Assignment getProgramConfsAssignment_1_1_0() { return cProgramConfsAssignment_1_1_0; }
 		
 		//ProgramConfiguration
-		public RuleCall getProgramConfsProgramConfigurationParserRuleCall_1_2_0() { return cProgramConfsProgramConfigurationParserRuleCall_1_2_0; }
+		public RuleCall getProgramConfsProgramConfigurationParserRuleCall_1_1_0_0() { return cProgramConfsProgramConfigurationParserRuleCall_1_1_0_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_1_3() { return cSemicolonKeyword_1_3; }
+		public Keyword getSemicolonKeyword_1_1_1() { return cSemicolonKeyword_1_1_1; }
 	}
 	public class TaskElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.Task");
@@ -4075,8 +4083,8 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	//SingleResource:
 	//    {SingleResource} (
-	//        tasks+=Task ';'
-	//        programConfs+=ProgramConfiguration ';'
+	//        (tasks+=Task ';') |
+	//        (programConfs+=ProgramConfiguration ';')
 	//    )*;
 	public SingleResourceElements getSingleResourceAccess() {
 		return pSingleResource;

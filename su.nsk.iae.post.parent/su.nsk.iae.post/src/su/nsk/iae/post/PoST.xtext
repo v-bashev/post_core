@@ -30,8 +30,8 @@ Resource:
 
 SingleResource:
 	{SingleResource} (
-		tasks+=Task ';'
-		programConfs+=ProgramConfiguration ';'
+		(tasks+=Task ';') |
+		(programConfs+=ProgramConfiguration ';')
 	)*;
 
 Task:

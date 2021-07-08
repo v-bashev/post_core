@@ -375,50 +375,55 @@ ruleSingleResource returns [EObject current=null]
 		(
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getSingleResourceAccess().getTasksTaskParserRuleCall_1_0_0());
-					}
-					lv_tasks_1_0=ruleTask
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getSingleResourceAccess().getTasksTaskParserRuleCall_1_0_0_0());
 						}
-						add(
-							$current,
-							"tasks",
-							lv_tasks_1_0,
-							"su.nsk.iae.post.PoST.Task");
-						afterParserOrEnumRuleCall();
-					}
+						lv_tasks_1_0=ruleTask
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+							}
+							add(
+								$current,
+								"tasks",
+								lv_tasks_1_0,
+								"su.nsk.iae.post.PoST.Task");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
+				otherlv_2=';'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_0_1());
+				}
 			)
-			otherlv_2=';'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_1());
-			}
+			    |
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getSingleResourceAccess().getProgramConfsProgramConfigurationParserRuleCall_1_2_0());
-					}
-					lv_programConfs_3_0=ruleProgramConfiguration
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getSingleResourceAccess().getProgramConfsProgramConfigurationParserRuleCall_1_1_0_0());
 						}
-						add(
-							$current,
-							"programConfs",
-							lv_programConfs_3_0,
-							"su.nsk.iae.post.PoST.ProgramConfiguration");
-						afterParserOrEnumRuleCall();
-					}
+						lv_programConfs_3_0=ruleProgramConfiguration
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+							}
+							add(
+								$current,
+								"programConfs",
+								lv_programConfs_3_0,
+								"su.nsk.iae.post.PoST.ProgramConfiguration");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
+				otherlv_4=';'
+				{
+					newLeafNode(otherlv_4, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_1_1());
+				}
 			)
-			otherlv_4=';'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_3());
-			}
 		)*
 	)
 ;
