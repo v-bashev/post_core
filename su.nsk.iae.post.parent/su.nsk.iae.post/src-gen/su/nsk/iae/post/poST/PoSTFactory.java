@@ -33,6 +33,78 @@ public interface PoSTFactory extends EFactory
   Model createModel();
 
   /**
+   * Returns a new object of class '<em>Configuration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Configuration</em>'.
+   * @generated
+   */
+  Configuration createConfiguration();
+
+  /**
+   * Returns a new object of class '<em>Resource</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Resource</em>'.
+   * @generated
+   */
+  Resource createResource();
+
+  /**
+   * Returns a new object of class '<em>Single Resource</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Single Resource</em>'.
+   * @generated
+   */
+  SingleResource createSingleResource();
+
+  /**
+   * Returns a new object of class '<em>Task</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Task</em>'.
+   * @generated
+   */
+  Task createTask();
+
+  /**
+   * Returns a new object of class '<em>Task Initialization</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Task Initialization</em>'.
+   * @generated
+   */
+  TaskInitialization createTaskInitialization();
+
+  /**
+   * Returns a new object of class '<em>Program Configuration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Program Configuration</em>'.
+   * @generated
+   */
+  ProgramConfiguration createProgramConfiguration();
+
+  /**
+   * Returns a new object of class '<em>Program Conf Elements</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Program Conf Elements</em>'.
+   * @generated
+   */
+  ProgramConfElements createProgramConfElements();
+
+  /**
+   * Returns a new object of class '<em>Program Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Program Conf Element</em>'.
+   * @generated
+   */
+  ProgramConfElement createProgramConfElement();
+
+  /**
    * Returns a new object of class '<em>Program</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -49,6 +121,24 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   FunctionBlock createFunctionBlock();
+
+  /**
+   * Returns a new object of class '<em>Process</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process</em>'.
+   * @generated
+   */
+  Process createProcess();
+
+  /**
+   * Returns a new object of class '<em>State</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>State</em>'.
+   * @generated
+   */
+  State createState();
 
   /**
    * Returns a new object of class '<em>Set State Statement</em>'.
@@ -121,24 +211,6 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   ResetTimerStatement createResetTimerStatement();
-
-  /**
-   * Returns a new object of class '<em>Process</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Process</em>'.
-   * @generated
-   */
-  Process createProcess();
-
-  /**
-   * Returns a new object of class '<em>State</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>State</em>'.
-   * @generated
-   */
-  State createState();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.

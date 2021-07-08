@@ -25,6 +25,7 @@ import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
+import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.Constant;
 import su.nsk.iae.post.poST.EquExpression;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
@@ -49,18 +50,25 @@ import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
 import su.nsk.iae.post.poST.Program;
+import su.nsk.iae.post.poST.ProgramConfElement;
+import su.nsk.iae.post.poST.ProgramConfElements;
+import su.nsk.iae.post.poST.ProgramConfiguration;
 import su.nsk.iae.post.poST.RealLiteral;
 import su.nsk.iae.post.poST.RepeatStatement;
 import su.nsk.iae.post.poST.ResetTimerStatement;
+import su.nsk.iae.post.poST.Resource;
 import su.nsk.iae.post.poST.SetStateStatement;
 import su.nsk.iae.post.poST.SignedInteger;
 import su.nsk.iae.post.poST.SimpleSpecificationInit;
+import su.nsk.iae.post.poST.SingleResource;
 import su.nsk.iae.post.poST.StartProcessStatement;
 import su.nsk.iae.post.poST.State;
 import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.StopProcessStatement;
 import su.nsk.iae.post.poST.SubprogramControlStatement;
 import su.nsk.iae.post.poST.SymbolicVariable;
+import su.nsk.iae.post.poST.Task;
+import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -118,6 +126,9 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PoSTPackage.COMP_EXPRESSION:
 				sequence_CompExpression(context, (CompExpression) semanticObject); 
+				return; 
+			case PoSTPackage.CONFIGURATION:
+				sequence_Configuration(context, (Configuration) semanticObject); 
 				return; 
 			case PoSTPackage.CONSTANT:
 				sequence_Constant(context, (Constant) semanticObject); 
@@ -191,6 +202,15 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case PoSTPackage.PROGRAM:
 				sequence_Program(context, (Program) semanticObject); 
 				return; 
+			case PoSTPackage.PROGRAM_CONF_ELEMENT:
+				sequence_ProgramConfElement(context, (ProgramConfElement) semanticObject); 
+				return; 
+			case PoSTPackage.PROGRAM_CONF_ELEMENTS:
+				sequence_ProgramConfElements(context, (ProgramConfElements) semanticObject); 
+				return; 
+			case PoSTPackage.PROGRAM_CONFIGURATION:
+				sequence_ProgramConfiguration(context, (ProgramConfiguration) semanticObject); 
+				return; 
 			case PoSTPackage.REAL_LITERAL:
 				sequence_RealLiteral(context, (RealLiteral) semanticObject); 
 				return; 
@@ -200,6 +220,9 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case PoSTPackage.RESET_TIMER_STATEMENT:
 				sequence_ResetTimerStatement(context, (ResetTimerStatement) semanticObject); 
 				return; 
+			case PoSTPackage.RESOURCE:
+				sequence_Resource(context, (Resource) semanticObject); 
+				return; 
 			case PoSTPackage.SET_STATE_STATEMENT:
 				sequence_SetStateStatement(context, (SetStateStatement) semanticObject); 
 				return; 
@@ -208,6 +231,9 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PoSTPackage.SIMPLE_SPECIFICATION_INIT:
 				sequence_SimpleSpecificationInit(context, (SimpleSpecificationInit) semanticObject); 
+				return; 
+			case PoSTPackage.SINGLE_RESOURCE:
+				sequence_SingleResource(context, (SingleResource) semanticObject); 
 				return; 
 			case PoSTPackage.START_PROCESS_STATEMENT:
 				sequence_StartProcessStatement(context, (StartProcessStatement) semanticObject); 
@@ -226,6 +252,12 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PoSTPackage.SYMBOLIC_VARIABLE:
 				sequence_SymbolicVariable(context, (SymbolicVariable) semanticObject); 
+				return; 
+			case PoSTPackage.TASK:
+				sequence_Task(context, (Task) semanticObject); 
+				return; 
+			case PoSTPackage.TASK_INITIALIZATION:
+				sequence_TaskInitialization(context, (TaskInitialization) semanticObject); 
 				return; 
 			case PoSTPackage.TEMP_VAR_DECLARATION:
 				sequence_TempVarDeclaration(context, (TempVarDeclaration) semanticObject); 
@@ -477,6 +509,18 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		feeder.accept(grammarAccess.getCompExpressionAccess().getCompOpCompOperatorEnumRuleCall_1_1_0(), semanticObject.getCompOp());
 		feeder.accept(grammarAccess.getCompExpressionAccess().getRightEquExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Configuration returns Configuration
+	 *
+	 * Constraint:
+	 *     (name=ID (confGlobVars+=GlobalVarDeclaration resources+=Resource)*)
+	 */
+	protected void sequence_Configuration(ISerializationContext context, Configuration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -761,7 +805,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
+	 *     (confs+=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -908,6 +952,54 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ProgramConfElement returns ProgramConfElement
+	 *
+	 * Constraint:
+	 *     (programVar=[SymbolicVariable|ID] assig=AssignmentType globVar=[SymbolicVariable|ID])
+	 */
+	protected void sequence_ProgramConfElement(ISerializationContext context, ProgramConfElement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__PROGRAM_VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__PROGRAM_VAR));
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__ASSIG) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__ASSIG));
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__GLOB_VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__GLOB_VAR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getProgramConfElementAccess().getProgramVarSymbolicVariableIDTerminalRuleCall_0_0_1(), semanticObject.eGet(PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__PROGRAM_VAR, false));
+		feeder.accept(grammarAccess.getProgramConfElementAccess().getAssigAssignmentTypeEnumRuleCall_1_0(), semanticObject.getAssig());
+		feeder.accept(grammarAccess.getProgramConfElementAccess().getGlobVarSymbolicVariableIDTerminalRuleCall_2_0_1(), semanticObject.eGet(PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__GLOB_VAR, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ProgramConfElements returns ProgramConfElements
+	 *
+	 * Constraint:
+	 *     (elements+=ProgramConfElement elements+=ProgramConfElement*)
+	 */
+	protected void sequence_ProgramConfElements(ISerializationContext context, ProgramConfElements semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ProgramConfiguration returns ProgramConfiguration
+	 *
+	 * Constraint:
+	 *     (name=ID task=[Task|ID]? program=[Program|ID] args=ProgramConfElements?)
+	 */
+	protected void sequence_ProgramConfiguration(ISerializationContext context, ProgramConfiguration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Program returns Program
 	 *
 	 * Constraint:
@@ -981,6 +1073,18 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Resource returns Resource
+	 *
+	 * Constraint:
+	 *     (name=ID type=ID resGlobVars+=GlobalVarDeclaration* resStatement=SingleResource)
+	 */
+	protected void sequence_Resource(ISerializationContext context, Resource semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     SetStateStatement returns SetStateStatement
 	 *     Statement returns SetStateStatement
 	 *
@@ -1012,6 +1116,18 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (type=DataTypeName value=Constant?)
 	 */
 	protected void sequence_SimpleSpecificationInit(ISerializationContext context, SimpleSpecificationInit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SingleResource returns SingleResource
+	 *
+	 * Constraint:
+	 *     (tasks+=Task programConfs+=ProgramConfiguration)*
+	 */
+	protected void sequence_SingleResource(ISerializationContext context, SingleResource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1095,6 +1211,39 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSymbolicVariableAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TaskInitialization returns TaskInitialization
+	 *
+	 * Constraint:
+	 *     (single=Constant | (interval=Constant priority=INTEGER))
+	 */
+	protected void sequence_TaskInitialization(ISerializationContext context, TaskInitialization semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Task returns Task
+	 *
+	 * Constraint:
+	 *     (name=ID init=TaskInitialization)
+	 */
+	protected void sequence_Task(ISerializationContext context, Task semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.TASK__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.TASK__NAME));
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.TASK__INIT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.TASK__INIT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTaskAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTaskAccess().getInitTaskInitializationParserRuleCall_3_0(), semanticObject.getInit());
 		feeder.finish();
 	}
 	

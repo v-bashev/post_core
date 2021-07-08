@@ -41,12 +41,18 @@ public class PoSTSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getBOOLEAN_LITERALToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getHEX_INTEGERRule())
 			return getHEX_INTEGERToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getINTERVAL_DECLARATIONRule())
+			return getINTERVAL_DECLARATIONToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getOCTAL_INTEGERRule())
 			return getOCTAL_INTEGERToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getOR_OPERATORRule())
 			return getOR_OPERATORToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getPOWER_OPERATORRule())
 			return getPOWER_OPERATORToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getPRIORITY_DECLARATIONRule())
+			return getPRIORITY_DECLARATIONToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSINGLE_DECLARATIONRule())
+			return getSINGLE_DECLARATIONToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getTIME_PREF_LITERALRule())
 			return getTIME_PREF_LITERALToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getXOR_OPERATORRule())
@@ -95,6 +101,16 @@ public class PoSTSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * terminal INTERVAL_DECLARATION:
+	 * 	'INTERVAL';
+	 */
+	protected String getINTERVAL_DECLARATIONToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "INTERVAL";
+	}
+	
+	/**
 	 * terminal OCTAL_INTEGER returns ecore::EString:
 	 * 	'8#' OCTAL_DIGIT+;
 	 */
@@ -122,6 +138,26 @@ public class PoSTSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "**";
+	}
+	
+	/**
+	 * terminal PRIORITY_DECLARATION:
+	 * 	'PRIORITY';
+	 */
+	protected String getPRIORITY_DECLARATIONToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "PRIORITY";
+	}
+	
+	/**
+	 * terminal SINGLE_DECLARATION:
+	 * 	'SINGLE';
+	 */
+	protected String getSINGLE_DECLARATIONToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "SINGLE";
 	}
 	
 	/**

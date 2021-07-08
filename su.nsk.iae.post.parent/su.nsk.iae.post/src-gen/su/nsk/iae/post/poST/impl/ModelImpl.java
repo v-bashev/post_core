@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.Model;
@@ -31,6 +32,7 @@ import su.nsk.iae.post.poST.Program;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getConfs <em>Confs</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getGlobVars <em>Glob Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getPrograms <em>Programs</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getFbs <em>Fbs</em>}</li>
@@ -40,6 +42,16 @@ import su.nsk.iae.post.poST.Program;
  */
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
+  /**
+   * The cached value of the '{@link #getConfs() <em>Confs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getConfs()
+   * @generated
+   * @ordered
+   */
+  protected EList<Configuration> confs;
+
   /**
    * The cached value of the '{@link #getGlobVars() <em>Glob Vars</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -97,6 +109,21 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
+  public EList<Configuration> getConfs()
+  {
+    if (confs == null)
+    {
+      confs = new EObjectContainmentEList<Configuration>(Configuration.class, this, PoSTPackage.MODEL__CONFS);
+    }
+    return confs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<GlobalVarDeclaration> getGlobVars()
   {
     if (globVars == null)
@@ -146,6 +173,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PoSTPackage.MODEL__CONFS:
+        return ((InternalEList<?>)getConfs()).basicRemove(otherEnd, msgs);
       case PoSTPackage.MODEL__GLOB_VARS:
         return ((InternalEList<?>)getGlobVars()).basicRemove(otherEnd, msgs);
       case PoSTPackage.MODEL__PROGRAMS:
@@ -166,6 +195,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PoSTPackage.MODEL__CONFS:
+        return getConfs();
       case PoSTPackage.MODEL__GLOB_VARS:
         return getGlobVars();
       case PoSTPackage.MODEL__PROGRAMS:
@@ -187,6 +218,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PoSTPackage.MODEL__CONFS:
+        getConfs().clear();
+        getConfs().addAll((Collection<? extends Configuration>)newValue);
+        return;
       case PoSTPackage.MODEL__GLOB_VARS:
         getGlobVars().clear();
         getGlobVars().addAll((Collection<? extends GlobalVarDeclaration>)newValue);
@@ -213,6 +248,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PoSTPackage.MODEL__CONFS:
+        getConfs().clear();
+        return;
       case PoSTPackage.MODEL__GLOB_VARS:
         getGlobVars().clear();
         return;
@@ -236,6 +274,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PoSTPackage.MODEL__CONFS:
+        return confs != null && !confs.isEmpty();
       case PoSTPackage.MODEL__GLOB_VARS:
         return globVars != null && !globVars.isEmpty();
       case PoSTPackage.MODEL__PROGRAMS:

@@ -12,12 +12,16 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
 import su.nsk.iae.post.poST.AssignmentStatement;
+import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseStatement;
+import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
+import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
 import su.nsk.iae.post.poST.InputOutputVarDeclaration;
 import su.nsk.iae.post.poST.InputVarDeclaration;
@@ -28,12 +32,16 @@ import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.Process;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
 import su.nsk.iae.post.poST.Program;
+import su.nsk.iae.post.poST.ProgramConfElement;
+import su.nsk.iae.post.poST.ProgramConfiguration;
+import su.nsk.iae.post.poST.Resource;
 import su.nsk.iae.post.poST.SetStateStatement;
 import su.nsk.iae.post.poST.StartProcessStatement;
 import su.nsk.iae.post.poST.Statement;
 import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.StopProcessStatement;
 import su.nsk.iae.post.poST.SymbolicVariable;
+import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TempVarDeclaration;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -48,27 +56,32 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	public void checkVariableNameConflicts(SymbolicVariable varName) {
 		Process process = EcoreUtil2.getContainerOfType(varName, Process.class);
 		if ((process != null) && checkVariableNameConflictsInProcess(process, varName)) {
-			if (checkVariableNameConflictsInProcess(process, varName)) {
-				error("Name error: Process already has a variable with this name",
-						PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
-				return;
-			}
+			error("Name error: Process already has a variable with this name",
+					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
+			return;
 		}
 		Program program = EcoreUtil2.getContainerOfType(varName, Program.class);
-		if (program != null) {
-			if (checkVariableNameConflictsInProgram(program, varName)) {
-				error("Name error: Program already has a variable with this name",
-						PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
-				return;
-			}
+		if (program != null && checkVariableNameConflictsInProgram(program, varName)) {
+			error("Name error: Program already has a variable with this name",
+					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
+			return;
+		}
+		Resource res = EcoreUtil2.getContainerOfType(varName, Resource.class);
+		if ((res != null) && checkGlobalVariableName(res.getResGlobVars(), varName)) {
+			error("Name error: Resource already has a variable with this name",
+					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
+			return;
+		}
+		Configuration conf = EcoreUtil2.getContainerOfType(varName, Configuration.class);
+		if ((res != null) && checkGlobalVariableName(conf.getConfGlobVars(), varName)) {
+			error("Name error: Configuration already has a variable with this name",
+					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
+			return;
 		}
 		Model model = EcoreUtil2.getContainerOfType(varName, Model.class);
-		if (model != null) {
-			if (checkGlobalVariableName(model, varName)) {
-				error("Name error: Conflict with the name of a global variable",
-						PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
-				return;
-			}
+		if (model != null && checkGlobalVariableName(model.getGlobVars(), varName)) {
+			error("Name error: Conflict with the name of a global variable",
+					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
 			return;
 		}
 	}
@@ -79,7 +92,6 @@ public class PoSTValidator extends AbstractPoSTValidator {
 		if ((model != null) && !hasCrossReferences(model, varName)) {
 			warning("Variable is never use", PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
 		}
-
 	}
 
 	@Check
@@ -117,6 +129,55 @@ public class PoSTValidator extends AbstractPoSTValidator {
 			return;
 		}
 	}
+	
+	@Check
+	public void checkTaskNameConflicts(Task task) {
+		Resource res = EcoreUtil2.getContainerOfType(task, Resource.class);
+		for (Task t : res.getResStatement().getTasks()) {
+			if ((t != task) && t.getName().equals(task.getName())) {
+				error("Name error: Task with this name already exists",
+						PoSTPackage.eINSTANCE.getTask_Name());
+			}
+		}
+	}
+	
+	@Check
+	public void checkProgramConfiguration(ProgramConfiguration conf) {
+		int programVars = 0;
+		for (InputVarDeclaration varDecl : conf.getProgram().getProgInVars()) {
+			for (VarInitDeclaration varList : varDecl.getVars()) {
+				programVars += varList.getVarList().getVars().size();
+			}
+		}
+		for (OutputVarDeclaration varDecl : conf.getProgram().getProgOutVars()) {
+			for (VarInitDeclaration varList : varDecl.getVars()) {
+				programVars += varList.getVarList().getVars().size();
+			}
+		}
+		if ((conf.getArgs() != null) && (programVars != conf.getArgs().getElements().size())) {
+			error("Attached error: Not all input and output variables are used",
+					PoSTPackage.eINSTANCE.getProgramConfiguration_Args());
+		}
+	}
+	
+	@Check
+	public void checkProgramConfElement(ProgramConfElement element) {
+		if (element.getAssig() == AssignmentType.IN) {
+			if (EcoreUtil2.getContainerOfType(element.getProgramVar(), InputVarDeclaration.class) == null) {
+				error("Attached error: Must be a input variable",
+						PoSTPackage.eINSTANCE.getProgramConfElement_ProgramVar());
+			}
+		} else {
+			if (EcoreUtil2.getContainerOfType(element.getProgramVar(), OutputVarDeclaration.class) == null) {
+				error("Attached error: Must be a output variable",
+						PoSTPackage.eINSTANCE.getProgramConfElement_ProgramVar());
+			}
+		}
+		/*if (EcoreUtil2.getContainerOfType(element.getGlobVar(), Resource.class) == null) {
+			error("Attached error: Must be a global var from Resource",
+					PoSTPackage.eINSTANCE.getProgramConfElement_GlobVar());
+		}*/
+	}
 
 	/* ======================= END Variables Validator ======================= */
 
@@ -126,6 +187,13 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	public void checkEmptyProgram(Program program) {
 		if (program.getProcesses().isEmpty()) {
 			error("Statement error: Program can't be empty", PoSTPackage.eINSTANCE.getProcess_Name());
+		}
+	}
+	
+	@Check
+	public void checkEmptyProgram(FunctionBlock fb) {
+		if (fb.getProcesses().isEmpty()) {
+			error("Statement error: Function Block can't be empty", PoSTPackage.eINSTANCE.getProcess_Name());
 		}
 	}
 
@@ -432,9 +500,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	}
 
 	
-	private boolean checkGlobalVariableName(Model model, SymbolicVariable varName) {
-		for (GlobalVarDeclaration varDecl : model.getGlobVars()) {
-			if (checkVarInitDeclaration(varDecl.getVarsSimple(), varName)) {
+	private boolean checkGlobalVariableName(EList<GlobalVarDeclaration> globVars, SymbolicVariable varName) {
+		for (GlobalVarDeclaration varDecl : globVars) {
+			if (checkVarInitDeclaration(varDecl.getVarsSimple(), varName) || 
+					checkGlobalVarInitDeclaration(varDecl.getVarsAs(), varName)) {
 				return true;
 			}
 		}
@@ -443,6 +512,17 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	
 	private boolean checkVarInitDeclaration(EList<VarInitDeclaration> decls, SymbolicVariable varName) {
 		for (VarInitDeclaration varList : decls) {
+			for (SymbolicVariable v : varList.getVarList().getVars()) {
+				if ((v != varName) && v.getName().equals(varName.getName())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	private boolean checkGlobalVarInitDeclaration(EList<GlobalVarInitDeclaration> decls, SymbolicVariable varName) {
+		for (GlobalVarInitDeclaration varList : decls) {
 			for (SymbolicVariable v : varList.getVarList().getVars()) {
 				if ((v != varName) && v.getName().equals(varName.getName())) {
 					return true;
