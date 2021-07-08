@@ -991,7 +991,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ProgramConfiguration returns ProgramConfiguration
 	 *
 	 * Constraint:
-	 *     (name=ID task=[Task|ID]? program=[Program|ID] agrs=ProgramConfElements?)
+	 *     (name=ID task=[Task|ID]? program=[Program|ID] args=ProgramConfElements?)
 	 */
 	protected void sequence_ProgramConfiguration(ISerializationContext context, ProgramConfiguration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1076,7 +1076,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Resource returns Resource
 	 *
 	 * Constraint:
-	 *     (name=ID type=ID resGlobVars+=GlobalVarDeclaration? resStatement=SingleResource)
+	 *     (name=ID type=ID resGlobVars+=GlobalVarDeclaration* resStatement=SingleResource)
 	 */
 	protected void sequence_Resource(ISerializationContext context, Resource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

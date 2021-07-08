@@ -123,6 +123,24 @@ public interface PoSTFactory extends EFactory
   FunctionBlock createFunctionBlock();
 
   /**
+   * Returns a new object of class '<em>Process</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process</em>'.
+   * @generated
+   */
+  Process createProcess();
+
+  /**
+   * Returns a new object of class '<em>State</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>State</em>'.
+   * @generated
+   */
+  State createState();
+
+  /**
    * Returns a new object of class '<em>Set State Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -193,24 +211,6 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   ResetTimerStatement createResetTimerStatement();
-
-  /**
-   * Returns a new object of class '<em>Process</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Process</em>'.
-   * @generated
-   */
-  Process createProcess();
-
-  /**
-   * Returns a new object of class '<em>State</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>State</em>'.
-   * @generated
-   */
-  State createState();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link su.nsk.iae.post.poST.ProgramConfiguration#getName <em>Name</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.ProgramConfiguration#getTask <em>Task</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.ProgramConfiguration#getProgram <em>Program</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.ProgramConfiguration#getAgrs <em>Agrs</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.ProgramConfiguration#getArgs <em>Args</em>}</li>
  * </ul>
  *
  * @see su.nsk.iae.post.poST.PoSTPackage#getProgramConfiguration()
@@ -93,25 +93,25 @@ public interface ProgramConfiguration extends EObject
   void setProgram(Program value);
 
   /**
-   * Returns the value of the '<em><b>Agrs</b></em>' containment reference.
+   * Returns the value of the '<em><b>Args</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Agrs</em>' containment reference.
-   * @see #setAgrs(ProgramConfElements)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getProgramConfiguration_Agrs()
+   * @return the value of the '<em>Args</em>' containment reference.
+   * @see #setArgs(ProgramConfElements)
+   * @see su.nsk.iae.post.poST.PoSTPackage#getProgramConfiguration_Args()
    * @model containment="true"
    * @generated
    */
-  ProgramConfElements getAgrs();
+  ProgramConfElements getArgs();
 
   /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.ProgramConfiguration#getAgrs <em>Agrs</em>}' containment reference.
+   * Sets the value of the '{@link su.nsk.iae.post.poST.ProgramConfiguration#getArgs <em>Args</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Agrs</em>' containment reference.
-   * @see #getAgrs()
+   * @param value the new value of the '<em>Args</em>' containment reference.
+   * @see #getArgs()
    * @generated
    */
-  void setAgrs(ProgramConfElements value);
+  void setArgs(ProgramConfElements value);
 
 } // ProgramConfiguration

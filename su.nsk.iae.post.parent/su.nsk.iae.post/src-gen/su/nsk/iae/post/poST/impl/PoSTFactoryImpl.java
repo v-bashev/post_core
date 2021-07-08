@@ -152,6 +152,8 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.PROGRAM_CONF_ELEMENT: return createProgramConfElement();
       case PoSTPackage.PROGRAM: return createProgram();
       case PoSTPackage.FUNCTION_BLOCK: return createFunctionBlock();
+      case PoSTPackage.PROCESS: return createProcess();
+      case PoSTPackage.STATE: return createState();
       case PoSTPackage.SET_STATE_STATEMENT: return createSetStateStatement();
       case PoSTPackage.PROCESS_STATEMENTS: return createProcessStatements();
       case PoSTPackage.PROCESS_STATUS_EXPRESSION: return createProcessStatusExpression();
@@ -160,8 +162,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.ERROR_PROCESS_STATEMENT: return createErrorProcessStatement();
       case PoSTPackage.TIMEOUT_STATEMENT: return createTimeoutStatement();
       case PoSTPackage.RESET_TIMER_STATEMENT: return createResetTimerStatement();
-      case PoSTPackage.PROCESS: return createProcess();
-      case PoSTPackage.STATE: return createState();
       case PoSTPackage.EXPRESSION: return createExpression();
       case PoSTPackage.XOR_EXPRESSION: return createXorExpression();
       case PoSTPackage.AND_EXPRESSION: return createAndExpression();
@@ -407,6 +407,30 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
+  public su.nsk.iae.post.poST.Process createProcess()
+  {
+    ProcessImpl process = new ProcessImpl();
+    return process;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public State createState()
+  {
+    StateImpl state = new StateImpl();
+    return state;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public SetStateStatement createSetStateStatement()
   {
     SetStateStatementImpl setStateStatement = new SetStateStatementImpl();
@@ -495,30 +519,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ResetTimerStatementImpl resetTimerStatement = new ResetTimerStatementImpl();
     return resetTimerStatement;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public su.nsk.iae.post.poST.Process createProcess()
-  {
-    ProcessImpl process = new ProcessImpl();
-    return process;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public State createState()
-  {
-    StateImpl state = new StateImpl();
-    return state;
   }
 
   /**

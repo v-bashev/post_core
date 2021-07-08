@@ -19,6 +19,7 @@ import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -91,7 +92,6 @@ public class PoSTValidator extends AbstractPoSTValidator {
 		if ((model != null) && !hasCrossReferences(model, varName)) {
 			warning("Variable is never use", PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
 		}
-
 	}
 
 	@Check
@@ -154,9 +154,9 @@ public class PoSTValidator extends AbstractPoSTValidator {
 				programVars += varList.getVarList().getVars().size();
 			}
 		}
-		if ((conf.getAgrs() != null) && (programVars != conf.getAgrs().getElements().size())) {
+		if ((conf.getArgs() != null) && (programVars != conf.getArgs().getElements().size())) {
 			error("Attached error: Not all input and output variables are used",
-					PoSTPackage.eINSTANCE.getProgramConfiguration_Agrs());
+					PoSTPackage.eINSTANCE.getProgramConfiguration_Args());
 		}
 	}
 	
@@ -164,19 +164,19 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	public void checkProgramConfElement(ProgramConfElement element) {
 		if (element.getAssig() == AssignmentType.IN) {
 			if (EcoreUtil2.getContainerOfType(element.getProgramVar(), InputVarDeclaration.class) == null) {
-				error("Attached error: Must be a input var from Program",
+				error("Attached error: Must be a input variable",
 						PoSTPackage.eINSTANCE.getProgramConfElement_ProgramVar());
 			}
 		} else {
 			if (EcoreUtil2.getContainerOfType(element.getProgramVar(), OutputVarDeclaration.class) == null) {
-				error("Attached error: Must be a output var from Program",
+				error("Attached error: Must be a output variable",
 						PoSTPackage.eINSTANCE.getProgramConfElement_ProgramVar());
 			}
 		}
-		if (EcoreUtil2.getContainerOfType(element.getGlobVar(), Resource.class) == null) {
+		/*if (EcoreUtil2.getContainerOfType(element.getGlobVar(), Resource.class) == null) {
 			error("Attached error: Must be a global var from Resource",
 					PoSTPackage.eINSTANCE.getProgramConfElement_GlobVar());
-		}
+		}*/
 	}
 
 	/* ======================= END Variables Validator ======================= */
@@ -187,6 +187,13 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	public void checkEmptyProgram(Program program) {
 		if (program.getProcesses().isEmpty()) {
 			error("Statement error: Program can't be empty", PoSTPackage.eINSTANCE.getProcess_Name());
+		}
+	}
+	
+	@Check
+	public void checkEmptyProgram(FunctionBlock fb) {
+		if (fb.getProcesses().isEmpty()) {
+			error("Statement error: Function Block can't be empty", PoSTPackage.eINSTANCE.getProcess_Name());
 		}
 	}
 

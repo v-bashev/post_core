@@ -67,7 +67,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ProgramConfiguration/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfiguration/task"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfiguration/program"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfiguration/agrs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfiguration/args"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ProgramConfElements">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfElements/elements"/>
@@ -97,6 +97,18 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionBlock/fbExternVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionBlock/processes"/>
     </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//Process">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Process/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procTempVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/states"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//State/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//State/looped"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//State/statement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//State/timeout"/>
+    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//SetStateStatement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//SetStateStatement/state"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//SetStateStatement/next"/>
@@ -120,18 +132,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TimeoutStatement/statement"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ResetTimerStatement"/>
-    <genClasses ecoreClass="PoST.ecore#//Process">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Process/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procVars"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procTempVars"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/states"/>
-    </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//State">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//State/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//State/looped"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//State/statement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//State/timeout"/>
-    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Expression/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Expression/right"/>

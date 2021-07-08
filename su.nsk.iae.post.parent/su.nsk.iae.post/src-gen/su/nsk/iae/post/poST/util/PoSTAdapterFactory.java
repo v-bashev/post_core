@@ -199,6 +199,16 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createFunctionBlockAdapter();
       }
       @Override
+      public Adapter caseProcess(su.nsk.iae.post.poST.Process object)
+      {
+        return createProcessAdapter();
+      }
+      @Override
+      public Adapter caseState(State object)
+      {
+        return createStateAdapter();
+      }
+      @Override
       public Adapter caseSetStateStatement(SetStateStatement object)
       {
         return createSetStateStatementAdapter();
@@ -237,16 +247,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseResetTimerStatement(ResetTimerStatement object)
       {
         return createResetTimerStatementAdapter();
-      }
-      @Override
-      public Adapter caseProcess(su.nsk.iae.post.poST.Process object)
-      {
-        return createProcessAdapter();
-      }
-      @Override
-      public Adapter caseState(State object)
-      {
-        return createStateAdapter();
       }
       @Override
       public Adapter caseExpression(Expression object)
@@ -676,6 +676,36 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Process <em>Process</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.Process
+   * @generated
+   */
+  public Adapter createProcessAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.State <em>State</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.State
+   * @generated
+   */
+  public Adapter createStateAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.SetStateStatement <em>Set State Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -791,36 +821,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createResetTimerStatementAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Process <em>Process</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see su.nsk.iae.post.poST.Process
-   * @generated
-   */
-  public Adapter createProcessAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.State <em>State</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see su.nsk.iae.post.poST.State
-   * @generated
-   */
-  public Adapter createStateAdapter()
   {
     return null;
   }

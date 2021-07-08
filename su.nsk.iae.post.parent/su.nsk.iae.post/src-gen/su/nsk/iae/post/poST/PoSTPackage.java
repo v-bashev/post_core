@@ -372,13 +372,13 @@ public interface PoSTPackage extends EPackage
   int PROGRAM_CONFIGURATION__PROGRAM = 2;
 
   /**
-   * The feature id for the '<em><b>Agrs</b></em>' containment reference.
+   * The feature id for the '<em><b>Args</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROGRAM_CONFIGURATION__AGRS = 3;
+  int PROGRAM_CONFIGURATION__ARGS = 3;
 
   /**
    * The number of structural features of the '<em>Program Configuration</em>' class.
@@ -646,6 +646,116 @@ public interface PoSTPackage extends EPackage
   int FUNCTION_BLOCK_FEATURE_COUNT = 8;
 
   /**
+   * The meta object id for the '{@link su.nsk.iae.post.poST.impl.ProcessImpl <em>Process</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see su.nsk.iae.post.poST.impl.ProcessImpl
+   * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcess()
+   * @generated
+   */
+  int PROCESS = 11;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCESS__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Proc Vars</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCESS__PROC_VARS = 1;
+
+  /**
+   * The feature id for the '<em><b>Proc Temp Vars</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCESS__PROC_TEMP_VARS = 2;
+
+  /**
+   * The feature id for the '<em><b>States</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCESS__STATES = 3;
+
+  /**
+   * The number of structural features of the '<em>Process</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCESS_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link su.nsk.iae.post.poST.impl.StateImpl <em>State</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see su.nsk.iae.post.poST.impl.StateImpl
+   * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getState()
+   * @generated
+   */
+  int STATE = 12;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Looped</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__LOOPED = 1;
+
+  /**
+   * The feature id for the '<em><b>Statement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__STATEMENT = 2;
+
+  /**
+   * The feature id for the '<em><b>Timeout</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__TIMEOUT = 3;
+
+  /**
+   * The number of structural features of the '<em>State</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.impl.StatementImpl <em>Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -672,7 +782,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getSetStateStatement()
    * @generated
    */
-  int SET_STATE_STATEMENT = 11;
+  int SET_STATE_STATEMENT = 13;
 
   /**
    * The feature id for the '<em><b>State</b></em>' reference.
@@ -709,7 +819,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessStatements()
    * @generated
    */
-  int PROCESS_STATEMENTS = 12;
+  int PROCESS_STATEMENTS = 14;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -737,7 +847,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessStatusExpression()
    * @generated
    */
-  int PROCESS_STATUS_EXPRESSION = 13;
+  int PROCESS_STATUS_EXPRESSION = 15;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -801,7 +911,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getStartProcessStatement()
    * @generated
    */
-  int START_PROCESS_STATEMENT = 14;
+  int START_PROCESS_STATEMENT = 16;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -829,7 +939,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getStopProcessStatement()
    * @generated
    */
-  int STOP_PROCESS_STATEMENT = 15;
+  int STOP_PROCESS_STATEMENT = 17;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -857,7 +967,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getErrorProcessStatement()
    * @generated
    */
-  int ERROR_PROCESS_STATEMENT = 16;
+  int ERROR_PROCESS_STATEMENT = 18;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -885,7 +995,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getTimeoutStatement()
    * @generated
    */
-  int TIMEOUT_STATEMENT = 17;
+  int TIMEOUT_STATEMENT = 19;
 
   /**
    * The feature id for the '<em><b>Const</b></em>' containment reference.
@@ -931,7 +1041,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getResetTimerStatement()
    * @generated
    */
-  int RESET_TIMER_STATEMENT = 18;
+  int RESET_TIMER_STATEMENT = 20;
 
   /**
    * The number of structural features of the '<em>Reset Timer Statement</em>' class.
@@ -941,116 +1051,6 @@ public interface PoSTPackage extends EPackage
    * @ordered
    */
   int RESET_TIMER_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link su.nsk.iae.post.poST.impl.ProcessImpl <em>Process</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see su.nsk.iae.post.poST.impl.ProcessImpl
-   * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcess()
-   * @generated
-   */
-  int PROCESS = 19;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROCESS__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Proc Vars</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROCESS__PROC_VARS = 1;
-
-  /**
-   * The feature id for the '<em><b>Proc Temp Vars</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROCESS__PROC_TEMP_VARS = 2;
-
-  /**
-   * The feature id for the '<em><b>States</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROCESS__STATES = 3;
-
-  /**
-   * The number of structural features of the '<em>Process</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROCESS_FEATURE_COUNT = 4;
-
-  /**
-   * The meta object id for the '{@link su.nsk.iae.post.poST.impl.StateImpl <em>State</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see su.nsk.iae.post.poST.impl.StateImpl
-   * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getState()
-   * @generated
-   */
-  int STATE = 20;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Looped</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE__LOOPED = 1;
-
-  /**
-   * The feature id for the '<em><b>Statement</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE__STATEMENT = 2;
-
-  /**
-   * The feature id for the '<em><b>Timeout</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE__TIMEOUT = 3;
-
-  /**
-   * The number of structural features of the '<em>State</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STATE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -3352,15 +3352,15 @@ public interface PoSTPackage extends EPackage
   EReference getProgramConfiguration_Program();
 
   /**
-   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.ProgramConfiguration#getAgrs <em>Agrs</em>}'.
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.ProgramConfiguration#getArgs <em>Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Agrs</em>'.
-   * @see su.nsk.iae.post.poST.ProgramConfiguration#getAgrs()
+   * @return the meta object for the containment reference '<em>Args</em>'.
+   * @see su.nsk.iae.post.poST.ProgramConfiguration#getArgs()
    * @see #getProgramConfiguration()
    * @generated
    */
-  EReference getProgramConfiguration_Agrs();
+  EReference getProgramConfiguration_Args();
 
   /**
    * Returns the meta object for class '{@link su.nsk.iae.post.poST.ProgramConfElements <em>Program Conf Elements</em>}'.
@@ -3623,6 +3623,114 @@ public interface PoSTPackage extends EPackage
   EReference getFunctionBlock_Processes();
 
   /**
+   * Returns the meta object for class '{@link su.nsk.iae.post.poST.Process <em>Process</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Process</em>'.
+   * @see su.nsk.iae.post.poST.Process
+   * @generated
+   */
+  EClass getProcess();
+
+  /**
+   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.Process#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see su.nsk.iae.post.poST.Process#getName()
+   * @see #getProcess()
+   * @generated
+   */
+  EAttribute getProcess_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Process#getProcVars <em>Proc Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Proc Vars</em>'.
+   * @see su.nsk.iae.post.poST.Process#getProcVars()
+   * @see #getProcess()
+   * @generated
+   */
+  EReference getProcess_ProcVars();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Process#getProcTempVars <em>Proc Temp Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Proc Temp Vars</em>'.
+   * @see su.nsk.iae.post.poST.Process#getProcTempVars()
+   * @see #getProcess()
+   * @generated
+   */
+  EReference getProcess_ProcTempVars();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Process#getStates <em>States</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>States</em>'.
+   * @see su.nsk.iae.post.poST.Process#getStates()
+   * @see #getProcess()
+   * @generated
+   */
+  EReference getProcess_States();
+
+  /**
+   * Returns the meta object for class '{@link su.nsk.iae.post.poST.State <em>State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>State</em>'.
+   * @see su.nsk.iae.post.poST.State
+   * @generated
+   */
+  EClass getState();
+
+  /**
+   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.State#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see su.nsk.iae.post.poST.State#getName()
+   * @see #getState()
+   * @generated
+   */
+  EAttribute getState_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.State#isLooped <em>Looped</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Looped</em>'.
+   * @see su.nsk.iae.post.poST.State#isLooped()
+   * @see #getState()
+   * @generated
+   */
+  EAttribute getState_Looped();
+
+  /**
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.State#getStatement <em>Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Statement</em>'.
+   * @see su.nsk.iae.post.poST.State#getStatement()
+   * @see #getState()
+   * @generated
+   */
+  EReference getState_Statement();
+
+  /**
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.State#getTimeout <em>Timeout</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Timeout</em>'.
+   * @see su.nsk.iae.post.poST.State#getTimeout()
+   * @see #getState()
+   * @generated
+   */
+  EReference getState_Timeout();
+
+  /**
    * Returns the meta object for class '{@link su.nsk.iae.post.poST.SetStateStatement <em>Set State Statement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3822,114 +3930,6 @@ public interface PoSTPackage extends EPackage
    * @generated
    */
   EClass getResetTimerStatement();
-
-  /**
-   * Returns the meta object for class '{@link su.nsk.iae.post.poST.Process <em>Process</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Process</em>'.
-   * @see su.nsk.iae.post.poST.Process
-   * @generated
-   */
-  EClass getProcess();
-
-  /**
-   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.Process#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see su.nsk.iae.post.poST.Process#getName()
-   * @see #getProcess()
-   * @generated
-   */
-  EAttribute getProcess_Name();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Process#getProcVars <em>Proc Vars</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Proc Vars</em>'.
-   * @see su.nsk.iae.post.poST.Process#getProcVars()
-   * @see #getProcess()
-   * @generated
-   */
-  EReference getProcess_ProcVars();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Process#getProcTempVars <em>Proc Temp Vars</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Proc Temp Vars</em>'.
-   * @see su.nsk.iae.post.poST.Process#getProcTempVars()
-   * @see #getProcess()
-   * @generated
-   */
-  EReference getProcess_ProcTempVars();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Process#getStates <em>States</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>States</em>'.
-   * @see su.nsk.iae.post.poST.Process#getStates()
-   * @see #getProcess()
-   * @generated
-   */
-  EReference getProcess_States();
-
-  /**
-   * Returns the meta object for class '{@link su.nsk.iae.post.poST.State <em>State</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>State</em>'.
-   * @see su.nsk.iae.post.poST.State
-   * @generated
-   */
-  EClass getState();
-
-  /**
-   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.State#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see su.nsk.iae.post.poST.State#getName()
-   * @see #getState()
-   * @generated
-   */
-  EAttribute getState_Name();
-
-  /**
-   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.State#isLooped <em>Looped</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Looped</em>'.
-   * @see su.nsk.iae.post.poST.State#isLooped()
-   * @see #getState()
-   * @generated
-   */
-  EAttribute getState_Looped();
-
-  /**
-   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.State#getStatement <em>Statement</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Statement</em>'.
-   * @see su.nsk.iae.post.poST.State#getStatement()
-   * @see #getState()
-   * @generated
-   */
-  EReference getState_Statement();
-
-  /**
-   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.State#getTimeout <em>Timeout</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Timeout</em>'.
-   * @see su.nsk.iae.post.poST.State#getTimeout()
-   * @see #getState()
-   * @generated
-   */
-  EReference getState_Timeout();
 
   /**
    * Returns the meta object for class '{@link su.nsk.iae.post.poST.Expression <em>Expression</em>}'.
@@ -5525,12 +5525,12 @@ public interface PoSTPackage extends EPackage
     EReference PROGRAM_CONFIGURATION__PROGRAM = eINSTANCE.getProgramConfiguration_Program();
 
     /**
-     * The meta object literal for the '<em><b>Agrs</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROGRAM_CONFIGURATION__AGRS = eINSTANCE.getProgramConfiguration_Agrs();
+    EReference PROGRAM_CONFIGURATION__ARGS = eINSTANCE.getProgramConfiguration_Args();
 
     /**
      * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.ProgramConfElementsImpl <em>Program Conf Elements</em>}' class.
@@ -5733,6 +5733,90 @@ public interface PoSTPackage extends EPackage
     EReference FUNCTION_BLOCK__PROCESSES = eINSTANCE.getFunctionBlock_Processes();
 
     /**
+     * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.ProcessImpl <em>Process</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see su.nsk.iae.post.poST.impl.ProcessImpl
+     * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcess()
+     * @generated
+     */
+    EClass PROCESS = eINSTANCE.getProcess();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROCESS__NAME = eINSTANCE.getProcess_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Proc Vars</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROCESS__PROC_VARS = eINSTANCE.getProcess_ProcVars();
+
+    /**
+     * The meta object literal for the '<em><b>Proc Temp Vars</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROCESS__PROC_TEMP_VARS = eINSTANCE.getProcess_ProcTempVars();
+
+    /**
+     * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROCESS__STATES = eINSTANCE.getProcess_States();
+
+    /**
+     * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.StateImpl <em>State</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see su.nsk.iae.post.poST.impl.StateImpl
+     * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getState()
+     * @generated
+     */
+    EClass STATE = eINSTANCE.getState();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STATE__NAME = eINSTANCE.getState_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Looped</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STATE__LOOPED = eINSTANCE.getState_Looped();
+
+    /**
+     * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STATE__STATEMENT = eINSTANCE.getState_Statement();
+
+    /**
+     * The meta object literal for the '<em><b>Timeout</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STATE__TIMEOUT = eINSTANCE.getState_Timeout();
+
+    /**
      * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.SetStateStatementImpl <em>Set State Statement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5899,90 +5983,6 @@ public interface PoSTPackage extends EPackage
      * @generated
      */
     EClass RESET_TIMER_STATEMENT = eINSTANCE.getResetTimerStatement();
-
-    /**
-     * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.ProcessImpl <em>Process</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see su.nsk.iae.post.poST.impl.ProcessImpl
-     * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcess()
-     * @generated
-     */
-    EClass PROCESS = eINSTANCE.getProcess();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROCESS__NAME = eINSTANCE.getProcess_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Proc Vars</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROCESS__PROC_VARS = eINSTANCE.getProcess_ProcVars();
-
-    /**
-     * The meta object literal for the '<em><b>Proc Temp Vars</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROCESS__PROC_TEMP_VARS = eINSTANCE.getProcess_ProcTempVars();
-
-    /**
-     * The meta object literal for the '<em><b>States</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROCESS__STATES = eINSTANCE.getProcess_States();
-
-    /**
-     * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.StateImpl <em>State</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see su.nsk.iae.post.poST.impl.StateImpl
-     * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getState()
-     * @generated
-     */
-    EClass STATE = eINSTANCE.getState();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STATE__NAME = eINSTANCE.getState_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Looped</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STATE__LOOPED = eINSTANCE.getState_Looped();
-
-    /**
-     * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference STATE__STATEMENT = eINSTANCE.getState_Statement();
-
-    /**
-     * The meta object literal for the '<em><b>Timeout</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference STATE__TIMEOUT = eINSTANCE.getState_Timeout();
 
     /**
      * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.ExpressionImpl <em>Expression</em>}' class.

@@ -29,7 +29,7 @@ import su.nsk.iae.post.poST.Task;
  *   <li>{@link su.nsk.iae.post.poST.impl.ProgramConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProgramConfigurationImpl#getTask <em>Task</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProgramConfigurationImpl#getProgram <em>Program</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.impl.ProgramConfigurationImpl#getAgrs <em>Agrs</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ProgramConfigurationImpl#getArgs <em>Args</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,14 +77,14 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
   protected Program program;
 
   /**
-   * The cached value of the '{@link #getAgrs() <em>Agrs</em>}' containment reference.
+   * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAgrs()
+   * @see #getArgs()
    * @generated
    * @ordered
    */
-  protected ProgramConfElements agrs;
+  protected ProgramConfElements args;
 
   /**
    * <!-- begin-user-doc -->
@@ -228,9 +228,9 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
    * @generated
    */
   @Override
-  public ProgramConfElements getAgrs()
+  public ProgramConfElements getArgs()
   {
-    return agrs;
+    return args;
   }
 
   /**
@@ -238,13 +238,13 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAgrs(ProgramConfElements newAgrs, NotificationChain msgs)
+  public NotificationChain basicSetArgs(ProgramConfElements newArgs, NotificationChain msgs)
   {
-    ProgramConfElements oldAgrs = agrs;
-    agrs = newAgrs;
+    ProgramConfElements oldArgs = args;
+    args = newArgs;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.PROGRAM_CONFIGURATION__AGRS, oldAgrs, newAgrs);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.PROGRAM_CONFIGURATION__ARGS, oldArgs, newArgs);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -256,20 +256,20 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
    * @generated
    */
   @Override
-  public void setAgrs(ProgramConfElements newAgrs)
+  public void setArgs(ProgramConfElements newArgs)
   {
-    if (newAgrs != agrs)
+    if (newArgs != args)
     {
       NotificationChain msgs = null;
-      if (agrs != null)
-        msgs = ((InternalEObject)agrs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.PROGRAM_CONFIGURATION__AGRS, null, msgs);
-      if (newAgrs != null)
-        msgs = ((InternalEObject)newAgrs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.PROGRAM_CONFIGURATION__AGRS, null, msgs);
-      msgs = basicSetAgrs(newAgrs, msgs);
+      if (args != null)
+        msgs = ((InternalEObject)args).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.PROGRAM_CONFIGURATION__ARGS, null, msgs);
+      if (newArgs != null)
+        msgs = ((InternalEObject)newArgs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.PROGRAM_CONFIGURATION__ARGS, null, msgs);
+      msgs = basicSetArgs(newArgs, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROGRAM_CONFIGURATION__AGRS, newAgrs, newAgrs));
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROGRAM_CONFIGURATION__ARGS, newArgs, newArgs));
   }
 
   /**
@@ -282,8 +282,8 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case PoSTPackage.PROGRAM_CONFIGURATION__AGRS:
-        return basicSetAgrs(null, msgs);
+      case PoSTPackage.PROGRAM_CONFIGURATION__ARGS:
+        return basicSetArgs(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -306,8 +306,8 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
       case PoSTPackage.PROGRAM_CONFIGURATION__PROGRAM:
         if (resolve) return getProgram();
         return basicGetProgram();
-      case PoSTPackage.PROGRAM_CONFIGURATION__AGRS:
-        return getAgrs();
+      case PoSTPackage.PROGRAM_CONFIGURATION__ARGS:
+        return getArgs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -331,8 +331,8 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
       case PoSTPackage.PROGRAM_CONFIGURATION__PROGRAM:
         setProgram((Program)newValue);
         return;
-      case PoSTPackage.PROGRAM_CONFIGURATION__AGRS:
-        setAgrs((ProgramConfElements)newValue);
+      case PoSTPackage.PROGRAM_CONFIGURATION__ARGS:
+        setArgs((ProgramConfElements)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -357,8 +357,8 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
       case PoSTPackage.PROGRAM_CONFIGURATION__PROGRAM:
         setProgram((Program)null);
         return;
-      case PoSTPackage.PROGRAM_CONFIGURATION__AGRS:
-        setAgrs((ProgramConfElements)null);
+      case PoSTPackage.PROGRAM_CONFIGURATION__ARGS:
+        setArgs((ProgramConfElements)null);
         return;
     }
     super.eUnset(featureID);
@@ -380,8 +380,8 @@ public class ProgramConfigurationImpl extends MinimalEObjectImpl.Container imple
         return task != null;
       case PoSTPackage.PROGRAM_CONFIGURATION__PROGRAM:
         return program != null;
-      case PoSTPackage.PROGRAM_CONFIGURATION__AGRS:
-        return agrs != null;
+      case PoSTPackage.PROGRAM_CONFIGURATION__ARGS:
+        return args != null;
     }
     return super.eIsSet(featureID);
   }
