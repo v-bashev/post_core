@@ -71,7 +71,6 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
-import su.nsk.iae.post.poST.TemplateProcess;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -267,9 +266,6 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PoSTPackage.TEMP_VAR_DECLARATION:
 				sequence_TempVarDeclaration(context, (TempVarDeclaration) semanticObject); 
-				return; 
-			case PoSTPackage.TEMPLATE_PROCESS:
-				sequence_TemplateProcess(context, (TemplateProcess) semanticObject); 
 				return; 
 			case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT:
 				sequence_TemplateProcessConfElement(context, (TemplateProcessConfElement) semanticObject); 
@@ -980,7 +976,17 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Process returns Process
 	 *
 	 * Constraint:
-	 *     (name=ID (procVars+=VarDeclaration | procTempVars+=TempVarDeclaration)* states+=State*)
+	 *     (
+	 *         name=ID 
+	 *         (
+	 *             procInVars+=InputVarDeclaration | 
+	 *             procOutVars+=OutputVarDeclaration | 
+	 *             procInOutVars+=InputOutputVarDeclaration | 
+	 *             procVars+=VarDeclaration | 
+	 *             procTempVars+=TempVarDeclaration
+	 *         )* 
+	 *         states+=State*
+	 *     )
 	 */
 	protected void sequence_Process(ISerializationContext context, su.nsk.iae.post.poST.Process semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1279,31 +1285,9 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     TemplateProcessConfElement returns TemplateProcessConfElement
 	 *
 	 * Constraint:
-	 *     (name=ID active?='ACTIVE'? process=[TemplateProcess|ID] args=')'?)
+	 *     (active?='ACTIVE'? name=ID process=[Process|ID] args=ProcessTemplateElements?)
 	 */
 	protected void sequence_TemplateProcessConfElement(ISerializationContext context, TemplateProcessConfElement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TemplateProcess returns TemplateProcess
-	 *
-	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         (
-	 *             procInVars+=InputVarDeclaration | 
-	 *             procOutVars+=OutputVarDeclaration | 
-	 *             procInOutVars+=InputOutputVarDeclaration | 
-	 *             procVars+=VarDeclaration | 
-	 *             procTempVars+=TempVarDeclaration
-	 *         )* 
-	 *         states+=State*
-	 *     )
-	 */
-	protected void sequence_TemplateProcess(ISerializationContext context, TemplateProcess semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

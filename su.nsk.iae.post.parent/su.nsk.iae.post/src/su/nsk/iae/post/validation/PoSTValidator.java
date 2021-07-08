@@ -144,20 +144,28 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	public void checkProgramConfiguration(ProgramConfiguration conf) {
-		int programVars = 0;
+		int attachVars = 0;
 		for (InputVarDeclaration varDecl : conf.getProgram().getProgInVars()) {
 			for (VarInitDeclaration varList : varDecl.getVars()) {
-				programVars += varList.getVarList().getVars().size();
+				attachVars += varList.getVarList().getVars().size();
 			}
 		}
 		for (OutputVarDeclaration varDecl : conf.getProgram().getProgOutVars()) {
 			for (VarInitDeclaration varList : varDecl.getVars()) {
-				programVars += varList.getVarList().getVars().size();
+				attachVars += varList.getVarList().getVars().size();
 			}
 		}
-		if ((conf.getArgs() != null) && (programVars != conf.getArgs().getElements().size())) {
-			error("Attached error: Not all input and output variables are used",
-					PoSTPackage.eINSTANCE.getProgramConfiguration_Args());
+		if (conf.getArgs() != null) {
+			int programVars = 0;
+			for (ProgramConfElement el : conf.getArgs().getElements()) {
+				if (el instanceof AttachVariableConfElement) {
+					programVars++;
+				}
+			}
+			if (attachVars != programVars) {
+				error("Attached error: Not all input and output variables are used",
+						PoSTPackage.eINSTANCE.getProgramConfiguration_Args());
+			}
 		}
 	}
 	

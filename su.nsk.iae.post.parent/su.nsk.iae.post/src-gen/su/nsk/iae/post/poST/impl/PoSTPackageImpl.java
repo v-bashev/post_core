@@ -80,7 +80,6 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
-import su.nsk.iae.post.poST.TemplateProcess;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -204,13 +203,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass processEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass templateProcessEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1140,7 +1132,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EAttribute getTemplateProcessConfElement_Name()
+  public EAttribute getTemplateProcessConfElement_Active()
   {
     return (EAttribute)templateProcessConfElementEClass.getEStructuralFeatures().get(0);
   }
@@ -1151,7 +1143,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EAttribute getTemplateProcessConfElement_Active()
+  public EAttribute getTemplateProcessConfElement_Name()
   {
     return (EAttribute)templateProcessConfElementEClass.getEStructuralFeatures().get(1);
   }
@@ -1173,9 +1165,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EAttribute getTemplateProcessConfElement_Args()
+  public EReference getTemplateProcessConfElement_Args()
   {
-    return (EAttribute)templateProcessConfElementEClass.getEStructuralFeatures().get(3);
+    return (EReference)templateProcessConfElementEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1426,7 +1418,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProcess_ProcVars()
+  public EReference getProcess_ProcInVars()
   {
     return (EReference)processEClass.getEStructuralFeatures().get(1);
   }
@@ -1437,7 +1429,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProcess_ProcTempVars()
+  public EReference getProcess_ProcOutVars()
   {
     return (EReference)processEClass.getEStructuralFeatures().get(2);
   }
@@ -1448,7 +1440,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProcess_States()
+  public EReference getProcess_ProcInOutVars()
   {
     return (EReference)processEClass.getEStructuralFeatures().get(3);
   }
@@ -1459,9 +1451,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EClass getTemplateProcess()
+  public EReference getProcess_ProcVars()
   {
-    return templateProcessEClass;
+    return (EReference)processEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1470,9 +1462,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EAttribute getTemplateProcess_Name()
+  public EReference getProcess_ProcTempVars()
   {
-    return (EAttribute)templateProcessEClass.getEStructuralFeatures().get(0);
+    return (EReference)processEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1481,64 +1473,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getTemplateProcess_ProcInVars()
+  public EReference getProcess_States()
   {
-    return (EReference)templateProcessEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getTemplateProcess_ProcOutVars()
-  {
-    return (EReference)templateProcessEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getTemplateProcess_ProcInOutVars()
-  {
-    return (EReference)templateProcessEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getTemplateProcess_ProcVars()
-  {
-    return (EReference)templateProcessEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getTemplateProcess_ProcTempVars()
-  {
-    return (EReference)templateProcessEClass.getEStructuralFeatures().get(5);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getTemplateProcess_States()
-  {
-    return (EReference)templateProcessEClass.getEStructuralFeatures().get(6);
+    return (EReference)processEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -3270,10 +3207,10 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(attachVariableConfElementEClass, ATTACH_VARIABLE_CONF_ELEMENT__CONST);
 
     templateProcessConfElementEClass = createEClass(TEMPLATE_PROCESS_CONF_ELEMENT);
-    createEAttribute(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__NAME);
     createEAttribute(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__ACTIVE);
+    createEAttribute(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__NAME);
     createEReference(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__PROCESS);
-    createEAttribute(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__ARGS);
+    createEReference(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__ARGS);
 
     processTemplateElementsEClass = createEClass(PROCESS_TEMPLATE_ELEMENTS);
     createEReference(processTemplateElementsEClass, PROCESS_TEMPLATE_ELEMENTS__ELEMENTS);
@@ -3300,18 +3237,12 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     processEClass = createEClass(PROCESS);
     createEAttribute(processEClass, PROCESS__NAME);
+    createEReference(processEClass, PROCESS__PROC_IN_VARS);
+    createEReference(processEClass, PROCESS__PROC_OUT_VARS);
+    createEReference(processEClass, PROCESS__PROC_IN_OUT_VARS);
     createEReference(processEClass, PROCESS__PROC_VARS);
     createEReference(processEClass, PROCESS__PROC_TEMP_VARS);
     createEReference(processEClass, PROCESS__STATES);
-
-    templateProcessEClass = createEClass(TEMPLATE_PROCESS);
-    createEAttribute(templateProcessEClass, TEMPLATE_PROCESS__NAME);
-    createEReference(templateProcessEClass, TEMPLATE_PROCESS__PROC_IN_VARS);
-    createEReference(templateProcessEClass, TEMPLATE_PROCESS__PROC_OUT_VARS);
-    createEReference(templateProcessEClass, TEMPLATE_PROCESS__PROC_IN_OUT_VARS);
-    createEReference(templateProcessEClass, TEMPLATE_PROCESS__PROC_VARS);
-    createEReference(templateProcessEClass, TEMPLATE_PROCESS__PROC_TEMP_VARS);
-    createEReference(templateProcessEClass, TEMPLATE_PROCESS__STATES);
 
     stateEClass = createEClass(STATE);
     createEAttribute(stateEClass, STATE__NAME);
@@ -3633,10 +3564,10 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getAttachVariableConfElement_Const(), this.getConstant(), null, "const", null, 0, 1, AttachVariableConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(templateProcessConfElementEClass, TemplateProcessConfElement.class, "TemplateProcessConfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTemplateProcessConfElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTemplateProcessConfElement_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTemplateProcessConfElement_Process(), this.getTemplateProcess(), null, "process", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTemplateProcessConfElement_Args(), ecorePackage.getEString(), "args", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTemplateProcessConfElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTemplateProcessConfElement_Process(), this.getProcess(), null, "process", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTemplateProcessConfElement_Args(), this.getProcessTemplateElements(), null, "args", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(processTemplateElementsEClass, ProcessTemplateElements.class, "ProcessTemplateElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcessTemplateElements_Elements(), this.getAttachVariableConfElement(), null, "elements", null, 0, -1, ProcessTemplateElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3663,18 +3594,12 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     initEClass(processEClass, su.nsk.iae.post.poST.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProcess_Name(), ecorePackage.getEString(), "name", null, 0, 1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProcess_ProcInVars(), this.getInputVarDeclaration(), null, "procInVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProcess_ProcOutVars(), this.getOutputVarDeclaration(), null, "procOutVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProcess_ProcInOutVars(), this.getInputOutputVarDeclaration(), null, "procInOutVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_ProcVars(), this.getVarDeclaration(), null, "procVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_ProcTempVars(), this.getTempVarDeclaration(), null, "procTempVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_States(), this.getState(), null, "states", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(templateProcessEClass, TemplateProcess.class, "TemplateProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTemplateProcess_Name(), ecorePackage.getEString(), "name", null, 0, 1, TemplateProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTemplateProcess_ProcInVars(), this.getInputVarDeclaration(), null, "procInVars", null, 0, -1, TemplateProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTemplateProcess_ProcOutVars(), this.getOutputVarDeclaration(), null, "procOutVars", null, 0, -1, TemplateProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTemplateProcess_ProcInOutVars(), this.getInputOutputVarDeclaration(), null, "procInOutVars", null, 0, -1, TemplateProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTemplateProcess_ProcVars(), this.getVarDeclaration(), null, "procVars", null, 0, -1, TemplateProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTemplateProcess_ProcTempVars(), this.getTempVarDeclaration(), null, "procTempVars", null, 0, -1, TemplateProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTemplateProcess_States(), this.getState(), null, "states", null, 0, -1, TemplateProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

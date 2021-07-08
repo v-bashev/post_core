@@ -13,8 +13,8 @@ package su.nsk.iae.post.poST;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getName <em>Name</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#isActive <em>Active</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getName <em>Name</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getProcess <em>Process</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getArgs <em>Args</em>}</li>
  * </ul>
@@ -25,28 +25,6 @@ package su.nsk.iae.post.poST;
  */
 public interface TemplateProcessConfElement extends ProgramConfElement
 {
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessConfElement_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
-
   /**
    * Returns the value of the '<em><b>Active</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -70,16 +48,38 @@ public interface TemplateProcessConfElement extends ProgramConfElement
   void setActive(boolean value);
 
   /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessConfElement_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
+  /**
    * Returns the value of the '<em><b>Process</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Process</em>' reference.
-   * @see #setProcess(TemplateProcess)
+   * @see #setProcess(su.nsk.iae.post.poST.Process)
    * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessConfElement_Process()
    * @model
    * @generated
    */
-  TemplateProcess getProcess();
+  su.nsk.iae.post.poST.Process getProcess();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getProcess <em>Process</em>}' reference.
@@ -89,28 +89,28 @@ public interface TemplateProcessConfElement extends ProgramConfElement
    * @see #getProcess()
    * @generated
    */
-  void setProcess(TemplateProcess value);
+  void setProcess(su.nsk.iae.post.poST.Process value);
 
   /**
-   * Returns the value of the '<em><b>Args</b></em>' attribute.
+   * Returns the value of the '<em><b>Args</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Args</em>' attribute.
-   * @see #setArgs(String)
+   * @return the value of the '<em>Args</em>' containment reference.
+   * @see #setArgs(ProcessTemplateElements)
    * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessConfElement_Args()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getArgs();
+  ProcessTemplateElements getArgs();
 
   /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getArgs <em>Args</em>}' attribute.
+   * Sets the value of the '{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getArgs <em>Args</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Args</em>' attribute.
+   * @param value the new value of the '<em>Args</em>' containment reference.
    * @see #getArgs()
    * @generated
    */
-  void setArgs(String value);
+  void setArgs(ProcessTemplateElements value);
 
 } // TemplateProcessConfElement

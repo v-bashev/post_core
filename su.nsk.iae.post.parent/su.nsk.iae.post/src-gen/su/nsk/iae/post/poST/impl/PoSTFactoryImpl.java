@@ -81,7 +81,6 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
-import su.nsk.iae.post.poST.TemplateProcess;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -160,7 +159,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.PROGRAM: return createProgram();
       case PoSTPackage.FUNCTION_BLOCK: return createFunctionBlock();
       case PoSTPackage.PROCESS: return createProcess();
-      case PoSTPackage.TEMPLATE_PROCESS: return createTemplateProcess();
       case PoSTPackage.STATE: return createState();
       case PoSTPackage.SET_STATE_STATEMENT: return createSetStateStatement();
       case PoSTPackage.PROCESS_STATEMENTS: return createProcessStatements();
@@ -455,18 +453,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ProcessImpl process = new ProcessImpl();
     return process;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public TemplateProcess createTemplateProcess()
-  {
-    TemplateProcessImpl templateProcess = new TemplateProcessImpl();
-    return templateProcess;
   }
 
   /**

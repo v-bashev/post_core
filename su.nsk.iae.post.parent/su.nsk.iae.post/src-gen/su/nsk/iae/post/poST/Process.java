@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link su.nsk.iae.post.poST.Process#getName <em>Name</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.Process#getProcInVars <em>Proc In Vars</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.Process#getProcOutVars <em>Proc Out Vars</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.Process#getProcInOutVars <em>Proc In Out Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Process#getProcVars <em>Proc Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Process#getProcTempVars <em>Proc Temp Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Process#getStates <em>States</em>}</li>
@@ -49,6 +52,42 @@ public interface Process extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Proc In Vars</b></em>' containment reference list.
+   * The list contents are of type {@link su.nsk.iae.post.poST.InputVarDeclaration}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Proc In Vars</em>' containment reference list.
+   * @see su.nsk.iae.post.poST.PoSTPackage#getProcess_ProcInVars()
+   * @model containment="true"
+   * @generated
+   */
+  EList<InputVarDeclaration> getProcInVars();
+
+  /**
+   * Returns the value of the '<em><b>Proc Out Vars</b></em>' containment reference list.
+   * The list contents are of type {@link su.nsk.iae.post.poST.OutputVarDeclaration}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Proc Out Vars</em>' containment reference list.
+   * @see su.nsk.iae.post.poST.PoSTPackage#getProcess_ProcOutVars()
+   * @model containment="true"
+   * @generated
+   */
+  EList<OutputVarDeclaration> getProcOutVars();
+
+  /**
+   * Returns the value of the '<em><b>Proc In Out Vars</b></em>' containment reference list.
+   * The list contents are of type {@link su.nsk.iae.post.poST.InputOutputVarDeclaration}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Proc In Out Vars</em>' containment reference list.
+   * @see su.nsk.iae.post.poST.PoSTPackage#getProcess_ProcInOutVars()
+   * @model containment="true"
+   * @generated
+   */
+  EList<InputOutputVarDeclaration> getProcInOutVars();
 
   /**
    * Returns the value of the '<em><b>Proc Vars</b></em>' containment reference list.

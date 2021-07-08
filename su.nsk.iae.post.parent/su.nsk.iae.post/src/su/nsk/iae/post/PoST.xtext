@@ -71,7 +71,7 @@ enum AssignmentType:
 /* ======================= START Template Configuration ======================= */
 
 TemplateProcessConfElement:
-	'PROCESS' name=ID (active?='ACTIVE')? ':' process=[TemplateProcess] ('(' args= ')')?;
+	'PROCESS' (active?='ACTIVE')? name=ID ':' process=[Process] ('(' args=ProcessTemplateElements ')')?;
 
 ProcessTemplateElements:
 	elements+=AttachVariableConfElement (',' elements+=AttachVariableConfElement)*;
@@ -90,7 +90,7 @@ Program:
 			progTempVars+=TempVarDeclaration |
 			progExternVars+=ExternalVarDeclaration
 		)*
-		(processes+=Process)*
+		(processes+=Process )*
 	'END_PROGRAM';
 
 /* ======================= END Program ======================= */
@@ -107,7 +107,7 @@ FunctionBlock:
 			fbTempVars+=TempVarDeclaration |
 			fbExternVars+=ExternalVarDeclaration
 		)*
-		(processes+=Process)*
+		(processes+=Process )*
 	'END_FUNCTION_BLOCK';
 
 /* ======================= END FB ======================= */
@@ -115,15 +115,6 @@ FunctionBlock:
 /* ======================= START Process and State  ======================= */
 
 Process: 
-	'PROCESS' name=ID 
-		(
-			procVars+=VarDeclaration | 
-			procTempVars+=TempVarDeclaration
-		)*
-		(states+=State)*
-	'END_PROCESS';
-
-TemplateProcess: 
 	'PROCESS' name=ID 
 		(
 			procInVars+=InputVarDeclaration | 

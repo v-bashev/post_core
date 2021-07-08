@@ -68,10 +68,11 @@
     <eLiterals name="out" value="1" literal="=>"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateProcessConfElement" eSuperTypes="#//ProgramConfElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//TemplateProcess"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="args" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//ProcessTemplateElements"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessTemplateElements">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
@@ -112,15 +113,6 @@
         eType="#//Process" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Process">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="procVars" upperBound="-1"
-        eType="#//VarDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="procTempVars" upperBound="-1"
-        eType="#//TempVarDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
-        eType="#//State" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateProcess">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procInVars" upperBound="-1"
         eType="#//InputVarDeclaration" containment="true"/>

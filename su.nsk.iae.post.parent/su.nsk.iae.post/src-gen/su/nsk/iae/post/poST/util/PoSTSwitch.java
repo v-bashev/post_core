@@ -71,7 +71,6 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
-import su.nsk.iae.post.poST.TemplateProcess;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -249,13 +248,6 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         su.nsk.iae.post.poST.Process process = (su.nsk.iae.post.poST.Process)theEObject;
         T result = caseProcess(process);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PoSTPackage.TEMPLATE_PROCESS:
-      {
-        TemplateProcess templateProcess = (TemplateProcess)theEObject;
-        T result = caseTemplateProcess(templateProcess);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -973,22 +965,6 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProcess(su.nsk.iae.post.poST.Process object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Template Process</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Template Process</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTemplateProcess(TemplateProcess object)
   {
     return null;
   }

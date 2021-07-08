@@ -73,7 +73,6 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
-import su.nsk.iae.post.poST.TemplateProcess;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
@@ -221,11 +220,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseProcess(su.nsk.iae.post.poST.Process object)
       {
         return createProcessAdapter();
-      }
-      @Override
-      public Adapter caseTemplateProcess(TemplateProcess object)
-      {
-        return createTemplateProcessAdapter();
       }
       @Override
       public Adapter caseState(State object)
@@ -755,21 +749,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createProcessAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.TemplateProcess <em>Template Process</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see su.nsk.iae.post.poST.TemplateProcess
-   * @generated
-   */
-  public Adapter createTemplateProcessAdapter()
   {
     return null;
   }
