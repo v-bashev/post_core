@@ -105,6 +105,33 @@ public interface PoSTFactory extends EFactory
   ProgramConfElement createProgramConfElement();
 
   /**
+   * Returns a new object of class '<em>Attach Variable Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attach Variable Conf Element</em>'.
+   * @generated
+   */
+  AttachVariableConfElement createAttachVariableConfElement();
+
+  /**
+   * Returns a new object of class '<em>Template Process Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Template Process Conf Element</em>'.
+   * @generated
+   */
+  TemplateProcessConfElement createTemplateProcessConfElement();
+
+  /**
+   * Returns a new object of class '<em>Process Template Elements</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Template Elements</em>'.
+   * @generated
+   */
+  ProcessTemplateElements createProcessTemplateElements();
+
+  /**
    * Returns a new object of class '<em>Program</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -130,6 +157,15 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   Process createProcess();
+
+  /**
+   * Returns a new object of class '<em>Template Process</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Template Process</em>'.
+   * @generated
+   */
+  TemplateProcess createTemplateProcess();
 
   /**
    * Returns a new object of class '<em>State</em>'.

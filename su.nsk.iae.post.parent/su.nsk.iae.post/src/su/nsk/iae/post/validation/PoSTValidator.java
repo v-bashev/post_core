@@ -13,6 +13,7 @@ import org.eclipse.xtext.validation.Check;
 
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
+import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.Configuration;
@@ -161,16 +162,16 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	public void checkProgramConfElement(ProgramConfElement element) {
+	public void checkAttachVariableConfElement(AttachVariableConfElement element) {
 		if (element.getAssig() == AssignmentType.IN) {
 			if (EcoreUtil2.getContainerOfType(element.getProgramVar(), InputVarDeclaration.class) == null) {
 				error("Attached error: Must be a input variable",
-						PoSTPackage.eINSTANCE.getProgramConfElement_ProgramVar());
+						PoSTPackage.eINSTANCE.getAttachVariableConfElement_ProgramVar());
 			}
 		} else {
 			if (EcoreUtil2.getContainerOfType(element.getProgramVar(), OutputVarDeclaration.class) == null) {
 				error("Attached error: Must be a output variable",
-						PoSTPackage.eINSTANCE.getProgramConfElement_ProgramVar());
+						PoSTPackage.eINSTANCE.getAttachVariableConfElement_ProgramVar());
 			}
 		}
 		/*if (EcoreUtil2.getContainerOfType(element.getGlobVar(), Resource.class) == null) {

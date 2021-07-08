@@ -485,21 +485,43 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	public class ProgramConfElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.ProgramConfElement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cAttachVariableConfElementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTemplateProcessConfElementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//ProgramConfElement:
+		//    AttachVariableConfElement | TemplateProcessConfElement;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//AttachVariableConfElement | TemplateProcessConfElement
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//AttachVariableConfElement
+		public RuleCall getAttachVariableConfElementParserRuleCall_0() { return cAttachVariableConfElementParserRuleCall_0; }
+		
+		//TemplateProcessConfElement
+		public RuleCall getTemplateProcessConfElementParserRuleCall_1() { return cTemplateProcessConfElementParserRuleCall_1; }
+	}
+	public class AttachVariableConfElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.AttachVariableConfElement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cProgramVarAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cProgramVarSymbolicVariableCrossReference_0_0 = (CrossReference)cProgramVarAssignment_0.eContents().get(0);
 		private final RuleCall cProgramVarSymbolicVariableIDTerminalRuleCall_0_0_1 = (RuleCall)cProgramVarSymbolicVariableCrossReference_0_0.eContents().get(1);
 		private final Assignment cAssigAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cAssigAssignmentTypeEnumRuleCall_1_0 = (RuleCall)cAssigAssignment_1.eContents().get(0);
-		private final Assignment cGlobVarAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cGlobVarSymbolicVariableCrossReference_2_0 = (CrossReference)cGlobVarAssignment_2.eContents().get(0);
-		private final RuleCall cGlobVarSymbolicVariableIDTerminalRuleCall_2_0_1 = (RuleCall)cGlobVarSymbolicVariableCrossReference_2_0.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cAttVarAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final CrossReference cAttVarSymbolicVariableCrossReference_2_0_0 = (CrossReference)cAttVarAssignment_2_0.eContents().get(0);
+		private final RuleCall cAttVarSymbolicVariableIDTerminalRuleCall_2_0_0_1 = (RuleCall)cAttVarSymbolicVariableCrossReference_2_0_0.eContents().get(1);
+		private final Assignment cConstAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cConstConstantParserRuleCall_2_1_0 = (RuleCall)cConstAssignment_2_1.eContents().get(0);
 		
-		//ProgramConfElement:
-		//    programVar=[SymbolicVariable] assig=AssignmentType globVar=[SymbolicVariable];
+		//AttachVariableConfElement:
+		//    programVar=[SymbolicVariable] assig=AssignmentType (attVar=[SymbolicVariable] | const=Constant);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//programVar=[SymbolicVariable] assig=AssignmentType globVar=[SymbolicVariable]
+		//programVar=[SymbolicVariable] assig=AssignmentType (attVar=[SymbolicVariable] | const=Constant)
 		public Group getGroup() { return cGroup; }
 		
 		//programVar=[SymbolicVariable]
@@ -517,14 +539,123 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//AssignmentType
 		public RuleCall getAssigAssignmentTypeEnumRuleCall_1_0() { return cAssigAssignmentTypeEnumRuleCall_1_0; }
 		
-		//globVar=[SymbolicVariable]
-		public Assignment getGlobVarAssignment_2() { return cGlobVarAssignment_2; }
+		//(attVar=[SymbolicVariable] | const=Constant)
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//attVar=[SymbolicVariable]
+		public Assignment getAttVarAssignment_2_0() { return cAttVarAssignment_2_0; }
 		
 		//[SymbolicVariable]
-		public CrossReference getGlobVarSymbolicVariableCrossReference_2_0() { return cGlobVarSymbolicVariableCrossReference_2_0; }
+		public CrossReference getAttVarSymbolicVariableCrossReference_2_0_0() { return cAttVarSymbolicVariableCrossReference_2_0_0; }
 		
 		//ID
-		public RuleCall getGlobVarSymbolicVariableIDTerminalRuleCall_2_0_1() { return cGlobVarSymbolicVariableIDTerminalRuleCall_2_0_1; }
+		public RuleCall getAttVarSymbolicVariableIDTerminalRuleCall_2_0_0_1() { return cAttVarSymbolicVariableIDTerminalRuleCall_2_0_0_1; }
+		
+		//const=Constant
+		public Assignment getConstAssignment_2_1() { return cConstAssignment_2_1; }
+		
+		//Constant
+		public RuleCall getConstConstantParserRuleCall_2_1_0() { return cConstConstantParserRuleCall_2_1_0; }
+	}
+	public class TemplateProcessConfElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.TemplateProcessConfElement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPROCESSKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cActiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cActiveACTIVEKeyword_2_0 = (Keyword)cActiveAssignment_2.eContents().get(0);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cProcessAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cProcessTemplateProcessCrossReference_4_0 = (CrossReference)cProcessAssignment_4.eContents().get(0);
+		private final RuleCall cProcessTemplateProcessIDTerminalRuleCall_4_0_1 = (RuleCall)cProcessTemplateProcessCrossReference_4_0.eContents().get(1);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cArgsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final Keyword cArgsRightParenthesisKeyword_5_1_0 = (Keyword)cArgsAssignment_5_1.eContents().get(0);
+		
+		///* ======================= END Configuration ======================= */
+		///* ======================= START Template Configuration ======================= */
+		//TemplateProcessConfElement:
+		//    'PROCESS' name=ID (active?='ACTIVE')? ':' process=[TemplateProcess] ('(' args= ')')?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'PROCESS' name=ID (active?='ACTIVE')? ':' process=[TemplateProcess] ('(' args= ')')?
+		public Group getGroup() { return cGroup; }
+		
+		//'PROCESS'
+		public Keyword getPROCESSKeyword_0() { return cPROCESSKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//(active?='ACTIVE')?
+		public Assignment getActiveAssignment_2() { return cActiveAssignment_2; }
+		
+		//'ACTIVE'
+		public Keyword getActiveACTIVEKeyword_2_0() { return cActiveACTIVEKeyword_2_0; }
+		
+		//':'
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		
+		//process=[TemplateProcess]
+		public Assignment getProcessAssignment_4() { return cProcessAssignment_4; }
+		
+		//[TemplateProcess]
+		public CrossReference getProcessTemplateProcessCrossReference_4_0() { return cProcessTemplateProcessCrossReference_4_0; }
+		
+		//ID
+		public RuleCall getProcessTemplateProcessIDTerminalRuleCall_4_0_1() { return cProcessTemplateProcessIDTerminalRuleCall_4_0_1; }
+		
+		//('(' args= ')')?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_5_0() { return cLeftParenthesisKeyword_5_0; }
+		
+		//args= ')'
+		public Assignment getArgsAssignment_5_1() { return cArgsAssignment_5_1; }
+		
+		//')'
+		public Keyword getArgsRightParenthesisKeyword_5_1_0() { return cArgsRightParenthesisKeyword_5_1_0; }
+	}
+	public class ProcessTemplateElementsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.ProcessTemplateElements");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cElementsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cElementsAttachVariableConfElementParserRuleCall_0_0 = (RuleCall)cElementsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cElementsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cElementsAttachVariableConfElementParserRuleCall_1_1_0 = (RuleCall)cElementsAssignment_1_1.eContents().get(0);
+		
+		//ProcessTemplateElements:
+		//    elements+=AttachVariableConfElement (',' elements+=AttachVariableConfElement)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//elements+=AttachVariableConfElement (',' elements+=AttachVariableConfElement)*
+		public Group getGroup() { return cGroup; }
+		
+		//elements+=AttachVariableConfElement
+		public Assignment getElementsAssignment_0() { return cElementsAssignment_0; }
+		
+		//AttachVariableConfElement
+		public RuleCall getElementsAttachVariableConfElementParserRuleCall_0_0() { return cElementsAttachVariableConfElementParserRuleCall_0_0; }
+		
+		//(',' elements+=AttachVariableConfElement)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//','
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		
+		//elements+=AttachVariableConfElement
+		public Assignment getElementsAssignment_1_1() { return cElementsAssignment_1_1; }
+		
+		//AttachVariableConfElement
+		public RuleCall getElementsAttachVariableConfElementParserRuleCall_1_1_0() { return cElementsAttachVariableConfElementParserRuleCall_1_1_0; }
 	}
 	public class ProgramElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.Program");
@@ -549,7 +680,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cProcessesProcessParserRuleCall_3_0 = (RuleCall)cProcessesAssignment_3.eContents().get(0);
 		private final Keyword cEND_PROGRAMKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		///* ======================= END Configuration ======================= */
+		///* ======================= END Template Configuration ======================= */
 		///* ======================= START Program ======================= */
 		//Program:
 		//    'PROGRAM' name=ID
@@ -820,6 +951,109 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//TempVarDeclaration
 		public RuleCall getProcTempVarsTempVarDeclarationParserRuleCall_2_1_0() { return cProcTempVarsTempVarDeclarationParserRuleCall_2_1_0; }
+		
+		//(states+=State)*
+		public Assignment getStatesAssignment_3() { return cStatesAssignment_3; }
+		
+		//State
+		public RuleCall getStatesStateParserRuleCall_3_0() { return cStatesStateParserRuleCall_3_0; }
+		
+		//'END_PROCESS'
+		public Keyword getEND_PROCESSKeyword_4() { return cEND_PROCESSKeyword_4; }
+	}
+	public class TemplateProcessElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.TemplateProcess");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPROCESSKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cProcInVarsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cProcInVarsInputVarDeclarationParserRuleCall_2_0_0 = (RuleCall)cProcInVarsAssignment_2_0.eContents().get(0);
+		private final Assignment cProcOutVarsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cProcOutVarsOutputVarDeclarationParserRuleCall_2_1_0 = (RuleCall)cProcOutVarsAssignment_2_1.eContents().get(0);
+		private final Assignment cProcInOutVarsAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cProcInOutVarsInputOutputVarDeclarationParserRuleCall_2_2_0 = (RuleCall)cProcInOutVarsAssignment_2_2.eContents().get(0);
+		private final Assignment cProcVarsAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
+		private final RuleCall cProcVarsVarDeclarationParserRuleCall_2_3_0 = (RuleCall)cProcVarsAssignment_2_3.eContents().get(0);
+		private final Assignment cProcTempVarsAssignment_2_4 = (Assignment)cAlternatives_2.eContents().get(4);
+		private final RuleCall cProcTempVarsTempVarDeclarationParserRuleCall_2_4_0 = (RuleCall)cProcTempVarsAssignment_2_4.eContents().get(0);
+		private final Assignment cStatesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStatesStateParserRuleCall_3_0 = (RuleCall)cStatesAssignment_3.eContents().get(0);
+		private final Keyword cEND_PROCESSKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//TemplateProcess:
+		//    'PROCESS' name=ID
+		//        (
+		//            procInVars+=InputVarDeclaration |
+		//            procOutVars+=OutputVarDeclaration |
+		//            procInOutVars+=InputOutputVarDeclaration |
+		//            procVars+=VarDeclaration |
+		//            procTempVars+=TempVarDeclaration
+		//        )*
+		//        (states+=State)*
+		//    'END_PROCESS';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'PROCESS' name=ID
+		//    (
+		//        procInVars+=InputVarDeclaration |
+		//        procOutVars+=OutputVarDeclaration |
+		//        procInOutVars+=InputOutputVarDeclaration |
+		//        procVars+=VarDeclaration |
+		//        procTempVars+=TempVarDeclaration
+		//    )*
+		//    (states+=State)*
+		//'END_PROCESS'
+		public Group getGroup() { return cGroup; }
+		
+		//'PROCESS'
+		public Keyword getPROCESSKeyword_0() { return cPROCESSKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//(
+		//    procInVars+=InputVarDeclaration |
+		//    procOutVars+=OutputVarDeclaration |
+		//    procInOutVars+=InputOutputVarDeclaration |
+		//    procVars+=VarDeclaration |
+		//    procTempVars+=TempVarDeclaration
+		//)*
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//procInVars+=InputVarDeclaration
+		public Assignment getProcInVarsAssignment_2_0() { return cProcInVarsAssignment_2_0; }
+		
+		//InputVarDeclaration
+		public RuleCall getProcInVarsInputVarDeclarationParserRuleCall_2_0_0() { return cProcInVarsInputVarDeclarationParserRuleCall_2_0_0; }
+		
+		//procOutVars+=OutputVarDeclaration
+		public Assignment getProcOutVarsAssignment_2_1() { return cProcOutVarsAssignment_2_1; }
+		
+		//OutputVarDeclaration
+		public RuleCall getProcOutVarsOutputVarDeclarationParserRuleCall_2_1_0() { return cProcOutVarsOutputVarDeclarationParserRuleCall_2_1_0; }
+		
+		//procInOutVars+=InputOutputVarDeclaration
+		public Assignment getProcInOutVarsAssignment_2_2() { return cProcInOutVarsAssignment_2_2; }
+		
+		//InputOutputVarDeclaration
+		public RuleCall getProcInOutVarsInputOutputVarDeclarationParserRuleCall_2_2_0() { return cProcInOutVarsInputOutputVarDeclarationParserRuleCall_2_2_0; }
+		
+		//procVars+=VarDeclaration
+		public Assignment getProcVarsAssignment_2_3() { return cProcVarsAssignment_2_3; }
+		
+		//VarDeclaration
+		public RuleCall getProcVarsVarDeclarationParserRuleCall_2_3_0() { return cProcVarsVarDeclarationParserRuleCall_2_3_0; }
+		
+		//procTempVars+=TempVarDeclaration
+		public Assignment getProcTempVarsAssignment_2_4() { return cProcTempVarsAssignment_2_4; }
+		
+		//TempVarDeclaration
+		public RuleCall getProcTempVarsTempVarDeclarationParserRuleCall_2_4_0() { return cProcTempVarsTempVarDeclarationParserRuleCall_2_4_0; }
 		
 		//(states+=State)*
 		public Assignment getStatesAssignment_3() { return cStatesAssignment_3; }
@@ -3544,10 +3778,14 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final ProgramConfigurationElements pProgramConfiguration;
 	private final ProgramConfElementsElements pProgramConfElements;
 	private final ProgramConfElementElements pProgramConfElement;
+	private final AttachVariableConfElementElements pAttachVariableConfElement;
 	private final AssignmentTypeElements eAssignmentType;
+	private final TemplateProcessConfElementElements pTemplateProcessConfElement;
+	private final ProcessTemplateElementsElements pProcessTemplateElements;
 	private final ProgramElements pProgram;
 	private final FunctionBlockElements pFunctionBlock;
 	private final ProcessElements pProcess;
+	private final TemplateProcessElements pTemplateProcess;
 	private final StateElements pState;
 	private final SetStateStatementElements pSetStateStatement;
 	private final ProcessStatementsElements pProcessStatements;
@@ -3662,10 +3900,14 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pProgramConfiguration = new ProgramConfigurationElements();
 		this.pProgramConfElements = new ProgramConfElementsElements();
 		this.pProgramConfElement = new ProgramConfElementElements();
+		this.pAttachVariableConfElement = new AttachVariableConfElementElements();
 		this.eAssignmentType = new AssignmentTypeElements();
+		this.pTemplateProcessConfElement = new TemplateProcessConfElementElements();
+		this.pProcessTemplateElements = new ProcessTemplateElementsElements();
 		this.pProgram = new ProgramElements();
 		this.pFunctionBlock = new FunctionBlockElements();
 		this.pProcess = new ProcessElements();
+		this.pTemplateProcess = new TemplateProcessElements();
 		this.pState = new StateElements();
 		this.pSetStateStatement = new SetStateStatementElements();
 		this.pProcessStatements = new ProcessStatementsElements();
@@ -3904,13 +4146,23 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//ProgramConfElement:
-	//    programVar=[SymbolicVariable] assig=AssignmentType globVar=[SymbolicVariable];
+	//    AttachVariableConfElement | TemplateProcessConfElement;
 	public ProgramConfElementElements getProgramConfElementAccess() {
 		return pProgramConfElement;
 	}
 	
 	public ParserRule getProgramConfElementRule() {
 		return getProgramConfElementAccess().getRule();
+	}
+	
+	//AttachVariableConfElement:
+	//    programVar=[SymbolicVariable] assig=AssignmentType (attVar=[SymbolicVariable] | const=Constant);
+	public AttachVariableConfElementElements getAttachVariableConfElementAccess() {
+		return pAttachVariableConfElement;
+	}
+	
+	public ParserRule getAttachVariableConfElementRule() {
+		return getAttachVariableConfElementAccess().getRule();
 	}
 	
 	//enum AssignmentType:
@@ -3924,6 +4176,28 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	///* ======================= END Configuration ======================= */
+	///* ======================= START Template Configuration ======================= */
+	//TemplateProcessConfElement:
+	//    'PROCESS' name=ID (active?='ACTIVE')? ':' process=[TemplateProcess] ('(' args= ')')?;
+	public TemplateProcessConfElementElements getTemplateProcessConfElementAccess() {
+		return pTemplateProcessConfElement;
+	}
+	
+	public ParserRule getTemplateProcessConfElementRule() {
+		return getTemplateProcessConfElementAccess().getRule();
+	}
+	
+	//ProcessTemplateElements:
+	//    elements+=AttachVariableConfElement (',' elements+=AttachVariableConfElement)*;
+	public ProcessTemplateElementsElements getProcessTemplateElementsAccess() {
+		return pProcessTemplateElements;
+	}
+	
+	public ParserRule getProcessTemplateElementsRule() {
+		return getProcessTemplateElementsAccess().getRule();
+	}
+	
+	///* ======================= END Template Configuration ======================= */
 	///* ======================= START Program ======================= */
 	//Program:
 	//    'PROGRAM' name=ID
@@ -3983,6 +4257,25 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public ParserRule getProcessRule() {
 		return getProcessAccess().getRule();
+	}
+	
+	//TemplateProcess:
+	//    'PROCESS' name=ID
+	//        (
+	//            procInVars+=InputVarDeclaration |
+	//            procOutVars+=OutputVarDeclaration |
+	//            procInOutVars+=InputOutputVarDeclaration |
+	//            procVars+=VarDeclaration |
+	//            procTempVars+=TempVarDeclaration
+	//        )*
+	//        (states+=State)*
+	//    'END_PROCESS';
+	public TemplateProcessElements getTemplateProcessAccess() {
+		return pTemplateProcess;
+	}
+	
+	public ParserRule getTemplateProcessRule() {
+		return getTemplateProcessAccess().getRule();
 	}
 	
 	//State:

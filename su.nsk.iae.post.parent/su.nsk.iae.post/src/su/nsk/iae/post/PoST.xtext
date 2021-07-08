@@ -57,14 +57,26 @@ ProgramConfElements:
 	elements+=ProgramConfElement (',' elements+=ProgramConfElement)*;
 
 ProgramConfElement:
-	programVar=[SymbolicVariable] assig=AssignmentType globVar=[SymbolicVariable];
+	AttachVariableConfElement | TemplateProcessConfElement;
+
+AttachVariableConfElement:
+	programVar=[SymbolicVariable] assig=AssignmentType (attVar=[SymbolicVariable] | const=Constant);
+
 
 enum AssignmentType:
 	in=':=' | out='=>';
 
 /* ======================= END Configuration ======================= */
 
+/* ======================= START Template Configuration ======================= */
 
+TemplateProcessConfElement:
+	'PROCESS' name=ID (active?='ACTIVE')? ':' process=[TemplateProcess] ('(' args= ')')?;
+
+ProcessTemplateElements:
+	elements+=AttachVariableConfElement (',' elements+=AttachVariableConfElement)*;
+
+/* ======================= END Template Configuration ======================= */
 
 /* ======================= START Program ======================= */
 	
@@ -110,6 +122,19 @@ Process:
 		)*
 		(states+=State)*
 	'END_PROCESS';
+
+TemplateProcess: 
+	'PROCESS' name=ID 
+		(
+			procInVars+=InputVarDeclaration | 
+			procOutVars+=OutputVarDeclaration |
+			procInOutVars+=InputOutputVarDeclaration |
+			procVars+=VarDeclaration | 
+			procTempVars+=TempVarDeclaration
+		)*
+		(states+=State)*
+	'END_PROCESS';
+
 
 State:
 	'STATE' name=ID (looped?='LOOPED')?

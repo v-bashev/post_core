@@ -72,10 +72,21 @@
     <genClasses ecoreClass="PoST.ecore#//ProgramConfElements">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfElements/elements"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//ProgramConfElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfElement/programVar"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ProgramConfElement/assig"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProgramConfElement/globVar"/>
+    <genClasses ecoreClass="PoST.ecore#//ProgramConfElement"/>
+    <genClasses ecoreClass="PoST.ecore#//AttachVariableConfElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//AttachVariableConfElement/programVar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//AttachVariableConfElement/assig"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//AttachVariableConfElement/attVar"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//AttachVariableConfElement/const"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//TemplateProcessConfElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TemplateProcessConfElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TemplateProcessConfElement/active"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcessConfElement/process"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TemplateProcessConfElement/args"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ProcessTemplateElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProcessTemplateElements/elements"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Program">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Program/name"/>
@@ -102,6 +113,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procTempVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/states"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//TemplateProcess">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TemplateProcess/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcess/procInVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcess/procOutVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcess/procInOutVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcess/procVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcess/procTempVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcess/states"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//State">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//State/name"/>

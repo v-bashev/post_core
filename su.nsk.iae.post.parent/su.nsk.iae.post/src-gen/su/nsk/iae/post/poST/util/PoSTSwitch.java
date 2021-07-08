@@ -15,6 +15,7 @@ import su.nsk.iae.post.poST.ArraySpecInit;
 import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
+import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
 import su.nsk.iae.post.poST.CaseStatement;
@@ -46,6 +47,7 @@ import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
+import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
@@ -69,6 +71,8 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcess;
+import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
@@ -204,6 +208,29 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PoSTPackage.ATTACH_VARIABLE_CONF_ELEMENT:
+      {
+        AttachVariableConfElement attachVariableConfElement = (AttachVariableConfElement)theEObject;
+        T result = caseAttachVariableConfElement(attachVariableConfElement);
+        if (result == null) result = caseProgramConfElement(attachVariableConfElement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT:
+      {
+        TemplateProcessConfElement templateProcessConfElement = (TemplateProcessConfElement)theEObject;
+        T result = caseTemplateProcessConfElement(templateProcessConfElement);
+        if (result == null) result = caseProgramConfElement(templateProcessConfElement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS:
+      {
+        ProcessTemplateElements processTemplateElements = (ProcessTemplateElements)theEObject;
+        T result = caseProcessTemplateElements(processTemplateElements);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case PoSTPackage.PROGRAM:
       {
         Program program = (Program)theEObject;
@@ -222,6 +249,13 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         su.nsk.iae.post.poST.Process process = (su.nsk.iae.post.poST.Process)theEObject;
         T result = caseProcess(process);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.TEMPLATE_PROCESS:
+      {
+        TemplateProcess templateProcess = (TemplateProcess)theEObject;
+        T result = caseTemplateProcess(templateProcess);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -848,6 +882,54 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Attach Variable Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Attach Variable Conf Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAttachVariableConfElement(AttachVariableConfElement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Template Process Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Template Process Conf Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTemplateProcessConfElement(TemplateProcessConfElement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Process Template Elements</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Process Template Elements</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProcessTemplateElements(ProcessTemplateElements object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Program</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -891,6 +973,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProcess(su.nsk.iae.post.poST.Process object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Template Process</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Template Process</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTemplateProcess(TemplateProcess object)
   {
     return null;
   }
