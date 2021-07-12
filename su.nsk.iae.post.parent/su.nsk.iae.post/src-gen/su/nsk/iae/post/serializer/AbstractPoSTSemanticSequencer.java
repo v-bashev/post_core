@@ -83,7 +83,7 @@ import su.nsk.iae.post.poST.XorExpression;
 import su.nsk.iae.post.services.PoSTGrammarAccess;
 
 @SuppressWarnings("all")
-public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
+public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 
 	@Inject
 	private PoSTGrammarAccess grammarAccess;
@@ -538,7 +538,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Configuration returns Configuration
 	 *
 	 * Constraint:
-	 *     (name=ID (confGlobVars+=GlobalVarDeclaration resources+=Resource)*)
+	 *     (name=ID (confGlobVars+=GlobalVarDeclaration | resources+=Resource)*)
 	 */
 	protected void sequence_Configuration(ISerializationContext context, Configuration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -826,7 +826,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (confs+=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
+	 *     (confs=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -29,16 +29,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Confs</b></em>' containment reference list.
-   * The list contents are of type {@link su.nsk.iae.post.poST.Configuration}.
+   * Returns the value of the '<em><b>Confs</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Confs</em>' containment reference list.
+   * @return the value of the '<em>Confs</em>' containment reference.
+   * @see #setConfs(Configuration)
    * @see su.nsk.iae.post.poST.PoSTPackage#getModel_Confs()
    * @model containment="true"
    * @generated
    */
-  EList<Configuration> getConfs();
+  Configuration getConfs();
+
+  /**
+   * Sets the value of the '{@link su.nsk.iae.post.poST.Model#getConfs <em>Confs</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Confs</em>' containment reference.
+   * @see #getConfs()
+   * @generated
+   */
+  void setConfs(Configuration value);
 
   /**
    * Returns the value of the '<em><b>Glob Vars</b></em>' containment reference list.

@@ -19,6 +19,7 @@ import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.UnorderedGroup;
 import org.eclipse.xtext.service.AbstractElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -27,52 +28,48 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.Model");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cConfsAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup = (UnorderedGroup)rule.eContents().get(1);
+		private final Assignment cConfsAssignment_0 = (Assignment)cUnorderedGroup.eContents().get(0);
 		private final RuleCall cConfsConfigurationParserRuleCall_0_0 = (RuleCall)cConfsAssignment_0.eContents().get(0);
-		private final Assignment cGlobVarsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final Assignment cGlobVarsAssignment_1 = (Assignment)cUnorderedGroup.eContents().get(1);
 		private final RuleCall cGlobVarsGlobalVarDeclarationParserRuleCall_1_0 = (RuleCall)cGlobVarsAssignment_1.eContents().get(0);
-		private final Assignment cProgramsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final Assignment cProgramsAssignment_2 = (Assignment)cUnorderedGroup.eContents().get(2);
 		private final RuleCall cProgramsProgramParserRuleCall_2_0 = (RuleCall)cProgramsAssignment_2.eContents().get(0);
-		private final Assignment cFbsAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final Assignment cFbsAssignment_3 = (Assignment)cUnorderedGroup.eContents().get(3);
 		private final RuleCall cFbsFunctionBlockParserRuleCall_3_0 = (RuleCall)cFbsAssignment_3.eContents().get(0);
 		
 		//Model:
-		//    (
-		//        confs+=Configuration |
-		//        globVars+=GlobalVarDeclaration |
-		//        programs+=Program |
-		//        fbs+=FunctionBlock
-		//    )*;
+		//    (confs=Configuration)? &
+		//    (globVars+=GlobalVarDeclaration)* &
+		//    (programs+=Program)* &
+		//    (fbs+=FunctionBlock)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(
-		//    confs+=Configuration |
-		//    globVars+=GlobalVarDeclaration |
-		//    programs+=Program |
-		//    fbs+=FunctionBlock
-		//)*
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//(confs=Configuration)? &
+		//(globVars+=GlobalVarDeclaration)* &
+		//(programs+=Program)* &
+		//(fbs+=FunctionBlock)*
+		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 		
-		//confs+=Configuration
+		//(confs=Configuration)?
 		public Assignment getConfsAssignment_0() { return cConfsAssignment_0; }
 		
 		//Configuration
 		public RuleCall getConfsConfigurationParserRuleCall_0_0() { return cConfsConfigurationParserRuleCall_0_0; }
 		
-		//globVars+=GlobalVarDeclaration
+		//(globVars+=GlobalVarDeclaration)*
 		public Assignment getGlobVarsAssignment_1() { return cGlobVarsAssignment_1; }
 		
 		//GlobalVarDeclaration
 		public RuleCall getGlobVarsGlobalVarDeclarationParserRuleCall_1_0() { return cGlobVarsGlobalVarDeclarationParserRuleCall_1_0; }
 		
-		//programs+=Program
+		//(programs+=Program)*
 		public Assignment getProgramsAssignment_2() { return cProgramsAssignment_2; }
 		
 		//Program
 		public RuleCall getProgramsProgramParserRuleCall_2_0() { return cProgramsProgramParserRuleCall_2_0; }
 		
-		//fbs+=FunctionBlock
+		//(fbs+=FunctionBlock)*
 		public Assignment getFbsAssignment_3() { return cFbsAssignment_3; }
 		
 		//FunctionBlock
@@ -84,10 +81,10 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cCONFIGURATIONKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cConfGlobVarsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cConfGlobVarsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
 		private final RuleCall cConfGlobVarsGlobalVarDeclarationParserRuleCall_2_0_0 = (RuleCall)cConfGlobVarsAssignment_2_0.eContents().get(0);
-		private final Assignment cResourcesAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final Assignment cResourcesAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final RuleCall cResourcesResourceParserRuleCall_2_1_0 = (RuleCall)cResourcesAssignment_2_1.eContents().get(0);
 		private final Keyword cEND_CONFIGURATIONKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
@@ -95,7 +92,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//Configuration:
 		//    'CONFIGURATION' name=ID
 		//        (
-		//            confGlobVars+=GlobalVarDeclaration
+		//            confGlobVars+=GlobalVarDeclaration |
 		//            resources+=Resource
 		//        )*
 		//    'END_CONFIGURATION';
@@ -103,7 +100,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//'CONFIGURATION' name=ID
 		//    (
-		//        confGlobVars+=GlobalVarDeclaration
+		//        confGlobVars+=GlobalVarDeclaration |
 		//        resources+=Resource
 		//    )*
 		//'END_CONFIGURATION'
@@ -119,10 +116,10 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//(
-		//    confGlobVars+=GlobalVarDeclaration
+		//    confGlobVars+=GlobalVarDeclaration |
 		//    resources+=Resource
 		//)*
-		public Group getGroup_2() { return cGroup_2; }
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//confGlobVars+=GlobalVarDeclaration
 		public Assignment getConfGlobVarsAssignment_2_0() { return cConfGlobVarsAssignment_2_0; }
@@ -3970,12 +3967,10 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 
 	
 	//Model:
-	//    (
-	//        confs+=Configuration |
-	//        globVars+=GlobalVarDeclaration |
-	//        programs+=Program |
-	//        fbs+=FunctionBlock
-	//    )*;
+	//    (confs=Configuration)? &
+	//    (globVars+=GlobalVarDeclaration)* &
+	//    (programs+=Program)* &
+	//    (fbs+=FunctionBlock)*;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -3988,7 +3983,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	//Configuration:
 	//    'CONFIGURATION' name=ID
 	//        (
-	//            confGlobVars+=GlobalVarDeclaration
+	//            confGlobVars+=GlobalVarDeclaration |
 	//            resources+=Resource
 	//        )*
 	//    'END_CONFIGURATION';

@@ -5,6 +5,7 @@ package su.nsk.iae.post.poST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -43,14 +45,14 @@ import su.nsk.iae.post.poST.Program;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getConfs() <em>Confs</em>}' containment reference list.
+   * The cached value of the '{@link #getConfs() <em>Confs</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getConfs()
    * @generated
    * @ordered
    */
-  protected EList<Configuration> confs;
+  protected Configuration confs;
 
   /**
    * The cached value of the '{@link #getGlobVars() <em>Glob Vars</em>}' containment reference list.
@@ -109,13 +111,48 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public EList<Configuration> getConfs()
+  public Configuration getConfs()
   {
-    if (confs == null)
-    {
-      confs = new EObjectContainmentEList<Configuration>(Configuration.class, this, PoSTPackage.MODEL__CONFS);
-    }
     return confs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetConfs(Configuration newConfs, NotificationChain msgs)
+  {
+    Configuration oldConfs = confs;
+    confs = newConfs;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.MODEL__CONFS, oldConfs, newConfs);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setConfs(Configuration newConfs)
+  {
+    if (newConfs != confs)
+    {
+      NotificationChain msgs = null;
+      if (confs != null)
+        msgs = ((InternalEObject)confs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.MODEL__CONFS, null, msgs);
+      if (newConfs != null)
+        msgs = ((InternalEObject)newConfs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.MODEL__CONFS, null, msgs);
+      msgs = basicSetConfs(newConfs, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.MODEL__CONFS, newConfs, newConfs));
   }
 
   /**
@@ -174,7 +211,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     switch (featureID)
     {
       case PoSTPackage.MODEL__CONFS:
-        return ((InternalEList<?>)getConfs()).basicRemove(otherEnd, msgs);
+        return basicSetConfs(null, msgs);
       case PoSTPackage.MODEL__GLOB_VARS:
         return ((InternalEList<?>)getGlobVars()).basicRemove(otherEnd, msgs);
       case PoSTPackage.MODEL__PROGRAMS:
@@ -219,8 +256,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     switch (featureID)
     {
       case PoSTPackage.MODEL__CONFS:
-        getConfs().clear();
-        getConfs().addAll((Collection<? extends Configuration>)newValue);
+        setConfs((Configuration)newValue);
         return;
       case PoSTPackage.MODEL__GLOB_VARS:
         getGlobVars().clear();
@@ -249,7 +285,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     switch (featureID)
     {
       case PoSTPackage.MODEL__CONFS:
-        getConfs().clear();
+        setConfs((Configuration)null);
         return;
       case PoSTPackage.MODEL__GLOB_VARS:
         getGlobVars().clear();
@@ -275,7 +311,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     switch (featureID)
     {
       case PoSTPackage.MODEL__CONFS:
-        return confs != null && !confs.isEmpty();
+        return confs != null;
       case PoSTPackage.MODEL__GLOB_VARS:
         return globVars != null && !globVars.isEmpty();
       case PoSTPackage.MODEL__PROGRAMS:

@@ -1,70 +1,72 @@
 package su.nsk.iae.post.scoping
 
-import java.util.ArrayList
-import java.util.List
+import com.google.common.base.Function
+import java.util.stream.Collectors
+import java.util.stream.Stream
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
+import su.nsk.iae.post.naming.PoSTQualifiedNameProvider
 import su.nsk.iae.post.poST.Model
 import su.nsk.iae.post.poST.PoSTPackage
-import su.nsk.iae.post.poST.ProgramConfiguration
+import su.nsk.iae.post.poST.SymbolicVariable
 import su.nsk.iae.post.poST.TemplateProcessConfElement
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import su.nsk.iae.post.poST.ProcessTemplateElements
-import su.nsk.iae.post.poST.ProgramConfElements
 
 class PoSTScopeProvider extends AbstractPoSTScopeProvider {
+	
 	val ePackage = PoSTPackage.eINSTANCE
 
 	override getScope(EObject context, EReference reference) {
-		if (((context instanceof TemplateProcessConfElement) || (context instanceof ProcessTemplateElements)) 
-			&& (reference == ePackage.attachVariableConfElement_ProgramVar)) {
+		if ((reference == ePackage.attachVariableConfElement_ProgramVar)) {
 			val model = context.getContainerOfType(Model)
-			val candidates = new ArrayList<EObject>
-			candidates.getProcessInOutVar(model)
-			return Scopes.scopeFor(candidates)
+			if (context.getContainerOfType(TemplateProcessConfElement) !== null) {
+				return Scopes.scopeFor(model.processInOutVar, new PoSTScope, IScope.NULLSCOPE)
+			}
+			return Scopes.scopeFor(model.programInOutVar, new PoSTScope, IScope.NULLSCOPE)
 		}
-		if (((context instanceof ProgramConfiguration) || (context instanceof ProgramConfElements)) 
-			&& (reference == ePackage.attachVariableConfElement_ProgramVar)) {
-			val model = context.getContainerOfType(Model)
-			val candidates = new ArrayList<EObject>
-			candidates.getProgramInOutVar(model)
-			return Scopes.scopeFor(candidates)
-		}
-
 		return super.getScope(context, reference)
 	}
 
-	def getProgramInOutVar(List<EObject> candidates, Model model) {
-		for (program : model.programs) {
-			for (inDecl : program.progInVars) {
-				for (varList : inDecl.vars) {
-					candidates.addAll(varList.varList.vars)
-				}
-			}
-			for (outDecl : program.progOutVars) {
-				for (varList : outDecl.vars) {
-					candidates.addAll(varList.varList.vars)
-				}
-			}
-		}
+	private def getProgramInOutVar(Model model) {
+		return Stream.concat(
+			model.programs.stream.map([x | x.progInVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+			Stream.concat(
+				model.programs.stream.map([x | x.progOutVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+				Stream.concat(
+					model.fbs.stream.map([x | x.fbInVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+					model.fbs.stream.map([x | x.fbOutVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars])
+				)
+			)
+			
+		).flatMap([x | x.stream]).collect(Collectors.toList)
 	}
 
-	def getProcessInOutVar(List<EObject> candidates, Model model) {
-		for (program : model.programs) {
-			for (process : program.processes) {
-				for (inDecl : process.procInVars) {
-					for (varList : inDecl.vars) {
-						candidates.addAll(varList.varList.vars)
-					}
-				}
-				for (outDecl : process.procOutVars) {
-					for (varList : outDecl.vars) {
-						candidates.addAll(varList.varList.vars)
-					}
-				}
-			}
+	private def getProcessInOutVar(Model model) {
+		return Stream.concat(
+			model.programs.stream.map([x | x.processes]).flatMap([x | x.stream])
+			.map([x | x.procInVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+			Stream.concat(
+				model.programs.stream.map([x | x.processes]).flatMap([x | x.stream])
+				.map([x | x.procOutVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+				Stream.concat(
+					model.fbs.stream.map([x | x.processes]).flatMap([x | x.stream])
+					.map([x | x.procInVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+					model.fbs.stream.map([x | x.processes]).flatMap([x | x.stream])
+					.map([x | x.procOutVars]).flatMap([x | x.stream]).map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars])
+				)
+			)
+			
+		).flatMap([x | x.stream]).collect(Collectors.toList)
+	}
+	
+	static class PoSTScope implements Function<SymbolicVariable, QualifiedName> {
+		static val qualifiedNameProvider = new PoSTQualifiedNameProvider;
+		override apply(SymbolicVariable ele) {
+			return qualifiedNameProvider.qualifiedPoSTName(ele)
 		}
 	}
 }

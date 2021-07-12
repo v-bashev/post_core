@@ -69,7 +69,7 @@ public interface PoSTPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Confs</b></em>' containment reference list.
+   * The feature id for the '<em><b>Confs</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3199,10 +3199,10 @@ public interface PoSTPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Model#getConfs <em>Confs</em>}'.
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.Model#getConfs <em>Confs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Confs</em>'.
+   * @return the meta object for the containment reference '<em>Confs</em>'.
    * @see su.nsk.iae.post.poST.Model#getConfs()
    * @see #getModel()
    * @generated
@@ -5564,7 +5564,7 @@ public interface PoSTPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Confs</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Confs</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

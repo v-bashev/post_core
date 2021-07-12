@@ -73,13 +73,25 @@ public class PoSTValidator extends AbstractPoSTValidator {
 					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
 			return;
 		}
-		Configuration conf = EcoreUtil2.getContainerOfType(varName, Configuration.class);
+		Configuration conf = EcoreUtil2.getContainerOfType(res, Configuration.class);
 		if ((res != null) && checkGlobalVariableName(conf.getConfGlobVars(), varName)) {
 			error("Name error: Configuration already has a variable with this name",
 					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
 			return;
 		}
-		Model model = EcoreUtil2.getContainerOfType(varName, Model.class);
+		if (checkGlobalVariableName(conf.getConfGlobVars(), varName)) {
+			error("Name error: Conflict with the name of a global variable",
+					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
+			return;
+		}
+		for (Resource r : conf.getResources()) {
+			if (checkGlobalVariableName(r.getResGlobVars(), varName)) {
+				error("Name error: Conflict with the name of a global variable",
+						PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
+				return;
+			}
+		}
+		Model model = EcoreUtil2.getContainerOfType(conf, Model.class);
 		if (model != null && checkGlobalVariableName(model.getGlobVars(), varName)) {
 			error("Name error: Conflict with the name of a global variable",
 					PoSTPackage.eINSTANCE.getSymbolicVariable_Name());
@@ -195,7 +207,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
 	@Check
 	public void checkEmptyProgram(Program program) {
 		if (program.getProcesses().isEmpty()) {
-			error("Statement error: Program can't be empty", PoSTPackage.eINSTANCE.getProcess_Name());
+			error("Statement error: Program can't be empty", PoSTPackage.eINSTANCE.getProgram_Name());
 		}
 	}
 	

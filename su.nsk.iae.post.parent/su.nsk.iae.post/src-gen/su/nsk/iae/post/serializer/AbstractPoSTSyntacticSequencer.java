@@ -18,7 +18,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 import su.nsk.iae.post.services.PoSTGrammarAccess;
 
 @SuppressWarnings("all")
-public class PoSTSyntacticSequencer extends AbstractSyntacticSequencer {
+public abstract class AbstractPoSTSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected PoSTGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Constant_BINARY_INTEGERTerminalRuleCall_2_1_or_BOOLEAN_LITERALTerminalRuleCall_5_1_or_HEX_INTEGERTerminalRuleCall_4_1_or_OCTAL_INTEGERTerminalRuleCall_3_1;

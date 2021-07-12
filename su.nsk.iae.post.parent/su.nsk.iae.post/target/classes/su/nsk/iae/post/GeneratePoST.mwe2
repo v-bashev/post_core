@@ -27,9 +27,12 @@ Workflow {
 		language = StandardLanguage {
 			name = "su.nsk.iae.post.PoST"
 			fileExtensions = "post"
-
+			
+			scopeProvider = {
+				generateXtendStub = true
+			}
 			serializer = {
-				generateStub = false
+				generateXtendStub = true
 			}
 			validator = {
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
@@ -39,9 +42,6 @@ Workflow {
 			generator = {
 				generateXtendStub = true
 				generateJavaMain = true
-			}
-			junitSupport = {
-				junitVersion = "5"
 			}
 		}
 	}

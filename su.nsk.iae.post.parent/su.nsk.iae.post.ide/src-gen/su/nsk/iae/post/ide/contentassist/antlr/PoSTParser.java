@@ -31,7 +31,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, PoSTGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getModelAccess().getAlternatives(), "rule__Model__Alternatives");
+			builder.put(grammarAccess.getConfigurationAccess().getAlternatives_2(), "rule__Configuration__Alternatives_2");
 			builder.put(grammarAccess.getSingleResourceAccess().getAlternatives_1(), "rule__SingleResource__Alternatives_1");
 			builder.put(grammarAccess.getTaskInitializationAccess().getAlternatives(), "rule__TaskInitialization__Alternatives");
 			builder.put(grammarAccess.getProgramConfElementAccess().getAlternatives(), "rule__ProgramConfElement__Alternatives");
@@ -64,7 +64,6 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMulOperatorAccess().getAlternatives(), "rule__MulOperator__Alternatives");
 			builder.put(grammarAccess.getUnaryOperatorAccess().getAlternatives(), "rule__UnaryOperator__Alternatives");
 			builder.put(grammarAccess.getConfigurationAccess().getGroup(), "rule__Configuration__Group__0");
-			builder.put(grammarAccess.getConfigurationAccess().getGroup_2(), "rule__Configuration__Group_2__0");
 			builder.put(grammarAccess.getResourceAccess().getGroup(), "rule__Resource__Group__0");
 			builder.put(grammarAccess.getSingleResourceAccess().getGroup(), "rule__SingleResource__Group__0");
 			builder.put(grammarAccess.getSingleResourceAccess().getGroup_1_0(), "rule__SingleResource__Group_1_0__0");
@@ -338,6 +337,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRealLiteralAccess().getTypeAssignment_0_0(), "rule__RealLiteral__TypeAssignment_0_0");
 			builder.put(grammarAccess.getRealLiteralAccess().getRSigAssignment_1(), "rule__RealLiteral__RSigAssignment_1");
 			builder.put(grammarAccess.getRealLiteralAccess().getValueAssignment_2(), "rule__RealLiteral__ValueAssignment_2");
+			builder.put(grammarAccess.getModelAccess().getUnorderedGroup(), "rule__Model__UnorderedGroup");
 		}
 	}
 	
