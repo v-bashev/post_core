@@ -137,7 +137,7 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
         program.getProgInOutVars().stream().<EList<VarInitDeclaration>>map(_function_6).<VarInitDeclaration>flatMap(_function_7).<EList<SymbolicVariable>>map(_function_8))).<SymbolicVariable>flatMap(_function_9).anyMatch(_function_10);
   }
   
-  public static boolean checFBVars(final FunctionBlock fb, final String eleName) {
+  public static boolean checkFBVars(final FunctionBlock fb, final String eleName) {
     return (Stream.<EList<SymbolicVariable>>concat(
       fb.getFbVars().stream().<EList<VarInitDeclaration>>map(((Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
         return x.getVars();

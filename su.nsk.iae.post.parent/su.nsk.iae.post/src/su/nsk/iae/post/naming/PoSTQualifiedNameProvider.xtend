@@ -77,7 +77,7 @@ class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider 
 		).flatMap([x | x.stream]).anyMatch([x | x.name.equals(eleName)])
 	}
 	
-	static def boolean checFBVars(FunctionBlock fb, String eleName) {
+	static def boolean checkFBVars(FunctionBlock fb, String eleName) {
 		return Stream.concat(
 			fb.fbVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
 			fb.fbTempVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars])

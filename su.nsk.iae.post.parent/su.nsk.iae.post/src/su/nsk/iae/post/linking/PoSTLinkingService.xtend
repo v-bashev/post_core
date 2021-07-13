@@ -62,20 +62,23 @@ class PoSTLinkingService extends DefaultLinkingService {
 	}
 	
 	private def String getCrossRefNodeAsString(EObject context, EReference ref, INode node) throws IllegalNodeException {
-		if (context.checkStatementVarName) {
+		val statementContext = context.getContainerOfType(StatementList)
+		if (statementContext !== null) {
 			val res = context.getStatementVarName(node)
 			if (res !== null) {
 				return res
 			}
 		}
-		if (context.checkProcessAttachVarName(ref)) {
-			val res = getProcessAttachVarName(context, ref, node)
+		val processAttachContext = context.getContainerOfType(TemplateProcessConfElement)
+		if (processAttachContext !== null) {
+			val res = getProcessAttachVarName(processAttachContext, ref, node)
 			if (res !== null) {
 				return res
 			}
 		}
-		if (context.checkProgramAttachVarName(ref)) {
-			val res = getProgramAttachVarName(context, ref, node)
+		val programAttachContext = context.getContainerOfType(ProgramConfiguration)
+		if (programAttachContext !== null) {
+			val res = getProgramAttachVarName(programAttachContext, ref, node)
 			if (res !== null) {
 				return res
 			
@@ -84,21 +87,9 @@ class PoSTLinkingService extends DefaultLinkingService {
 		super.getCrossRefNodeAsString(node)
 	}
 	
-	private def boolean checkStatementVarName(EObject context) {
-		return context.getContainerOfType(StatementList) !== null
-	}
-	
-	private def boolean checkProcessAttachVarName(EObject context, EReference ref) {
-		return context.getContainerOfType(TemplateProcessConfElement) !== null
-	}
-	
-	private def boolean checkProgramAttachVarName(EObject context, EReference ref) {
-		return context.getContainerOfType(ProgramConfiguration) !== null
-	}
-	
-	private def String getStatementVarName(EObject ele, INode node) {
+	private def String getStatementVarName(EObject context, INode node) {
 		val name = node.text
-		val process = ele.getContainerOfType(Process)
+		val process = context.getContainerOfType(Process)
 		val program = process.getContainerOfType(Program)
 		val fb = process.getContainerOfType(FunctionBlock)
 		if ((process !== null) && process.checkProcessVars(name)) {
@@ -107,89 +98,56 @@ class PoSTLinkingService extends DefaultLinkingService {
 		if ((program !== null) && program.checkProgramVars(name)) {
 			return program.name + "." + name
 		}
-		if ((fb !== null) && fb.checFBVars(name)) {
+		if ((fb !== null) && fb.checkFBVars(name)) {
 			return fb.name + "." + name
 		}
 		return null
 	}
 	
-	private def String getProcessAttachVarName(EObject context, EReference ref, INode node) {
-		if (ref == ePackage.attachVariableConfElement_ProgramVar) {
-			return getProcessAttachVarName_ProgramVar(context, ref, node)
-		}
-		if (ref == ePackage.attachVariableConfElement_AttVar) {
+	private def String getProgramAttachVarName(ProgramConfiguration context, EReference ref, INode node) {
+		if (ref == ePackage.programConfiguration_Program) {
 			return getGlobalName(context, ref, node)
 		}
-		if (ref == ePackage.templateProcessConfElement_Process) {
-			return getProcessAttachVarName_Process(context, ref, node)
-		}
-		return null
-	}
-	
-	private def String getProcessAttachVarName_ProgramVar(EObject context, EReference ref, INode node) {
-		val name = node.text
-		val model = context.getContainerOfType(Model)
-		for (program : model.programs) {
-			for (process : program.processes) {
-				if (process.checkProcessInOutVars(name)) {
-					return program.name + "." + process.name + "." + name
-				}
-			}
-		}
-		for (fb : model.fbs) {
-			for (process : fb.processes) {
-				if (process.checkProcessInOutVars(name)) {
-					return fb.name + "." + process.name + "." + name
-				}
-			}
-		}
-		return null
-	}
-	
-	private def String getProcessAttachVarName_Process(EObject context, EReference ref, INode node) {
-		val name = node.text
-		val model = context.getContainerOfType(Model)
-		for (program : model.programs) {
-			if (program.checkProcesses(name)) {
-				return program.name + "." + name
-			}
-		}
-		for (fb : model.fbs) {
-			if (fb.checkProcesses(name)) {
-				return fb.name + "." + name
-			}
-		}
-		return null
-	}
-	
-	private def String getProgramAttachVarName(EObject context, EReference ref, INode node) {
 		if (ref == ePackage.attachVariableConfElement_ProgramVar) {
 			return getProgramAttachVarName_ProgramVar(context, ref, node)
 		}
 		if (ref == ePackage.attachVariableConfElement_AttVar) {
 			return getGlobalName(context, ref, node)
 		}
-		if (ref == ePackage.programConfiguration_Program) {
+		return null
+	}
+	
+	private def String getProgramAttachVarName_ProgramVar(ProgramConfiguration context, EReference ref, INode node) {
+		return context.program.name + "." + node.text
+	}
+	
+	private def String getProcessAttachVarName(TemplateProcessConfElement context, EReference ref, INode node) {
+		if (ref == ePackage.templateProcessConfElement_Process) {
+			return getProcessAttachVarName_Process(context, ref, node)
+		}
+		if (ref == ePackage.attachVariableConfElement_ProgramVar) {
+			return getProcessAttachVarName_ProgramVar(context, ref, node)
+		}
+		if (ref == ePackage.attachVariableConfElement_AttVar) {
 			return getGlobalName(context, ref, node)
 		}
 		return null
 	}
 	
-	private def String getProgramAttachVarName_ProgramVar(EObject context, EReference ref, INode node) {
+	private def String getProcessAttachVarName_Process(TemplateProcessConfElement context, EReference ref, INode node) {
 		val name = node.text
-		if (ref == ePackage.attachVariableConfElement_AttVar) {
-			return node.text
+		val program = context.getContainerOfType(ProgramConfiguration).program
+		if ((program !== null) && program.checkProcesses(name)) {
+			return program.name + "." + node.text
 		}
-		val model = context.getContainerOfType(Model)
-		for (program : model.programs) {
-			if (program.checkProgramInOutVars(name)) {
-				return program.name + "." + name
-			}
-		}
-		for (fb : model.fbs) {
-			if (fb.checkFBInOutVars(name)) {
-				return fb.name + "." + name
-			}
+		return null
+	}
+	
+	private def String getProcessAttachVarName_ProgramVar(TemplateProcessConfElement context, EReference ref, INode node) {
+		val process = context.process
+		val program = process.getContainerOfType(Program)
+		if (program !== null) {
+			return program.name + "." + process.name + "." + node.text
 		}
 		return null
 	}
