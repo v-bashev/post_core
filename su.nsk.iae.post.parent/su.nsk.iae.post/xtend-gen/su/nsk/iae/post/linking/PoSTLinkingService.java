@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.linking.LinkingScopeProviderBinding;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
@@ -16,6 +17,7 @@ import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.IScopeProvider;
 import su.nsk.iae.post.naming.PoSTQualifiedNameProvider;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.Model;
@@ -24,11 +26,16 @@ import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfiguration;
 import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.scoping.PoSTScopeProvider;
 
 @SuppressWarnings("all")
 public class PoSTLinkingService extends DefaultLinkingService {
   @Inject
   private IQualifiedNameConverter qualifiedNameConverter;
+  
+  @Inject
+  @LinkingScopeProviderBinding
+  private IScopeProvider scopeProvider;
   
   private final PoSTPackage ePackage = PoSTPackage.eINSTANCE;
   
@@ -42,16 +49,19 @@ public class PoSTLinkingService extends DefaultLinkingService {
     if (((crossRefString == null) || crossRefString.equals(""))) {
       return Collections.<EObject>emptyList();
     }
-    final IScope scope = this.getScope(context, ref);
+    IScope scope = ((PoSTScopeProvider) this.scopeProvider).getPoSTScope(context, ref);
     if ((scope == null)) {
-      String _name = this.getScopeProvider().getClass().getName();
-      String _plus = ("Scope provider " + _name);
-      String _plus_1 = (_plus + " must not return null for context ");
-      String _plus_2 = (_plus_1 + context);
-      String _plus_3 = (_plus_2 + ", reference ");
-      String _plus_4 = (_plus_3 + ref);
-      String _plus_5 = (_plus_4 + "! Consider to return IScope.NULLSCOPE instead.");
-      throw new AssertionError(_plus_5);
+      scope = this.getScope(context, ref);
+      if ((scope == null)) {
+        String _name = this.scopeProvider.getClass().getName();
+        String _plus = ("Scope provider " + _name);
+        String _plus_1 = (_plus + " must not return null for context ");
+        String _plus_2 = (_plus_1 + context);
+        String _plus_3 = (_plus_2 + ", reference ");
+        String _plus_4 = (_plus_3 + ref);
+        String _plus_5 = (_plus_4 + "! Consider to return IScope.NULLSCOPE instead.");
+        throw new AssertionError(_plus_5);
+      }
     }
     final QualifiedName qualifiedLinkName = this.qualifiedNameConverter.toQualifiedName(crossRefString);
     IEObjectDescription eObjectDescription = scope.getSingleElement(qualifiedLinkName);

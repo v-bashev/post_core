@@ -7,9 +7,7 @@ import org.eclipse.xtext.naming.QualifiedName
 import su.nsk.iae.post.poST.FunctionBlock
 import su.nsk.iae.post.poST.Process
 import su.nsk.iae.post.poST.Program
-import su.nsk.iae.post.poST.StatementList
 import su.nsk.iae.post.poST.SymbolicVariable
-import su.nsk.iae.post.poST.TemplateProcessConfElement
 import su.nsk.iae.post.poST.VarInitDeclaration
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
@@ -23,63 +21,34 @@ class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider 
 	override protected QualifiedName qualifiedName(Object ele) {
 		if (ele instanceof SymbolicVariable) {
 			if (ele.checkVarInitDeclaration) {
-				return ele.varInitDeclarationQualifiedName(ele.name)
-			}
-			if (ele.checkStatementList) {
-				return ele.codeQualifiedName(ele.name)
-			}
-			if (ele.checkTemplateProcessConfElement) {
-				return ele.processVarAttachQualifiedName(ele.name)
+				return ele.varInitDeclarationQualifiedName
 			}
 		}
+		if (ele instanceof Process) {
+			ele.processQualifiedName
+		}
 		return super.qualifiedName(ele)	
-	}
-	
-	private def boolean checkStatementList(EObject ele) {
-		return ele.getContainerOfType(StatementList) !== null
 	}
 	
 	private def boolean checkVarInitDeclaration(EObject ele) {
 		return ele.getContainerOfType(VarInitDeclaration) !== null
 	}
 	
-	private def boolean checkTemplateProcessConfElement(EObject ele) {
-		return ele.getContainerOfType(TemplateProcessConfElement) !== null
-	}
-	
-	private def QualifiedName codeQualifiedName(EObject ele, String name) {
-		val process = ele.getContainerOfType(Process)
-		val program = process.getContainerOfType(Program)
-		if (process.checkProcessVars(name)) {
-			return QualifiedName.create(program.name, process.name, name)
-		}
-		if (program.checkProgramVars(name)) {
-			return QualifiedName.create(program.name, name)
-		}
-		val fb = process.getContainerOfType(FunctionBlock)
-		if (process.checkProcessVars(name)) {
-			return QualifiedName.create(fb.name, process.name, name)
-		}
-		if (fb.checFBVars(name)) {
-			return QualifiedName.create(fb.name, name)
-		}
-		return QualifiedName.create(name)
-	}
-	
-	private def QualifiedName varInitDeclarationQualifiedName(EObject ele, String name) {
+	private def QualifiedName varInitDeclarationQualifiedName(SymbolicVariable ele) {
 		val program = ele.getContainerOfType(Program)
 		if (program !== null) {
 			val process = ele.getContainerOfType(Process)
 			if (process !== null) {
-				return QualifiedName.create(program.name, process.name, name)
+				return QualifiedName.create(program.name, process.name, ele.name)
 			}
-			return QualifiedName.create(program.name, name)
+			return QualifiedName.create(program.name, ele.name)
 		}
-		return QualifiedName.create(name)
+		return QualifiedName.create(ele.name)
 	}
 	
-	private def QualifiedName processVarAttachQualifiedName(EObject ele, String name) {
-		return QualifiedName.create(name)
+	private def QualifiedName processQualifiedName(Process ele) {
+		val program = ele.getContainerOfType(Program)
+		return QualifiedName.create(program.name, ele.name)
 	}
 	
 	static def boolean checkProcesses(Program program, String eleName) {
