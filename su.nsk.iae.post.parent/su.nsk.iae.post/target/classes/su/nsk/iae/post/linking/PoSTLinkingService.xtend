@@ -11,7 +11,6 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.nodemodel.INode
 import org.eclipse.xtext.scoping.IScopeProvider
 import su.nsk.iae.post.poST.FunctionBlock
-import su.nsk.iae.post.poST.Model
 import su.nsk.iae.post.poST.PoSTPackage
 import su.nsk.iae.post.poST.Process
 import su.nsk.iae.post.poST.Program
