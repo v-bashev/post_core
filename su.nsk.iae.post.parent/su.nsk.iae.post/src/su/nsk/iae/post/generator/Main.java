@@ -1,5 +1,6 @@
 package su.nsk.iae.post.generator;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,8 +25,11 @@ import su.nsk.iae.post.PoSTStandaloneSetup;
 public class Main {
 
 	public static void main(String[] args) {
-		singleExecutions(args);
-		//service(args);
+		if (!Arrays.stream(args).anyMatch(x -> x.equals("-d"))) {
+			singleExecutions(args);
+		} else {
+			service(args);
+		}
 	}
 	
 	private static void singleExecutions(String[] args) {
@@ -35,21 +39,16 @@ public class Main {
 		}
 		Injector injector = new PoSTStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
-		if (args.length == 1) {
-			main.runGenerator(args[0], false);
-		} else {
-			if (args[0].contains(".post")) {
-				main.runGenerator(args[0], args[1].equals("-l"));
-			} else {
-				main.runGenerator(args[1], args[0].equals("-l"));
-			}
-		}
+		main.runGenerator(
+				Arrays.stream(args).filter(x -> x.contains(".post")).findFirst().get(), 
+				Arrays.stream(args).anyMatch(x -> x.equals("-l"))
+		);
 	}
 	
 	private static boolean loop = true;
 	
 	private static void service(String[] args) {
-		boolean local = args.length == 1 ? args[0].equals("-l") ? true : false : false;
+		boolean local = Arrays.stream(args).anyMatch(x -> x.equals("-l"));
 		Injector injector = new PoSTStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
 		Runtime.getRuntime().addShutdownHook(new Thread() {

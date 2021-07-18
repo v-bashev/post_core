@@ -78,85 +78,130 @@ ruleModel returns [EObject current=null]
 }:
 	(
 		(
+			{ 
+			  getUnorderedGroupHelper().enter(grammarAccess.getModelAccess().getUnorderedGroup());
+			}
 			(
-				{
-					newCompositeNode(grammarAccess.getModelAccess().getConfsConfigurationParserRuleCall_0_0());
-				}
-				lv_confs_0_0=ruleConfiguration
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"confs",
-						lv_confs_0_0,
-						"su.nsk.iae.post.PoST.Configuration");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		    |
+				(
 		(
-			(
+			{getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 0)}?=>(
 				{
-					newCompositeNode(grammarAccess.getModelAccess().getGlobVarsGlobalVarDeclarationParserRuleCall_1_0());
+					getUnorderedGroupHelper().select(grammarAccess.getModelAccess().getUnorderedGroup(), 0);
 				}
-				lv_globVars_1_0=ruleGlobalVarDeclaration
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"globVars",
-						lv_globVars_1_0,
-						"su.nsk.iae.post.PoST.GlobalVarDeclaration");
-					afterParserOrEnumRuleCall();
+							({true}?=>((
+								{
+									newCompositeNode(grammarAccess.getModelAccess().getConfsConfigurationParserRuleCall_0_0());
+								}
+								lv_confs_1_0=ruleConfiguration
+								{
+									if ($current==null) {
+										$current = createModelElementForParent(grammarAccess.getModelRule());
+									}
+									set(
+										$current,
+										"confs",
+										lv_confs_1_0,
+										"su.nsk.iae.post.PoST.Configuration");
+									afterParserOrEnumRuleCall();
+								}
+							)
+							))
+				{ 
+					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getModelAccess().getUnorderedGroup());
 				}
 			)
-		)
-		    |
+		)|
 		(
-			(
+			{getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1)}?=>(
 				{
-					newCompositeNode(grammarAccess.getModelAccess().getProgramsProgramParserRuleCall_2_0());
+					getUnorderedGroupHelper().select(grammarAccess.getModelAccess().getUnorderedGroup(), 1);
 				}
-				lv_programs_2_0=ruleProgram
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"programs",
-						lv_programs_2_0,
-						"su.nsk.iae.post.PoST.Program");
-					afterParserOrEnumRuleCall();
+							({true}?=>((
+								{
+									newCompositeNode(grammarAccess.getModelAccess().getGlobVarsGlobalVarDeclarationParserRuleCall_1_0());
+								}
+								lv_globVars_2_0=ruleGlobalVarDeclaration
+								{
+									if ($current==null) {
+										$current = createModelElementForParent(grammarAccess.getModelRule());
+									}
+									add(
+										$current,
+										"globVars",
+										lv_globVars_2_0,
+										"su.nsk.iae.post.PoST.GlobalVarDeclaration");
+									afterParserOrEnumRuleCall();
+								}
+							)
+							))+
+				{ 
+					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getModelAccess().getUnorderedGroup());
 				}
 			)
-		)
-		    |
+		)|
 		(
-			(
+			{getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 2)}?=>(
 				{
-					newCompositeNode(grammarAccess.getModelAccess().getFbsFunctionBlockParserRuleCall_3_0());
+					getUnorderedGroupHelper().select(grammarAccess.getModelAccess().getUnorderedGroup(), 2);
 				}
-				lv_fbs_3_0=ruleFunctionBlock
+							({true}?=>((
+								{
+									newCompositeNode(grammarAccess.getModelAccess().getProgramsProgramParserRuleCall_2_0());
+								}
+								lv_programs_3_0=ruleProgram
+								{
+									if ($current==null) {
+										$current = createModelElementForParent(grammarAccess.getModelRule());
+									}
+									add(
+										$current,
+										"programs",
+										lv_programs_3_0,
+										"su.nsk.iae.post.PoST.Program");
+									afterParserOrEnumRuleCall();
+								}
+							)
+							))+
+				{ 
+					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getModelAccess().getUnorderedGroup());
+				}
+			)
+		)|
+		(
+			{getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 3)}?=>(
 				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModelRule());
-					}
-					add(
-						$current,
-						"fbs",
-						lv_fbs_3_0,
-						"su.nsk.iae.post.PoST.FunctionBlock");
-					afterParserOrEnumRuleCall();
+					getUnorderedGroupHelper().select(grammarAccess.getModelAccess().getUnorderedGroup(), 3);
+				}
+							({true}?=>((
+								{
+									newCompositeNode(grammarAccess.getModelAccess().getFbsFunctionBlockParserRuleCall_3_0());
+								}
+								lv_fbs_4_0=ruleFunctionBlock
+								{
+									if ($current==null) {
+										$current = createModelElementForParent(grammarAccess.getModelRule());
+									}
+									add(
+										$current,
+										"fbs",
+										lv_fbs_4_0,
+										"su.nsk.iae.post.PoST.FunctionBlock");
+									afterParserOrEnumRuleCall();
+								}
+							)
+							))+
+				{ 
+					getUnorderedGroupHelper().returnFromSelection(grammarAccess.getModelAccess().getUnorderedGroup());
 				}
 			)
 		)
-	)*
+				)*
+			)
+		)
+			{ 
+			  getUnorderedGroupHelper().leave(grammarAccess.getModelAccess().getUnorderedGroup());
+			}
+	)
 ;
 
 // Entry rule entryRuleConfiguration
@@ -217,6 +262,7 @@ ruleConfiguration returns [EObject current=null]
 					}
 				)
 			)
+			    |
 			(
 				(
 					{
@@ -375,50 +421,55 @@ ruleSingleResource returns [EObject current=null]
 		(
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getSingleResourceAccess().getTasksTaskParserRuleCall_1_0_0());
-					}
-					lv_tasks_1_0=ruleTask
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getSingleResourceAccess().getTasksTaskParserRuleCall_1_0_0_0());
 						}
-						add(
-							$current,
-							"tasks",
-							lv_tasks_1_0,
-							"su.nsk.iae.post.PoST.Task");
-						afterParserOrEnumRuleCall();
-					}
+						lv_tasks_1_0=ruleTask
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+							}
+							add(
+								$current,
+								"tasks",
+								lv_tasks_1_0,
+								"su.nsk.iae.post.PoST.Task");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
+				otherlv_2=';'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_0_1());
+				}
 			)
-			otherlv_2=';'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_1());
-			}
+			    |
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getSingleResourceAccess().getProgramConfsProgramConfigurationParserRuleCall_1_2_0());
-					}
-					lv_programConfs_3_0=ruleProgramConfiguration
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getSingleResourceAccess().getProgramConfsProgramConfigurationParserRuleCall_1_1_0_0());
 						}
-						add(
-							$current,
-							"programConfs",
-							lv_programConfs_3_0,
-							"su.nsk.iae.post.PoST.ProgramConfiguration");
-						afterParserOrEnumRuleCall();
-					}
+						lv_programConfs_3_0=ruleProgramConfiguration
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSingleResourceRule());
+							}
+							add(
+								$current,
+								"programConfs",
+								lv_programConfs_3_0,
+								"su.nsk.iae.post.PoST.ProgramConfiguration");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
+				otherlv_4=';'
+				{
+					newLeafNode(otherlv_4, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_1_1());
+				}
 			)
-			otherlv_4=';'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getSingleResourceAccess().getSemicolonKeyword_1_3());
-			}
 		)*
 	)
 ;
@@ -786,28 +837,64 @@ ruleProgramConfElement returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		{
+			newCompositeNode(grammarAccess.getProgramConfElementAccess().getAttachVariableConfElementParserRuleCall_0());
+		}
+		this_AttachVariableConfElement_0=ruleAttachVariableConfElement
+		{
+			$current = $this_AttachVariableConfElement_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getProgramConfElementAccess().getTemplateProcessConfElementParserRuleCall_1());
+		}
+		this_TemplateProcessConfElement_1=ruleTemplateProcessConfElement
+		{
+			$current = $this_TemplateProcessConfElement_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleAttachVariableConfElement
+entryRuleAttachVariableConfElement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAttachVariableConfElementRule()); }
+	iv_ruleAttachVariableConfElement=ruleAttachVariableConfElement
+	{ $current=$iv_ruleAttachVariableConfElement.current; }
+	EOF;
+
+// Rule AttachVariableConfElement
+ruleAttachVariableConfElement returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
 		(
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getProgramConfElementRule());
+						$current = createModelElement(grammarAccess.getAttachVariableConfElementRule());
 					}
 				}
 				otherlv_0=RULE_ID
 				{
-					newLeafNode(otherlv_0, grammarAccess.getProgramConfElementAccess().getProgramVarSymbolicVariableCrossReference_0_0());
+					newLeafNode(otherlv_0, grammarAccess.getAttachVariableConfElementAccess().getProgramVarSymbolicVariableCrossReference_0_0());
 				}
 			)
 		)
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProgramConfElementAccess().getAssigAssignmentTypeEnumRuleCall_1_0());
+					newCompositeNode(grammarAccess.getAttachVariableConfElementAccess().getAssigAssignmentTypeEnumRuleCall_1_0());
 				}
 				lv_assig_1_0=ruleAssignmentType
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getProgramConfElementRule());
+						$current = createModelElementForParent(grammarAccess.getAttachVariableConfElementRule());
 					}
 					set(
 						$current,
@@ -820,17 +907,203 @@ ruleProgramConfElement returns [EObject current=null]
 		)
 		(
 			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAttachVariableConfElementRule());
+						}
+					}
+					otherlv_2=RULE_ID
+					{
+						newLeafNode(otherlv_2, grammarAccess.getAttachVariableConfElementAccess().getAttVarSymbolicVariableCrossReference_2_0_0());
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAttachVariableConfElementAccess().getConstConstantParserRuleCall_2_1_0());
+					}
+					lv_const_3_0=ruleConstant
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAttachVariableConfElementRule());
+						}
+						set(
+							$current,
+							"const",
+							lv_const_3_0,
+							"su.nsk.iae.post.PoST.Constant");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleTemplateProcessConfElement
+entryRuleTemplateProcessConfElement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTemplateProcessConfElementRule()); }
+	iv_ruleTemplateProcessConfElement=ruleTemplateProcessConfElement
+	{ $current=$iv_ruleTemplateProcessConfElement.current; }
+	EOF;
+
+// Rule TemplateProcessConfElement
+ruleTemplateProcessConfElement returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='PROCESS'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTemplateProcessConfElementAccess().getPROCESSKeyword_0());
+		}
+		(
+			(
+				lv_active_1_0='ACTIVE'
+				{
+					newLeafNode(lv_active_1_0, grammarAccess.getTemplateProcessConfElementAccess().getActiveACTIVEKeyword_1_0());
+				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getProgramConfElementRule());
+						$current = createModelElement(grammarAccess.getTemplateProcessConfElementRule());
 					}
+					setWithLastConsumed($current, "active", lv_active_1_0 != null, "ACTIVE");
 				}
-				otherlv_2=RULE_ID
+			)
+		)?
+		(
+			(
+				lv_name_2_0=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getProgramConfElementAccess().getGlobVarSymbolicVariableCrossReference_2_0());
+					newLeafNode(lv_name_2_0, grammarAccess.getTemplateProcessConfElementAccess().getNameIDTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTemplateProcessConfElementRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_2_0,
+						"su.nsk.iae.post.PoST.ID");
 				}
 			)
 		)
+		otherlv_3=':'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getTemplateProcessConfElementAccess().getColonKeyword_3());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTemplateProcessConfElementRule());
+					}
+				}
+				otherlv_4=RULE_ID
+				{
+					newLeafNode(otherlv_4, grammarAccess.getTemplateProcessConfElementAccess().getProcessProcessCrossReference_4_0());
+				}
+			)
+		)
+		(
+			otherlv_5='('
+			{
+				newLeafNode(otherlv_5, grammarAccess.getTemplateProcessConfElementAccess().getLeftParenthesisKeyword_5_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTemplateProcessConfElementAccess().getArgsProcessTemplateElementsParserRuleCall_5_1_0());
+					}
+					lv_args_6_0=ruleProcessTemplateElements
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTemplateProcessConfElementRule());
+						}
+						set(
+							$current,
+							"args",
+							lv_args_6_0,
+							"su.nsk.iae.post.PoST.ProcessTemplateElements");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_7=')'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getTemplateProcessConfElementAccess().getRightParenthesisKeyword_5_2());
+			}
+		)?
+	)
+;
+
+// Entry rule entryRuleProcessTemplateElements
+entryRuleProcessTemplateElements returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getProcessTemplateElementsRule()); }
+	iv_ruleProcessTemplateElements=ruleProcessTemplateElements
+	{ $current=$iv_ruleProcessTemplateElements.current; }
+	EOF;
+
+// Rule ProcessTemplateElements
+ruleProcessTemplateElements returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProcessTemplateElementsAccess().getElementsAttachVariableConfElementParserRuleCall_0_0());
+				}
+				lv_elements_0_0=ruleAttachVariableConfElement
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProcessTemplateElementsRule());
+					}
+					add(
+						$current,
+						"elements",
+						lv_elements_0_0,
+						"su.nsk.iae.post.PoST.AttachVariableConfElement");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_1=','
+			{
+				newLeafNode(otherlv_1, grammarAccess.getProcessTemplateElementsAccess().getCommaKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getProcessTemplateElementsAccess().getElementsAttachVariableConfElementParserRuleCall_1_1_0());
+					}
+					lv_elements_2_0=ruleAttachVariableConfElement
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getProcessTemplateElementsRule());
+						}
+						add(
+							$current,
+							"elements",
+							lv_elements_2_0,
+							"su.nsk.iae.post.PoST.AttachVariableConfElement");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
 	)
 ;
 
@@ -1246,9 +1519,69 @@ ruleProcess returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getProcessAccess().getProcVarsVarDeclarationParserRuleCall_2_0_0());
+						newCompositeNode(grammarAccess.getProcessAccess().getProcInVarsInputVarDeclarationParserRuleCall_2_0_0());
 					}
-					lv_procVars_2_0=ruleVarDeclaration
+					lv_procInVars_2_0=ruleInputVarDeclaration
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getProcessRule());
+						}
+						add(
+							$current,
+							"procInVars",
+							lv_procInVars_2_0,
+							"su.nsk.iae.post.PoST.InputVarDeclaration");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getProcessAccess().getProcOutVarsOutputVarDeclarationParserRuleCall_2_1_0());
+					}
+					lv_procOutVars_3_0=ruleOutputVarDeclaration
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getProcessRule());
+						}
+						add(
+							$current,
+							"procOutVars",
+							lv_procOutVars_3_0,
+							"su.nsk.iae.post.PoST.OutputVarDeclaration");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getProcessAccess().getProcInOutVarsInputOutputVarDeclarationParserRuleCall_2_2_0());
+					}
+					lv_procInOutVars_4_0=ruleInputOutputVarDeclaration
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getProcessRule());
+						}
+						add(
+							$current,
+							"procInOutVars",
+							lv_procInOutVars_4_0,
+							"su.nsk.iae.post.PoST.InputOutputVarDeclaration");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getProcessAccess().getProcVarsVarDeclarationParserRuleCall_2_3_0());
+					}
+					lv_procVars_5_0=ruleVarDeclaration
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getProcessRule());
@@ -1256,7 +1589,7 @@ ruleProcess returns [EObject current=null]
 						add(
 							$current,
 							"procVars",
-							lv_procVars_2_0,
+							lv_procVars_5_0,
 							"su.nsk.iae.post.PoST.VarDeclaration");
 						afterParserOrEnumRuleCall();
 					}
@@ -1266,9 +1599,9 @@ ruleProcess returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getProcessAccess().getProcTempVarsTempVarDeclarationParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getProcessAccess().getProcTempVarsTempVarDeclarationParserRuleCall_2_4_0());
 					}
-					lv_procTempVars_3_0=ruleTempVarDeclaration
+					lv_procTempVars_6_0=ruleTempVarDeclaration
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getProcessRule());
@@ -1276,7 +1609,7 @@ ruleProcess returns [EObject current=null]
 						add(
 							$current,
 							"procTempVars",
-							lv_procTempVars_3_0,
+							lv_procTempVars_6_0,
 							"su.nsk.iae.post.PoST.TempVarDeclaration");
 						afterParserOrEnumRuleCall();
 					}
@@ -1288,7 +1621,7 @@ ruleProcess returns [EObject current=null]
 				{
 					newCompositeNode(grammarAccess.getProcessAccess().getStatesStateParserRuleCall_3_0());
 				}
-				lv_states_4_0=ruleState
+				lv_states_7_0=ruleState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProcessRule());
@@ -1296,15 +1629,15 @@ ruleProcess returns [EObject current=null]
 					add(
 						$current,
 						"states",
-						lv_states_4_0,
+						lv_states_7_0,
 						"su.nsk.iae.post.PoST.State");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_5='END_PROCESS'
+		otherlv_8='END_PROCESS'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getProcessAccess().getEND_PROCESSKeyword_4());
+			newLeafNode(otherlv_8, grammarAccess.getProcessAccess().getEND_PROCESSKeyword_4());
 		}
 	)
 ;

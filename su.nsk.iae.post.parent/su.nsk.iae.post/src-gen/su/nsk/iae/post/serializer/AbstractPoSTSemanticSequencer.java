@@ -21,6 +21,7 @@ import su.nsk.iae.post.poST.ArraySpecInit;
 import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
+import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
 import su.nsk.iae.post.poST.CaseStatement;
@@ -49,8 +50,8 @@ import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
+import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.Program;
-import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
 import su.nsk.iae.post.poST.ProgramConfiguration;
 import su.nsk.iae.post.poST.RealLiteral;
@@ -70,6 +71,7 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
@@ -81,7 +83,7 @@ import su.nsk.iae.post.poST.XorExpression;
 import su.nsk.iae.post.services.PoSTGrammarAccess;
 
 @SuppressWarnings("all")
-public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
+public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 
 	@Inject
 	private PoSTGrammarAccess grammarAccess;
@@ -114,6 +116,9 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PoSTPackage.ASSIGNMENT_STATEMENT:
 				sequence_AssignmentStatement(context, (AssignmentStatement) semanticObject); 
+				return; 
+			case PoSTPackage.ATTACH_VARIABLE_CONF_ELEMENT:
+				sequence_AttachVariableConfElement(context, (AttachVariableConfElement) semanticObject); 
 				return; 
 			case PoSTPackage.CASE_ELEMENT:
 				sequence_CaseElement(context, (CaseElement) semanticObject); 
@@ -199,11 +204,11 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case PoSTPackage.PROCESS_STATUS_EXPRESSION:
 				sequence_ProcessStatusExpression(context, (ProcessStatusExpression) semanticObject); 
 				return; 
+			case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS:
+				sequence_ProcessTemplateElements(context, (ProcessTemplateElements) semanticObject); 
+				return; 
 			case PoSTPackage.PROGRAM:
 				sequence_Program(context, (Program) semanticObject); 
-				return; 
-			case PoSTPackage.PROGRAM_CONF_ELEMENT:
-				sequence_ProgramConfElement(context, (ProgramConfElement) semanticObject); 
 				return; 
 			case PoSTPackage.PROGRAM_CONF_ELEMENTS:
 				sequence_ProgramConfElements(context, (ProgramConfElements) semanticObject); 
@@ -261,6 +266,9 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case PoSTPackage.TEMP_VAR_DECLARATION:
 				sequence_TempVarDeclaration(context, (TempVarDeclaration) semanticObject); 
+				return; 
+			case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT:
+				sequence_TemplateProcessConfElement(context, (TemplateProcessConfElement) semanticObject); 
 				return; 
 			case PoSTPackage.TIME_LITERAL:
 				sequence_TimeLiteral(context, (TimeLiteral) semanticObject); 
@@ -436,6 +444,19 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ProgramConfElement returns AttachVariableConfElement
+	 *     AttachVariableConfElement returns AttachVariableConfElement
+	 *
+	 * Constraint:
+	 *     (programVar=[SymbolicVariable|ID] assig=AssignmentType (attVar=[SymbolicVariable|ID] | const=Constant))
+	 */
+	protected void sequence_AttachVariableConfElement(ISerializationContext context, AttachVariableConfElement semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     CaseElement returns CaseElement
 	 *
 	 * Constraint:
@@ -517,7 +538,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Configuration returns Configuration
 	 *
 	 * Constraint:
-	 *     (name=ID (confGlobVars+=GlobalVarDeclaration resources+=Resource)*)
+	 *     (name=ID (confGlobVars+=GlobalVarDeclaration | resources+=Resource)*)
 	 */
 	protected void sequence_Configuration(ISerializationContext context, Configuration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -805,7 +826,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (confs+=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
+	 *     (confs=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -940,37 +961,35 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Process returns Process
+	 *     ProcessTemplateElements returns ProcessTemplateElements
 	 *
 	 * Constraint:
-	 *     (name=ID (procVars+=VarDeclaration | procTempVars+=TempVarDeclaration)* states+=State*)
+	 *     (elements+=AttachVariableConfElement elements+=AttachVariableConfElement*)
 	 */
-	protected void sequence_Process(ISerializationContext context, su.nsk.iae.post.poST.Process semanticObject) {
+	protected void sequence_ProcessTemplateElements(ISerializationContext context, ProcessTemplateElements semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     ProgramConfElement returns ProgramConfElement
+	 *     Process returns Process
 	 *
 	 * Constraint:
-	 *     (programVar=[SymbolicVariable|ID] assig=AssignmentType globVar=[SymbolicVariable|ID])
+	 *     (
+	 *         name=ID 
+	 *         (
+	 *             procInVars+=InputVarDeclaration | 
+	 *             procOutVars+=OutputVarDeclaration | 
+	 *             procInOutVars+=InputOutputVarDeclaration | 
+	 *             procVars+=VarDeclaration | 
+	 *             procTempVars+=TempVarDeclaration
+	 *         )* 
+	 *         states+=State*
+	 *     )
 	 */
-	protected void sequence_ProgramConfElement(ISerializationContext context, ProgramConfElement semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__PROGRAM_VAR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__PROGRAM_VAR));
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__ASSIG) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__ASSIG));
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__GLOB_VAR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__GLOB_VAR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProgramConfElementAccess().getProgramVarSymbolicVariableIDTerminalRuleCall_0_0_1(), semanticObject.eGet(PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__PROGRAM_VAR, false));
-		feeder.accept(grammarAccess.getProgramConfElementAccess().getAssigAssignmentTypeEnumRuleCall_1_0(), semanticObject.getAssig());
-		feeder.accept(grammarAccess.getProgramConfElementAccess().getGlobVarSymbolicVariableIDTerminalRuleCall_2_0_1(), semanticObject.eGet(PoSTPackage.Literals.PROGRAM_CONF_ELEMENT__GLOB_VAR, false));
-		feeder.finish();
+	protected void sequence_Process(ISerializationContext context, su.nsk.iae.post.poST.Process semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1125,7 +1144,7 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     SingleResource returns SingleResource
 	 *
 	 * Constraint:
-	 *     (tasks+=Task programConfs+=ProgramConfiguration)*
+	 *     (tasks+=Task | programConfs+=ProgramConfiguration)*
 	 */
 	protected void sequence_SingleResource(ISerializationContext context, SingleResource semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1256,6 +1275,19 @@ public class PoSTSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     vars+=VarInitDeclaration+
 	 */
 	protected void sequence_TempVarDeclaration(ISerializationContext context, TempVarDeclaration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ProgramConfElement returns TemplateProcessConfElement
+	 *     TemplateProcessConfElement returns TemplateProcessConfElement
+	 *
+	 * Constraint:
+	 *     (active?='ACTIVE'? name=ID process=[Process|ID] args=ProcessTemplateElements?)
+	 */
+	protected void sequence_TemplateProcessConfElement(ISerializationContext context, TemplateProcessConfElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

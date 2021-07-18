@@ -21,6 +21,7 @@ import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
+import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
 import su.nsk.iae.post.poST.CaseStatement;
@@ -56,6 +57,7 @@ import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
+import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
@@ -79,6 +81,7 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
@@ -150,6 +153,9 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.PROGRAM_CONFIGURATION: return createProgramConfiguration();
       case PoSTPackage.PROGRAM_CONF_ELEMENTS: return createProgramConfElements();
       case PoSTPackage.PROGRAM_CONF_ELEMENT: return createProgramConfElement();
+      case PoSTPackage.ATTACH_VARIABLE_CONF_ELEMENT: return createAttachVariableConfElement();
+      case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT: return createTemplateProcessConfElement();
+      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS: return createProcessTemplateElements();
       case PoSTPackage.PROGRAM: return createProgram();
       case PoSTPackage.FUNCTION_BLOCK: return createFunctionBlock();
       case PoSTPackage.PROCESS: return createProcess();
@@ -375,6 +381,42 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ProgramConfElementImpl programConfElement = new ProgramConfElementImpl();
     return programConfElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AttachVariableConfElement createAttachVariableConfElement()
+  {
+    AttachVariableConfElementImpl attachVariableConfElement = new AttachVariableConfElementImpl();
+    return attachVariableConfElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TemplateProcessConfElement createTemplateProcessConfElement()
+  {
+    TemplateProcessConfElementImpl templateProcessConfElement = new TemplateProcessConfElementImpl();
+    return templateProcessConfElement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ProcessTemplateElements createProcessTemplateElements()
+  {
+    ProcessTemplateElementsImpl processTemplateElements = new ProcessTemplateElementsImpl();
+    return processTemplateElements;
   }
 
   /**

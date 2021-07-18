@@ -20,6 +20,7 @@ import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
+import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
 import su.nsk.iae.post.poST.CaseStatement;
@@ -55,6 +56,7 @@ import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
+import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
@@ -78,6 +80,7 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
@@ -158,6 +161,27 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass programConfElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attachVariableConfElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass templateProcessConfElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass processTemplateElementsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1042,9 +1066,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProgramConfElement_ProgramVar()
+  public EClass getAttachVariableConfElement()
   {
-    return (EReference)programConfElementEClass.getEStructuralFeatures().get(0);
+    return attachVariableConfElementEClass;
   }
 
   /**
@@ -1053,9 +1077,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EAttribute getProgramConfElement_Assig()
+  public EReference getAttachVariableConfElement_ProgramVar()
   {
-    return (EAttribute)programConfElementEClass.getEStructuralFeatures().get(1);
+    return (EReference)attachVariableConfElementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1064,9 +1088,108 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProgramConfElement_GlobVar()
+  public EAttribute getAttachVariableConfElement_Assig()
   {
-    return (EReference)programConfElementEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)attachVariableConfElementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAttachVariableConfElement_AttVar()
+  {
+    return (EReference)attachVariableConfElementEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAttachVariableConfElement_Const()
+  {
+    return (EReference)attachVariableConfElementEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTemplateProcessConfElement()
+  {
+    return templateProcessConfElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTemplateProcessConfElement_Active()
+  {
+    return (EAttribute)templateProcessConfElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTemplateProcessConfElement_Name()
+  {
+    return (EAttribute)templateProcessConfElementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getTemplateProcessConfElement_Process()
+  {
+    return (EReference)templateProcessConfElementEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getTemplateProcessConfElement_Args()
+  {
+    return (EReference)templateProcessConfElementEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getProcessTemplateElements()
+  {
+    return processTemplateElementsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProcessTemplateElements_Elements()
+  {
+    return (EReference)processTemplateElementsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1295,7 +1418,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProcess_ProcVars()
+  public EReference getProcess_ProcInVars()
   {
     return (EReference)processEClass.getEStructuralFeatures().get(1);
   }
@@ -1306,7 +1429,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProcess_ProcTempVars()
+  public EReference getProcess_ProcOutVars()
   {
     return (EReference)processEClass.getEStructuralFeatures().get(2);
   }
@@ -1317,9 +1440,42 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getProcess_States()
+  public EReference getProcess_ProcInOutVars()
   {
     return (EReference)processEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProcess_ProcVars()
+  {
+    return (EReference)processEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProcess_ProcTempVars()
+  {
+    return (EReference)processEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProcess_States()
+  {
+    return (EReference)processEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -3043,9 +3199,21 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(programConfElementsEClass, PROGRAM_CONF_ELEMENTS__ELEMENTS);
 
     programConfElementEClass = createEClass(PROGRAM_CONF_ELEMENT);
-    createEReference(programConfElementEClass, PROGRAM_CONF_ELEMENT__PROGRAM_VAR);
-    createEAttribute(programConfElementEClass, PROGRAM_CONF_ELEMENT__ASSIG);
-    createEReference(programConfElementEClass, PROGRAM_CONF_ELEMENT__GLOB_VAR);
+
+    attachVariableConfElementEClass = createEClass(ATTACH_VARIABLE_CONF_ELEMENT);
+    createEReference(attachVariableConfElementEClass, ATTACH_VARIABLE_CONF_ELEMENT__PROGRAM_VAR);
+    createEAttribute(attachVariableConfElementEClass, ATTACH_VARIABLE_CONF_ELEMENT__ASSIG);
+    createEReference(attachVariableConfElementEClass, ATTACH_VARIABLE_CONF_ELEMENT__ATT_VAR);
+    createEReference(attachVariableConfElementEClass, ATTACH_VARIABLE_CONF_ELEMENT__CONST);
+
+    templateProcessConfElementEClass = createEClass(TEMPLATE_PROCESS_CONF_ELEMENT);
+    createEAttribute(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__ACTIVE);
+    createEAttribute(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__NAME);
+    createEReference(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__PROCESS);
+    createEReference(templateProcessConfElementEClass, TEMPLATE_PROCESS_CONF_ELEMENT__ARGS);
+
+    processTemplateElementsEClass = createEClass(PROCESS_TEMPLATE_ELEMENTS);
+    createEReference(processTemplateElementsEClass, PROCESS_TEMPLATE_ELEMENTS__ELEMENTS);
 
     programEClass = createEClass(PROGRAM);
     createEAttribute(programEClass, PROGRAM__NAME);
@@ -3069,6 +3237,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     processEClass = createEClass(PROCESS);
     createEAttribute(processEClass, PROCESS__NAME);
+    createEReference(processEClass, PROCESS__PROC_IN_VARS);
+    createEReference(processEClass, PROCESS__PROC_OUT_VARS);
+    createEReference(processEClass, PROCESS__PROC_IN_OUT_VARS);
     createEReference(processEClass, PROCESS__PROC_VARS);
     createEReference(processEClass, PROCESS__PROC_TEMP_VARS);
     createEReference(processEClass, PROCESS__STATES);
@@ -3312,6 +3483,8 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    attachVariableConfElementEClass.getESuperTypes().add(this.getProgramConfElement());
+    templateProcessConfElementEClass.getESuperTypes().add(this.getProgramConfElement());
     setStateStatementEClass.getESuperTypes().add(this.getStatement());
     processStatementsEClass.getESuperTypes().add(this.getStatement());
     startProcessStatementEClass.getESuperTypes().add(this.getProcessStatements());
@@ -3344,7 +3517,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Confs(), this.getConfiguration(), null, "confs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Confs(), this.getConfiguration(), null, "confs", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_GlobVars(), this.getGlobalVarDeclaration(), null, "globVars", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Programs(), this.getProgram(), null, "programs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Fbs(), this.getFunctionBlock(), null, "fbs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3383,9 +3556,21 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getProgramConfElements_Elements(), this.getProgramConfElement(), null, "elements", null, 0, -1, ProgramConfElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(programConfElementEClass, ProgramConfElement.class, "ProgramConfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getProgramConfElement_ProgramVar(), this.getSymbolicVariable(), null, "programVar", null, 0, 1, ProgramConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getProgramConfElement_Assig(), this.getAssignmentType(), "assig", null, 0, 1, ProgramConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getProgramConfElement_GlobVar(), this.getSymbolicVariable(), null, "globVar", null, 0, 1, ProgramConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attachVariableConfElementEClass, AttachVariableConfElement.class, "AttachVariableConfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttachVariableConfElement_ProgramVar(), this.getSymbolicVariable(), null, "programVar", null, 0, 1, AttachVariableConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttachVariableConfElement_Assig(), this.getAssignmentType(), "assig", null, 0, 1, AttachVariableConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttachVariableConfElement_AttVar(), this.getSymbolicVariable(), null, "attVar", null, 0, 1, AttachVariableConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttachVariableConfElement_Const(), this.getConstant(), null, "const", null, 0, 1, AttachVariableConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(templateProcessConfElementEClass, TemplateProcessConfElement.class, "TemplateProcessConfElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTemplateProcessConfElement_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTemplateProcessConfElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTemplateProcessConfElement_Process(), this.getProcess(), null, "process", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTemplateProcessConfElement_Args(), this.getProcessTemplateElements(), null, "args", null, 0, 1, TemplateProcessConfElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(processTemplateElementsEClass, ProcessTemplateElements.class, "ProcessTemplateElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getProcessTemplateElements_Elements(), this.getAttachVariableConfElement(), null, "elements", null, 0, -1, ProcessTemplateElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProgram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3409,6 +3594,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     initEClass(processEClass, su.nsk.iae.post.poST.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProcess_Name(), ecorePackage.getEString(), "name", null, 0, 1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProcess_ProcInVars(), this.getInputVarDeclaration(), null, "procInVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProcess_ProcOutVars(), this.getOutputVarDeclaration(), null, "procOutVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProcess_ProcInOutVars(), this.getInputOutputVarDeclaration(), null, "procInOutVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_ProcVars(), this.getVarDeclaration(), null, "procVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_ProcTempVars(), this.getTempVarDeclaration(), null, "procTempVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_States(), this.getState(), null, "states", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

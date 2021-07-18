@@ -2,8 +2,8 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="poST" nsURI="http://www.nsk.su/iae/post/PoST" nsPrefix="poST">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="confs" upperBound="-1"
-        eType="#//Configuration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="confs" eType="#//Configuration"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globVars" upperBound="-1"
         eType="#//GlobalVarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="programs" upperBound="-1"
@@ -55,14 +55,28 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ProgramConfElement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProgramConfElement">
+  <eClassifiers xsi:type="ecore:EClass" name="ProgramConfElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttachVariableConfElement" eSuperTypes="#//ProgramConfElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="programVar" eType="#//SymbolicVariable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="assig" eType="#//AssignmentType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="globVar" eType="#//SymbolicVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attVar" eType="#//SymbolicVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="const" eType="#//Constant"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AssignmentType">
     <eLiterals name="in" literal=":="/>
     <eLiterals name="out" value="1" literal="=>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateProcessConfElement" eSuperTypes="#//ProgramConfElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//ProcessTemplateElements"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessTemplateElements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//AttachVariableConfElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -100,6 +114,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Process">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procInVars" upperBound="-1"
+        eType="#//InputVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procOutVars" upperBound="-1"
+        eType="#//OutputVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procInOutVars" upperBound="-1"
+        eType="#//InputOutputVarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procVars" upperBound="-1"
         eType="#//VarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procTempVars" upperBound="-1"
