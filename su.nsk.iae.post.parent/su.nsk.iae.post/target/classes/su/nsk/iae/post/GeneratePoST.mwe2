@@ -15,7 +15,7 @@ Workflow {
 				eclipsePlugin = {
 					enabled = true
 				}
-				createEclipseMetaData = true
+				createEclipseMetaData = false
 			}
 			code = {
 				encoding = "windows-1251"
