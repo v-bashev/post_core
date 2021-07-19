@@ -25,6 +25,9 @@ class PoSTGenerator extends AbstractGenerator {
 	}
 
 	override beforeGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		if (resource.allContents.empty) {
+			return
+		}
 		val model = resource.allContents.toIterable.filter(Model).get(0)
 		if (generators.empty) {
 			initGenerators()
