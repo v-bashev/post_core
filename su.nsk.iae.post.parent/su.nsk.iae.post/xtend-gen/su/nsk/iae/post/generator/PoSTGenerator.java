@@ -39,9 +39,13 @@ public class PoSTGenerator extends AbstractGenerator {
   
   @Override
   public void beforeGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    final Model model = ((Model[])Conversions.unwrapArray((Iterables.<Model>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Model.class)), Model.class))[0];
-    boolean _isEmpty = PoSTGenerator.generators.isEmpty();
+    boolean _isEmpty = IteratorExtensions.isEmpty(resource.getAllContents());
     if (_isEmpty) {
+      return;
+    }
+    final Model model = ((Model[])Conversions.unwrapArray((Iterables.<Model>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Model.class)), Model.class))[0];
+    boolean _isEmpty_1 = PoSTGenerator.generators.isEmpty();
+    if (_isEmpty_1) {
       PoSTGenerator.initGenerators();
     }
     for (final IPoSTGenerator g : PoSTGenerator.generators) {
