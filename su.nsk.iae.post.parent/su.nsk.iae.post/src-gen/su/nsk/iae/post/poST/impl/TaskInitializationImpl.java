@@ -61,7 +61,7 @@ public class TaskInitializationImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected static final int PRIORITY_EDEFAULT = 0;
+  protected static final String PRIORITY_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getPriority() <em>Priority</em>}' attribute.
@@ -71,7 +71,7 @@ public class TaskInitializationImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    * @ordered
    */
-  protected int priority = PRIORITY_EDEFAULT;
+  protected String priority = PRIORITY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -200,7 +200,7 @@ public class TaskInitializationImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   @Override
-  public int getPriority()
+  public String getPriority()
   {
     return priority;
   }
@@ -211,9 +211,9 @@ public class TaskInitializationImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   @Override
-  public void setPriority(int newPriority)
+  public void setPriority(String newPriority)
   {
-    int oldPriority = priority;
+    String oldPriority = priority;
     priority = newPriority;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.TASK_INITIALIZATION__PRIORITY, oldPriority, priority));
@@ -274,7 +274,7 @@ public class TaskInitializationImpl extends MinimalEObjectImpl.Container impleme
         setInterval((Constant)newValue);
         return;
       case PoSTPackage.TASK_INITIALIZATION__PRIORITY:
-        setPriority((Integer)newValue);
+        setPriority((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -318,7 +318,7 @@ public class TaskInitializationImpl extends MinimalEObjectImpl.Container impleme
       case PoSTPackage.TASK_INITIALIZATION__INTERVAL:
         return interval != null;
       case PoSTPackage.TASK_INITIALIZATION__PRIORITY:
-        return priority != PRIORITY_EDEFAULT;
+        return PRIORITY_EDEFAULT == null ? priority != null : !PRIORITY_EDEFAULT.equals(priority);
     }
     return super.eIsSet(featureID);
   }

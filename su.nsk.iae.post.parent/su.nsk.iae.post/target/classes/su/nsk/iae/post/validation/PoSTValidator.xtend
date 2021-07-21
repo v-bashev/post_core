@@ -28,6 +28,7 @@ import su.nsk.iae.post.poST.Program
 import su.nsk.iae.post.poST.ProgramConfiguration
 import su.nsk.iae.post.poST.Resource
 import su.nsk.iae.post.poST.SetStateStatement
+import su.nsk.iae.post.poST.SimpleSpecificationInit
 import su.nsk.iae.post.poST.StartProcessStatement
 import su.nsk.iae.post.poST.Statement
 import su.nsk.iae.post.poST.StopProcessStatement
@@ -88,6 +89,30 @@ class PoSTValidator extends AbstractPoSTValidator {
 			warning("Variable is never use", ePackage.symbolicVariable_Name)
 		}
 	}
+	
+	@Check
+	def checkSimpleSpecificationInit_NeverUse(SimpleSpecificationInit ele) {
+		if (ele.value !== null) {
+			if (ele.checkContainer(InputVarDeclaration)) {
+				error("Initialization error: Input variable cannot be initialized",
+						ePackage.simpleSpecificationInit_Value)
+				return
+			}
+			
+			if (ele.checkContainer(OutputVarDeclaration)) {
+				error("Initialization error: Output variable cannot be initialized",
+						ePackage.simpleSpecificationInit_Value)
+				return
+			}
+			
+			if (ele.checkContainer(InputOutputVarDeclaration)) {
+				error("Initialization error: InputOutput variable cannot be initialized",
+						ePackage.simpleSpecificationInit_Value)
+				return
+			}
+		}
+	}
+	
 
 /* ======================= END Variables Checks ======================= */
 

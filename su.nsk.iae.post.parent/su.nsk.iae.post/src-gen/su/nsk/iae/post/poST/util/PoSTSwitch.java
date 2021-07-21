@@ -674,7 +674,6 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         TimeLiteral timeLiteral = (TimeLiteral)theEObject;
         T result = caseTimeLiteral(timeLiteral);
-        if (result == null) result = caseConstant(timeLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -703,7 +702,6 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         NumericLiteral numericLiteral = (NumericLiteral)theEObject;
         T result = caseNumericLiteral(numericLiteral);
-        if (result == null) result = caseConstant(numericLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -712,7 +710,6 @@ public class PoSTSwitch<T> extends Switch<T>
         IntegerLiteral integerLiteral = (IntegerLiteral)theEObject;
         T result = caseIntegerLiteral(integerLiteral);
         if (result == null) result = caseNumericLiteral(integerLiteral);
-        if (result == null) result = caseConstant(integerLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -721,7 +718,6 @@ public class PoSTSwitch<T> extends Switch<T>
         RealLiteral realLiteral = (RealLiteral)theEObject;
         T result = caseRealLiteral(realLiteral);
         if (result == null) result = caseNumericLiteral(realLiteral);
-        if (result == null) result = caseConstant(realLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

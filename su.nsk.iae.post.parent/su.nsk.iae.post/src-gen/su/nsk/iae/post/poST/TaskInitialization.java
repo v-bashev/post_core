@@ -74,12 +74,12 @@ public interface TaskInitialization extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Priority</em>' attribute.
-   * @see #setPriority(int)
+   * @see #setPriority(String)
    * @see su.nsk.iae.post.poST.PoSTPackage#getTaskInitialization_Priority()
    * @model
    * @generated
    */
-  int getPriority();
+  String getPriority();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.TaskInitialization#getPriority <em>Priority</em>}' attribute.
@@ -89,6 +89,6 @@ public interface TaskInitialization extends EObject
    * @see #getPriority()
    * @generated
    */
-  void setPriority(int value);
+  void setPriority(String value);
 
 } // TaskInitialization

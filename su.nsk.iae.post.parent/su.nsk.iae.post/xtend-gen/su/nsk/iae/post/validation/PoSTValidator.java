@@ -16,6 +16,7 @@ import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.Configuration;
+import su.nsk.iae.post.poST.Constant;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
@@ -34,6 +35,7 @@ import su.nsk.iae.post.poST.ProgramConfElements;
 import su.nsk.iae.post.poST.ProgramConfiguration;
 import su.nsk.iae.post.poST.Resource;
 import su.nsk.iae.post.poST.SetStateStatement;
+import su.nsk.iae.post.poST.SimpleSpecificationInit;
 import su.nsk.iae.post.poST.StartProcessStatement;
 import su.nsk.iae.post.poST.Statement;
 import su.nsk.iae.post.poST.StopProcessStatement;
@@ -94,6 +96,32 @@ public class PoSTValidator extends AbstractPoSTValidator {
     boolean _not = (!_hasCrossReferences);
     if (_not) {
       this.warning("Variable is never use", this.ePackage.getSymbolicVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkSimpleSpecificationInit_NeverUse(final SimpleSpecificationInit ele) {
+    Constant _value = ele.getValue();
+    boolean _tripleNotEquals = (_value != null);
+    if (_tripleNotEquals) {
+      boolean _checkContainer = this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class);
+      if (_checkContainer) {
+        this.error("Initialization error: Input variable cannot be initialized", 
+          this.ePackage.getSimpleSpecificationInit_Value());
+        return;
+      }
+      boolean _checkContainer_1 = this.<OutputVarDeclaration>checkContainer(ele, OutputVarDeclaration.class);
+      if (_checkContainer_1) {
+        this.error("Initialization error: Output variable cannot be initialized", 
+          this.ePackage.getSimpleSpecificationInit_Value());
+        return;
+      }
+      boolean _checkContainer_2 = this.<InputOutputVarDeclaration>checkContainer(ele, InputOutputVarDeclaration.class);
+      if (_checkContainer_2) {
+        this.error("Initialization error: InputOutput variable cannot be initialized", 
+          this.ePackage.getSimpleSpecificationInit_Value());
+        return;
+      }
     }
   }
   

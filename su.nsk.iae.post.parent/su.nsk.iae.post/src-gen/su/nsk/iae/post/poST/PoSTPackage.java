@@ -69,13 +69,13 @@ public interface PoSTPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Confs</b></em>' containment reference.
+   * The feature id for the '<em><b>Conf</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__CONFS = 0;
+  int MODEL__CONF = 0;
 
   /**
    * The feature id for the '<em><b>Glob Vars</b></em>' containment reference list.
@@ -2896,25 +2896,6 @@ public interface PoSTPackage extends EPackage
   int ARRAY_INITIALIZATION_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link su.nsk.iae.post.poST.impl.ConstantImpl <em>Constant</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see su.nsk.iae.post.poST.impl.ConstantImpl
-   * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getConstant()
-   * @generated
-   */
-  int CONSTANT = 67;
-
-  /**
-   * The number of structural features of the '<em>Constant</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONSTANT_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.impl.TimeLiteralImpl <em>Time Literal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2931,7 +2912,7 @@ public interface PoSTPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME_LITERAL__INTERVAL = CONSTANT_FEATURE_COUNT + 0;
+  int TIME_LITERAL__INTERVAL = 0;
 
   /**
    * The number of structural features of the '<em>Time Literal</em>' class.
@@ -2940,7 +2921,7 @@ public interface PoSTPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TIME_LITERAL_FEATURE_COUNT = CONSTANT_FEATURE_COUNT + 1;
+  int TIME_LITERAL_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.impl.SimpleSpecificationInitImpl <em>Simple Specification Init</em>}' class.
@@ -2978,6 +2959,52 @@ public interface PoSTPackage extends EPackage
    * @ordered
    */
   int SIMPLE_SPECIFICATION_INIT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link su.nsk.iae.post.poST.impl.ConstantImpl <em>Constant</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see su.nsk.iae.post.poST.impl.ConstantImpl
+   * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getConstant()
+   * @generated
+   */
+  int CONSTANT = 67;
+
+  /**
+   * The feature id for the '<em><b>Num</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT__NUM = 0;
+
+  /**
+   * The feature id for the '<em><b>Time</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT__TIME = 1;
+
+  /**
+   * The feature id for the '<em><b>Oth</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT__OTH = 2;
+
+  /**
+   * The number of structural features of the '<em>Constant</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.impl.SignedIntegerImpl <em>Signed Integer</em>}' class.
@@ -3033,7 +3060,7 @@ public interface PoSTPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUMERIC_LITERAL__TYPE = CONSTANT_FEATURE_COUNT + 0;
+  int NUMERIC_LITERAL__TYPE = 0;
 
   /**
    * The number of structural features of the '<em>Numeric Literal</em>' class.
@@ -3042,7 +3069,7 @@ public interface PoSTPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUMERIC_LITERAL_FEATURE_COUNT = CONSTANT_FEATURE_COUNT + 1;
+  int NUMERIC_LITERAL_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.impl.IntegerLiteralImpl <em>Integer Literal</em>}' class.
@@ -3199,15 +3226,15 @@ public interface PoSTPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.Model#getConfs <em>Confs</em>}'.
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.Model#getConf <em>Conf</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Confs</em>'.
-   * @see su.nsk.iae.post.poST.Model#getConfs()
+   * @return the meta object for the containment reference '<em>Conf</em>'.
+   * @see su.nsk.iae.post.poST.Model#getConf()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Confs();
+  EReference getModel_Conf();
 
   /**
    * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Model#getGlobVars <em>Glob Vars</em>}'.
@@ -5365,6 +5392,39 @@ public interface PoSTPackage extends EPackage
   EClass getConstant();
 
   /**
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.Constant#getNum <em>Num</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Num</em>'.
+   * @see su.nsk.iae.post.poST.Constant#getNum()
+   * @see #getConstant()
+   * @generated
+   */
+  EReference getConstant_Num();
+
+  /**
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.Constant#getTime <em>Time</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Time</em>'.
+   * @see su.nsk.iae.post.poST.Constant#getTime()
+   * @see #getConstant()
+   * @generated
+   */
+  EReference getConstant_Time();
+
+  /**
+   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.Constant#getOth <em>Oth</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Oth</em>'.
+   * @see su.nsk.iae.post.poST.Constant#getOth()
+   * @see #getConstant()
+   * @generated
+   */
+  EAttribute getConstant_Oth();
+
+  /**
    * Returns the meta object for class '{@link su.nsk.iae.post.poST.SignedInteger <em>Signed Integer</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5564,12 +5624,12 @@ public interface PoSTPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Confs</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Conf</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__CONFS = eINSTANCE.getModel_Confs();
+    EReference MODEL__CONF = eINSTANCE.getModel_Conf();
 
     /**
      * The meta object literal for the '<em><b>Glob Vars</b></em>' containment reference list feature.
@@ -7320,6 +7380,30 @@ public interface PoSTPackage extends EPackage
      * @generated
      */
     EClass CONSTANT = eINSTANCE.getConstant();
+
+    /**
+     * The meta object literal for the '<em><b>Num</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONSTANT__NUM = eINSTANCE.getConstant_Num();
+
+    /**
+     * The meta object literal for the '<em><b>Time</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONSTANT__TIME = eINSTANCE.getConstant_Time();
+
+    /**
+     * The meta object literal for the '<em><b>Oth</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTANT__OTH = eINSTANCE.getConstant_Oth();
 
     /**
      * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.SignedIntegerImpl <em>Signed Integer</em>}' class.

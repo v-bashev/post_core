@@ -56,7 +56,7 @@ public class RealLiteralImpl extends NumericLiteralImpl implements RealLiteral
    * @generated
    * @ordered
    */
-  protected static final double VALUE_EDEFAULT = 0.0;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -66,7 +66,7 @@ public class RealLiteralImpl extends NumericLiteralImpl implements RealLiteral
    * @generated
    * @ordered
    */
-  protected double value = VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,7 +120,7 @@ public class RealLiteralImpl extends NumericLiteralImpl implements RealLiteral
    * @generated
    */
   @Override
-  public double getValue()
+  public String getValue()
   {
     return value;
   }
@@ -131,9 +131,9 @@ public class RealLiteralImpl extends NumericLiteralImpl implements RealLiteral
    * @generated
    */
   @Override
-  public void setValue(double newValue)
+  public void setValue(String newValue)
   {
-    double oldValue = value;
+    String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.REAL_LITERAL__VALUE, oldValue, value));
@@ -171,7 +171,7 @@ public class RealLiteralImpl extends NumericLiteralImpl implements RealLiteral
         setRSig((Boolean)newValue);
         return;
       case PoSTPackage.REAL_LITERAL__VALUE:
-        setValue((Double)newValue);
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -210,7 +210,7 @@ public class RealLiteralImpl extends NumericLiteralImpl implements RealLiteral
       case PoSTPackage.REAL_LITERAL__RSIG:
         return rSig != RSIG_EDEFAULT;
       case PoSTPackage.REAL_LITERAL__VALUE:
-        return value != VALUE_EDEFAULT;
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }

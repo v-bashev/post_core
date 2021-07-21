@@ -90,17 +90,17 @@ ruleModel returns [EObject current=null]
 				}
 							({true}?=>((
 								{
-									newCompositeNode(grammarAccess.getModelAccess().getConfsConfigurationParserRuleCall_0_0());
+									newCompositeNode(grammarAccess.getModelAccess().getConfConfigurationParserRuleCall_0_0());
 								}
-								lv_confs_1_0=ruleConfiguration
+								lv_conf_1_0=ruleConfiguration
 								{
 									if ($current==null) {
 										$current = createModelElementForParent(grammarAccess.getModelRule());
 									}
 									set(
 										$current,
-										"confs",
-										lv_confs_1_0,
+										"conf",
+										lv_conf_1_0,
 										"su.nsk.iae.post.PoST.Configuration");
 									afterParserOrEnumRuleCall();
 								}
@@ -5327,78 +5327,110 @@ ruleConstant returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getConstantAccess().getNumericLiteralParserRuleCall_0());
-		}
-		this_NumericLiteral_0=ruleNumericLiteral
-		{
-			$current = $this_NumericLiteral_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getConstantAccess().getTimeLiteralParserRuleCall_1());
-		}
-		this_TimeLiteral_1=ruleTimeLiteral
-		{
-			$current = $this_TimeLiteral_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
 		(
 			(
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getConstantAccess().getConstantAction_2_0(),
-						$current);
+					newCompositeNode(grammarAccess.getConstantAccess().getNumNumericLiteralParserRuleCall_0_0());
+				}
+				lv_num_0_0=ruleNumericLiteral
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConstantRule());
+					}
+					set(
+						$current,
+						"num",
+						lv_num_0_0,
+						"su.nsk.iae.post.PoST.NumericLiteral");
+					afterParserOrEnumRuleCall();
 				}
 			)
-			this_BINARY_INTEGER_3=RULE_BINARY_INTEGER
-			{
-				newLeafNode(this_BINARY_INTEGER_3, grammarAccess.getConstantAccess().getBINARY_INTEGERTerminalRuleCall_2_1());
-			}
 		)
 		    |
 		(
 			(
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getConstantAccess().getConstantAction_3_0(),
-						$current);
+					newCompositeNode(grammarAccess.getConstantAccess().getTimeTimeLiteralParserRuleCall_1_0());
+				}
+				lv_time_1_0=ruleTimeLiteral
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConstantRule());
+					}
+					set(
+						$current,
+						"time",
+						lv_time_1_0,
+						"su.nsk.iae.post.PoST.TimeLiteral");
+					afterParserOrEnumRuleCall();
 				}
 			)
-			this_OCTAL_INTEGER_5=RULE_OCTAL_INTEGER
-			{
-				newLeafNode(this_OCTAL_INTEGER_5, grammarAccess.getConstantAccess().getOCTAL_INTEGERTerminalRuleCall_3_1());
-			}
 		)
 		    |
 		(
 			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getConstantAccess().getConstantAction_4_0(),
-						$current);
-				}
+				(
+					lv_oth_2_1=RULE_BINARY_INTEGER
+					{
+						newLeafNode(lv_oth_2_1, grammarAccess.getConstantAccess().getOthBINARY_INTEGERTerminalRuleCall_2_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"oth",
+							lv_oth_2_1,
+							"su.nsk.iae.post.PoST.BINARY_INTEGER");
+					}
+					    |
+					lv_oth_2_2=RULE_OCTAL_INTEGER
+					{
+						newLeafNode(lv_oth_2_2, grammarAccess.getConstantAccess().getOthOCTAL_INTEGERTerminalRuleCall_2_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"oth",
+							lv_oth_2_2,
+							"su.nsk.iae.post.PoST.OCTAL_INTEGER");
+					}
+					    |
+					lv_oth_2_3=RULE_HEX_INTEGER
+					{
+						newLeafNode(lv_oth_2_3, grammarAccess.getConstantAccess().getOthHEX_INTEGERTerminalRuleCall_2_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"oth",
+							lv_oth_2_3,
+							"su.nsk.iae.post.PoST.HEX_INTEGER");
+					}
+					    |
+					lv_oth_2_4=RULE_BOOLEAN_LITERAL
+					{
+						newLeafNode(lv_oth_2_4, grammarAccess.getConstantAccess().getOthBOOLEAN_LITERALTerminalRuleCall_2_0_3());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"oth",
+							lv_oth_2_4,
+							"su.nsk.iae.post.PoST.BOOLEAN_LITERAL");
+					}
+				)
 			)
-			this_HEX_INTEGER_7=RULE_HEX_INTEGER
-			{
-				newLeafNode(this_HEX_INTEGER_7, grammarAccess.getConstantAccess().getHEX_INTEGERTerminalRuleCall_4_1());
-			}
-		)
-		    |
-		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getConstantAccess().getConstantAction_5_0(),
-						$current);
-				}
-			)
-			this_BOOLEAN_LITERAL_9=RULE_BOOLEAN_LITERAL
-			{
-				newLeafNode(this_BOOLEAN_LITERAL_9, grammarAccess.getConstantAccess().getBOOLEAN_LITERALTerminalRuleCall_5_1());
-			}
 		)
 	)
 ;
