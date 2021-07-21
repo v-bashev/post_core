@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="poST" nsURI="http://www.nsk.su/iae/post/PoST" nsPrefix="poST">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="confs" eType="#//Configuration"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conf" eType="#//Configuration"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globVars" upperBound="-1"
         eType="#//GlobalVarDeclaration" containment="true"/>
@@ -42,7 +42,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interval" eType="#//Constant"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProgramConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -368,7 +368,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Constant" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TimeLiteral" eSuperTypes="#//Constant">
+  <eClassifiers xsi:type="ecore:EClass" name="TimeLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleSpecificationInit">
@@ -376,12 +376,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Constant"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Constant"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constant">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" eType="#//NumericLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="time" eType="#//TimeLiteral"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SignedInteger">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iSig" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NumericLiteral" eSuperTypes="#//Constant">
+  <eClassifiers xsi:type="ecore:EClass" name="NumericLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteral" eSuperTypes="#//NumericLiteral">
@@ -390,6 +396,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RealLiteral" eSuperTypes="#//NumericLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rSig" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

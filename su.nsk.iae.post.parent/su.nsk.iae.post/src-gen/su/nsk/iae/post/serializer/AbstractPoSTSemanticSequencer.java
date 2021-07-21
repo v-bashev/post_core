@@ -550,7 +550,14 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     Constant returns Constant
 	 *
 	 * Constraint:
-	 *     {Constant}
+	 *     (
+	 *         num=NumericLiteral | 
+	 *         time=TimeLiteral | 
+	 *         oth=BINARY_INTEGER | 
+	 *         oth=OCTAL_INTEGER | 
+	 *         oth=HEX_INTEGER | 
+	 *         oth=BOOLEAN_LITERAL
+	 *     )
 	 */
 	protected void sequence_Constant(ISerializationContext context, Constant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -809,7 +816,6 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Contexts:
-	 *     Constant returns IntegerLiteral
 	 *     NumericLiteral returns IntegerLiteral
 	 *     IntegerLiteral returns IntegerLiteral
 	 *
@@ -826,7 +832,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (confs=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
+	 *     (conf=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1042,7 +1048,6 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Contexts:
-	 *     Constant returns RealLiteral
 	 *     NumericLiteral returns RealLiteral
 	 *     RealLiteral returns RealLiteral
 	 *
@@ -1295,7 +1300,6 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	/**
 	 * Contexts:
 	 *     TimeLiteral returns TimeLiteral
-	 *     Constant returns TimeLiteral
 	 *
 	 * Constraint:
 	 *     interval=INTERVAL

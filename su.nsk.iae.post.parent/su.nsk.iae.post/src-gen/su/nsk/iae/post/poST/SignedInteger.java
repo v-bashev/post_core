@@ -51,12 +51,12 @@ public interface SignedInteger extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(int)
+   * @see #setValue(String)
    * @see su.nsk.iae.post.poST.PoSTPackage#getSignedInteger_Value()
    * @model
    * @generated
    */
-  int getValue();
+  String getValue();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.SignedInteger#getValue <em>Value</em>}' attribute.
@@ -66,6 +66,6 @@ public interface SignedInteger extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(int value);
+  void setValue(String value);
 
 } // SignedInteger

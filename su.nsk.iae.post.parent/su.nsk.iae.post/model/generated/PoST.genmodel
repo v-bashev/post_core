@@ -34,7 +34,7 @@
       <genEnumLiterals ecoreEnumLiteral="PoST.ecore#//UnaryOperator/UNMINUS"/>
     </genEnums>
     <genClasses ecoreClass="PoST.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/confs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/conf"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/globVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/programs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/fbs"/>
@@ -292,7 +292,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//SimpleSpecificationInit/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//SimpleSpecificationInit/value"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//Constant"/>
+    <genClasses ecoreClass="PoST.ecore#//Constant">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Constant/num"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Constant/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Constant/oth"/>
+    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//SignedInteger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//SignedInteger/iSig"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//SignedInteger/value"/>

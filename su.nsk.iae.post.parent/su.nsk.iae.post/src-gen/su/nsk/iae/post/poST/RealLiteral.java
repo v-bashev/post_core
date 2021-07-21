@@ -50,12 +50,12 @@ public interface RealLiteral extends NumericLiteral
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(double)
+   * @see #setValue(String)
    * @see su.nsk.iae.post.poST.PoSTPackage#getRealLiteral_Value()
    * @model
    * @generated
    */
-  double getValue();
+  String getValue();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.RealLiteral#getValue <em>Value</em>}' attribute.
@@ -65,6 +65,6 @@ public interface RealLiteral extends NumericLiteral
    * @see #getValue()
    * @generated
    */
-  void setValue(double value);
+  void setValue(String value);
 
 } // RealLiteral

@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.PoSTPackage;
@@ -25,7 +26,7 @@ import su.nsk.iae.post.poST.PoSTPackage;
  *
  * @generated
  */
-public class NumericLiteralImpl extends ConstantImpl implements NumericLiteral
+public class NumericLiteralImpl extends MinimalEObjectImpl.Container implements NumericLiteral
 {
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.

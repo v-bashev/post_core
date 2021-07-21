@@ -3,6 +3,7 @@
  */
 package su.nsk.iae.post.poST;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package su.nsk.iae.post.poST;
  * @model
  * @generated
  */
-public interface NumericLiteral extends Constant
+public interface NumericLiteral extends EObject
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

@@ -57,7 +57,7 @@ public class SignedIntegerImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    * @ordered
    */
-  protected static final int VALUE_EDEFAULT = 0;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -67,7 +67,7 @@ public class SignedIntegerImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    * @ordered
    */
-  protected int value = VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,7 +121,7 @@ public class SignedIntegerImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    */
   @Override
-  public int getValue()
+  public String getValue()
   {
     return value;
   }
@@ -132,9 +132,9 @@ public class SignedIntegerImpl extends MinimalEObjectImpl.Container implements S
    * @generated
    */
   @Override
-  public void setValue(int newValue)
+  public void setValue(String newValue)
   {
-    int oldValue = value;
+    String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.SIGNED_INTEGER__VALUE, oldValue, value));
@@ -172,7 +172,7 @@ public class SignedIntegerImpl extends MinimalEObjectImpl.Container implements S
         setISig((Boolean)newValue);
         return;
       case PoSTPackage.SIGNED_INTEGER__VALUE:
-        setValue((Integer)newValue);
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -211,7 +211,7 @@ public class SignedIntegerImpl extends MinimalEObjectImpl.Container implements S
       case PoSTPackage.SIGNED_INTEGER__ISIG:
         return iSig != ISIG_EDEFAULT;
       case PoSTPackage.SIGNED_INTEGER__VALUE:
-        return value != VALUE_EDEFAULT;
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }

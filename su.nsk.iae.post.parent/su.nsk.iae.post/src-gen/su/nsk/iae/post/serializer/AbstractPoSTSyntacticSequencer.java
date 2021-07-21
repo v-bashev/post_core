@@ -10,7 +10,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -21,13 +20,11 @@ import su.nsk.iae.post.services.PoSTGrammarAccess;
 public abstract class AbstractPoSTSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected PoSTGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Constant_BINARY_INTEGERTerminalRuleCall_2_1_or_BOOLEAN_LITERALTerminalRuleCall_5_1_or_HEX_INTEGERTerminalRuleCall_4_1_or_OCTAL_INTEGERTerminalRuleCall_3_1;
 	protected AbstractElementAlias match_TimeLiteral_HyphenMinusKeyword_2_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (PoSTGrammarAccess) access;
-		match_Constant_BINARY_INTEGERTerminalRuleCall_2_1_or_BOOLEAN_LITERALTerminalRuleCall_5_1_or_HEX_INTEGERTerminalRuleCall_4_1_or_OCTAL_INTEGERTerminalRuleCall_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConstantAccess().getBINARY_INTEGERTerminalRuleCall_2_1()), new TokenAlias(false, false, grammarAccess.getConstantAccess().getBOOLEAN_LITERALTerminalRuleCall_5_1()), new TokenAlias(false, false, grammarAccess.getConstantAccess().getHEX_INTEGERTerminalRuleCall_4_1()), new TokenAlias(false, false, grammarAccess.getConstantAccess().getOCTAL_INTEGERTerminalRuleCall_3_1()));
 		match_TimeLiteral_HyphenMinusKeyword_2_q = new TokenAlias(false, true, grammarAccess.getTimeLiteralAccess().getHyphenMinusKeyword_2());
 	}
 	
@@ -35,16 +32,8 @@ public abstract class AbstractPoSTSyntacticSequencer extends AbstractSyntacticSe
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (ruleCall.getRule() == grammarAccess.getAND_OPERATORRule())
 			return getAND_OPERATORToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getBINARY_INTEGERRule())
-			return getBINARY_INTEGERToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getBOOLEAN_LITERALRule())
-			return getBOOLEAN_LITERALToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getHEX_INTEGERRule())
-			return getHEX_INTEGERToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getINTERVAL_DECLARATIONRule())
 			return getINTERVAL_DECLARATIONToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getOCTAL_INTEGERRule())
-			return getOCTAL_INTEGERToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getOR_OPERATORRule())
 			return getOR_OPERATORToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getPOWER_OPERATORRule())
@@ -71,36 +60,6 @@ public abstract class AbstractPoSTSyntacticSequencer extends AbstractSyntacticSe
 	}
 	
 	/**
-	 * terminal BINARY_INTEGER returns ecore::EString:
-	 * 	'2#' BIT+;
-	 */
-	protected String getBINARY_INTEGERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "2#0";
-	}
-	
-	/**
-	 * terminal BOOLEAN_LITERAL:
-	 * 	'TRUE' | 'FALSE';
-	 */
-	protected String getBOOLEAN_LITERALToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "TRUE";
-	}
-	
-	/**
-	 * terminal HEX_INTEGER returns ecore::EString:
-	 * 	'16#' HEX_DIGIT+;
-	 */
-	protected String getHEX_INTEGERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "16#";
-	}
-	
-	/**
 	 * terminal INTERVAL_DECLARATION:
 	 * 	'INTERVAL';
 	 */
@@ -108,16 +67,6 @@ public abstract class AbstractPoSTSyntacticSequencer extends AbstractSyntacticSe
 		if (node != null)
 			return getTokenText(node);
 		return "INTERVAL";
-	}
-	
-	/**
-	 * terminal OCTAL_INTEGER returns ecore::EString:
-	 * 	'8#' OCTAL_DIGIT+;
-	 */
-	protected String getOCTAL_INTEGERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "8#";
 	}
 	
 	/**
@@ -186,25 +135,12 @@ public abstract class AbstractPoSTSyntacticSequencer extends AbstractSyntacticSe
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Constant_BINARY_INTEGERTerminalRuleCall_2_1_or_BOOLEAN_LITERALTerminalRuleCall_5_1_or_HEX_INTEGERTerminalRuleCall_4_1_or_OCTAL_INTEGERTerminalRuleCall_3_1.equals(syntax))
-				emit_Constant_BINARY_INTEGERTerminalRuleCall_2_1_or_BOOLEAN_LITERALTerminalRuleCall_5_1_or_HEX_INTEGERTerminalRuleCall_4_1_or_OCTAL_INTEGERTerminalRuleCall_3_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TimeLiteral_HyphenMinusKeyword_2_q.equals(syntax))
+			if (match_TimeLiteral_HyphenMinusKeyword_2_q.equals(syntax))
 				emit_TimeLiteral_HyphenMinusKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     BINARY_INTEGER | OCTAL_INTEGER | HEX_INTEGER | BOOLEAN_LITERAL
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 */
-	protected void emit_Constant_BINARY_INTEGERTerminalRuleCall_2_1_or_BOOLEAN_LITERALTerminalRuleCall_5_1_or_HEX_INTEGERTerminalRuleCall_4_1_or_OCTAL_INTEGERTerminalRuleCall_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 	/**
 	 * Ambiguous syntax:
 	 *     '-'?
