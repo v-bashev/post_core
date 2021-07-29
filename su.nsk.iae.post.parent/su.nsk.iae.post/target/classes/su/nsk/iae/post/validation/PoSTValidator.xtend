@@ -23,7 +23,11 @@ import su.nsk.iae.post.poST.Model
 import su.nsk.iae.post.poST.OutputVarDeclaration
 import su.nsk.iae.post.poST.PoSTPackage
 import su.nsk.iae.post.poST.Process
+import su.nsk.iae.post.poST.ProcessStatementElement
 import su.nsk.iae.post.poST.ProcessStatusExpression
+import su.nsk.iae.post.poST.ProcessVarDeclaration
+import su.nsk.iae.post.poST.ProcessVarInitDeclaration
+import su.nsk.iae.post.poST.ProcessVariable
 import su.nsk.iae.post.poST.Program
 import su.nsk.iae.post.poST.ProgramConfiguration
 import su.nsk.iae.post.poST.Resource
@@ -41,10 +45,6 @@ import su.nsk.iae.post.poST.VarDeclaration
 import su.nsk.iae.post.poST.VarInitDeclaration
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import su.nsk.iae.post.poST.ProcessVariable
-import su.nsk.iae.post.poST.ProcessVarInitDeclaration
-import su.nsk.iae.post.poST.ProcessVarDeclaration
-import su.nsk.iae.post.poST.ProcessStatementElement
 
 class PoSTValidator extends AbstractPoSTValidator {
 	
@@ -54,35 +54,50 @@ class PoSTValidator extends AbstractPoSTValidator {
 
 	@Check
 	def checkSymbolicVariable_NameConflicts(SymbolicVariable ele) {
-		val process = ele.getContainerOfType(Process)
-		if ((process !== null) && process.checkNameRepetition(ele)) {
-			error("Name error: Process already has a variable with this name",
-					ePackage.symbolicVariable_Name)
-			return
-		}
 		val program = ele.getContainerOfType(Program)
-		if ((program !== null) && program.checkNameRepetition(ele)) {
-			error("Name error: Program already has a variable with this name",
-					ePackage.symbolicVariable_Name)
-			return
-		}
-		val resource = ele.getContainerOfType(Resource)
-		if ((resource !== null) && resource.checkNameRepetition(ele)) {
-			error("Name error: Resource already has a variable with this name",
-					ePackage.symbolicVariable_Name)
-			return
+		if (program !== null) {
+			val process = ele.getContainerOfType(Process)
+			if ((process !== null) && process.checkNameRepetition(ele)) {
+				error("Name error: Process already has a Variable with this name",
+						ePackage.symbolicVariable_Name)
+				return
+			}
+			if (program.checkNameRepetition(ele)) {
+				error("Name error: Program already has a Variable with this name",
+						ePackage.symbolicVariable_Name)
+				return
+			}
 		}
 		val configuration = ele.getContainerOfType(Configuration)
-		if ((configuration !== null) && configuration.checkNameRepetition(ele)) {
-			error("Name error: Configuration already has a variable with this name",
-					ePackage.symbolicVariable_Name)
-			return
+		if (configuration !== null) {
+			val resource = ele.getContainerOfType(Resource)
+			if ((resource !== null) && resource.checkNameRepetition(ele)) {
+				error("Name error: Resource already has a Variable with this name",
+						ePackage.symbolicVariable_Name)
+				return
+			}
+			if (configuration.checkNameRepetition(ele)) {
+				error("Name error: Configuration already has a Variable with this name",
+						ePackage.symbolicVariable_Name)
+				return
+			}
 		}
 		val model = ele.getContainerOfType(Model)
 		if (model.checkNameRepetition(ele)) {
-			error("Name error: Conflict with the name of a global variable",
+			error("Name error: Conflict with the name of a global Variable",
 					ePackage.symbolicVariable_Name)
 			return
+		}
+		if ((program !== null) && (model.conf !== null)) {
+			if (model.conf.checkNameRepetition(ele)) {
+				error("Name error: Configuration already has a Variable with this name",
+						ePackage.symbolicVariable_Name)
+				return
+			}
+			if (model.conf.resources.stream.anyMatch([r | r.checkNameRepetition(ele)])) {
+				error("Name error: Resource already has a Variable with this name",
+						ePackage.symbolicVariable_Name)
+			}
 		}
 	}
 	
@@ -90,7 +105,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkProcessVariable_NameConflicts(ProcessVariable ele) {
 		val process = ele.getContainerOfType(Process)
 		if ((process !== null) && process.checkNameRepetition(ele)) {
-			error("Name error: Process already has a variable with this name",
+			error("Name error: Process already has a Process Variable with this name",
 					ePackage.symbolicVariable_Name)
 		}
 	}
@@ -107,19 +122,19 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkSimpleSpecificationInit_NeverUse(SimpleSpecificationInit ele) {
 		if (ele.value !== null) {
 			if (ele.checkContainer(InputVarDeclaration)) {
-				error("Initialization error: Input variable cannot be initialized",
+				error("Initialization error: Input Variable cannot be initialized",
 						ePackage.simpleSpecificationInit_Value)
 				return
 			}
 			
 			if (ele.checkContainer(OutputVarDeclaration)) {
-				error("Initialization error: Output variable cannot be initialized",
+				error("Initialization error: Output Variable cannot be initialized",
 						ePackage.simpleSpecificationInit_Value)
 				return
 			}
 			
 			if (ele.checkContainer(InputOutputVarDeclaration)) {
-				error("Initialization error: InputOutput variable cannot be initialized",
+				error("Initialization error: InputOutput Variable cannot be initialized",
 						ePackage.simpleSpecificationInit_Value)
 				return
 			}
@@ -173,14 +188,12 @@ class PoSTValidator extends AbstractPoSTValidator {
 			return
 		}
 		val program = ele.program
-		val attachVars = 
-			program.progInVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
-			program.progOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
-			program.progInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count
-		val programVars = 
-			ele.args.elements.stream.filter([x | x instanceof AttachVariableConfElement]).count
+		val attachVars = program.progInVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
+						 program.progOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
+						 program.progInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count
+		val programVars = ele.args.elements.stream.filter([x | x instanceof AttachVariableConfElement]).count
 		if (attachVars != programVars) {
-			error("Attached error: Not all input and output variables are used",
+			error("Attached error: Not all input and output Variables are used",
 					ePackage.programConfiguration_Name)
 		}
 	}
@@ -188,12 +201,12 @@ class PoSTValidator extends AbstractPoSTValidator {
 	@Check
 	def checkAttachVariableConfElement_AttachType(AttachVariableConfElement ele) {
 		if ((ele.assig == AssignmentType.IN) && !ele.programVar.checkContainer(InputVarDeclaration)) {
-			error("Attached error: Must be a input variable",
+			error("Attached error: Must be a input Variable",
 					ePackage.attachVariableConfElement_ProgramVar);
 			return
 		} 
 		if ((ele.assig == AssignmentType.OUT) && !ele.programVar.checkContainer(OutputVarDeclaration)) {
-			error("Attached error: Must be a output variable",
+			error("Attached error: Must be a output Variable",
 					ePackage.attachVariableConfElement_ProgramVar)
 		}
 	}
@@ -303,7 +316,10 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	def checkProcess_Looped(su.nsk.iae.post.poST.State ele) {
-		var check = ele.containsType(SetStateStatement)
+		var check = ele.containsType(SetStateStatement) ||
+					ele.containsType(StartProcessStatement) ||
+					ele.containsType(StopProcessStatement) ||
+					ele.containsType(ErrorProcessStatement)
 		if (ele.timeout !== null) {
 			check = check || ele.timeout.containsType(SetStateStatement)
 		}
@@ -311,11 +327,11 @@ class PoSTValidator extends AbstractPoSTValidator {
 			if (check) {
 				warning("State mustn't be LOOPED", ePackage.state_Name)
 			}
-		}/* else {
+		} else {
 			if (!check) {
 				warning("State must be LOOPED", ePackage.state_Name)
 			}
-		}*/
+		}
 	}
 	
 	@Check
@@ -396,7 +412,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkAssignmentStatement_Modify(AssignmentStatement ele) {
 		val varEle = ele.variable
 		if (varEle.checkContainer(InputVarDeclaration)) {
-			warning("Modification of input variable", ePackage.assignmentStatement_Variable)
+			warning("Modification of input Variable", ePackage.assignmentStatement_Variable)
 			return
 		}
 		val varDecl = varEle.getContainerOfType(VarDeclaration)
@@ -406,7 +422,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 			((globDecl !== null) && globDecl.const) ||
 			((extDecl !== null) && extDecl.const)
 		) {
-			error("Assignment error: Couldn't modify constant variable", ePackage.assignmentStatement_Variable);
+			error("Assignment error: Couldn't modify constant Variable", ePackage.assignmentStatement_Variable);
 		}
 	}
 	

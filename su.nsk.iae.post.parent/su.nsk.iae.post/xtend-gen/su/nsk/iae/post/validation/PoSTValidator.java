@@ -60,36 +60,58 @@ public class PoSTValidator extends AbstractPoSTValidator {
    */
   @Check
   public void checkSymbolicVariable_NameConflicts(final SymbolicVariable ele) {
-    final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
-    if (((process != null) && this.checkNameRepetition(process, ele))) {
-      this.error("Name error: Process already has a variable with this name", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
-    }
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    if (((program != null) && this.checkNameRepetition(program, ele))) {
-      this.error("Name error: Program already has a variable with this name", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
-    }
-    final Resource resource = EcoreUtil2.<Resource>getContainerOfType(ele, Resource.class);
-    if (((resource != null) && this.checkNameRepetition(resource, ele))) {
-      this.error("Name error: Resource already has a variable with this name", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
+    if ((program != null)) {
+      final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
+      if (((process != null) && this.checkNameRepetition(process, ele))) {
+        this.error("Name error: Process already has a Variable with this name", 
+          this.ePackage.getSymbolicVariable_Name());
+        return;
+      }
+      boolean _checkNameRepetition = this.checkNameRepetition(program, ele);
+      if (_checkNameRepetition) {
+        this.error("Name error: Program already has a Variable with this name", 
+          this.ePackage.getSymbolicVariable_Name());
+        return;
+      }
     }
     final Configuration configuration = EcoreUtil2.<Configuration>getContainerOfType(ele, Configuration.class);
-    if (((configuration != null) && this.checkNameRepetition(configuration, ele))) {
-      this.error("Name error: Configuration already has a variable with this name", 
+    if ((configuration != null)) {
+      final Resource resource = EcoreUtil2.<Resource>getContainerOfType(ele, Resource.class);
+      if (((resource != null) && this.checkNameRepetition(resource, ele))) {
+        this.error("Name error: Resource already has a Variable with this name", 
+          this.ePackage.getSymbolicVariable_Name());
+        return;
+      }
+      boolean _checkNameRepetition_1 = this.checkNameRepetition(configuration, ele);
+      if (_checkNameRepetition_1) {
+        this.error("Name error: Configuration already has a Variable with this name", 
+          this.ePackage.getSymbolicVariable_Name());
+        return;
+      }
+    }
+    final Model model = EcoreUtil2.<Model>getContainerOfType(ele, Model.class);
+    boolean _checkNameRepetition_2 = this.checkNameRepetition(model, ele);
+    if (_checkNameRepetition_2) {
+      this.error("Name error: Conflict with the name of a global Variable", 
         this.ePackage.getSymbolicVariable_Name());
       return;
     }
-    final Model model = EcoreUtil2.<Model>getContainerOfType(ele, Model.class);
-    boolean _checkNameRepetition = this.checkNameRepetition(model, ele);
-    if (_checkNameRepetition) {
-      this.error("Name error: Conflict with the name of a global variable", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
+    if (((program != null) && (model.getConf() != null))) {
+      boolean _checkNameRepetition_3 = this.checkNameRepetition(model.getConf(), ele);
+      if (_checkNameRepetition_3) {
+        this.error("Name error: Configuration already has a Variable with this name", 
+          this.ePackage.getSymbolicVariable_Name());
+        return;
+      }
+      final Predicate<Resource> _function = (Resource r) -> {
+        return this.checkNameRepetition(r, ele);
+      };
+      boolean _anyMatch = model.getConf().getResources().stream().anyMatch(_function);
+      if (_anyMatch) {
+        this.error("Name error: Resource already has a Variable with this name", 
+          this.ePackage.getSymbolicVariable_Name());
+      }
     }
   }
   
@@ -97,7 +119,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   public void checkProcessVariable_NameConflicts(final ProcessVariable ele) {
     final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
     if (((process != null) && this.checkNameRepetition(process, ele))) {
-      this.error("Name error: Process already has a variable with this name", 
+      this.error("Name error: Process already has a Process Variable with this name", 
         this.ePackage.getSymbolicVariable_Name());
     }
   }
@@ -119,19 +141,19 @@ public class PoSTValidator extends AbstractPoSTValidator {
     if (_tripleNotEquals) {
       boolean _checkContainer = this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class);
       if (_checkContainer) {
-        this.error("Initialization error: Input variable cannot be initialized", 
+        this.error("Initialization error: Input Variable cannot be initialized", 
           this.ePackage.getSimpleSpecificationInit_Value());
         return;
       }
       boolean _checkContainer_1 = this.<OutputVarDeclaration>checkContainer(ele, OutputVarDeclaration.class);
       if (_checkContainer_1) {
-        this.error("Initialization error: Output variable cannot be initialized", 
+        this.error("Initialization error: Output Variable cannot be initialized", 
           this.ePackage.getSimpleSpecificationInit_Value());
         return;
       }
       boolean _checkContainer_2 = this.<InputOutputVarDeclaration>checkContainer(ele, InputOutputVarDeclaration.class);
       if (_checkContainer_2) {
-        this.error("Initialization error: InputOutput variable cannot be initialized", 
+        this.error("Initialization error: InputOutput Variable cannot be initialized", 
           this.ePackage.getSimpleSpecificationInit_Value());
         return;
       }
@@ -231,7 +253,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
     };
     final long programVars = ele.getArgs().getElements().stream().filter(_function_12).count();
     if ((attachVars != programVars)) {
-      this.error("Attached error: Not all input and output variables are used", 
+      this.error("Attached error: Not all input and output Variables are used", 
         this.ePackage.getProgramConfiguration_Name());
     }
   }
@@ -239,12 +261,12 @@ public class PoSTValidator extends AbstractPoSTValidator {
   @Check
   public void checkAttachVariableConfElement_AttachType(final AttachVariableConfElement ele) {
     if ((Objects.equal(ele.getAssig(), AssignmentType.IN) && (!this.<InputVarDeclaration>checkContainer(ele.getProgramVar(), InputVarDeclaration.class)))) {
-      this.error("Attached error: Must be a input variable", 
+      this.error("Attached error: Must be a input Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
       return;
     }
     if ((Objects.equal(ele.getAssig(), AssignmentType.OUT) && (!this.<OutputVarDeclaration>checkContainer(ele.getProgramVar(), OutputVarDeclaration.class)))) {
-      this.error("Attached error: Must be a output variable", 
+      this.error("Attached error: Must be a output Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
     }
   }
@@ -367,7 +389,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkProcess_Looped(final su.nsk.iae.post.poST.State ele) {
-    boolean check = this.<SetStateStatement>containsType(ele, SetStateStatement.class);
+    boolean check = (((this.<SetStateStatement>containsType(ele, SetStateStatement.class) || 
+      this.<StartProcessStatement>containsType(ele, StartProcessStatement.class)) || 
+      this.<StopProcessStatement>containsType(ele, StopProcessStatement.class)) || 
+      this.<ErrorProcessStatement>containsType(ele, ErrorProcessStatement.class));
     TimeoutStatement _timeout = ele.getTimeout();
     boolean _tripleNotEquals = (_timeout != null);
     if (_tripleNotEquals) {
@@ -377,6 +402,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
     if (_isLooped) {
       if (check) {
         this.warning("State mustn\'t be LOOPED", this.ePackage.getState_Name());
+      }
+    } else {
+      if ((!check)) {
+        this.warning("State must be LOOPED", this.ePackage.getState_Name());
       }
     }
   }
@@ -473,14 +502,14 @@ public class PoSTValidator extends AbstractPoSTValidator {
     final SymbolicVariable varEle = ele.getVariable();
     boolean _checkContainer = this.<InputVarDeclaration>checkContainer(varEle, InputVarDeclaration.class);
     if (_checkContainer) {
-      this.warning("Modification of input variable", this.ePackage.getAssignmentStatement_Variable());
+      this.warning("Modification of input Variable", this.ePackage.getAssignmentStatement_Variable());
       return;
     }
     final VarDeclaration varDecl = EcoreUtil2.<VarDeclaration>getContainerOfType(varEle, VarDeclaration.class);
     final GlobalVarDeclaration globDecl = EcoreUtil2.<GlobalVarDeclaration>getContainerOfType(varEle, GlobalVarDeclaration.class);
     final ExternalVarDeclaration extDecl = EcoreUtil2.<ExternalVarDeclaration>getContainerOfType(varEle, ExternalVarDeclaration.class);
     if (((((varDecl != null) && varDecl.isConst()) || ((globDecl != null) && globDecl.isConst())) || ((extDecl != null) && extDecl.isConst()))) {
-      this.error("Assignment error: Couldn\'t modify constant variable", this.ePackage.getAssignmentStatement_Variable());
+      this.error("Assignment error: Couldn\'t modify constant Variable", this.ePackage.getAssignmentStatement_Variable());
     }
   }
   

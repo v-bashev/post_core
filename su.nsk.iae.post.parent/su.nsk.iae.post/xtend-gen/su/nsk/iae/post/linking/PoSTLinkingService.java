@@ -1,9 +1,8 @@
 package su.nsk.iae.post.linking;
 
-import com.google.common.base.Objects;
-import com.google.inject.Inject;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -17,6 +16,10 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopeProvider;
+
+import com.google.common.base.Objects;
+import com.google.inject.Inject;
+
 import su.nsk.iae.post.naming.PoSTQualifiedNameProvider;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.PoSTPackage;

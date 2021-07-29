@@ -3,9 +3,11 @@
  */
 package su.nsk.iae.post.parser.antlr;
 
-import com.google.inject.Inject;
 import org.eclipse.xtext.parser.antlr.AbstractAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+import com.google.inject.Inject;
+
 import su.nsk.iae.post.parser.antlr.internal.InternalPoSTParser;
 import su.nsk.iae.post.services.PoSTGrammarAccess;
 

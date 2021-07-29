@@ -5,7 +5,6 @@ package su.nsk.iae.post.poST.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 import su.nsk.iae.post.poST.AddExpression;

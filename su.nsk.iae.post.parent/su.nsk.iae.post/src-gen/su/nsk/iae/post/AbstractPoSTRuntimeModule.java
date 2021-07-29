@@ -3,10 +3,8 @@
  */
 package su.nsk.iae.post;
 
-import com.google.inject.Binder;
-import com.google.inject.Provider;
-import com.google.inject.name.Names;
 import java.util.Properties;
+
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.generator.IGenerator2;
@@ -43,6 +41,11 @@ import org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer;
 import org.eclipse.xtext.service.DefaultRuntimeModule;
 import org.eclipse.xtext.service.SingletonBinding;
 import org.eclipse.xtext.validation.ConfigurableIssueCodesProvider;
+
+import com.google.inject.Binder;
+import com.google.inject.Provider;
+import com.google.inject.name.Names;
+
 import su.nsk.iae.post.generator.PoSTGenerator;
 import su.nsk.iae.post.parser.antlr.PoSTAntlrTokenFileProvider;
 import su.nsk.iae.post.parser.antlr.PoSTParser;
