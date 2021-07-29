@@ -1,8 +1,8 @@
 package su.nsk.iae.post.generator;
 
+import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
@@ -13,9 +13,6 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-
-import com.google.common.collect.Iterables;
-
 import su.nsk.iae.post.poST.Model;
 
 @SuppressWarnings("all")

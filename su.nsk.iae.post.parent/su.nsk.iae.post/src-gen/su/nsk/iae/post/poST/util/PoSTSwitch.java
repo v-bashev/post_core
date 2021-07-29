@@ -5,13 +5,15 @@ package su.nsk.iae.post.poST.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
 
 import su.nsk.iae.post.poST.AddExpression;
 import su.nsk.iae.post.poST.AndExpression;
 import su.nsk.iae.post.poST.ArrayInitialization;
-import su.nsk.iae.post.poST.ArraySpecInit;
+import su.nsk.iae.post.poST.ArrayInterval;
 import su.nsk.iae.post.poST.ArraySpecification;
+import su.nsk.iae.post.poST.ArraySpecificationInit;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
@@ -279,17 +281,17 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.PROCESS_STATUS_EXPRESSION:
-      {
-        ProcessStatusExpression processStatusExpression = (ProcessStatusExpression)theEObject;
-        T result = caseProcessStatusExpression(processStatusExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case PoSTPackage.PROCESS_STATEMENT_ELEMENT:
       {
         ProcessStatementElement processStatementElement = (ProcessStatementElement)theEObject;
         T result = caseProcessStatementElement(processStatementElement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.PROCESS_STATUS_EXPRESSION:
+      {
+        ProcessStatusExpression processStatusExpression = (ProcessStatusExpression)theEObject;
+        T result = caseProcessStatusExpression(processStatusExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -584,10 +586,10 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.VAR_INIT_DECLARATION:
+      case PoSTPackage.SIMPLE_SPECIFICATION_INIT:
       {
-        VarInitDeclaration varInitDeclaration = (VarInitDeclaration)theEObject;
-        T result = caseVarInitDeclaration(varInitDeclaration);
+        SimpleSpecificationInit simpleSpecificationInit = (SimpleSpecificationInit)theEObject;
+        T result = caseSimpleSpecificationInit(simpleSpecificationInit);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -595,6 +597,13 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         VarList varList = (VarList)theEObject;
         T result = caseVarList(varList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.VAR_INIT_DECLARATION:
+      {
+        VarInitDeclaration varInitDeclaration = (VarInitDeclaration)theEObject;
+        T result = caseVarInitDeclaration(varInitDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -633,13 +642,6 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.EXTERNAL_VAR_DECLARATION:
-      {
-        ExternalVarDeclaration externalVarDeclaration = (ExternalVarDeclaration)theEObject;
-        T result = caseExternalVarDeclaration(externalVarDeclaration);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case PoSTPackage.EXTERNAL_VAR_INIT_DECLARATION:
       {
         ExternalVarInitDeclaration externalVarInitDeclaration = (ExternalVarInitDeclaration)theEObject;
@@ -647,10 +649,10 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.GLOBAL_VAR_DECLARATION:
+      case PoSTPackage.EXTERNAL_VAR_DECLARATION:
       {
-        GlobalVarDeclaration globalVarDeclaration = (GlobalVarDeclaration)theEObject;
-        T result = caseGlobalVarDeclaration(globalVarDeclaration);
+        ExternalVarDeclaration externalVarDeclaration = (ExternalVarDeclaration)theEObject;
+        T result = caseExternalVarDeclaration(externalVarDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -658,6 +660,13 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         GlobalVarInitDeclaration globalVarInitDeclaration = (GlobalVarInitDeclaration)theEObject;
         T result = caseGlobalVarInitDeclaration(globalVarInitDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.GLOBAL_VAR_DECLARATION:
+      {
+        GlobalVarDeclaration globalVarDeclaration = (GlobalVarDeclaration)theEObject;
+        T result = caseGlobalVarDeclaration(globalVarDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -690,10 +699,10 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.ARRAY_SPEC_INIT:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT:
       {
-        ArraySpecInit arraySpecInit = (ArraySpecInit)theEObject;
-        T result = caseArraySpecInit(arraySpecInit);
+        ArraySpecificationInit arraySpecificationInit = (ArraySpecificationInit)theEObject;
+        T result = caseArraySpecificationInit(arraySpecificationInit);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -701,6 +710,13 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         ArraySpecification arraySpecification = (ArraySpecification)theEObject;
         T result = caseArraySpecification(arraySpecification);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.ARRAY_INTERVAL:
+      {
+        ArrayInterval arrayInterval = (ArrayInterval)theEObject;
+        T result = caseArrayInterval(arrayInterval);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -715,13 +731,6 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         TimeLiteral timeLiteral = (TimeLiteral)theEObject;
         T result = caseTimeLiteral(timeLiteral);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PoSTPackage.SIMPLE_SPECIFICATION_INIT:
-      {
-        SimpleSpecificationInit simpleSpecificationInit = (SimpleSpecificationInit)theEObject;
-        T result = caseSimpleSpecificationInit(simpleSpecificationInit);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1055,22 +1064,6 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Process Status Expression</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Process Status Expression</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseProcessStatusExpression(ProcessStatusExpression object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Process Statement Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1082,6 +1075,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProcessStatementElement(ProcessStatementElement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Process Status Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Process Status Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProcessStatusExpression(ProcessStatusExpression object)
   {
     return null;
   }
@@ -1599,17 +1608,17 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Var Init Declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Simple Specification Init</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Var Init Declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Simple Specification Init</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVarInitDeclaration(VarInitDeclaration object)
+  public T caseSimpleSpecificationInit(SimpleSpecificationInit object)
   {
     return null;
   }
@@ -1626,6 +1635,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVarList(VarList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Var Init Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Var Init Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVarInitDeclaration(VarInitDeclaration object)
   {
     return null;
   }
@@ -1711,22 +1736,6 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>External Var Declaration</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>External Var Declaration</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExternalVarDeclaration(ExternalVarDeclaration object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>External Var Init Declaration</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1743,17 +1752,17 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Global Var Declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>External Var Declaration</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Global Var Declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>External Var Declaration</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGlobalVarDeclaration(GlobalVarDeclaration object)
+  public T caseExternalVarDeclaration(ExternalVarDeclaration object)
   {
     return null;
   }
@@ -1770,6 +1779,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseGlobalVarInitDeclaration(GlobalVarInitDeclaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Global Var Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Global Var Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGlobalVarDeclaration(GlobalVarDeclaration object)
   {
     return null;
   }
@@ -1839,17 +1864,17 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Array Spec Init</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Array Specification Init</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Array Spec Init</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Array Specification Init</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseArraySpecInit(ArraySpecInit object)
+  public T caseArraySpecificationInit(ArraySpecificationInit object)
   {
     return null;
   }
@@ -1866,6 +1891,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseArraySpecification(ArraySpecification object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Array Interval</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Array Interval</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseArrayInterval(ArrayInterval object)
   {
     return null;
   }
@@ -1898,22 +1939,6 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTimeLiteral(TimeLiteral object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Simple Specification Init</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Simple Specification Init</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSimpleSpecificationInit(SimpleSpecificationInit object)
   {
     return null;
   }

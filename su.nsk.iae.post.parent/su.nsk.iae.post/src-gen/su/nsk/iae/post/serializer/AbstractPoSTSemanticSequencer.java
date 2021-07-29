@@ -3,8 +3,8 @@
  */
 package su.nsk.iae.post.serializer;
 
+import com.google.inject.Inject;
 import java.util.Set;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.Action;
@@ -14,14 +14,12 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
-
-import com.google.inject.Inject;
-
 import su.nsk.iae.post.poST.AddExpression;
 import su.nsk.iae.post.poST.AndExpression;
 import su.nsk.iae.post.poST.ArrayInitialization;
-import su.nsk.iae.post.poST.ArraySpecInit;
+import su.nsk.iae.post.poST.ArrayInterval;
 import su.nsk.iae.post.poST.ArraySpecification;
+import su.nsk.iae.post.poST.ArraySpecificationInit;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
@@ -112,11 +110,14 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 			case PoSTPackage.ARRAY_INITIALIZATION:
 				sequence_ArrayInitialization(context, (ArrayInitialization) semanticObject); 
 				return; 
-			case PoSTPackage.ARRAY_SPEC_INIT:
-				sequence_ArraySpecInit(context, (ArraySpecInit) semanticObject); 
+			case PoSTPackage.ARRAY_INTERVAL:
+				sequence_ArrayInterval(context, (ArrayInterval) semanticObject); 
 				return; 
 			case PoSTPackage.ARRAY_SPECIFICATION:
 				sequence_ArraySpecification(context, (ArraySpecification) semanticObject); 
+				return; 
+			case PoSTPackage.ARRAY_SPECIFICATION_INIT:
+				sequence_ArraySpecificationInit(context, (ArraySpecificationInit) semanticObject); 
 				return; 
 			case PoSTPackage.ARRAY_VARIABLE:
 				sequence_ArrayVariable(context, (ArrayVariable) semanticObject); 
@@ -384,7 +385,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     ArrayInitialization returns ArrayInitialization
 	 *
 	 * Constraint:
-	 *     (elements+=Constant elements+=Constant*)
+	 *     (elements+=Expression elements+=Expression*)
 	 */
 	protected void sequence_ArrayInitialization(ISerializationContext context, ArrayInitialization semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -393,12 +394,33 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Contexts:
-	 *     ArraySpecInit returns ArraySpecInit
+	 *     ArrayInterval returns ArrayInterval
+	 *
+	 * Constraint:
+	 *     (start=Expression end=Expression)
+	 */
+	protected void sequence_ArrayInterval(ISerializationContext context, ArrayInterval semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.ARRAY_INTERVAL__START) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.ARRAY_INTERVAL__START));
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.ARRAY_INTERVAL__END) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.ARRAY_INTERVAL__END));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getArrayIntervalAccess().getStartExpressionParserRuleCall_0_0(), semanticObject.getStart());
+		feeder.accept(grammarAccess.getArrayIntervalAccess().getEndExpressionParserRuleCall_2_0(), semanticObject.getEnd());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ArraySpecificationInit returns ArraySpecificationInit
 	 *
 	 * Constraint:
 	 *     (init=ArraySpecification values=ArrayInitialization?)
 	 */
-	protected void sequence_ArraySpecInit(ISerializationContext context, ArraySpecInit semanticObject) {
+	protected void sequence_ArraySpecificationInit(ISerializationContext context, ArraySpecificationInit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -408,22 +430,10 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     ArraySpecification returns ArraySpecification
 	 *
 	 * Constraint:
-	 *     (start=SignedInteger end=SignedInteger type=DataTypeName)
+	 *     (interval=ArrayInterval? type=DataTypeName)
 	 */
 	protected void sequence_ArraySpecification(ISerializationContext context, ArraySpecification semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.ARRAY_SPECIFICATION__START) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.ARRAY_SPECIFICATION__START));
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.ARRAY_SPECIFICATION__END) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.ARRAY_SPECIFICATION__END));
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.ARRAY_SPECIFICATION__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.ARRAY_SPECIFICATION__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getArraySpecificationAccess().getStartSignedIntegerParserRuleCall_2_0(), semanticObject.getStart());
-		feeder.accept(grammarAccess.getArraySpecificationAccess().getEndSignedIntegerParserRuleCall_4_0(), semanticObject.getEnd());
-		feeder.accept(grammarAccess.getArraySpecificationAccess().getTypeDataTypeNameParserRuleCall_7_0(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -977,7 +987,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     ProcessStatusExpression returns ProcessStatusExpression
 	 *
 	 * Constraint:
-	 *     (process=[Process|ID] (active?='ACTIVE' | inactive?='INACTIVE' | stop?='STOP' | error?='ERROR'))
+	 *     (process=[ProcessStatementElement|ID] (active?='ACTIVE' | inactive?='INACTIVE' | stop?='STOP' | error?='ERROR'))
 	 */
 	protected void sequence_ProcessStatusExpression(ISerializationContext context, ProcessStatusExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1222,7 +1232,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     SimpleSpecificationInit returns SimpleSpecificationInit
 	 *
 	 * Constraint:
-	 *     (type=DataTypeName value=Constant?)
+	 *     (type=DataTypeName value=Expression?)
 	 */
 	protected void sequence_SimpleSpecificationInit(ISerializationContext context, SimpleSpecificationInit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1466,7 +1476,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     VarInitDeclaration returns VarInitDeclaration
 	 *
 	 * Constraint:
-	 *     (varList=VarList (spec=SimpleSpecificationInit | arrSpec=ArraySpecInit))
+	 *     (varList=VarList (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit))
 	 */
 	protected void sequence_VarInitDeclaration(ISerializationContext context, VarInitDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -4,7 +4,6 @@
 package su.nsk.iae.post.parser.antlr;
 
 import java.io.InputStream;
-
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class PoSTAntlrTokenFileProvider implements IAntlrTokenFileProvider {

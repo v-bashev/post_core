@@ -143,15 +143,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="ProcessStatements" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//ProcessStatementElement"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessStatementElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessStatusExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//ProcessStatementElement"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="inactive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="error" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProcessStatementElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StartProcessStatement" eSuperTypes="#//ProcessStatements"/>
   <eClassifiers xsi:type="ecore:EClass" name="StopProcessStatement" eSuperTypes="#//ProcessStatements"/>
@@ -299,16 +299,21 @@
   <eClassifiers xsi:type="ecore:EClass" name="SymbolicVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleSpecificationInit">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VarList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//SymbolicVariable"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VarInitDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//VarList"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="spec" eType="#//SimpleSpecificationInit"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arrSpec" eType="#//ArraySpecInit"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VarList">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//SymbolicVariable"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrSpec" eType="#//ArraySpecificationInit"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputVarDeclaration">
@@ -332,14 +337,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//VarInitDeclaration"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalVarInitDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//VarList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExternalVarDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="const" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//ExternalVarInitDeclaration"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternalVarInitDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalVarInitDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//VarList"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalVarDeclaration">
@@ -348,12 +359,6 @@
         eType="#//VarInitDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="varsAs" upperBound="-1"
         eType="#//GlobalVarInitDeclaration" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GlobalVarInitDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//VarList"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable" eSuperTypes="#//ProcessStatementElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessVarList">
@@ -369,30 +374,29 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//ProcessVarInitDeclaration"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ArraySpecInit">
+  <eClassifiers xsi:type="ecore:EClass" name="ArraySpecificationInit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="init" eType="#//ArraySpecification"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" eType="#//ArrayInitialization"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArraySpecification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="start" eType="#//SignedInteger"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//SignedInteger"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interval" eType="#//ArrayInterval"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayInterval">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="start" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayInitialization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//Constant" containment="true"/>
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TimeLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleSpecificationInit">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Constant"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constant">
     <eStructuralFeatures xsi:type="ecore:EReference" name="num" eType="#//NumericLiteral"

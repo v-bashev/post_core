@@ -4,6 +4,7 @@
 package su.nsk.iae.post.poST;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -26,7 +27,7 @@ public interface ArrayInitialization extends EObject
 {
   /**
    * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
-   * The list contents are of type {@link su.nsk.iae.post.poST.Constant}.
+   * The list contents are of type {@link su.nsk.iae.post.poST.Expression}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Elements</em>' containment reference list.
@@ -34,6 +35,6 @@ public interface ArrayInitialization extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Constant> getElements();
+  EList<Expression> getElements();
 
 } // ArrayInitialization

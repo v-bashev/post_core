@@ -5,31 +5,33 @@ package su.nsk.iae.post.poST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.ArrayInitialization;
-import su.nsk.iae.post.poST.ArraySpecInit;
 import su.nsk.iae.post.poST.ArraySpecification;
+import su.nsk.iae.post.poST.ArraySpecificationInit;
 import su.nsk.iae.post.poST.PoSTPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Array Spec Init</b></em>'.
+ * An implementation of the model object '<em><b>Array Specification Init</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecInitImpl#getInit <em>Init</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecInitImpl#getValues <em>Values</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecificationInitImpl#getInit <em>Init</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecificationInitImpl#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements ArraySpecInit
+public class ArraySpecificationInitImpl extends MinimalEObjectImpl.Container implements ArraySpecificationInit
 {
   /**
    * The cached value of the '{@link #getInit() <em>Init</em>}' containment reference.
@@ -56,7 +58,7 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ArraySpecInitImpl()
+  protected ArraySpecificationInitImpl()
   {
     super();
   }
@@ -69,7 +71,7 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
   @Override
   protected EClass eStaticClass()
   {
-    return PoSTPackage.Literals.ARRAY_SPEC_INIT;
+    return PoSTPackage.Literals.ARRAY_SPECIFICATION_INIT;
   }
 
   /**
@@ -94,7 +96,7 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
     init = newInit;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPEC_INIT__INIT, oldInit, newInit);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT, oldInit, newInit);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -112,14 +114,14 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
     {
       NotificationChain msgs = null;
       if (init != null)
-        msgs = ((InternalEObject)init).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPEC_INIT__INIT, null, msgs);
+        msgs = ((InternalEObject)init).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT, null, msgs);
       if (newInit != null)
-        msgs = ((InternalEObject)newInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPEC_INIT__INIT, null, msgs);
+        msgs = ((InternalEObject)newInit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT, null, msgs);
       msgs = basicSetInit(newInit, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPEC_INIT__INIT, newInit, newInit));
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT, newInit, newInit));
   }
 
   /**
@@ -144,7 +146,7 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
     values = newValues;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPEC_INIT__VALUES, oldValues, newValues);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES, oldValues, newValues);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -162,14 +164,14 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
     {
       NotificationChain msgs = null;
       if (values != null)
-        msgs = ((InternalEObject)values).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPEC_INIT__VALUES, null, msgs);
+        msgs = ((InternalEObject)values).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES, null, msgs);
       if (newValues != null)
-        msgs = ((InternalEObject)newValues).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPEC_INIT__VALUES, null, msgs);
+        msgs = ((InternalEObject)newValues).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES, null, msgs);
       msgs = basicSetValues(newValues, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPEC_INIT__VALUES, newValues, newValues));
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES, newValues, newValues));
   }
 
   /**
@@ -182,9 +184,9 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPEC_INIT__INIT:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT:
         return basicSetInit(null, msgs);
-      case PoSTPackage.ARRAY_SPEC_INIT__VALUES:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES:
         return basicSetValues(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -200,9 +202,9 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPEC_INIT__INIT:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT:
         return getInit();
-      case PoSTPackage.ARRAY_SPEC_INIT__VALUES:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES:
         return getValues();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -218,10 +220,10 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPEC_INIT__INIT:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT:
         setInit((ArraySpecification)newValue);
         return;
-      case PoSTPackage.ARRAY_SPEC_INIT__VALUES:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES:
         setValues((ArrayInitialization)newValue);
         return;
     }
@@ -238,10 +240,10 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPEC_INIT__INIT:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT:
         setInit((ArraySpecification)null);
         return;
-      case PoSTPackage.ARRAY_SPEC_INIT__VALUES:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES:
         setValues((ArrayInitialization)null);
         return;
     }
@@ -258,12 +260,12 @@ public class ArraySpecInitImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPEC_INIT__INIT:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__INIT:
         return init != null;
-      case PoSTPackage.ARRAY_SPEC_INIT__VALUES:
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT__VALUES:
         return values != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ArraySpecInitImpl
+} //ArraySpecificationInitImpl

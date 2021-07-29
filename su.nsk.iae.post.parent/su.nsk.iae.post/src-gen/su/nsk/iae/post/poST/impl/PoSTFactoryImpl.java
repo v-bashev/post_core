@@ -7,15 +7,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import su.nsk.iae.post.poST.AddExpression;
 import su.nsk.iae.post.poST.AddOperator;
 import su.nsk.iae.post.poST.AndExpression;
 import su.nsk.iae.post.poST.ArrayInitialization;
-import su.nsk.iae.post.poST.ArraySpecInit;
+import su.nsk.iae.post.poST.ArrayInterval;
 import su.nsk.iae.post.poST.ArraySpecification;
+import su.nsk.iae.post.poST.ArraySpecificationInit;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
@@ -165,8 +168,8 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.STATE: return createState();
       case PoSTPackage.SET_STATE_STATEMENT: return createSetStateStatement();
       case PoSTPackage.PROCESS_STATEMENTS: return createProcessStatements();
-      case PoSTPackage.PROCESS_STATUS_EXPRESSION: return createProcessStatusExpression();
       case PoSTPackage.PROCESS_STATEMENT_ELEMENT: return createProcessStatementElement();
+      case PoSTPackage.PROCESS_STATUS_EXPRESSION: return createProcessStatusExpression();
       case PoSTPackage.START_PROCESS_STATEMENT: return createStartProcessStatement();
       case PoSTPackage.STOP_PROCESS_STATEMENT: return createStopProcessStatement();
       case PoSTPackage.ERROR_PROCESS_STATEMENT: return createErrorProcessStatement();
@@ -199,26 +202,27 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.EXIT_STATEMENT: return createExitStatement();
       case PoSTPackage.ARRAY_VARIABLE: return createArrayVariable();
       case PoSTPackage.SYMBOLIC_VARIABLE: return createSymbolicVariable();
-      case PoSTPackage.VAR_INIT_DECLARATION: return createVarInitDeclaration();
+      case PoSTPackage.SIMPLE_SPECIFICATION_INIT: return createSimpleSpecificationInit();
       case PoSTPackage.VAR_LIST: return createVarList();
+      case PoSTPackage.VAR_INIT_DECLARATION: return createVarInitDeclaration();
       case PoSTPackage.INPUT_VAR_DECLARATION: return createInputVarDeclaration();
       case PoSTPackage.OUTPUT_VAR_DECLARATION: return createOutputVarDeclaration();
       case PoSTPackage.INPUT_OUTPUT_VAR_DECLARATION: return createInputOutputVarDeclaration();
       case PoSTPackage.VAR_DECLARATION: return createVarDeclaration();
       case PoSTPackage.TEMP_VAR_DECLARATION: return createTempVarDeclaration();
-      case PoSTPackage.EXTERNAL_VAR_DECLARATION: return createExternalVarDeclaration();
       case PoSTPackage.EXTERNAL_VAR_INIT_DECLARATION: return createExternalVarInitDeclaration();
-      case PoSTPackage.GLOBAL_VAR_DECLARATION: return createGlobalVarDeclaration();
+      case PoSTPackage.EXTERNAL_VAR_DECLARATION: return createExternalVarDeclaration();
       case PoSTPackage.GLOBAL_VAR_INIT_DECLARATION: return createGlobalVarInitDeclaration();
+      case PoSTPackage.GLOBAL_VAR_DECLARATION: return createGlobalVarDeclaration();
       case PoSTPackage.PROCESS_VARIABLE: return createProcessVariable();
       case PoSTPackage.PROCESS_VAR_LIST: return createProcessVarList();
       case PoSTPackage.PROCESS_VAR_INIT_DECLARATION: return createProcessVarInitDeclaration();
       case PoSTPackage.PROCESS_VAR_DECLARATION: return createProcessVarDeclaration();
-      case PoSTPackage.ARRAY_SPEC_INIT: return createArraySpecInit();
+      case PoSTPackage.ARRAY_SPECIFICATION_INIT: return createArraySpecificationInit();
       case PoSTPackage.ARRAY_SPECIFICATION: return createArraySpecification();
+      case PoSTPackage.ARRAY_INTERVAL: return createArrayInterval();
       case PoSTPackage.ARRAY_INITIALIZATION: return createArrayInitialization();
       case PoSTPackage.TIME_LITERAL: return createTimeLiteral();
-      case PoSTPackage.SIMPLE_SPECIFICATION_INIT: return createSimpleSpecificationInit();
       case PoSTPackage.CONSTANT: return createConstant();
       case PoSTPackage.SIGNED_INTEGER: return createSignedInteger();
       case PoSTPackage.NUMERIC_LITERAL: return createNumericLiteral();
@@ -505,10 +509,10 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public ProcessStatusExpression createProcessStatusExpression()
+  public ProcessStatementElement createProcessStatementElement()
   {
-    ProcessStatusExpressionImpl processStatusExpression = new ProcessStatusExpressionImpl();
-    return processStatusExpression;
+    ProcessStatementElementImpl processStatementElement = new ProcessStatementElementImpl();
+    return processStatementElement;
   }
 
   /**
@@ -517,10 +521,10 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public ProcessStatementElement createProcessStatementElement()
+  public ProcessStatusExpression createProcessStatusExpression()
   {
-    ProcessStatementElementImpl processStatementElement = new ProcessStatementElementImpl();
-    return processStatementElement;
+    ProcessStatusExpressionImpl processStatusExpression = new ProcessStatusExpressionImpl();
+    return processStatusExpression;
   }
 
   /**
@@ -913,10 +917,10 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public VarInitDeclaration createVarInitDeclaration()
+  public SimpleSpecificationInit createSimpleSpecificationInit()
   {
-    VarInitDeclarationImpl varInitDeclaration = new VarInitDeclarationImpl();
-    return varInitDeclaration;
+    SimpleSpecificationInitImpl simpleSpecificationInit = new SimpleSpecificationInitImpl();
+    return simpleSpecificationInit;
   }
 
   /**
@@ -929,6 +933,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     VarListImpl varList = new VarListImpl();
     return varList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public VarInitDeclaration createVarInitDeclaration()
+  {
+    VarInitDeclarationImpl varInitDeclaration = new VarInitDeclarationImpl();
+    return varInitDeclaration;
   }
 
   /**
@@ -997,18 +1013,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public ExternalVarDeclaration createExternalVarDeclaration()
-  {
-    ExternalVarDeclarationImpl externalVarDeclaration = new ExternalVarDeclarationImpl();
-    return externalVarDeclaration;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public ExternalVarInitDeclaration createExternalVarInitDeclaration()
   {
     ExternalVarInitDeclarationImpl externalVarInitDeclaration = new ExternalVarInitDeclarationImpl();
@@ -1021,10 +1025,10 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public GlobalVarDeclaration createGlobalVarDeclaration()
+  public ExternalVarDeclaration createExternalVarDeclaration()
   {
-    GlobalVarDeclarationImpl globalVarDeclaration = new GlobalVarDeclarationImpl();
-    return globalVarDeclaration;
+    ExternalVarDeclarationImpl externalVarDeclaration = new ExternalVarDeclarationImpl();
+    return externalVarDeclaration;
   }
 
   /**
@@ -1037,6 +1041,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     GlobalVarInitDeclarationImpl globalVarInitDeclaration = new GlobalVarInitDeclarationImpl();
     return globalVarInitDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public GlobalVarDeclaration createGlobalVarDeclaration()
+  {
+    GlobalVarDeclarationImpl globalVarDeclaration = new GlobalVarDeclarationImpl();
+    return globalVarDeclaration;
   }
 
   /**
@@ -1093,10 +1109,10 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public ArraySpecInit createArraySpecInit()
+  public ArraySpecificationInit createArraySpecificationInit()
   {
-    ArraySpecInitImpl arraySpecInit = new ArraySpecInitImpl();
-    return arraySpecInit;
+    ArraySpecificationInitImpl arraySpecificationInit = new ArraySpecificationInitImpl();
+    return arraySpecificationInit;
   }
 
   /**
@@ -1109,6 +1125,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ArraySpecificationImpl arraySpecification = new ArraySpecificationImpl();
     return arraySpecification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ArrayInterval createArrayInterval()
+  {
+    ArrayIntervalImpl arrayInterval = new ArrayIntervalImpl();
+    return arrayInterval;
   }
 
   /**
@@ -1133,18 +1161,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     TimeLiteralImpl timeLiteral = new TimeLiteralImpl();
     return timeLiteral;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public SimpleSpecificationInit createSimpleSpecificationInit()
-  {
-    SimpleSpecificationInitImpl simpleSpecificationInit = new SimpleSpecificationInitImpl();
-    return simpleSpecificationInit;
   }
 
   /**

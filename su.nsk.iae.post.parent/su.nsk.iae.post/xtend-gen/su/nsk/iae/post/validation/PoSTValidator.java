@@ -12,12 +12,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import su.nsk.iae.post.poST.ArrayInterval;
+import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.Configuration;
-import su.nsk.iae.post.poST.Constant;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
+import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
 import su.nsk.iae.post.poST.FunctionBlock;
@@ -136,7 +138,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkSimpleSpecificationInit_NeverUse(final SimpleSpecificationInit ele) {
-    Constant _value = ele.getValue();
+    Expression _value = ele.getValue();
     boolean _tripleNotEquals = (_value != null);
     if (_tripleNotEquals) {
       boolean _checkContainer = this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class);
@@ -156,6 +158,17 @@ public class PoSTValidator extends AbstractPoSTValidator {
         this.error("Initialization error: InputOutput Variable cannot be initialized", 
           this.ePackage.getSimpleSpecificationInit_Value());
         return;
+      }
+    }
+  }
+  
+  @Check
+  public void checkArraySpecification_Star(final ArraySpecification ele) {
+    ArrayInterval _interval = ele.getInterval();
+    boolean _tripleEquals = (_interval == null);
+    if (_tripleEquals) {
+      if (((!this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class)) && (!this.<InputOutputVarDeclaration>checkContainer(ele, InputOutputVarDeclaration.class)))) {
+        this.error("Definition error: Arrays with variable length available only in VAR_INPUT", null);
       }
     }
   }
@@ -464,12 +477,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkProcessStatusExpression_NameConflicts(final ProcessStatusExpression ele) {
-    final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    boolean _contains = program.getProcesses().contains(ele.getProcess());
-    boolean _not = (!_contains);
-    if (_not) {
-      this.error("Name error: Program does not contain a Process with this name", this.ePackage.getProcessStatusExpression_Process());
-    }
+    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
   }
   
   @Check
@@ -490,6 +498,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
       boolean _not = (!_contains);
       if (_not) {
         this.error("Name error: Program does not contain a Process with this name", this.ePackage.getProcessStatements_Process());
+        return;
       }
     }
   }

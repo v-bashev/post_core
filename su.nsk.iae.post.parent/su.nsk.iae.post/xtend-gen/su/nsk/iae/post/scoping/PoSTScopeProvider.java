@@ -1,10 +1,11 @@
 package su.nsk.iae.post.scoping;
 
+import com.google.common.base.Function;
+import com.google.common.base.Objects;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -12,10 +13,6 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
-
-import com.google.common.base.Function;
-import com.google.common.base.Objects;
-
 import su.nsk.iae.post.naming.PoSTQualifiedNameProvider;
 import su.nsk.iae.post.poST.InputOutputVarDeclaration;
 import su.nsk.iae.post.poST.InputVarDeclaration;

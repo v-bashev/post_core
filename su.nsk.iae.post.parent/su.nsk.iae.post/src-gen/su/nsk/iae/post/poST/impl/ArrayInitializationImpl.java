@@ -6,15 +6,19 @@ package su.nsk.iae.post.poST.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import su.nsk.iae.post.poST.ArrayInitialization;
-import su.nsk.iae.post.poST.Constant;
+import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.PoSTPackage;
 
 /**
@@ -40,7 +44,7 @@ public class ArrayInitializationImpl extends MinimalEObjectImpl.Container implem
    * @generated
    * @ordered
    */
-  protected EList<Constant> elements;
+  protected EList<Expression> elements;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,11 +73,11 @@ public class ArrayInitializationImpl extends MinimalEObjectImpl.Container implem
    * @generated
    */
   @Override
-  public EList<Constant> getElements()
+  public EList<Expression> getElements()
   {
     if (elements == null)
     {
-      elements = new EObjectContainmentEList<Constant>(Constant.class, this, PoSTPackage.ARRAY_INITIALIZATION__ELEMENTS);
+      elements = new EObjectContainmentEList<Expression>(Expression.class, this, PoSTPackage.ARRAY_INITIALIZATION__ELEMENTS);
     }
     return elements;
   }
@@ -123,7 +127,7 @@ public class ArrayInitializationImpl extends MinimalEObjectImpl.Container implem
     {
       case PoSTPackage.ARRAY_INITIALIZATION__ELEMENTS:
         getElements().clear();
-        getElements().addAll((Collection<? extends Constant>)newValue);
+        getElements().addAll((Collection<? extends Expression>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

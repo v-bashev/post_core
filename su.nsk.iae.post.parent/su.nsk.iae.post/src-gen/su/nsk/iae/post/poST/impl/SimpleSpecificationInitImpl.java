@@ -5,12 +5,14 @@ package su.nsk.iae.post.poST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import su.nsk.iae.post.poST.Constant;
+import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.SimpleSpecificationInit;
 
@@ -58,7 +60,7 @@ public class SimpleSpecificationInitImpl extends MinimalEObjectImpl.Container im
    * @generated
    * @ordered
    */
-  protected Constant value;
+  protected Expression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -112,7 +114,7 @@ public class SimpleSpecificationInitImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public Constant getValue()
+  public Expression getValue()
   {
     return value;
   }
@@ -122,9 +124,9 @@ public class SimpleSpecificationInitImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Constant newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
   {
-    Constant oldValue = value;
+    Expression oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -140,7 +142,7 @@ public class SimpleSpecificationInitImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public void setValue(Constant newValue)
+  public void setValue(Expression newValue)
   {
     if (newValue != value)
     {
@@ -204,7 +206,7 @@ public class SimpleSpecificationInitImpl extends MinimalEObjectImpl.Container im
         setType((String)newValue);
         return;
       case PoSTPackage.SIMPLE_SPECIFICATION_INIT__VALUE:
-        setValue((Constant)newValue);
+        setValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -224,7 +226,7 @@ public class SimpleSpecificationInitImpl extends MinimalEObjectImpl.Container im
         setType(TYPE_EDEFAULT);
         return;
       case PoSTPackage.SIMPLE_SPECIFICATION_INIT__VALUE:
-        setValue((Constant)null);
+        setValue((Expression)null);
         return;
     }
     super.eUnset(featureID);

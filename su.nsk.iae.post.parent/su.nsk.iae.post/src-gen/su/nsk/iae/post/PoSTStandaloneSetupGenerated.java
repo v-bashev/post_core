@@ -3,6 +3,8 @@
  */
 package su.nsk.iae.post;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
@@ -12,10 +14,6 @@ import org.eclipse.xtext.XtextPackage;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.impl.BinaryGrammarResourceFactoryImpl;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 import su.nsk.iae.post.poST.PoSTPackage;
 
 @SuppressWarnings("all")

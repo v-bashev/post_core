@@ -4,6 +4,7 @@
 package su.nsk.iae.post.poST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.PoSTPackage;

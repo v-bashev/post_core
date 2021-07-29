@@ -3,21 +3,21 @@
  */
 package su.nsk.iae.post.poST.impl;
 
-import static su.nsk.iae.post.poST.PoSTPackage.RESOURCE;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import su.nsk.iae.post.poST.AddExpression;
 import su.nsk.iae.post.poST.AddOperator;
 import su.nsk.iae.post.poST.AndExpression;
 import su.nsk.iae.post.poST.ArrayInitialization;
-import su.nsk.iae.post.poST.ArraySpecInit;
+import su.nsk.iae.post.poST.ArrayInterval;
 import su.nsk.iae.post.poST.ArraySpecification;
+import su.nsk.iae.post.poST.ArraySpecificationInit;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
@@ -236,14 +236,14 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass processStatusExpressionEClass = null;
+  private EClass processStatementElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass processStatementElementEClass = null;
+  private EClass processStatusExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -474,7 +474,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass varInitDeclarationEClass = null;
+  private EClass simpleSpecificationInitEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -482,6 +482,13 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass varListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass varInitDeclarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -523,13 +530,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass externalVarDeclarationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass externalVarInitDeclarationEClass = null;
 
   /**
@@ -537,7 +537,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass globalVarDeclarationEClass = null;
+  private EClass externalVarDeclarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -545,6 +545,13 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass globalVarInitDeclarationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass globalVarDeclarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -579,7 +586,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass arraySpecInitEClass = null;
+  private EClass arraySpecificationInitEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -587,6 +594,13 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass arraySpecificationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arrayIntervalEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -601,13 +615,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass timeLiteralEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass simpleSpecificationInitEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1635,6 +1642,28 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
+  public EClass getProcessStatementElement()
+  {
+    return processStatementElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getProcessStatementElement_Name()
+  {
+    return (EAttribute)processStatementElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getProcessStatusExpression()
   {
     return processStatusExpressionEClass;
@@ -1693,28 +1722,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EAttribute getProcessStatusExpression_Error()
   {
     return (EAttribute)processStatusExpressionEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getProcessStatementElement()
-  {
-    return processStatementElementEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getProcessStatementElement_Name()
-  {
-    return (EAttribute)processStatementElementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2515,6 +2522,61 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
+  public EClass getSimpleSpecificationInit()
+  {
+    return simpleSpecificationInitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSimpleSpecificationInit_Type()
+  {
+    return (EAttribute)simpleSpecificationInitEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSimpleSpecificationInit_Value()
+  {
+    return (EReference)simpleSpecificationInitEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getVarList()
+  {
+    return varListEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getVarList_Vars()
+  {
+    return (EReference)varListEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getVarInitDeclaration()
   {
     return varInitDeclarationEClass;
@@ -2551,28 +2613,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EReference getVarInitDeclaration_ArrSpec()
   {
     return (EReference)varInitDeclarationEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getVarList()
-  {
-    return varListEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getVarList_Vars()
-  {
-    return (EReference)varListEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2702,39 +2742,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EClass getExternalVarDeclaration()
-  {
-    return externalVarDeclarationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getExternalVarDeclaration_Const()
-  {
-    return (EAttribute)externalVarDeclarationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getExternalVarDeclaration_Vars()
-  {
-    return (EReference)externalVarDeclarationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getExternalVarInitDeclaration()
   {
     return externalVarInitDeclarationEClass;
@@ -2768,9 +2775,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EClass getGlobalVarDeclaration()
+  public EClass getExternalVarDeclaration()
   {
-    return globalVarDeclarationEClass;
+    return externalVarDeclarationEClass;
   }
 
   /**
@@ -2779,9 +2786,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EAttribute getGlobalVarDeclaration_Const()
+  public EAttribute getExternalVarDeclaration_Const()
   {
-    return (EAttribute)globalVarDeclarationEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)externalVarDeclarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2790,20 +2797,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getGlobalVarDeclaration_VarsSimple()
+  public EReference getExternalVarDeclaration_Vars()
   {
-    return (EReference)globalVarDeclarationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getGlobalVarDeclaration_VarsAs()
-  {
-    return (EReference)globalVarDeclarationEClass.getEStructuralFeatures().get(2);
+    return (EReference)externalVarDeclarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2848,6 +2844,50 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EAttribute getGlobalVarInitDeclaration_Type()
   {
     return (EAttribute)globalVarInitDeclarationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getGlobalVarDeclaration()
+  {
+    return globalVarDeclarationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getGlobalVarDeclaration_Const()
+  {
+    return (EAttribute)globalVarDeclarationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getGlobalVarDeclaration_VarsSimple()
+  {
+    return (EReference)globalVarDeclarationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getGlobalVarDeclaration_VarsAs()
+  {
+    return (EReference)globalVarDeclarationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2944,9 +2984,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EClass getArraySpecInit()
+  public EClass getArraySpecificationInit()
   {
-    return arraySpecInitEClass;
+    return arraySpecificationInitEClass;
   }
 
   /**
@@ -2955,9 +2995,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getArraySpecInit_Init()
+  public EReference getArraySpecificationInit_Init()
   {
-    return (EReference)arraySpecInitEClass.getEStructuralFeatures().get(0);
+    return (EReference)arraySpecificationInitEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2966,9 +3006,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getArraySpecInit_Values()
+  public EReference getArraySpecificationInit_Values()
   {
-    return (EReference)arraySpecInitEClass.getEStructuralFeatures().get(1);
+    return (EReference)arraySpecificationInitEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2988,7 +3028,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getArraySpecification_Start()
+  public EReference getArraySpecification_Interval()
   {
     return (EReference)arraySpecificationEClass.getEStructuralFeatures().get(0);
   }
@@ -2999,9 +3039,9 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getArraySpecification_End()
+  public EAttribute getArraySpecification_Type()
   {
-    return (EReference)arraySpecificationEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)arraySpecificationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3010,9 +3050,31 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EAttribute getArraySpecification_Type()
+  public EClass getArrayInterval()
   {
-    return (EAttribute)arraySpecificationEClass.getEStructuralFeatures().get(2);
+    return arrayIntervalEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getArrayInterval_Start()
+  {
+    return (EReference)arrayIntervalEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getArrayInterval_End()
+  {
+    return (EReference)arrayIntervalEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3057,39 +3119,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EAttribute getTimeLiteral_Interval()
   {
     return (EAttribute)timeLiteralEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getSimpleSpecificationInit()
-  {
-    return simpleSpecificationInitEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSimpleSpecificationInit_Type()
-  {
-    return (EAttribute)simpleSpecificationInitEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getSimpleSpecificationInit_Value()
-  {
-    return (EReference)simpleSpecificationInitEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3441,15 +3470,15 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     processStatementsEClass = createEClass(PROCESS_STATEMENTS);
     createEReference(processStatementsEClass, PROCESS_STATEMENTS__PROCESS);
 
+    processStatementElementEClass = createEClass(PROCESS_STATEMENT_ELEMENT);
+    createEAttribute(processStatementElementEClass, PROCESS_STATEMENT_ELEMENT__NAME);
+
     processStatusExpressionEClass = createEClass(PROCESS_STATUS_EXPRESSION);
     createEReference(processStatusExpressionEClass, PROCESS_STATUS_EXPRESSION__PROCESS);
     createEAttribute(processStatusExpressionEClass, PROCESS_STATUS_EXPRESSION__ACTIVE);
     createEAttribute(processStatusExpressionEClass, PROCESS_STATUS_EXPRESSION__INACTIVE);
     createEAttribute(processStatusExpressionEClass, PROCESS_STATUS_EXPRESSION__STOP);
     createEAttribute(processStatusExpressionEClass, PROCESS_STATUS_EXPRESSION__ERROR);
-
-    processStatementElementEClass = createEClass(PROCESS_STATEMENT_ELEMENT);
-    createEAttribute(processStatementElementEClass, PROCESS_STATEMENT_ELEMENT__NAME);
 
     startProcessStatementEClass = createEClass(START_PROCESS_STATEMENT);
 
@@ -3555,13 +3584,17 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     symbolicVariableEClass = createEClass(SYMBOLIC_VARIABLE);
     createEAttribute(symbolicVariableEClass, SYMBOLIC_VARIABLE__NAME);
 
+    simpleSpecificationInitEClass = createEClass(SIMPLE_SPECIFICATION_INIT);
+    createEAttribute(simpleSpecificationInitEClass, SIMPLE_SPECIFICATION_INIT__TYPE);
+    createEReference(simpleSpecificationInitEClass, SIMPLE_SPECIFICATION_INIT__VALUE);
+
+    varListEClass = createEClass(VAR_LIST);
+    createEReference(varListEClass, VAR_LIST__VARS);
+
     varInitDeclarationEClass = createEClass(VAR_INIT_DECLARATION);
     createEReference(varInitDeclarationEClass, VAR_INIT_DECLARATION__VAR_LIST);
     createEReference(varInitDeclarationEClass, VAR_INIT_DECLARATION__SPEC);
     createEReference(varInitDeclarationEClass, VAR_INIT_DECLARATION__ARR_SPEC);
-
-    varListEClass = createEClass(VAR_LIST);
-    createEReference(varListEClass, VAR_LIST__VARS);
 
     inputVarDeclarationEClass = createEClass(INPUT_VAR_DECLARATION);
     createEReference(inputVarDeclarationEClass, INPUT_VAR_DECLARATION__VARS);
@@ -3579,23 +3612,23 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     tempVarDeclarationEClass = createEClass(TEMP_VAR_DECLARATION);
     createEReference(tempVarDeclarationEClass, TEMP_VAR_DECLARATION__VARS);
 
-    externalVarDeclarationEClass = createEClass(EXTERNAL_VAR_DECLARATION);
-    createEAttribute(externalVarDeclarationEClass, EXTERNAL_VAR_DECLARATION__CONST);
-    createEReference(externalVarDeclarationEClass, EXTERNAL_VAR_DECLARATION__VARS);
-
     externalVarInitDeclarationEClass = createEClass(EXTERNAL_VAR_INIT_DECLARATION);
     createEReference(externalVarInitDeclarationEClass, EXTERNAL_VAR_INIT_DECLARATION__VAR_LIST);
     createEAttribute(externalVarInitDeclarationEClass, EXTERNAL_VAR_INIT_DECLARATION__TYPE);
 
-    globalVarDeclarationEClass = createEClass(GLOBAL_VAR_DECLARATION);
-    createEAttribute(globalVarDeclarationEClass, GLOBAL_VAR_DECLARATION__CONST);
-    createEReference(globalVarDeclarationEClass, GLOBAL_VAR_DECLARATION__VARS_SIMPLE);
-    createEReference(globalVarDeclarationEClass, GLOBAL_VAR_DECLARATION__VARS_AS);
+    externalVarDeclarationEClass = createEClass(EXTERNAL_VAR_DECLARATION);
+    createEAttribute(externalVarDeclarationEClass, EXTERNAL_VAR_DECLARATION__CONST);
+    createEReference(externalVarDeclarationEClass, EXTERNAL_VAR_DECLARATION__VARS);
 
     globalVarInitDeclarationEClass = createEClass(GLOBAL_VAR_INIT_DECLARATION);
     createEReference(globalVarInitDeclarationEClass, GLOBAL_VAR_INIT_DECLARATION__VAR_LIST);
     createEAttribute(globalVarInitDeclarationEClass, GLOBAL_VAR_INIT_DECLARATION__LOCATION);
     createEAttribute(globalVarInitDeclarationEClass, GLOBAL_VAR_INIT_DECLARATION__TYPE);
+
+    globalVarDeclarationEClass = createEClass(GLOBAL_VAR_DECLARATION);
+    createEAttribute(globalVarDeclarationEClass, GLOBAL_VAR_DECLARATION__CONST);
+    createEReference(globalVarDeclarationEClass, GLOBAL_VAR_DECLARATION__VARS_SIMPLE);
+    createEReference(globalVarDeclarationEClass, GLOBAL_VAR_DECLARATION__VARS_AS);
 
     processVariableEClass = createEClass(PROCESS_VARIABLE);
 
@@ -3609,24 +3642,23 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     processVarDeclarationEClass = createEClass(PROCESS_VAR_DECLARATION);
     createEReference(processVarDeclarationEClass, PROCESS_VAR_DECLARATION__VARS);
 
-    arraySpecInitEClass = createEClass(ARRAY_SPEC_INIT);
-    createEReference(arraySpecInitEClass, ARRAY_SPEC_INIT__INIT);
-    createEReference(arraySpecInitEClass, ARRAY_SPEC_INIT__VALUES);
+    arraySpecificationInitEClass = createEClass(ARRAY_SPECIFICATION_INIT);
+    createEReference(arraySpecificationInitEClass, ARRAY_SPECIFICATION_INIT__INIT);
+    createEReference(arraySpecificationInitEClass, ARRAY_SPECIFICATION_INIT__VALUES);
 
     arraySpecificationEClass = createEClass(ARRAY_SPECIFICATION);
-    createEReference(arraySpecificationEClass, ARRAY_SPECIFICATION__START);
-    createEReference(arraySpecificationEClass, ARRAY_SPECIFICATION__END);
+    createEReference(arraySpecificationEClass, ARRAY_SPECIFICATION__INTERVAL);
     createEAttribute(arraySpecificationEClass, ARRAY_SPECIFICATION__TYPE);
+
+    arrayIntervalEClass = createEClass(ARRAY_INTERVAL);
+    createEReference(arrayIntervalEClass, ARRAY_INTERVAL__START);
+    createEReference(arrayIntervalEClass, ARRAY_INTERVAL__END);
 
     arrayInitializationEClass = createEClass(ARRAY_INITIALIZATION);
     createEReference(arrayInitializationEClass, ARRAY_INITIALIZATION__ELEMENTS);
 
     timeLiteralEClass = createEClass(TIME_LITERAL);
     createEAttribute(timeLiteralEClass, TIME_LITERAL__INTERVAL);
-
-    simpleSpecificationInitEClass = createEClass(SIMPLE_SPECIFICATION_INIT);
-    createEAttribute(simpleSpecificationInitEClass, SIMPLE_SPECIFICATION_INIT__TYPE);
-    createEReference(simpleSpecificationInitEClass, SIMPLE_SPECIFICATION_INIT__VALUE);
 
     constantEClass = createEClass(CONSTANT);
     createEReference(constantEClass, CONSTANT__NUM);
@@ -3816,15 +3848,15 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEClass(processStatementsEClass, ProcessStatements.class, "ProcessStatements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcessStatements_Process(), this.getProcessStatementElement(), null, "process", null, 0, 1, ProcessStatements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(processStatementElementEClass, ProcessStatementElement.class, "ProcessStatementElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getProcessStatementElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProcessStatementElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(processStatusExpressionEClass, ProcessStatusExpression.class, "ProcessStatusExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getProcessStatusExpression_Process(), this.getProcess(), null, "process", null, 0, 1, ProcessStatusExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProcessStatusExpression_Process(), this.getProcessStatementElement(), null, "process", null, 0, 1, ProcessStatusExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProcessStatusExpression_Active(), ecorePackage.getEBoolean(), "active", null, 0, 1, ProcessStatusExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProcessStatusExpression_Inactive(), ecorePackage.getEBoolean(), "inactive", null, 0, 1, ProcessStatusExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProcessStatusExpression_Stop(), ecorePackage.getEBoolean(), "stop", null, 0, 1, ProcessStatusExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getProcessStatusExpression_Error(), ecorePackage.getEBoolean(), "error", null, 0, 1, ProcessStatusExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(processStatementElementEClass, ProcessStatementElement.class, "ProcessStatementElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getProcessStatementElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProcessStatementElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(startProcessStatementEClass, StartProcessStatement.class, "StartProcessStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3930,13 +3962,17 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEClass(symbolicVariableEClass, SymbolicVariable.class, "SymbolicVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSymbolicVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, SymbolicVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(varInitDeclarationEClass, VarInitDeclaration.class, "VarInitDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getVarInitDeclaration_VarList(), this.getVarList(), null, "varList", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVarInitDeclaration_Spec(), this.getSimpleSpecificationInit(), null, "spec", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVarInitDeclaration_ArrSpec(), this.getArraySpecInit(), null, "arrSpec", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(simpleSpecificationInitEClass, SimpleSpecificationInit.class, "SimpleSpecificationInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSimpleSpecificationInit_Type(), ecorePackage.getEString(), "type", null, 0, 1, SimpleSpecificationInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSimpleSpecificationInit_Value(), this.getExpression(), null, "value", null, 0, 1, SimpleSpecificationInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varListEClass, VarList.class, "VarList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getVarList_Vars(), this.getSymbolicVariable(), null, "vars", null, 0, -1, VarList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(varInitDeclarationEClass, VarInitDeclaration.class, "VarInitDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getVarInitDeclaration_VarList(), this.getVarList(), null, "varList", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarInitDeclaration_Spec(), this.getSimpleSpecificationInit(), null, "spec", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarInitDeclaration_ArrSpec(), this.getArraySpecificationInit(), null, "arrSpec", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(inputVarDeclarationEClass, InputVarDeclaration.class, "InputVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInputVarDeclaration_Vars(), this.getVarInitDeclaration(), null, "vars", null, 0, -1, InputVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3954,23 +3990,23 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEClass(tempVarDeclarationEClass, TempVarDeclaration.class, "TempVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTempVarDeclaration_Vars(), this.getVarInitDeclaration(), null, "vars", null, 0, -1, TempVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(externalVarDeclarationEClass, ExternalVarDeclaration.class, "ExternalVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExternalVarDeclaration_Const(), ecorePackage.getEBoolean(), "const", null, 0, 1, ExternalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExternalVarDeclaration_Vars(), this.getExternalVarInitDeclaration(), null, "vars", null, 0, -1, ExternalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(externalVarInitDeclarationEClass, ExternalVarInitDeclaration.class, "ExternalVarInitDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExternalVarInitDeclaration_VarList(), this.getVarList(), null, "varList", null, 0, 1, ExternalVarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExternalVarInitDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, ExternalVarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(globalVarDeclarationEClass, GlobalVarDeclaration.class, "GlobalVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getGlobalVarDeclaration_Const(), ecorePackage.getEBoolean(), "const", null, 0, 1, GlobalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGlobalVarDeclaration_VarsSimple(), this.getVarInitDeclaration(), null, "varsSimple", null, 0, -1, GlobalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGlobalVarDeclaration_VarsAs(), this.getGlobalVarInitDeclaration(), null, "varsAs", null, 0, -1, GlobalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(externalVarDeclarationEClass, ExternalVarDeclaration.class, "ExternalVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExternalVarDeclaration_Const(), ecorePackage.getEBoolean(), "const", null, 0, 1, ExternalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExternalVarDeclaration_Vars(), this.getExternalVarInitDeclaration(), null, "vars", null, 0, -1, ExternalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(globalVarInitDeclarationEClass, GlobalVarInitDeclaration.class, "GlobalVarInitDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGlobalVarInitDeclaration_VarList(), this.getVarList(), null, "varList", null, 0, 1, GlobalVarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGlobalVarInitDeclaration_Location(), ecorePackage.getEString(), "location", null, 0, 1, GlobalVarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getGlobalVarInitDeclaration_Type(), ecorePackage.getEString(), "type", null, 0, 1, GlobalVarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(globalVarDeclarationEClass, GlobalVarDeclaration.class, "GlobalVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getGlobalVarDeclaration_Const(), ecorePackage.getEBoolean(), "const", null, 0, 1, GlobalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGlobalVarDeclaration_VarsSimple(), this.getVarInitDeclaration(), null, "varsSimple", null, 0, -1, GlobalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGlobalVarDeclaration_VarsAs(), this.getGlobalVarInitDeclaration(), null, "varsAs", null, 0, -1, GlobalVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(processVariableEClass, ProcessVariable.class, "ProcessVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3984,24 +4020,23 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEClass(processVarDeclarationEClass, ProcessVarDeclaration.class, "ProcessVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcessVarDeclaration_Vars(), this.getProcessVarInitDeclaration(), null, "vars", null, 0, -1, ProcessVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(arraySpecInitEClass, ArraySpecInit.class, "ArraySpecInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArraySpecInit_Init(), this.getArraySpecification(), null, "init", null, 0, 1, ArraySpecInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArraySpecInit_Values(), this.getArrayInitialization(), null, "values", null, 0, 1, ArraySpecInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(arraySpecificationInitEClass, ArraySpecificationInit.class, "ArraySpecificationInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArraySpecificationInit_Init(), this.getArraySpecification(), null, "init", null, 0, 1, ArraySpecificationInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArraySpecificationInit_Values(), this.getArrayInitialization(), null, "values", null, 0, 1, ArraySpecificationInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arraySpecificationEClass, ArraySpecification.class, "ArraySpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArraySpecification_Start(), this.getSignedInteger(), null, "start", null, 0, 1, ArraySpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArraySpecification_End(), this.getSignedInteger(), null, "end", null, 0, 1, ArraySpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArraySpecification_Interval(), this.getArrayInterval(), null, "interval", null, 0, 1, ArraySpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getArraySpecification_Type(), ecorePackage.getEString(), "type", null, 0, 1, ArraySpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(arrayIntervalEClass, ArrayInterval.class, "ArrayInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArrayInterval_Start(), this.getExpression(), null, "start", null, 0, 1, ArrayInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayInterval_End(), this.getExpression(), null, "end", null, 0, 1, ArrayInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(arrayInitializationEClass, ArrayInitialization.class, "ArrayInitialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArrayInitialization_Elements(), this.getConstant(), null, "elements", null, 0, -1, ArrayInitialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayInitialization_Elements(), this.getExpression(), null, "elements", null, 0, -1, ArrayInitialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(timeLiteralEClass, TimeLiteral.class, "TimeLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTimeLiteral_Interval(), ecorePackage.getEString(), "interval", null, 0, 1, TimeLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(simpleSpecificationInitEClass, SimpleSpecificationInit.class, "SimpleSpecificationInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSimpleSpecificationInit_Type(), ecorePackage.getEString(), "type", null, 0, 1, SimpleSpecificationInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSimpleSpecificationInit_Value(), this.getConstant(), null, "value", null, 0, 1, SimpleSpecificationInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constantEClass, Constant.class, "Constant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConstant_Num(), this.getNumericLiteral(), null, "num", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

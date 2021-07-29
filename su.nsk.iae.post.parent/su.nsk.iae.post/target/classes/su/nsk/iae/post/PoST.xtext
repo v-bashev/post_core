@@ -143,11 +143,11 @@ SetStateStatement:
 ProcessStatements:
 	StartProcessStatement | StopProcessStatement | ErrorProcessStatement;
 
-ProcessStatusExpression:
-	'PROCESS' process=[Process] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
-	
 ProcessStatementElement:
 	Process | ProcessVariable;
+
+ProcessStatusExpression:
+	'PROCESS' process=[ProcessStatementElement] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
 
 StartProcessStatement:
 	{StartProcessStatement} ('START' 'PROCESS' process=[ProcessStatementElement]) | {StartProcessStatement} 'RESTART';
@@ -308,21 +308,15 @@ ArrayVariable:
 
 SymbolicVariable:
 	name=ID;
-
-terminal DIRECT_VARIABLE returns ecore::EString:
-	'%' DIRECT_TYPE_PREFIX DIRECT_SIZE_PREFIX INTEGER ('.' INTEGER)*;
-
-terminal fragment DIRECT_TYPE_PREFIX:
-	'I' | 'Q' | 'M';
-
-terminal fragment DIRECT_SIZE_PREFIX:
-	'X' | 'B' | 'W' | 'D' | 'L';
-
-VarInitDeclaration:
-	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecInit);
-
+	
+SimpleSpecificationInit:
+	{SimpleSpecificationInit} type=DataTypeName (':=' value=Expression)?;
+	
 VarList:
 	vars+=SymbolicVariable (',' vars+=SymbolicVariable)*;
+
+VarInitDeclaration:
+	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit);
 
 InputVarDeclaration:
 	{InputVarDeclaration}
@@ -354,14 +348,17 @@ TempVarDeclaration:
 		(vars+=VarInitDeclaration ';')*
 	'END_VAR';
 
+ExternalVarInitDeclaration:
+	varList=VarList ':' type=DataTypeName;
+	
 ExternalVarDeclaration:
 	{ExternalVarDeclaration}
 	'VAR_EXTERNAL' (const?='CONSTANT')?
 		(vars+=ExternalVarInitDeclaration ';')*
 	'END_VAR';
-
-ExternalVarInitDeclaration:
-	varList=VarList ':' type=DataTypeName;
+	
+GlobalVarInitDeclaration:
+	varList=VarList 'AT' location=DIRECT_VARIABLE ':' type=DataTypeName;
 
 GlobalVarDeclaration:
 	{GlobalVarDeclaration}
@@ -371,9 +368,6 @@ GlobalVarDeclaration:
 			(varsAs+=GlobalVarInitDeclaration ';')
 		)*
 	'END_VAR';
-
-GlobalVarInitDeclaration:
-	varList=VarList 'AT' location=DIRECT_VARIABLE ':' type=DataTypeName;
 
 /* ======================= END Variables ======================= */
 
@@ -398,22 +392,24 @@ ProcessVarDeclaration:
 
 /* ======================= START Array ======================= */
 	
-ArraySpecInit:
+ArraySpecificationInit:
 	init=ArraySpecification (':=' values=ArrayInitialization)?;
 
 ArraySpecification:
-	'ARRAY' '[' start=SignedInteger '..' end=SignedInteger ']' 'OF' type=DataTypeName;
+	'ARRAY' '[' (interval=ArrayInterval | '*') ']' 'OF' type=DataTypeName;
+	
+ArrayInterval:
+	start=Expression '..' end=Expression;
 
 ArrayInitialization :
-	'[' elements+=Constant (',' elements+=Constant)* ']';
+	'[' elements+=Expression (',' elements+=Expression)* ']';
 
 /* ======================= END Array ======================= */
 	
 /* ======================= START Time Literals ======================= */
 
 TimeLiteral:
-	 TIME_PREF_LITERAL '#' '-'? interval=INTERVAL
-;
+	 TIME_PREF_LITERAL '#' '-'? interval=INTERVAL;
 
 terminal TIME_PREF_LITERAL:
 	'T';
@@ -422,6 +418,19 @@ terminal INTERVAL returns ecore::EString:
 	(INTEGER 'd')? (INTEGER 'h')? (INTEGER 'm')? (INTEGER 's')? (INTEGER 'ms')?;
 
 /* ======================= END Time Literals ======================= */
+
+/* ======================= START Direct Variables ======================= */
+
+terminal DIRECT_VARIABLE returns ecore::EString:
+	'%' DIRECT_TYPE_PREFIX DIRECT_SIZE_PREFIX INTEGER ('.' INTEGER)*;
+
+terminal fragment DIRECT_TYPE_PREFIX:
+	'I' | 'Q' | 'M';
+
+terminal fragment DIRECT_SIZE_PREFIX:
+	'X' | 'B' | 'W' | 'D' | 'L';
+	
+/* ======================= END Direct Variables ======================= */
 	
 /* ======================= START Elementary data types ======================= */
 
@@ -451,9 +460,6 @@ terminal TIME_TYPE_NAME returns ecore::EString:
 	
 terminal STRING_TYPE_NAME returns ecore::EString:
 	'STRING' | 'WSTRING';
-
-SimpleSpecificationInit:
-	{SimpleSpecificationInit} type=DataTypeName (':=' value=Constant)?;
 
 /* ======================= END Elementary data types ======================= */
 	

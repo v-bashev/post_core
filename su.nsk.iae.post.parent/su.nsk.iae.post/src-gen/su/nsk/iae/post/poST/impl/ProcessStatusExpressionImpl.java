@@ -4,12 +4,15 @@
 package su.nsk.iae.post.poST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.PoSTPackage;
+import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
 
 /**
@@ -39,7 +42,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * @generated
    * @ordered
    */
-  protected su.nsk.iae.post.poST.Process process;
+  protected ProcessStatementElement process;
 
   /**
    * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
@@ -148,12 +151,12 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public su.nsk.iae.post.poST.Process getProcess()
+  public ProcessStatementElement getProcess()
   {
     if (process != null && process.eIsProxy())
     {
       InternalEObject oldProcess = (InternalEObject)process;
-      process = (su.nsk.iae.post.poST.Process)eResolveProxy(oldProcess);
+      process = (ProcessStatementElement)eResolveProxy(oldProcess);
       if (process != oldProcess)
       {
         if (eNotificationRequired())
@@ -168,7 +171,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public su.nsk.iae.post.poST.Process basicGetProcess()
+  public ProcessStatementElement basicGetProcess()
   {
     return process;
   }
@@ -179,9 +182,9 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public void setProcess(su.nsk.iae.post.poST.Process newProcess)
+  public void setProcess(ProcessStatementElement newProcess)
   {
-    su.nsk.iae.post.poST.Process oldProcess = process;
+    ProcessStatementElement oldProcess = process;
     process = newProcess;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROCESS_STATUS_EXPRESSION__PROCESS, oldProcess, process));
@@ -323,7 +326,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__PROCESS:
-        setProcess((su.nsk.iae.post.poST.Process)newValue);
+        setProcess((ProcessStatementElement)newValue);
         return;
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__ACTIVE:
         setActive((Boolean)newValue);
@@ -352,7 +355,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__PROCESS:
-        setProcess((su.nsk.iae.post.poST.Process)null);
+        setProcess((ProcessStatementElement)null);
         return;
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__ACTIVE:
         setActive(ACTIVE_EDEFAULT);

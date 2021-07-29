@@ -45,6 +45,7 @@ import su.nsk.iae.post.poST.VarDeclaration
 import su.nsk.iae.post.poST.VarInitDeclaration
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import su.nsk.iae.post.poST.ArraySpecification
 
 class PoSTValidator extends AbstractPoSTValidator {
 	
@@ -141,6 +142,14 @@ class PoSTValidator extends AbstractPoSTValidator {
 		}
 	}
 	
+	@Check
+	def checkArraySpecification_Star(ArraySpecification ele) {
+		if (ele.interval === null) {
+			if (!ele.checkContainer(InputVarDeclaration) && !ele.checkContainer(InputOutputVarDeclaration)) {
+				error("Definition error: Arrays with variable length available only in VAR_INPUT", null)
+			}
+		}
+	}
 
 /* ======================= END Variables Checks ======================= */
 
@@ -379,10 +388,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	def checkProcessStatusExpression_NameConflicts(ProcessStatusExpression ele) {
-		val program = ele.getContainerOfType(Program)
-		if (!program.processes.contains(ele.process)) {
-			error("Name error: Program does not contain a Process with this name", ePackage.processStatusExpression_Process)
-		}
+		ele.checkProcessStatement_NameConflicts(ele.process)
 	}
 	
 	@Check
@@ -400,6 +406,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 			val program = ele.getContainerOfType(Program)
 			if (!program.processes.contains(ele)) {
 				error("Name error: Program does not contain a Process with this name", ePackage.processStatements_Process)
+				return
 			}
 		}
 	}

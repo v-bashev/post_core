@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.ArraySpecification#getStart <em>Start</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.ArraySpecification#getEnd <em>End</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.ArraySpecification#getInterval <em>Interval</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.ArraySpecification#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -26,48 +25,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface ArraySpecification extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Start</b></em>' containment reference.
+   * Returns the value of the '<em><b>Interval</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Start</em>' containment reference.
-   * @see #setStart(SignedInteger)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecification_Start()
+   * @return the value of the '<em>Interval</em>' containment reference.
+   * @see #setInterval(ArrayInterval)
+   * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecification_Interval()
    * @model containment="true"
    * @generated
    */
-  SignedInteger getStart();
+  ArrayInterval getInterval();
 
   /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.ArraySpecification#getStart <em>Start</em>}' containment reference.
+   * Sets the value of the '{@link su.nsk.iae.post.poST.ArraySpecification#getInterval <em>Interval</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Start</em>' containment reference.
-   * @see #getStart()
+   * @param value the new value of the '<em>Interval</em>' containment reference.
+   * @see #getInterval()
    * @generated
    */
-  void setStart(SignedInteger value);
-
-  /**
-   * Returns the value of the '<em><b>End</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>End</em>' containment reference.
-   * @see #setEnd(SignedInteger)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecification_End()
-   * @model containment="true"
-   * @generated
-   */
-  SignedInteger getEnd();
-
-  /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.ArraySpecification#getEnd <em>End</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>End</em>' containment reference.
-   * @see #getEnd()
-   * @generated
-   */
-  void setEnd(SignedInteger value);
+  void setInterval(ArrayInterval value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.

@@ -32,12 +32,12 @@ public interface ProcessStatusExpression extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Process</em>' reference.
-   * @see #setProcess(su.nsk.iae.post.poST.Process)
+   * @see #setProcess(ProcessStatementElement)
    * @see su.nsk.iae.post.poST.PoSTPackage#getProcessStatusExpression_Process()
    * @model
    * @generated
    */
-  su.nsk.iae.post.poST.Process getProcess();
+  ProcessStatementElement getProcess();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.ProcessStatusExpression#getProcess <em>Process</em>}' reference.
@@ -47,7 +47,7 @@ public interface ProcessStatusExpression extends EObject
    * @see #getProcess()
    * @generated
    */
-  void setProcess(su.nsk.iae.post.poST.Process value);
+  void setProcess(ProcessStatementElement value);
 
   /**
    * Returns the value of the '<em><b>Active</b></em>' attribute.
