@@ -25,7 +25,7 @@ import su.nsk.iae.post.poST.SymbolicVariable;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.impl.ArrayVariableImpl#getVarName <em>Var Name</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ArrayVariableImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ArrayVariableImpl#getIndex <em>Index</em>}</li>
  * </ul>
  *
@@ -34,14 +34,14 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements ArrayVariable
 {
   /**
-   * The cached value of the '{@link #getVarName() <em>Var Name</em>}' reference.
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVarName()
+   * @see #getVariable()
    * @generated
    * @ordered
    */
-  protected SymbolicVariable varName;
+  protected SymbolicVariable variable;
 
   /**
    * The cached value of the '{@link #getIndex() <em>Index</em>}' containment reference.
@@ -80,19 +80,19 @@ public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements A
    * @generated
    */
   @Override
-  public SymbolicVariable getVarName()
+  public SymbolicVariable getVariable()
   {
-    if (varName != null && varName.eIsProxy())
+    if (variable != null && variable.eIsProxy())
     {
-      InternalEObject oldVarName = (InternalEObject)varName;
-      varName = (SymbolicVariable)eResolveProxy(oldVarName);
-      if (varName != oldVarName)
+      InternalEObject oldVariable = (InternalEObject)variable;
+      variable = (SymbolicVariable)eResolveProxy(oldVariable);
+      if (variable != oldVariable)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PoSTPackage.ARRAY_VARIABLE__VAR_NAME, oldVarName, varName));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PoSTPackage.ARRAY_VARIABLE__VARIABLE, oldVariable, variable));
       }
     }
-    return varName;
+    return variable;
   }
 
   /**
@@ -100,9 +100,9 @@ public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements A
    * <!-- end-user-doc -->
    * @generated
    */
-  public SymbolicVariable basicGetVarName()
+  public SymbolicVariable basicGetVariable()
   {
-    return varName;
+    return variable;
   }
 
   /**
@@ -111,12 +111,12 @@ public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements A
    * @generated
    */
   @Override
-  public void setVarName(SymbolicVariable newVarName)
+  public void setVariable(SymbolicVariable newVariable)
   {
-    SymbolicVariable oldVarName = varName;
-    varName = newVarName;
+    SymbolicVariable oldVariable = variable;
+    variable = newVariable;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_VARIABLE__VAR_NAME, oldVarName, varName));
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_VARIABLE__VARIABLE, oldVariable, variable));
   }
 
   /**
@@ -195,9 +195,9 @@ public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_VARIABLE__VAR_NAME:
-        if (resolve) return getVarName();
-        return basicGetVarName();
+      case PoSTPackage.ARRAY_VARIABLE__VARIABLE:
+        if (resolve) return getVariable();
+        return basicGetVariable();
       case PoSTPackage.ARRAY_VARIABLE__INDEX:
         return getIndex();
     }
@@ -214,8 +214,8 @@ public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_VARIABLE__VAR_NAME:
-        setVarName((SymbolicVariable)newValue);
+      case PoSTPackage.ARRAY_VARIABLE__VARIABLE:
+        setVariable((SymbolicVariable)newValue);
         return;
       case PoSTPackage.ARRAY_VARIABLE__INDEX:
         setIndex((Expression)newValue);
@@ -234,8 +234,8 @@ public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_VARIABLE__VAR_NAME:
-        setVarName((SymbolicVariable)null);
+      case PoSTPackage.ARRAY_VARIABLE__VARIABLE:
+        setVariable((SymbolicVariable)null);
         return;
       case PoSTPackage.ARRAY_VARIABLE__INDEX:
         setIndex((Expression)null);
@@ -254,8 +254,8 @@ public class ArrayVariableImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_VARIABLE__VAR_NAME:
-        return varName != null;
+      case PoSTPackage.ARRAY_VARIABLE__VARIABLE:
+        return variable != null;
       case PoSTPackage.ARRAY_VARIABLE__INDEX:
         return index != null;
     }

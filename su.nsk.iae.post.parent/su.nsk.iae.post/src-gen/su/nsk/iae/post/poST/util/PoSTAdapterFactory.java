@@ -47,9 +47,14 @@ import su.nsk.iae.post.poST.OutputVarDeclaration;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
+import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
 import su.nsk.iae.post.poST.ProcessTemplateElements;
+import su.nsk.iae.post.poST.ProcessVarDeclaration;
+import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
+import su.nsk.iae.post.poST.ProcessVarList;
+import su.nsk.iae.post.poST.ProcessVariable;
 import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
@@ -240,6 +245,11 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseProcessStatusExpression(ProcessStatusExpression object)
       {
         return createProcessStatusExpressionAdapter();
+      }
+      @Override
+      public Adapter caseProcessStatementElement(ProcessStatementElement object)
+      {
+        return createProcessStatementElementAdapter();
       }
       @Override
       public Adapter caseStartProcessStatement(StartProcessStatement object)
@@ -455,6 +465,26 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseGlobalVarInitDeclaration(GlobalVarInitDeclaration object)
       {
         return createGlobalVarInitDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseProcessVariable(ProcessVariable object)
+      {
+        return createProcessVariableAdapter();
+      }
+      @Override
+      public Adapter caseProcessVarList(ProcessVarList object)
+      {
+        return createProcessVarListAdapter();
+      }
+      @Override
+      public Adapter caseProcessVarInitDeclaration(ProcessVarInitDeclaration object)
+      {
+        return createProcessVarInitDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseProcessVarDeclaration(ProcessVarDeclaration object)
+      {
+        return createProcessVarDeclarationAdapter();
       }
       @Override
       public Adapter caseArraySpecInit(ArraySpecInit object)
@@ -809,6 +839,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createProcessStatusExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessStatementElement <em>Process Statement Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessStatementElement
+   * @generated
+   */
+  public Adapter createProcessStatementElementAdapter()
   {
     return null;
   }
@@ -1454,6 +1499,66 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGlobalVarInitDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVariable <em>Process Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVariable
+   * @generated
+   */
+  public Adapter createProcessVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVarList <em>Process Var List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVarList
+   * @generated
+   */
+  public Adapter createProcessVarListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVarInitDeclaration <em>Process Var Init Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVarInitDeclaration
+   * @generated
+   */
+  public Adapter createProcessVarInitDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVarDeclaration <em>Process Var Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVarDeclaration
+   * @generated
+   */
+  public Adapter createProcessVarDeclarationAdapter()
   {
     return null;
   }

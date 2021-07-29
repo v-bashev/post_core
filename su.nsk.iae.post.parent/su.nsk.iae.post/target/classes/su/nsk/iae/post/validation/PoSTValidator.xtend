@@ -41,6 +41,10 @@ import su.nsk.iae.post.poST.VarDeclaration
 import su.nsk.iae.post.poST.VarInitDeclaration
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import su.nsk.iae.post.poST.ProcessVariable
+import su.nsk.iae.post.poST.ProcessVarInitDeclaration
+import su.nsk.iae.post.poST.ProcessVarDeclaration
+import su.nsk.iae.post.poST.ProcessStatementElement
 
 class PoSTValidator extends AbstractPoSTValidator {
 	
@@ -79,6 +83,15 @@ class PoSTValidator extends AbstractPoSTValidator {
 			error("Name error: Conflict with the name of a global variable",
 					ePackage.symbolicVariable_Name)
 			return
+		}
+	}
+	
+	@Check
+	def checkProcessVariable_NameConflicts(ProcessVariable ele) {
+		val process = ele.getContainerOfType(Process)
+		if ((process !== null) && process.checkNameRepetition(ele)) {
+			error("Name error: Process already has a variable with this name",
+					ePackage.symbolicVariable_Name)
 		}
 	}
 	
@@ -223,19 +236,19 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkProcess_NameConflicts(Process ele) {
 		val program = ele.getContainerOfType(Program)
 		if ((program !== null) && program.checkNameRepetition(ele)) {
-			error("Name error: Program already has a Process with this name", ePackage.process_Name)
+			error("Name error: Program already has a Process with this name", ePackage.processStatementElement_Name)
 			return
 		}
 		val fb = ele.getContainerOfType(FunctionBlock)
 		if (fb.checkNameRepetition(ele)) {
-			error("Name error: FunctionBlock already has a Process with this name", ePackage.process_Name)
+			error("Name error: FunctionBlock already has a Process with this name", ePackage.processStatementElement_Name)
 		}
 	}
 	
 	@Check
 	def checkProcess_Empty(Process ele) {
 		if (ele.states.empty) {
-			error("Statement error: Process can't be empty", ePackage.process_Name)
+			error("Statement error: Process can't be empty", ePackage.processStatementElement_Name)
 		}
 	}
 	
@@ -247,7 +260,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 				return
 			}
 			if (!program.processes.checkProcessStart(ele)) {
-				warning("Process is unreachable", ePackage.process_Name)
+				warning("Process is unreachable", ePackage.processStatementElement_Name)
 			}
 			return
 		}
@@ -256,7 +269,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 			return
 		}
 		if (!fb.processes.checkProcessStart(ele)) {
-			warning("Process is unreachable", ePackage.process_Name)
+			warning("Process is unreachable", ePackage.processStatementElement_Name)
 		}
 	}
 	
@@ -335,35 +348,17 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	def checkStartProcessStatement_NameConflicts(StartProcessStatement ele) {
-		if (ele.process === null) {
-			return
-		}
-		val program = ele.getContainerOfType(Program)
-		if (!program.processes.contains(ele.process)) {
-			error("Name error: Program does not contain a Process with this name", ePackage.processStatements_Process)
-		}
+		ele.checkProcessStatement_NameConflicts(ele.process)
 	}
 	
 	@Check
 	def checkStopProcessStatement_NameConflicts(StopProcessStatement ele) {
-		if (ele.process === null) {
-			return
-		}
-		val program = ele.getContainerOfType(Program)
-		if (!program.processes.contains(ele.process)) {
-			error("Name error: Program does not contain a Process with this name", ePackage.processStatements_Process)
-		}
+		ele.checkProcessStatement_NameConflicts(ele.process)
 	}
 	
 	@Check
 	def checkErrorProcessStatement_NameConflicts(ErrorProcessStatement ele) {
-		if (ele.process === null) {
-			return
-		}
-		val program = ele.getContainerOfType(Program)
-		if (!program.processes.contains(ele.process)) {
-			error("Name error: Program does not contain a Process with this name", ePackage.processStatements_Process)
-		}
+		ele.checkProcessStatement_NameConflicts(ele.process)
 	}
 	
 	@Check
@@ -378,6 +373,18 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkTimeoutStatement_Empty(TimeoutStatement ele) {
 		if (ele.statement.statements.empty) {
 			error("Statement error: No reaction on timeout", ePackage.timeoutStatement_Statement)
+		}
+	}
+	
+	private def checkProcessStatement_NameConflicts(EObject context, ProcessStatementElement ele) {
+		if (ele === null) {
+			return
+		}
+		if (ele instanceof Process) {
+			val program = ele.getContainerOfType(Program)
+			if (!program.processes.contains(ele)) {
+				error("Name error: Program does not contain a Process with this name", ePackage.processStatements_Process)
+			}
 		}
 	}
 	
@@ -438,35 +445,6 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	private def <T extends Statement> boolean containsType(EObject ele, Class<T> type) {
-		/*for (s : list.statements) {
-			if (type.isInstance(type)) {
-				return true
-			}
-			if (s instanceof IfStatement) {
-				if (s.mainStatement.containsStatement(type)) {
-					return true
-				}
-				for (ss : s.elseIfStatements) {
-					if (ss.containsStatement(type)) {
-						return true
-					}
-				}
-				if ((s.elseStatement !== null) && s.elseStatement.containsStatement(type)) {
-					return true
-				}
-			}
-			if (s instanceof CaseStatement) {
-				for (ss : s.caseElements) {
-					if (ss.statement.containsStatement(type)) {
-						return true
-					}
-				}
-				if ((s.elseStatement !== null) && s.elseStatement.containsStatement(type)) {
-					return true
-				}
-			}
-		}
-		return false*/
 		return ele.getAllContentsOfType(type).size !== 0
 	}
 	
@@ -538,6 +516,10 @@ class PoSTValidator extends AbstractPoSTValidator {
 			   process.procTempVars.checkVarRepetition_TempVarDeclaration(ele)
 	}
 	
+	private def boolean checkNameRepetition(Process process, ProcessVariable ele) {
+		return process.procProcessVars.checkVarRepetition_ProcessVarDeclaration(ele)
+	}
+	
 	private def boolean checkVarRepetition_InputVarDeclaration(EList<InputVarDeclaration> varList, SymbolicVariable ele) {
 		return varList.stream.anyMatch([x | x.vars.checkVarRepetition_VarInitDeclaration(ele)])
 	}
@@ -566,6 +548,10 @@ class PoSTValidator extends AbstractPoSTValidator {
 		return varList.stream.anyMatch([x | x.varsSimple.checkVarRepetition_VarInitDeclaration(ele)]) || 
 			   varList.stream.anyMatch([x | x.varsAs.checkVarRepetition_GlobalVarInitDeclaration(ele)])
 	}
+	
+	private def boolean checkVarRepetition_ProcessVarDeclaration(EList<ProcessVarDeclaration> varList, ProcessVariable ele) {
+		return varList.stream.anyMatch([x | x.vars.checkVarRepetition_ProcessVarInitDeclaration(ele)])
+	}
 
 	private def boolean checkVarRepetition_VarInitDeclaration(EList<VarInitDeclaration> varList, SymbolicVariable ele) {
 		varList.stream.map([x | x.varList.vars]).flatMap([x | x.stream]).anyMatch([x | (x !== ele) && x.name.equals(ele.name)])
@@ -578,4 +564,9 @@ class PoSTValidator extends AbstractPoSTValidator {
 	private def boolean checkVarRepetition_GlobalVarInitDeclaration(EList<GlobalVarInitDeclaration> varList, SymbolicVariable ele) {
 		varList.stream.map([x | x.varList.vars]).flatMap([x | x.stream]).anyMatch([x | (x !== ele) && x.name.equals(ele.name)])
 	}
+	
+	private def boolean checkVarRepetition_ProcessVarInitDeclaration(EList<ProcessVarInitDeclaration> varList, ProcessVariable ele) {
+		varList.stream.map([x | x.varList.vars]).flatMap([x | x.stream]).anyMatch([x | (x !== ele) && x.name.equals(ele.name)])
+	}
+	
 }

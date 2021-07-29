@@ -27,7 +27,8 @@ Resource:
 	'END_RESOURCE';
 
 SingleResource:
-	{SingleResource} (
+	{SingleResource} 
+	(
 		(tasks+=Task ';') |
 		(programConfs+=ProgramConfiguration ';')
 	)*;
@@ -118,6 +119,7 @@ Process:
 			procInVars+=InputVarDeclaration | 
 			procOutVars+=OutputVarDeclaration |
 			procInOutVars+=InputOutputVarDeclaration |
+			procProcessVars+=ProcessVarDeclaration |
 			procVars+=VarDeclaration | 
 			procTempVars+=TempVarDeclaration
 		)*
@@ -143,15 +145,18 @@ ProcessStatements:
 
 ProcessStatusExpression:
 	'PROCESS' process=[Process] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
+	
+ProcessStatementElement:
+	Process | ProcessVariable;
 
 StartProcessStatement:
-	{StartProcessStatement} ('START' 'PROCESS' process=[Process]) | {StartProcessStatement} 'RESTART';
+	{StartProcessStatement} ('START' 'PROCESS' process=[ProcessStatementElement]) | {StartProcessStatement} 'RESTART';
 
 StopProcessStatement:
-	{StopProcessStatement} 'STOP' ('PROCESS' process=[Process])?;
+	{StopProcessStatement} 'STOP' ('PROCESS' process=[ProcessStatementElement])?;
 
 ErrorProcessStatement:
-	{ErrorProcessStatement} 'ERROR' ('PROCESS' process=[Process])?;
+	{ErrorProcessStatement} 'ERROR' ('PROCESS' process=[ProcessStatementElement])?;
 
 TimeoutStatement:
 	'TIMEOUT' (const=Constant | variable=[SymbolicVariable]) 'THEN'
@@ -160,8 +165,6 @@ TimeoutStatement:
 
 ResetTimerStatement:
 	{ResetTimerStatement} 'RESET' 'TIMER';
-
-	
 
 /* ======================= END poST Expression ======================= */
 	
@@ -297,7 +300,7 @@ ExitStatement:
 	{ExitStatement} 'EXIT';
 	
 ArrayVariable:
-	varName=[SymbolicVariable] '[' index=Expression ']';
+	variable=[SymbolicVariable] '[' index=Expression ']';
 
 /* ======================= END ST Expression ======================= */
 	
@@ -322,50 +325,76 @@ VarList:
 	vars+=SymbolicVariable (',' vars+=SymbolicVariable)*;
 
 InputVarDeclaration:
+	{InputVarDeclaration}
 	'VAR_INPUT'
-		(vars+=VarInitDeclaration ';')+
+		(vars+=VarInitDeclaration ';')*
 	'END_VAR';
 
 OutputVarDeclaration:
+	{OutputVarDeclaration}
 	'VAR_OUTPUT'
-		(vars+=VarInitDeclaration ';')+
+		(vars+=VarInitDeclaration ';')*
 	'END_VAR';
 
 InputOutputVarDeclaration:
+	{InputOutputVarDeclaration}
 	'VAR_IN_OUT'
-		(vars+=VarInitDeclaration ';')+
+		(vars+=VarInitDeclaration ';')*
 	'END_VAR';
 
 VarDeclaration:
+	{VarDeclaration}
 	'VAR' (const?='CONSTANT')?
-		(vars+=VarInitDeclaration ';')+
+		(vars+=VarInitDeclaration ';')*
 	'END_VAR';
 
 TempVarDeclaration:
+	{TempVarDeclaration}
 	'VAR_TEMP'
-		(vars+=VarInitDeclaration ';')+
+		(vars+=VarInitDeclaration ';')*
 	'END_VAR';
 
 ExternalVarDeclaration:
+	{ExternalVarDeclaration}
 	'VAR_EXTERNAL' (const?='CONSTANT')?
-		(vars+=ExternalVarInitDeclaration ';')+
+		(vars+=ExternalVarInitDeclaration ';')*
 	'END_VAR';
 
 ExternalVarInitDeclaration:
 	varList=VarList ':' type=DataTypeName;
 
 GlobalVarDeclaration:
+	{GlobalVarDeclaration}
 	'VAR_GLOBAL' (const?='CONSTANT')?
 		(
 			(varsSimple+=VarInitDeclaration ';') | 
 			(varsAs+=GlobalVarInitDeclaration ';')
-		)+
+		)*
 	'END_VAR';
 
 GlobalVarInitDeclaration:
 	varList=VarList 'AT' location=DIRECT_VARIABLE ':' type=DataTypeName;
 
 /* ======================= END Variables ======================= */
+
+/* ======================= START poST Variables ======================= */
+
+ProcessVariable:
+	name=ID;
+	
+ProcessVarList:
+	vars+=ProcessVariable (',' vars+=ProcessVariable)*;
+	
+ProcessVarInitDeclaration:
+	varList=ProcessVarList ':' process=[Process];
+
+ProcessVarDeclaration:
+	{ProcessVarDeclaration}
+	'VAR_PROCESS'
+		(vars+=ProcessVarInitDeclaration ';')*
+	'END_VAR';
+
+/* ======================= END poST Variables ======================= */
 
 /* ======================= START Array ======================= */
 	

@@ -195,6 +195,15 @@ public interface PoSTFactory extends EFactory
   ProcessStatusExpression createProcessStatusExpression();
 
   /**
+   * Returns a new object of class '<em>Process Statement Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Statement Element</em>'.
+   * @generated
+   */
+  ProcessStatementElement createProcessStatementElement();
+
+  /**
    * Returns a new object of class '<em>Start Process Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -580,6 +589,42 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   GlobalVarInitDeclaration createGlobalVarInitDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Process Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Variable</em>'.
+   * @generated
+   */
+  ProcessVariable createProcessVariable();
+
+  /**
+   * Returns a new object of class '<em>Process Var List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Var List</em>'.
+   * @generated
+   */
+  ProcessVarList createProcessVarList();
+
+  /**
+   * Returns a new object of class '<em>Process Var Init Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Var Init Declaration</em>'.
+   * @generated
+   */
+  ProcessVarInitDeclaration createProcessVarInitDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Process Var Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Var Declaration</em>'.
+   * @generated
+   */
+  ProcessVarDeclaration createProcessVarDeclaration();
 
   /**
    * Returns a new object of class '<em>Array Spec Init</em>'.

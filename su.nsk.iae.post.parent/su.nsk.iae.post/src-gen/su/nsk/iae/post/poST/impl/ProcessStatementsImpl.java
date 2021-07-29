@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import su.nsk.iae.post.poST.PoSTPackage;
+import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatements;
 
 /**
@@ -36,7 +37,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * @generated
    * @ordered
    */
-  protected su.nsk.iae.post.poST.Process process;
+  protected ProcessStatementElement process;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,12 +66,12 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * @generated
    */
   @Override
-  public su.nsk.iae.post.poST.Process getProcess()
+  public ProcessStatementElement getProcess()
   {
     if (process != null && process.eIsProxy())
     {
       InternalEObject oldProcess = (InternalEObject)process;
-      process = (su.nsk.iae.post.poST.Process)eResolveProxy(oldProcess);
+      process = (ProcessStatementElement)eResolveProxy(oldProcess);
       if (process != oldProcess)
       {
         if (eNotificationRequired())
@@ -85,7 +86,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * <!-- end-user-doc -->
    * @generated
    */
-  public su.nsk.iae.post.poST.Process basicGetProcess()
+  public ProcessStatementElement basicGetProcess()
   {
     return process;
   }
@@ -96,9 +97,9 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * @generated
    */
   @Override
-  public void setProcess(su.nsk.iae.post.poST.Process newProcess)
+  public void setProcess(ProcessStatementElement newProcess)
   {
-    su.nsk.iae.post.poST.Process oldProcess = process;
+    ProcessStatementElement oldProcess = process;
     process = newProcess;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROCESS_STATEMENTS__PROCESS, oldProcess, process));
@@ -132,7 +133,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATEMENTS__PROCESS:
-        setProcess((su.nsk.iae.post.poST.Process)newValue);
+        setProcess((ProcessStatementElement)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -149,7 +150,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATEMENTS__PROCESS:
-        setProcess((su.nsk.iae.post.poST.Process)null);
+        setProcess((ProcessStatementElement)null);
         return;
     }
     super.eUnset(featureID);

@@ -55,9 +55,14 @@ import su.nsk.iae.post.poST.PoSTFactory;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
+import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
 import su.nsk.iae.post.poST.ProcessTemplateElements;
+import su.nsk.iae.post.poST.ProcessVarDeclaration;
+import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
+import su.nsk.iae.post.poST.ProcessVarList;
+import su.nsk.iae.post.poST.ProcessVariable;
 import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
@@ -163,6 +168,7 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.SET_STATE_STATEMENT: return createSetStateStatement();
       case PoSTPackage.PROCESS_STATEMENTS: return createProcessStatements();
       case PoSTPackage.PROCESS_STATUS_EXPRESSION: return createProcessStatusExpression();
+      case PoSTPackage.PROCESS_STATEMENT_ELEMENT: return createProcessStatementElement();
       case PoSTPackage.START_PROCESS_STATEMENT: return createStartProcessStatement();
       case PoSTPackage.STOP_PROCESS_STATEMENT: return createStopProcessStatement();
       case PoSTPackage.ERROR_PROCESS_STATEMENT: return createErrorProcessStatement();
@@ -206,6 +212,10 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.EXTERNAL_VAR_INIT_DECLARATION: return createExternalVarInitDeclaration();
       case PoSTPackage.GLOBAL_VAR_DECLARATION: return createGlobalVarDeclaration();
       case PoSTPackage.GLOBAL_VAR_INIT_DECLARATION: return createGlobalVarInitDeclaration();
+      case PoSTPackage.PROCESS_VARIABLE: return createProcessVariable();
+      case PoSTPackage.PROCESS_VAR_LIST: return createProcessVarList();
+      case PoSTPackage.PROCESS_VAR_INIT_DECLARATION: return createProcessVarInitDeclaration();
+      case PoSTPackage.PROCESS_VAR_DECLARATION: return createProcessVarDeclaration();
       case PoSTPackage.ARRAY_SPEC_INIT: return createArraySpecInit();
       case PoSTPackage.ARRAY_SPECIFICATION: return createArraySpecification();
       case PoSTPackage.ARRAY_INITIALIZATION: return createArrayInitialization();
@@ -501,6 +511,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ProcessStatusExpressionImpl processStatusExpression = new ProcessStatusExpressionImpl();
     return processStatusExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ProcessStatementElement createProcessStatementElement()
+  {
+    ProcessStatementElementImpl processStatementElement = new ProcessStatementElementImpl();
+    return processStatementElement;
   }
 
   /**
@@ -1017,6 +1039,54 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     GlobalVarInitDeclarationImpl globalVarInitDeclaration = new GlobalVarInitDeclarationImpl();
     return globalVarInitDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ProcessVariable createProcessVariable()
+  {
+    ProcessVariableImpl processVariable = new ProcessVariableImpl();
+    return processVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ProcessVarList createProcessVarList()
+  {
+    ProcessVarListImpl processVarList = new ProcessVarListImpl();
+    return processVarList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ProcessVarInitDeclaration createProcessVarInitDeclaration()
+  {
+    ProcessVarInitDeclarationImpl processVarInitDeclaration = new ProcessVarInitDeclarationImpl();
+    return processVarInitDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ProcessVarDeclaration createProcessVarDeclaration()
+  {
+    ProcessVarDeclarationImpl processVarDeclaration = new ProcessVarDeclarationImpl();
+    return processVarDeclaration;
   }
 
   /**

@@ -27,12 +27,12 @@ public interface ProcessStatements extends Statement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Process</em>' reference.
-   * @see #setProcess(su.nsk.iae.post.poST.Process)
+   * @see #setProcess(ProcessStatementElement)
    * @see su.nsk.iae.post.poST.PoSTPackage#getProcessStatements_Process()
    * @model
    * @generated
    */
-  su.nsk.iae.post.poST.Process getProcess();
+  ProcessStatementElement getProcess();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.ProcessStatements#getProcess <em>Process</em>}' reference.
@@ -42,6 +42,6 @@ public interface ProcessStatements extends Statement
    * @see #getProcess()
    * @generated
    */
-  void setProcess(su.nsk.iae.post.poST.Process value);
+  void setProcess(ProcessStatementElement value);
 
 } // ProcessStatements

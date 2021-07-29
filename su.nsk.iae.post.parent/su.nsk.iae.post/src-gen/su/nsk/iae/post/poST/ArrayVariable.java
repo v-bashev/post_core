@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.ArrayVariable#getVarName <em>Var Name</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.ArrayVariable#getVariable <em>Variable</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.ArrayVariable#getIndex <em>Index</em>}</li>
  * </ul>
  *
@@ -25,26 +25,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface ArrayVariable extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Var Name</b></em>' reference.
+   * Returns the value of the '<em><b>Variable</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var Name</em>' reference.
-   * @see #setVarName(SymbolicVariable)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getArrayVariable_VarName()
+   * @return the value of the '<em>Variable</em>' reference.
+   * @see #setVariable(SymbolicVariable)
+   * @see su.nsk.iae.post.poST.PoSTPackage#getArrayVariable_Variable()
    * @model
    * @generated
    */
-  SymbolicVariable getVarName();
+  SymbolicVariable getVariable();
 
   /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.ArrayVariable#getVarName <em>Var Name</em>}' reference.
+   * Sets the value of the '{@link su.nsk.iae.post.poST.ArrayVariable#getVariable <em>Variable</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var Name</em>' reference.
-   * @see #getVarName()
+   * @param value the new value of the '<em>Variable</em>' reference.
+   * @see #getVariable()
    * @generated
    */
-  void setVarName(SymbolicVariable value);
+  void setVariable(SymbolicVariable value);
 
   /**
    * Returns the value of the '<em><b>Index</b></em>' containment reference.

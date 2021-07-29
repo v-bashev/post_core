@@ -112,14 +112,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="processes" upperBound="-1"
         eType="#//Process" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Process">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//ProcessStatementElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="procInVars" upperBound="-1"
         eType="#//InputVarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procOutVars" upperBound="-1"
         eType="#//OutputVarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procInOutVars" upperBound="-1"
         eType="#//InputOutputVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procProcessVars" upperBound="-1"
+        eType="#//ProcessVarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procVars" upperBound="-1"
         eType="#//VarDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procTempVars" upperBound="-1"
@@ -140,7 +141,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="next" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessStatements" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//ProcessStatementElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProcessStatusExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
@@ -148,6 +149,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="inactive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="error" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessStatementElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StartProcessStatement" eSuperTypes="#//ProcessStatements"/>
   <eClassifiers xsi:type="ecore:EClass" name="StopProcessStatement" eSuperTypes="#//ProcessStatements"/>
@@ -288,7 +292,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SubprogramControlStatement" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ExitStatement" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayVariable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="varName" eType="#//SymbolicVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//SymbolicVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
@@ -350,6 +354,20 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessVariable" eSuperTypes="#//ProcessStatementElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessVarList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//ProcessVariable"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessVarInitDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="varList" eType="#//ProcessVarList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" eType="#//Process"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessVarDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//ProcessVarInitDeclaration"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArraySpecInit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="init" eType="#//ArraySpecification"
