@@ -184,7 +184,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 						 program.progInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count
 		val programVars = ele.args.elements.stream.filter([x | x instanceof AttachVariableConfElement]).count
 		if (attachVars != programVars) {
-			error("Attached error: Not all input and output Variables are used",
+			error("Attach error: Not all input and output Variables are used",
 					ePackage.programConfiguration_Name)
 		}
 	}
@@ -192,12 +192,12 @@ class PoSTValidator extends AbstractPoSTValidator {
 	@Check
 	def checkAttachVariableConfElement_AttachType(AttachVariableConfElement ele) {
 		if ((ele.assig == AssignmentType.IN) && !ele.programVar.checkContainer(InputVarDeclaration)) {
-			error("Attached error: Must be a input Variable",
+			error("Attach error: Must be a input Variable",
 					ePackage.attachVariableConfElement_ProgramVar);
 			return
 		} 
 		if ((ele.assig == AssignmentType.OUT) && !ele.programVar.checkContainer(OutputVarDeclaration)) {
-			error("Attached error: Must be a output Variable",
+			error("Attach error: Must be a output Variable",
 					ePackage.attachVariableConfElement_ProgramVar)
 		}
 	}
@@ -223,7 +223,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 						 process.procProcessVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count
 		val programVars = ele.args.elements.stream.count
 		if (attachVars != programVars) {
-			error("Process attached error: Not all input output and Process Variables are used",
+			error("Process attach error: Not all input output and Process Variables are used",
 					ePackage.templateProcessConfElement_Process)
 		}
 	}
@@ -234,19 +234,19 @@ class PoSTValidator extends AbstractPoSTValidator {
 		val attVar = ele.attVar
 		if (programVar instanceof SymbolicVariable) {
 			if ((attVar !== null) && !(attVar instanceof SymbolicVariable)) {
-				error("Attached error: Attach Variable must be a Global Variable or a Constant",
+				error("Attach error: Attach Variable must be a Global Variable or a Constant",
 						ePackage.templateProcessAttachVariableConfElement_AttVar)
 				return
 			}
 		}
 		if (programVar instanceof ProcessVariable) {
 			if (attVar === null) {
-				error("Process attached error: Process attach Variable can't be a Constant",
+				error("Process attach error: Process attach Variable can't be a Constant",
 						ePackage.templateProcessAttachVariableConfElement_AttVar)
 				return
 			}
 			if (!(attVar instanceof TemplateProcessConfElement)) {
-				error("Process attached error: Process attach Variable must be a Template Process",
+				error("Process attach error: Process attach Variable must be a Template Process",
 						ePackage.templateProcessAttachVariableConfElement_AttVar)
 				return
 			}

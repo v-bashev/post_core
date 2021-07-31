@@ -251,7 +251,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
     };
     final long programVars = ele.getArgs().getElements().stream().filter(_function_12).count();
     if ((attachVars != programVars)) {
-      this.error("Attached error: Not all input and output Variables are used", 
+      this.error("Attach error: Not all input and output Variables are used", 
         this.ePackage.getProgramConfiguration_Name());
     }
   }
@@ -259,12 +259,12 @@ public class PoSTValidator extends AbstractPoSTValidator {
   @Check
   public void checkAttachVariableConfElement_AttachType(final AttachVariableConfElement ele) {
     if ((Objects.equal(ele.getAssig(), AssignmentType.IN) && (!this.<InputVarDeclaration>checkContainer(ele.getProgramVar(), InputVarDeclaration.class)))) {
-      this.error("Attached error: Must be a input Variable", 
+      this.error("Attach error: Must be a input Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
       return;
     }
     if ((Objects.equal(ele.getAssig(), AssignmentType.OUT) && (!this.<OutputVarDeclaration>checkContainer(ele.getProgramVar(), OutputVarDeclaration.class)))) {
-      this.error("Attached error: Must be a output Variable", 
+      this.error("Attach error: Must be a output Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
     }
   }
@@ -343,7 +343,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
     final long attachVars = (_plus_1 + _count_3);
     final long programVars = ele.getArgs().getElements().stream().count();
     if ((attachVars != programVars)) {
-      this.error("Process attached error: Not all input output and Process Variables are used", 
+      this.error("Process attach error: Not all input output and Process Variables are used", 
         this.ePackage.getTemplateProcessConfElement_Process());
     }
   }
@@ -354,19 +354,19 @@ public class PoSTValidator extends AbstractPoSTValidator {
     final Variable attVar = ele.getAttVar();
     if ((programVar instanceof SymbolicVariable)) {
       if (((attVar != null) && (!(attVar instanceof SymbolicVariable)))) {
-        this.error("Attached error: Attach Variable must be a Global Variable or a Constant", 
+        this.error("Attach error: Attach Variable must be a Global Variable or a Constant", 
           this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
         return;
       }
     }
     if ((programVar instanceof ProcessVariable)) {
       if ((attVar == null)) {
-        this.error("Process attached error: Process attach Variable can\'t be a Constant", 
+        this.error("Process attach error: Process attach Variable can\'t be a Constant", 
           this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
         return;
       }
       if ((!(attVar instanceof TemplateProcessConfElement))) {
-        this.error("Process attached error: Process attach Variable must be a Template Process", 
+        this.error("Process attach error: Process attach Variable must be a Template Process", 
           this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
         return;
       }
