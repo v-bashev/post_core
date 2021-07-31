@@ -80,7 +80,6 @@ class PoSTLinkingService extends DefaultLinkingService {
 			val res = getProgramAttachVarName(programAttachContext, ref, node)
 			if (res !== null) {
 				return res
-			
 			}
 		}
 		super.getCrossRefNodeAsString(node)
@@ -91,7 +90,7 @@ class PoSTLinkingService extends DefaultLinkingService {
 		val process = context.getContainerOfType(Process)
 		val program = process.getContainerOfType(Program)
 		val fb = process.getContainerOfType(FunctionBlock)
-		if ((process !== null) && process.checkProcessVars(name)) {
+		if (process.checkProcessVars(name)) {
 			return (program !== null ? program.name : fb.name) + "." + process.name + "." + name
 		}
 		if ((program !== null) && program.checkProgramVars(name)) {
@@ -124,34 +123,28 @@ class PoSTLinkingService extends DefaultLinkingService {
 		if (ref == ePackage.templateProcessConfElement_Process) {
 			return getProcessAttachVarName_Process(context, ref, node)
 		}
-		if (ref == ePackage.attachVariableConfElement_ProgramVar) {
+		if (ref == ePackage.templateProcessAttachVariableConfElement_ProgramVar) {
 			return getProcessAttachVarName_ProgramVar(context, ref, node)
 		}
-		if (ref == ePackage.attachVariableConfElement_AttVar) {
-			return getGlobalName(context, ref, node)
+		if (ref == ePackage.templateProcessAttachVariableConfElement_AttVar) {
+			return null
 		}
 		return null
 	}
 	
 	private def String getProcessAttachVarName_Process(TemplateProcessConfElement context, EReference ref, INode node) {
-		val name = node.text
 		val program = context.getContainerOfType(ProgramConfiguration).program
-		if ((program !== null) && program.checkProcesses(name)) {
-			return program.name + "." + node.text
-		}
-		return null
+		return program.name + "." + node.text
 	}
 	
 	private def String getProcessAttachVarName_ProgramVar(TemplateProcessConfElement context, EReference ref, INode node) {
+		val program = context.getContainerOfType(ProgramConfiguration).program
 		val process = context.process
-		val program = process.getContainerOfType(Program)
-		if (program !== null) {
-			return program.name + "." + process.name + "." + node.text
-		}
-		return null
+		return program.name + "." + process.name + "." + node.text
 	}
 	
 	private def String getGlobalName(EObject context, EReference ref, INode node) {
 		return node.text
 	}
+	
 }

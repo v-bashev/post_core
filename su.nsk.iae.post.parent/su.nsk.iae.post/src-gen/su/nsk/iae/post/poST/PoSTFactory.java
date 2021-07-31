@@ -33,6 +33,15 @@ public interface PoSTFactory extends EFactory
   Model createModel();
 
   /**
+   * Returns a new object of class '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable</em>'.
+   * @generated
+   */
+  Variable createVariable();
+
+  /**
    * Returns a new object of class '<em>Configuration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -123,13 +132,22 @@ public interface PoSTFactory extends EFactory
   TemplateProcessConfElement createTemplateProcessConfElement();
 
   /**
-   * Returns a new object of class '<em>Process Template Elements</em>'.
+   * Returns a new object of class '<em>Template Process Elements</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Process Template Elements</em>'.
+   * @return a new object of class '<em>Template Process Elements</em>'.
    * @generated
    */
-  ProcessTemplateElements createProcessTemplateElements();
+  TemplateProcessElements createTemplateProcessElements();
+
+  /**
+   * Returns a new object of class '<em>Template Process Attach Variable Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Template Process Attach Variable Conf Element</em>'.
+   * @generated
+   */
+  TemplateProcessAttachVariableConfElement createTemplateProcessAttachVariableConfElement();
 
   /**
    * Returns a new object of class '<em>Program</em>'.
@@ -483,13 +501,13 @@ public interface PoSTFactory extends EFactory
   SymbolicVariable createSymbolicVariable();
 
   /**
-   * Returns a new object of class '<em>Var Init Declaration</em>'.
+   * Returns a new object of class '<em>Simple Specification Init</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Var Init Declaration</em>'.
+   * @return a new object of class '<em>Simple Specification Init</em>'.
    * @generated
    */
-  VarInitDeclaration createVarInitDeclaration();
+  SimpleSpecificationInit createSimpleSpecificationInit();
 
   /**
    * Returns a new object of class '<em>Var List</em>'.
@@ -499,6 +517,15 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   VarList createVarList();
+
+  /**
+   * Returns a new object of class '<em>Var Init Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Var Init Declaration</em>'.
+   * @generated
+   */
+  VarInitDeclaration createVarInitDeclaration();
 
   /**
    * Returns a new object of class '<em>Input Var Declaration</em>'.
@@ -546,15 +573,6 @@ public interface PoSTFactory extends EFactory
   TempVarDeclaration createTempVarDeclaration();
 
   /**
-   * Returns a new object of class '<em>External Var Declaration</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>External Var Declaration</em>'.
-   * @generated
-   */
-  ExternalVarDeclaration createExternalVarDeclaration();
-
-  /**
    * Returns a new object of class '<em>External Var Init Declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -564,13 +582,13 @@ public interface PoSTFactory extends EFactory
   ExternalVarInitDeclaration createExternalVarInitDeclaration();
 
   /**
-   * Returns a new object of class '<em>Global Var Declaration</em>'.
+   * Returns a new object of class '<em>External Var Declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Global Var Declaration</em>'.
+   * @return a new object of class '<em>External Var Declaration</em>'.
    * @generated
    */
-  GlobalVarDeclaration createGlobalVarDeclaration();
+  ExternalVarDeclaration createExternalVarDeclaration();
 
   /**
    * Returns a new object of class '<em>Global Var Init Declaration</em>'.
@@ -582,13 +600,58 @@ public interface PoSTFactory extends EFactory
   GlobalVarInitDeclaration createGlobalVarInitDeclaration();
 
   /**
-   * Returns a new object of class '<em>Array Spec Init</em>'.
+   * Returns a new object of class '<em>Global Var Declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Array Spec Init</em>'.
+   * @return a new object of class '<em>Global Var Declaration</em>'.
    * @generated
    */
-  ArraySpecInit createArraySpecInit();
+  GlobalVarDeclaration createGlobalVarDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Process Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Variable</em>'.
+   * @generated
+   */
+  ProcessVariable createProcessVariable();
+
+  /**
+   * Returns a new object of class '<em>Process Var List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Var List</em>'.
+   * @generated
+   */
+  ProcessVarList createProcessVarList();
+
+  /**
+   * Returns a new object of class '<em>Process Var Init Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Var Init Declaration</em>'.
+   * @generated
+   */
+  ProcessVarInitDeclaration createProcessVarInitDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Process Var Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Process Var Declaration</em>'.
+   * @generated
+   */
+  ProcessVarDeclaration createProcessVarDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Array Specification Init</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Array Specification Init</em>'.
+   * @generated
+   */
+  ArraySpecificationInit createArraySpecificationInit();
 
   /**
    * Returns a new object of class '<em>Array Specification</em>'.
@@ -598,6 +661,15 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   ArraySpecification createArraySpecification();
+
+  /**
+   * Returns a new object of class '<em>Array Interval</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Array Interval</em>'.
+   * @generated
+   */
+  ArrayInterval createArrayInterval();
 
   /**
    * Returns a new object of class '<em>Array Initialization</em>'.
@@ -616,15 +688,6 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   TimeLiteral createTimeLiteral();
-
-  /**
-   * Returns a new object of class '<em>Simple Specification Init</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Simple Specification Init</em>'.
-   * @generated
-   */
-  SimpleSpecificationInit createSimpleSpecificationInit();
 
   /**
    * Returns a new object of class '<em>Constant</em>'.

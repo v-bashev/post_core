@@ -51,12 +51,12 @@ public interface SimpleSpecificationInit extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Constant)
+   * @see #setValue(Expression)
    * @see su.nsk.iae.post.poST.PoSTPackage#getSimpleSpecificationInit_Value()
    * @model containment="true"
    * @generated
    */
-  Constant getValue();
+  Expression getValue();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.SimpleSpecificationInit#getValue <em>Value</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface SimpleSpecificationInit extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(Constant value);
+  void setValue(Expression value);
 
 } // SimpleSpecificationInit

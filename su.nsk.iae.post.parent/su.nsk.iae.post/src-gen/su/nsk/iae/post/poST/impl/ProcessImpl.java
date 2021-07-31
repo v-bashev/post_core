@@ -5,16 +5,12 @@ package su.nsk.iae.post.poST.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -23,6 +19,7 @@ import su.nsk.iae.post.poST.InputOutputVarDeclaration;
 import su.nsk.iae.post.poST.InputVarDeclaration;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
 import su.nsk.iae.post.poST.PoSTPackage;
+import su.nsk.iae.post.poST.ProcessVarDeclaration;
 import su.nsk.iae.post.poST.State;
 import su.nsk.iae.post.poST.TempVarDeclaration;
 import su.nsk.iae.post.poST.VarDeclaration;
@@ -35,10 +32,10 @@ import su.nsk.iae.post.poST.VarDeclaration;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getProcInVars <em>Proc In Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getProcOutVars <em>Proc Out Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getProcInOutVars <em>Proc In Out Vars</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getProcProcessVars <em>Proc Process Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getProcVars <em>Proc Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getProcTempVars <em>Proc Temp Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ProcessImpl#getStates <em>States</em>}</li>
@@ -46,28 +43,8 @@ import su.nsk.iae.post.poST.VarDeclaration;
  *
  * @generated
  */
-public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.iae.post.poST.Process
+public class ProcessImpl extends VariableImpl implements su.nsk.iae.post.poST.Process
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getProcInVars() <em>Proc In Vars</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -97,6 +74,16 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
    * @ordered
    */
   protected EList<InputOutputVarDeclaration> procInOutVars;
+
+  /**
+   * The cached value of the '{@link #getProcProcessVars() <em>Proc Process Vars</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getProcProcessVars()
+   * @generated
+   * @ordered
+   */
+  protected EList<ProcessVarDeclaration> procProcessVars;
 
   /**
    * The cached value of the '{@link #getProcVars() <em>Proc Vars</em>}' containment reference list.
@@ -155,31 +142,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
    * @generated
    */
   @Override
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROCESS__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EList<InputVarDeclaration> getProcInVars()
   {
     if (procInVars == null)
@@ -217,6 +179,21 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
       procInOutVars = new EObjectContainmentEList<InputOutputVarDeclaration>(InputOutputVarDeclaration.class, this, PoSTPackage.PROCESS__PROC_IN_OUT_VARS);
     }
     return procInOutVars;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<ProcessVarDeclaration> getProcProcessVars()
+  {
+    if (procProcessVars == null)
+    {
+      procProcessVars = new EObjectContainmentEList<ProcessVarDeclaration>(ProcessVarDeclaration.class, this, PoSTPackage.PROCESS__PROC_PROCESS_VARS);
+    }
+    return procProcessVars;
   }
 
   /**
@@ -280,6 +257,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
         return ((InternalEList<?>)getProcOutVars()).basicRemove(otherEnd, msgs);
       case PoSTPackage.PROCESS__PROC_IN_OUT_VARS:
         return ((InternalEList<?>)getProcInOutVars()).basicRemove(otherEnd, msgs);
+      case PoSTPackage.PROCESS__PROC_PROCESS_VARS:
+        return ((InternalEList<?>)getProcProcessVars()).basicRemove(otherEnd, msgs);
       case PoSTPackage.PROCESS__PROC_VARS:
         return ((InternalEList<?>)getProcVars()).basicRemove(otherEnd, msgs);
       case PoSTPackage.PROCESS__PROC_TEMP_VARS:
@@ -300,14 +279,14 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS__NAME:
-        return getName();
       case PoSTPackage.PROCESS__PROC_IN_VARS:
         return getProcInVars();
       case PoSTPackage.PROCESS__PROC_OUT_VARS:
         return getProcOutVars();
       case PoSTPackage.PROCESS__PROC_IN_OUT_VARS:
         return getProcInOutVars();
+      case PoSTPackage.PROCESS__PROC_PROCESS_VARS:
+        return getProcProcessVars();
       case PoSTPackage.PROCESS__PROC_VARS:
         return getProcVars();
       case PoSTPackage.PROCESS__PROC_TEMP_VARS:
@@ -329,9 +308,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS__NAME:
-        setName((String)newValue);
-        return;
       case PoSTPackage.PROCESS__PROC_IN_VARS:
         getProcInVars().clear();
         getProcInVars().addAll((Collection<? extends InputVarDeclaration>)newValue);
@@ -343,6 +319,10 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
       case PoSTPackage.PROCESS__PROC_IN_OUT_VARS:
         getProcInOutVars().clear();
         getProcInOutVars().addAll((Collection<? extends InputOutputVarDeclaration>)newValue);
+        return;
+      case PoSTPackage.PROCESS__PROC_PROCESS_VARS:
+        getProcProcessVars().clear();
+        getProcProcessVars().addAll((Collection<? extends ProcessVarDeclaration>)newValue);
         return;
       case PoSTPackage.PROCESS__PROC_VARS:
         getProcVars().clear();
@@ -370,9 +350,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case PoSTPackage.PROCESS__PROC_IN_VARS:
         getProcInVars().clear();
         return;
@@ -381,6 +358,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
         return;
       case PoSTPackage.PROCESS__PROC_IN_OUT_VARS:
         getProcInOutVars().clear();
+        return;
+      case PoSTPackage.PROCESS__PROC_PROCESS_VARS:
+        getProcProcessVars().clear();
         return;
       case PoSTPackage.PROCESS__PROC_VARS:
         getProcVars().clear();
@@ -405,14 +385,14 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case PoSTPackage.PROCESS__PROC_IN_VARS:
         return procInVars != null && !procInVars.isEmpty();
       case PoSTPackage.PROCESS__PROC_OUT_VARS:
         return procOutVars != null && !procOutVars.isEmpty();
       case PoSTPackage.PROCESS__PROC_IN_OUT_VARS:
         return procInOutVars != null && !procInOutVars.isEmpty();
+      case PoSTPackage.PROCESS__PROC_PROCESS_VARS:
+        return procProcessVars != null && !procProcessVars.isEmpty();
       case PoSTPackage.PROCESS__PROC_VARS:
         return procVars != null && !procVars.isEmpty();
       case PoSTPackage.PROCESS__PROC_TEMP_VARS:
@@ -421,23 +401,6 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements su.nsk.
         return states != null && !states.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //ProcessImpl

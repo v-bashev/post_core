@@ -12,11 +12,16 @@ import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.InputOutputVarDeclaration;
 import su.nsk.iae.post.poST.InputVarDeclaration;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ProcessVarDeclaration;
+import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
+import su.nsk.iae.post.poST.ProcessVariable;
 import su.nsk.iae.post.poST.Program;
+import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.TempVarDeclaration;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
+import su.nsk.iae.post.poST.Variable;
 
 @SuppressWarnings("all")
 public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
@@ -26,24 +31,29 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   
   @Override
   protected QualifiedName qualifiedName(final Object ele) {
-    if ((ele instanceof SymbolicVariable)) {
+    if ((ele instanceof Variable)) {
       boolean _checkVarInitDeclaration = this.checkVarInitDeclaration(((EObject)ele));
       if (_checkVarInitDeclaration) {
-        return this.varInitDeclarationQualifiedName(((SymbolicVariable)ele));
+        return this.getInitVariableQualifiedName(((Variable)ele));
       }
-    }
-    if ((ele instanceof su.nsk.iae.post.poST.Process)) {
-      this.processQualifiedName(((su.nsk.iae.post.poST.Process)ele));
+      boolean _checkStatementList = this.checkStatementList(((EObject)ele));
+      if (_checkStatementList) {
+        return this.getVariableQualifiedName(((Variable)ele));
+      }
     }
     return super.qualifiedName(ele);
   }
   
   private boolean checkVarInitDeclaration(final EObject ele) {
-    VarInitDeclaration _containerOfType = EcoreUtil2.<VarInitDeclaration>getContainerOfType(ele, VarInitDeclaration.class);
+    return ((EcoreUtil2.<VarInitDeclaration>getContainerOfType(ele, VarInitDeclaration.class) != null) || (EcoreUtil2.<ProcessVarInitDeclaration>getContainerOfType(ele, ProcessVarInitDeclaration.class) != null));
+  }
+  
+  private boolean checkStatementList(final EObject ele) {
+    StatementList _containerOfType = EcoreUtil2.<StatementList>getContainerOfType(ele, StatementList.class);
     return (_containerOfType != null);
   }
   
-  private QualifiedName varInitDeclarationQualifiedName(final SymbolicVariable ele) {
+  private QualifiedName getInitVariableQualifiedName(final Variable ele) {
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
     if ((program != null)) {
       final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
@@ -55,23 +65,19 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
     return QualifiedName.create(ele.getName());
   }
   
-  private QualifiedName processQualifiedName(final su.nsk.iae.post.poST.Process ele) {
+  private QualifiedName getVariableQualifiedName(final Variable ele) {
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    return QualifiedName.create(program.getName(), ele.getName());
-  }
-  
-  public static boolean checkProcesses(final Program program, final String eleName) {
-    final Predicate<su.nsk.iae.post.poST.Process> _function = (su.nsk.iae.post.poST.Process x) -> {
-      return x.getName().equals(eleName);
-    };
-    return program.getProcesses().stream().anyMatch(_function);
-  }
-  
-  public static boolean checkProcesses(final FunctionBlock program, final String eleName) {
-    final Predicate<su.nsk.iae.post.poST.Process> _function = (su.nsk.iae.post.poST.Process x) -> {
-      return x.getName().equals(eleName);
-    };
-    return program.getProcesses().stream().anyMatch(_function);
+    if ((program != null)) {
+      final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
+      if (((process != null) && PoSTQualifiedNameProvider.checkProcessVars(process, ele.getName()))) {
+        return QualifiedName.create(program.getName(), process.getName(), ele.getName());
+      }
+      boolean _checkProgramVars = PoSTQualifiedNameProvider.checkProgramVars(program, ele.getName());
+      if (_checkProgramVars) {
+        return QualifiedName.create(program.getName(), ele.getName());
+      }
+    }
+    return QualifiedName.create(ele.getName());
   }
   
   public static boolean checkProgramVars(final Program program, final String eleName) {
@@ -201,7 +207,7 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   }
   
   public static boolean checkProcessVars(final su.nsk.iae.post.poST.Process process, final String eleName) {
-    return (Stream.<EList<SymbolicVariable>>concat(
+    return (Stream.<EList<? extends Variable>>concat(
       process.getProcVars().stream().<EList<VarInitDeclaration>>map(((Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
         return x.getVars();
       })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
@@ -209,15 +215,23 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
       })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
         return x.getVarList().getVars();
       })), 
-      process.getProcTempVars().stream().<EList<VarInitDeclaration>>map(((Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
-        return x.getVars();
-      })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
-        return x.stream();
-      })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
-        return x.getVarList().getVars();
-      }))).<SymbolicVariable>flatMap(((Function<EList<SymbolicVariable>, Stream<SymbolicVariable>>) (EList<SymbolicVariable> x) -> {
+      Stream.<EList<? extends Variable>>concat(
+        process.getProcTempVars().stream().<EList<VarInitDeclaration>>map(((Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
+          return x.getVars();
+        })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
+          return x.stream();
+        })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
+          return x.getVarList().getVars();
+        })), 
+        process.getProcProcessVars().stream().<EList<ProcessVarInitDeclaration>>map(((Function<ProcessVarDeclaration, EList<ProcessVarInitDeclaration>>) (ProcessVarDeclaration x) -> {
+          return x.getVars();
+        })).<ProcessVarInitDeclaration>flatMap(((Function<EList<ProcessVarInitDeclaration>, Stream<ProcessVarInitDeclaration>>) (EList<ProcessVarInitDeclaration> x) -> {
+          return x.stream();
+        })).<EList<ProcessVariable>>map(((Function<ProcessVarInitDeclaration, EList<ProcessVariable>>) (ProcessVarInitDeclaration x) -> {
+          return x.getVarList().getVars();
+        })))).<Variable>flatMap(((Function<EList<? extends Variable>, Stream<? extends Variable>>) (EList<? extends Variable> x) -> {
       return x.stream();
-    })).anyMatch(((Predicate<SymbolicVariable>) (SymbolicVariable x) -> {
+    })).anyMatch(((Predicate<Variable>) (Variable x) -> {
       return x.getName().equals(eleName);
     })) || PoSTQualifiedNameProvider.checkProcessInOutVars(process, eleName));
   }

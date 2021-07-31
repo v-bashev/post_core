@@ -104,7 +104,8 @@ public class PoSTLinkingService extends DefaultLinkingService {
     final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(context, su.nsk.iae.post.poST.Process.class);
     final Program program = EcoreUtil2.<Program>getContainerOfType(process, Program.class);
     final FunctionBlock fb = EcoreUtil2.<FunctionBlock>getContainerOfType(process, FunctionBlock.class);
-    if (((process != null) && PoSTQualifiedNameProvider.checkProcessVars(process, name))) {
+    boolean _checkProcessVars = PoSTQualifiedNameProvider.checkProcessVars(process, name);
+    if (_checkProcessVars) {
       String _xifexpression = null;
       if ((program != null)) {
         _xifexpression = program.getName();
@@ -162,44 +163,37 @@ public class PoSTLinkingService extends DefaultLinkingService {
     if (_equals) {
       return this.getProcessAttachVarName_Process(context, ref, node);
     }
-    EReference _attachVariableConfElement_ProgramVar = this.ePackage.getAttachVariableConfElement_ProgramVar();
-    boolean _equals_1 = Objects.equal(ref, _attachVariableConfElement_ProgramVar);
+    EReference _templateProcessAttachVariableConfElement_ProgramVar = this.ePackage.getTemplateProcessAttachVariableConfElement_ProgramVar();
+    boolean _equals_1 = Objects.equal(ref, _templateProcessAttachVariableConfElement_ProgramVar);
     if (_equals_1) {
       return this.getProcessAttachVarName_ProgramVar(context, ref, node);
     }
-    EReference _attachVariableConfElement_AttVar = this.ePackage.getAttachVariableConfElement_AttVar();
-    boolean _equals_2 = Objects.equal(ref, _attachVariableConfElement_AttVar);
+    EReference _templateProcessAttachVariableConfElement_AttVar = this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar();
+    boolean _equals_2 = Objects.equal(ref, _templateProcessAttachVariableConfElement_AttVar);
     if (_equals_2) {
-      return this.getGlobalName(context, ref, node);
+      return null;
     }
     return null;
   }
   
   private String getProcessAttachVarName_Process(final TemplateProcessConfElement context, final EReference ref, final INode node) {
-    final String name = node.getText();
     final Program program = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class).getProgram();
-    if (((program != null) && PoSTQualifiedNameProvider.checkProcesses(program, name))) {
-      String _name = program.getName();
-      String _plus = (_name + ".");
-      String _text = node.getText();
-      return (_plus + _text);
-    }
-    return null;
+    String _name = program.getName();
+    String _plus = (_name + ".");
+    String _text = node.getText();
+    return (_plus + _text);
   }
   
   private String getProcessAttachVarName_ProgramVar(final TemplateProcessConfElement context, final EReference ref, final INode node) {
+    final Program program = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class).getProgram();
     final su.nsk.iae.post.poST.Process process = context.getProcess();
-    final Program program = EcoreUtil2.<Program>getContainerOfType(process, Program.class);
-    if ((program != null)) {
-      String _name = program.getName();
-      String _plus = (_name + ".");
-      String _name_1 = process.getName();
-      String _plus_1 = (_plus + _name_1);
-      String _plus_2 = (_plus_1 + ".");
-      String _text = node.getText();
-      return (_plus_2 + _text);
-    }
-    return null;
+    String _name = program.getName();
+    String _plus = (_name + ".");
+    String _name_1 = process.getName();
+    String _plus_1 = (_plus + _name_1);
+    String _plus_2 = (_plus_1 + ".");
+    String _text = node.getText();
+    return (_plus_2 + _text);
   }
   
   private String getGlobalName(final EObject context, final EReference ref, final INode node) {

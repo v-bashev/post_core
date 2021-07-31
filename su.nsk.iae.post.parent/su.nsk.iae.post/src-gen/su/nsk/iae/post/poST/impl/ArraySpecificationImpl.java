@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import su.nsk.iae.post.poST.ArrayInterval;
 import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.PoSTPackage;
-import su.nsk.iae.post.poST.SignedInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,8 +24,7 @@ import su.nsk.iae.post.poST.SignedInteger;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecificationImpl#getStart <em>Start</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecificationImpl#getEnd <em>End</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecificationImpl#getInterval <em>Interval</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ArraySpecificationImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -34,24 +33,14 @@ import su.nsk.iae.post.poST.SignedInteger;
 public class ArraySpecificationImpl extends MinimalEObjectImpl.Container implements ArraySpecification
 {
   /**
-   * The cached value of the '{@link #getStart() <em>Start</em>}' containment reference.
+   * The cached value of the '{@link #getInterval() <em>Interval</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getStart()
+   * @see #getInterval()
    * @generated
    * @ordered
    */
-  protected SignedInteger start;
-
-  /**
-   * The cached value of the '{@link #getEnd() <em>End</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEnd()
-   * @generated
-   * @ordered
-   */
-  protected SignedInteger end;
+  protected ArrayInterval interval;
 
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -100,9 +89,9 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   @Override
-  public SignedInteger getStart()
+  public ArrayInterval getInterval()
   {
-    return start;
+    return interval;
   }
 
   /**
@@ -110,13 +99,13 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetStart(SignedInteger newStart, NotificationChain msgs)
+  public NotificationChain basicSetInterval(ArrayInterval newInterval, NotificationChain msgs)
   {
-    SignedInteger oldStart = start;
-    start = newStart;
+    ArrayInterval oldInterval = interval;
+    interval = newInterval;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION__START, oldStart, newStart);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION__INTERVAL, oldInterval, newInterval);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -128,70 +117,20 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   @Override
-  public void setStart(SignedInteger newStart)
+  public void setInterval(ArrayInterval newInterval)
   {
-    if (newStart != start)
+    if (newInterval != interval)
     {
       NotificationChain msgs = null;
-      if (start != null)
-        msgs = ((InternalEObject)start).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION__START, null, msgs);
-      if (newStart != null)
-        msgs = ((InternalEObject)newStart).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION__START, null, msgs);
-      msgs = basicSetStart(newStart, msgs);
+      if (interval != null)
+        msgs = ((InternalEObject)interval).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION__INTERVAL, null, msgs);
+      if (newInterval != null)
+        msgs = ((InternalEObject)newInterval).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION__INTERVAL, null, msgs);
+      msgs = basicSetInterval(newInterval, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION__START, newStart, newStart));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public SignedInteger getEnd()
-  {
-    return end;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetEnd(SignedInteger newEnd, NotificationChain msgs)
-  {
-    SignedInteger oldEnd = end;
-    end = newEnd;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION__END, oldEnd, newEnd);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setEnd(SignedInteger newEnd)
-  {
-    if (newEnd != end)
-    {
-      NotificationChain msgs = null;
-      if (end != null)
-        msgs = ((InternalEObject)end).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION__END, null, msgs);
-      if (newEnd != null)
-        msgs = ((InternalEObject)newEnd).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.ARRAY_SPECIFICATION__END, null, msgs);
-      msgs = basicSetEnd(newEnd, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION__END, newEnd, newEnd));
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.ARRAY_SPECIFICATION__INTERVAL, newInterval, newInterval));
   }
 
   /**
@@ -229,10 +168,8 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPECIFICATION__START:
-        return basicSetStart(null, msgs);
-      case PoSTPackage.ARRAY_SPECIFICATION__END:
-        return basicSetEnd(null, msgs);
+      case PoSTPackage.ARRAY_SPECIFICATION__INTERVAL:
+        return basicSetInterval(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -247,10 +184,8 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPECIFICATION__START:
-        return getStart();
-      case PoSTPackage.ARRAY_SPECIFICATION__END:
-        return getEnd();
+      case PoSTPackage.ARRAY_SPECIFICATION__INTERVAL:
+        return getInterval();
       case PoSTPackage.ARRAY_SPECIFICATION__TYPE:
         return getType();
     }
@@ -267,11 +202,8 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPECIFICATION__START:
-        setStart((SignedInteger)newValue);
-        return;
-      case PoSTPackage.ARRAY_SPECIFICATION__END:
-        setEnd((SignedInteger)newValue);
+      case PoSTPackage.ARRAY_SPECIFICATION__INTERVAL:
+        setInterval((ArrayInterval)newValue);
         return;
       case PoSTPackage.ARRAY_SPECIFICATION__TYPE:
         setType((String)newValue);
@@ -290,11 +222,8 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPECIFICATION__START:
-        setStart((SignedInteger)null);
-        return;
-      case PoSTPackage.ARRAY_SPECIFICATION__END:
-        setEnd((SignedInteger)null);
+      case PoSTPackage.ARRAY_SPECIFICATION__INTERVAL:
+        setInterval((ArrayInterval)null);
         return;
       case PoSTPackage.ARRAY_SPECIFICATION__TYPE:
         setType(TYPE_EDEFAULT);
@@ -313,10 +242,8 @@ public class ArraySpecificationImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
-      case PoSTPackage.ARRAY_SPECIFICATION__START:
-        return start != null;
-      case PoSTPackage.ARRAY_SPECIFICATION__END:
-        return end != null;
+      case PoSTPackage.ARRAY_SPECIFICATION__INTERVAL:
+        return interval != null;
       case PoSTPackage.ARRAY_SPECIFICATION__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
     }

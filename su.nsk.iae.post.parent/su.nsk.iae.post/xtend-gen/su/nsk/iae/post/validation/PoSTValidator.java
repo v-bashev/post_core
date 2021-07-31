@@ -12,12 +12,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import su.nsk.iae.post.poST.ArrayInterval;
+import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.Configuration;
-import su.nsk.iae.post.poST.Constant;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
+import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
 import su.nsk.iae.post.poST.FunctionBlock;
@@ -29,6 +31,9 @@ import su.nsk.iae.post.poST.Model;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
+import su.nsk.iae.post.poST.ProcessVarDeclaration;
+import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
+import su.nsk.iae.post.poST.ProcessVariable;
 import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
@@ -42,10 +47,13 @@ import su.nsk.iae.post.poST.StopProcessStatement;
 import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
+import su.nsk.iae.post.poST.Variable;
 
 @SuppressWarnings("all")
 public class PoSTValidator extends AbstractPoSTValidator {
@@ -56,36 +64,59 @@ public class PoSTValidator extends AbstractPoSTValidator {
    */
   @Check
   public void checkSymbolicVariable_NameConflicts(final SymbolicVariable ele) {
-    final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
-    if (((process != null) && this.checkNameRepetition(process, ele))) {
-      this.error("Name error: Process already has a variable with this name", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
-    }
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    if (((program != null) && this.checkNameRepetition(program, ele))) {
-      this.error("Name error: Program already has a variable with this name", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
-    }
-    final Resource resource = EcoreUtil2.<Resource>getContainerOfType(ele, Resource.class);
-    if (((resource != null) && this.checkNameRepetition(resource, ele))) {
-      this.error("Name error: Resource already has a variable with this name", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
+    if ((program != null)) {
+      final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
+      if (((process != null) && this.checkNameRepetition(process, ele))) {
+        this.error("Name error: Process already has a Variable with this name", this.ePackage.getVariable_Name());
+        return;
+      }
+      boolean _checkNameRepetition = this.checkNameRepetition(program, ele);
+      if (_checkNameRepetition) {
+        this.error("Name error: Program already has a Variable with this name", this.ePackage.getVariable_Name());
+        return;
+      }
     }
     final Configuration configuration = EcoreUtil2.<Configuration>getContainerOfType(ele, Configuration.class);
-    if (((configuration != null) && this.checkNameRepetition(configuration, ele))) {
-      this.error("Name error: Configuration already has a variable with this name", 
-        this.ePackage.getSymbolicVariable_Name());
-      return;
+    if ((configuration != null)) {
+      final Resource resource = EcoreUtil2.<Resource>getContainerOfType(ele, Resource.class);
+      if (((resource != null) && this.checkNameRepetition(resource, ele))) {
+        this.error("Name error: Resource already has a Variable with this name", this.ePackage.getVariable_Name());
+        return;
+      }
+      boolean _checkNameRepetition_1 = this.checkNameRepetition(configuration, ele);
+      if (_checkNameRepetition_1) {
+        this.error("Name error: Configuration already has a Variable with this name", this.ePackage.getVariable_Name());
+        return;
+      }
     }
     final Model model = EcoreUtil2.<Model>getContainerOfType(ele, Model.class);
-    boolean _checkNameRepetition = this.checkNameRepetition(model, ele);
-    if (_checkNameRepetition) {
-      this.error("Name error: Conflict with the name of a global variable", 
-        this.ePackage.getSymbolicVariable_Name());
+    boolean _checkNameRepetition_2 = this.checkNameRepetition(model, ele);
+    if (_checkNameRepetition_2) {
+      this.error("Name error: Conflict with the name of a global Variable", this.ePackage.getVariable_Name());
       return;
+    }
+    if (((program != null) && (model.getConf() != null))) {
+      boolean _checkNameRepetition_3 = this.checkNameRepetition(model.getConf(), ele);
+      if (_checkNameRepetition_3) {
+        this.error("Name error: Configuration already has a Variable with this name", this.ePackage.getVariable_Name());
+        return;
+      }
+      final Predicate<Resource> _function = (Resource r) -> {
+        return this.checkNameRepetition(r, ele);
+      };
+      boolean _anyMatch = model.getConf().getResources().stream().anyMatch(_function);
+      if (_anyMatch) {
+        this.error("Name error: Resource already has a Variable with this name", this.ePackage.getVariable_Name());
+      }
+    }
+  }
+  
+  @Check
+  public void checkProcessVariable_NameConflicts(final ProcessVariable ele) {
+    final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
+    if (((process != null) && this.checkNameRepetition(process, ele))) {
+      this.error("Name error: Process already has a Process Variable with this name", this.ePackage.getVariable_Name());
     }
   }
   
@@ -95,32 +126,43 @@ public class PoSTValidator extends AbstractPoSTValidator {
     boolean _hasCrossReferences = this.hasCrossReferences(model, ele);
     boolean _not = (!_hasCrossReferences);
     if (_not) {
-      this.warning("Variable is never use", this.ePackage.getSymbolicVariable_Name());
+      this.warning("Variable is never use", this.ePackage.getVariable_Name());
     }
   }
   
   @Check
   public void checkSimpleSpecificationInit_NeverUse(final SimpleSpecificationInit ele) {
-    Constant _value = ele.getValue();
+    Expression _value = ele.getValue();
     boolean _tripleNotEquals = (_value != null);
     if (_tripleNotEquals) {
       boolean _checkContainer = this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class);
       if (_checkContainer) {
-        this.error("Initialization error: Input variable cannot be initialized", 
+        this.error("Initialization error: Input Variable cannot be initialized", 
           this.ePackage.getSimpleSpecificationInit_Value());
         return;
       }
       boolean _checkContainer_1 = this.<OutputVarDeclaration>checkContainer(ele, OutputVarDeclaration.class);
       if (_checkContainer_1) {
-        this.error("Initialization error: Output variable cannot be initialized", 
+        this.error("Initialization error: Output Variable cannot be initialized", 
           this.ePackage.getSimpleSpecificationInit_Value());
         return;
       }
       boolean _checkContainer_2 = this.<InputOutputVarDeclaration>checkContainer(ele, InputOutputVarDeclaration.class);
       if (_checkContainer_2) {
-        this.error("Initialization error: InputOutput variable cannot be initialized", 
+        this.error("Initialization error: InputOutput Variable cannot be initialized", 
           this.ePackage.getSimpleSpecificationInit_Value());
         return;
+      }
+    }
+  }
+  
+  @Check
+  public void checkArraySpecification_Star(final ArraySpecification ele) {
+    ArrayInterval _interval = ele.getInterval();
+    boolean _tripleEquals = (_interval == null);
+    if (_tripleEquals) {
+      if (((!this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class)) && (!this.<InputOutputVarDeclaration>checkContainer(ele, InputOutputVarDeclaration.class)))) {
+        this.error("Definition error: Arrays with variable length available only in VAR_INPUT", null);
       }
     }
   }
@@ -152,15 +194,6 @@ public class PoSTValidator extends AbstractPoSTValidator {
     if (((resource != null) && this.checkNameRepetition(resource, ele))) {
       this.error("Name error: Resource already has a Attached Program with this name", 
         this.ePackage.getProgramConfiguration_Name());
-    }
-  }
-  
-  @Check
-  public void checkTemplateProcessConfElement_NameConflicts(final TemplateProcessConfElement ele) {
-    final ProgramConfiguration rogramConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(ele, ProgramConfiguration.class);
-    if (((rogramConf != null) && this.checkNameRepetition(rogramConf, ele))) {
-      this.error("Name error: Program already has a Template Process with this name", 
-        this.ePackage.getTemplateProcessConfElement_Name());
     }
   }
   
@@ -218,7 +251,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
     };
     final long programVars = ele.getArgs().getElements().stream().filter(_function_12).count();
     if ((attachVars != programVars)) {
-      this.error("Attached error: Not all input and output variables are used", 
+      this.error("Attach error: Not all input and output Variables are used", 
         this.ePackage.getProgramConfiguration_Name());
     }
   }
@@ -226,13 +259,117 @@ public class PoSTValidator extends AbstractPoSTValidator {
   @Check
   public void checkAttachVariableConfElement_AttachType(final AttachVariableConfElement ele) {
     if ((Objects.equal(ele.getAssig(), AssignmentType.IN) && (!this.<InputVarDeclaration>checkContainer(ele.getProgramVar(), InputVarDeclaration.class)))) {
-      this.error("Attached error: Must be a input variable", 
+      this.error("Attach error: Must be a input Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
       return;
     }
     if ((Objects.equal(ele.getAssig(), AssignmentType.OUT) && (!this.<OutputVarDeclaration>checkContainer(ele.getProgramVar(), OutputVarDeclaration.class)))) {
-      this.error("Attached error: Must be a output variable", 
+      this.error("Attach error: Must be a output Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessConfElement_NameConflicts(final TemplateProcessConfElement ele) {
+    final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(ele, ProgramConfiguration.class);
+    if (((programConf != null) && this.checkNameRepetition(programConf, ele))) {
+      this.error("Name error: Program already has a Template Process with this name", 
+        this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessConfElement_NumberOfArgs(final TemplateProcessConfElement ele) {
+    TemplateProcessElements _args = ele.getArgs();
+    boolean _tripleEquals = (_args == null);
+    if (_tripleEquals) {
+      return;
+    }
+    final su.nsk.iae.post.poST.Process process = ele.getProcess();
+    final Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_3 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count = process.getProcInVars().stream().<EList<VarInitDeclaration>>map(_function).<VarInitDeclaration>flatMap(_function_1).<EList<SymbolicVariable>>map(_function_2).<SymbolicVariable>flatMap(_function_3).count();
+    final Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_4 = (OutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_5 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_6 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_7 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count_1 = process.getProcOutVars().stream().<EList<VarInitDeclaration>>map(_function_4).<VarInitDeclaration>flatMap(_function_5).<EList<SymbolicVariable>>map(_function_6).<SymbolicVariable>flatMap(_function_7).count();
+    long _plus = (_count + _count_1);
+    final Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_8 = (InputOutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_9 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_10 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_11 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count_2 = process.getProcInOutVars().stream().<EList<VarInitDeclaration>>map(_function_8).<VarInitDeclaration>flatMap(_function_9).<EList<SymbolicVariable>>map(_function_10).<SymbolicVariable>flatMap(_function_11).count();
+    long _plus_1 = (_plus + _count_2);
+    final Function<ProcessVarDeclaration, EList<ProcessVarInitDeclaration>> _function_12 = (ProcessVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<ProcessVarInitDeclaration>, Stream<ProcessVarInitDeclaration>> _function_13 = (EList<ProcessVarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<ProcessVarInitDeclaration, EList<ProcessVariable>> _function_14 = (ProcessVarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<ProcessVariable>, Stream<ProcessVariable>> _function_15 = (EList<ProcessVariable> x) -> {
+      return x.stream();
+    };
+    long _count_3 = process.getProcProcessVars().stream().<EList<ProcessVarInitDeclaration>>map(_function_12).<ProcessVarInitDeclaration>flatMap(_function_13).<EList<ProcessVariable>>map(_function_14).<ProcessVariable>flatMap(_function_15).count();
+    final long attachVars = (_plus_1 + _count_3);
+    final long programVars = ele.getArgs().getElements().stream().count();
+    if ((attachVars != programVars)) {
+      this.error("Process attach error: Not all input output and Process Variables are used", 
+        this.ePackage.getTemplateProcessConfElement_Process());
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessAttachVariableConfElement_AttachType(final TemplateProcessAttachVariableConfElement ele) {
+    final Variable programVar = ele.getProgramVar();
+    final Variable attVar = ele.getAttVar();
+    if ((programVar instanceof SymbolicVariable)) {
+      if (((attVar != null) && (!(attVar instanceof SymbolicVariable)))) {
+        this.error("Attach error: Attach Variable must be a Global Variable or a Constant", 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
+        return;
+      }
+    }
+    if ((programVar instanceof ProcessVariable)) {
+      if ((attVar == null)) {
+        this.error("Process attach error: Process attach Variable can\'t be a Constant", 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
+        return;
+      }
+      if ((!(attVar instanceof TemplateProcessConfElement))) {
+        this.error("Process attach error: Process attach Variable must be a Template Process", 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
+        return;
+      }
     }
   }
   
@@ -277,13 +414,13 @@ public class PoSTValidator extends AbstractPoSTValidator {
   public void checkProcess_NameConflicts(final su.nsk.iae.post.poST.Process ele) {
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
     if (((program != null) && this.checkNameRepetition(program, ele))) {
-      this.error("Name error: Program already has a Process with this name", this.ePackage.getProcess_Name());
+      this.error("Name error: Program already has a Process with this name", this.ePackage.getVariable_Name());
       return;
     }
     final FunctionBlock fb = EcoreUtil2.<FunctionBlock>getContainerOfType(ele, FunctionBlock.class);
     boolean _checkNameRepetition = this.checkNameRepetition(fb, ele);
     if (_checkNameRepetition) {
-      this.error("Name error: FunctionBlock already has a Process with this name", this.ePackage.getProcess_Name());
+      this.error("Name error: FunctionBlock already has a Process with this name", this.ePackage.getVariable_Name());
     }
   }
   
@@ -291,7 +428,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   public void checkProcess_Empty(final su.nsk.iae.post.poST.Process ele) {
     boolean _isEmpty = ele.getStates().isEmpty();
     if (_isEmpty) {
-      this.error("Statement error: Process can\'t be empty", this.ePackage.getProcess_Name());
+      this.error("Statement error: Process can\'t be empty", this.ePackage.getVariable_Name());
     }
   }
   
@@ -307,7 +444,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
       boolean _checkProcessStart = this.<Statement>checkProcessStart(program.getProcesses(), ele);
       boolean _not = (!_checkProcessStart);
       if (_not) {
-        this.warning("Process is unreachable", this.ePackage.getProcess_Name());
+        this.warning("Process is unreachable", this.ePackage.getVariable_Name());
       }
       return;
     }
@@ -320,7 +457,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
     boolean _checkProcessStart_1 = this.<Statement>checkProcessStart(fb.getProcesses(), ele);
     boolean _not_1 = (!_checkProcessStart_1);
     if (_not_1) {
-      this.warning("Process is unreachable", this.ePackage.getProcess_Name());
+      this.warning("Process is unreachable", this.ePackage.getVariable_Name());
     }
   }
   
@@ -354,7 +491,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkProcess_Looped(final su.nsk.iae.post.poST.State ele) {
-    boolean check = this.<SetStateStatement>containsType(ele, SetStateStatement.class);
+    boolean check = (((this.<SetStateStatement>containsType(ele, SetStateStatement.class) || 
+      this.<StartProcessStatement>containsType(ele, StartProcessStatement.class)) || 
+      this.<StopProcessStatement>containsType(ele, StopProcessStatement.class)) || 
+      this.<ErrorProcessStatement>containsType(ele, ErrorProcessStatement.class));
     TimeoutStatement _timeout = ele.getTimeout();
     boolean _tripleNotEquals = (_timeout != null);
     if (_tripleNotEquals) {
@@ -364,6 +504,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
     if (_isLooped) {
       if (check) {
         this.warning("State mustn\'t be LOOPED", this.ePackage.getState_Name());
+      }
+    } else {
+      if ((!check)) {
+        this.warning("State must be LOOPED", this.ePackage.getState_Name());
       }
     }
   }
@@ -407,57 +551,22 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkStartProcessStatement_NameConflicts(final StartProcessStatement ele) {
-    su.nsk.iae.post.poST.Process _process = ele.getProcess();
-    boolean _tripleEquals = (_process == null);
-    if (_tripleEquals) {
-      return;
-    }
-    final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    boolean _contains = program.getProcesses().contains(ele.getProcess());
-    boolean _not = (!_contains);
-    if (_not) {
-      this.error("Name error: Program does not contain a Process with this name", this.ePackage.getProcessStatements_Process());
-    }
+    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
   }
   
   @Check
   public void checkStopProcessStatement_NameConflicts(final StopProcessStatement ele) {
-    su.nsk.iae.post.poST.Process _process = ele.getProcess();
-    boolean _tripleEquals = (_process == null);
-    if (_tripleEquals) {
-      return;
-    }
-    final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    boolean _contains = program.getProcesses().contains(ele.getProcess());
-    boolean _not = (!_contains);
-    if (_not) {
-      this.error("Name error: Program does not contain a Process with this name", this.ePackage.getProcessStatements_Process());
-    }
+    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
   }
   
   @Check
   public void checkErrorProcessStatement_NameConflicts(final ErrorProcessStatement ele) {
-    su.nsk.iae.post.poST.Process _process = ele.getProcess();
-    boolean _tripleEquals = (_process == null);
-    if (_tripleEquals) {
-      return;
-    }
-    final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    boolean _contains = program.getProcesses().contains(ele.getProcess());
-    boolean _not = (!_contains);
-    if (_not) {
-      this.error("Name error: Program does not contain a Process with this name", this.ePackage.getProcessStatements_Process());
-    }
+    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
   }
   
   @Check
   public void checkProcessStatusExpression_NameConflicts(final ProcessStatusExpression ele) {
-    final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
-    boolean _contains = program.getProcesses().contains(ele.getProcess());
-    boolean _not = (!_contains);
-    if (_not) {
-      this.error("Name error: Program does not contain a Process with this name", this.ePackage.getProcessStatusExpression_Process());
-    }
+    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
   }
   
   @Check
@@ -465,6 +574,21 @@ public class PoSTValidator extends AbstractPoSTValidator {
     boolean _isEmpty = ele.getStatement().getStatements().isEmpty();
     if (_isEmpty) {
       this.error("Statement error: No reaction on timeout", this.ePackage.getTimeoutStatement_Statement());
+    }
+  }
+  
+  private void checkProcessStatement_NameConflicts(final EObject context, final Variable ele) {
+    if ((ele == null)) {
+      return;
+    }
+    if ((ele instanceof su.nsk.iae.post.poST.Process)) {
+      final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
+      boolean _contains = program.getProcesses().contains(ele);
+      boolean _not = (!_contains);
+      if (_not) {
+        this.error("Name error: Program does not contain a Process with this name", this.ePackage.getProcessStatements_Process());
+        return;
+      }
     }
   }
   
@@ -476,14 +600,14 @@ public class PoSTValidator extends AbstractPoSTValidator {
     final SymbolicVariable varEle = ele.getVariable();
     boolean _checkContainer = this.<InputVarDeclaration>checkContainer(varEle, InputVarDeclaration.class);
     if (_checkContainer) {
-      this.warning("Modification of input variable", this.ePackage.getAssignmentStatement_Variable());
+      this.warning("Modification of input Variable", this.ePackage.getAssignmentStatement_Variable());
       return;
     }
     final VarDeclaration varDecl = EcoreUtil2.<VarDeclaration>getContainerOfType(varEle, VarDeclaration.class);
     final GlobalVarDeclaration globDecl = EcoreUtil2.<GlobalVarDeclaration>getContainerOfType(varEle, GlobalVarDeclaration.class);
     final ExternalVarDeclaration extDecl = EcoreUtil2.<ExternalVarDeclaration>getContainerOfType(varEle, ExternalVarDeclaration.class);
     if (((((varDecl != null) && varDecl.isConst()) || ((globDecl != null) && globDecl.isConst())) || ((extDecl != null) && extDecl.isConst()))) {
-      this.error("Assignment error: Couldn\'t modify constant variable", this.ePackage.getAssignmentStatement_Variable());
+      this.error("Assignment error: Couldn\'t modify constant Variable", this.ePackage.getAssignmentStatement_Variable());
     }
   }
   
@@ -514,7 +638,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
     };
     final Predicate<su.nsk.iae.post.poST.Process> _function_1 = (su.nsk.iae.post.poST.Process x) -> {
       final Predicate<StartProcessStatement> _function_2 = (StartProcessStatement xx) -> {
-        su.nsk.iae.post.poST.Process _process = xx.getProcess();
+        Variable _process = xx.getProcess();
         return (_process == ele);
       };
       return EcoreUtil2.<StartProcessStatement>getAllContentsOfType(x, StartProcessStatement.class).stream().anyMatch(_function_2);
@@ -647,6 +771,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
       this.checkVarRepetition_TempVarDeclaration(process.getProcTempVars(), ele));
   }
   
+  private boolean checkNameRepetition(final su.nsk.iae.post.poST.Process process, final ProcessVariable ele) {
+    return this.checkVarRepetition_ProcessVarDeclaration(process.getProcProcessVars(), ele);
+  }
+  
   private boolean checkVarRepetition_InputVarDeclaration(final EList<InputVarDeclaration> varList, final SymbolicVariable ele) {
     final Predicate<InputVarDeclaration> _function = (InputVarDeclaration x) -> {
       return this.checkVarRepetition_VarInitDeclaration(x.getVars(), ele);
@@ -698,6 +826,13 @@ public class PoSTValidator extends AbstractPoSTValidator {
       })));
   }
   
+  private boolean checkVarRepetition_ProcessVarDeclaration(final EList<ProcessVarDeclaration> varList, final ProcessVariable ele) {
+    final Predicate<ProcessVarDeclaration> _function = (ProcessVarDeclaration x) -> {
+      return this.checkVarRepetition_ProcessVarInitDeclaration(x.getVars(), ele);
+    };
+    return varList.stream().anyMatch(_function);
+  }
+  
   private boolean checkVarRepetition_VarInitDeclaration(final EList<VarInitDeclaration> varList, final SymbolicVariable ele) {
     final Function<VarInitDeclaration, EList<SymbolicVariable>> _function = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
@@ -735,5 +870,18 @@ public class PoSTValidator extends AbstractPoSTValidator {
       return ((x != ele) && x.getName().equals(ele.getName()));
     };
     return varList.stream().<EList<SymbolicVariable>>map(_function).<SymbolicVariable>flatMap(_function_1).anyMatch(_function_2);
+  }
+  
+  private boolean checkVarRepetition_ProcessVarInitDeclaration(final EList<ProcessVarInitDeclaration> varList, final ProcessVariable ele) {
+    final Function<ProcessVarInitDeclaration, EList<ProcessVariable>> _function = (ProcessVarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<ProcessVariable>, Stream<ProcessVariable>> _function_1 = (EList<ProcessVariable> x) -> {
+      return x.stream();
+    };
+    final Predicate<ProcessVariable> _function_2 = (ProcessVariable x) -> {
+      return ((x != ele) && x.getName().equals(ele.getName()));
+    };
+    return varList.stream().<EList<ProcessVariable>>map(_function).<ProcessVariable>flatMap(_function_1).anyMatch(_function_2);
   }
 }

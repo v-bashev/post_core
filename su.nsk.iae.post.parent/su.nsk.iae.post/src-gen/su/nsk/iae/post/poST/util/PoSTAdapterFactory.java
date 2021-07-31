@@ -13,8 +13,9 @@ import org.eclipse.emf.ecore.EObject;
 import su.nsk.iae.post.poST.AddExpression;
 import su.nsk.iae.post.poST.AndExpression;
 import su.nsk.iae.post.poST.ArrayInitialization;
-import su.nsk.iae.post.poST.ArraySpecInit;
+import su.nsk.iae.post.poST.ArrayInterval;
 import su.nsk.iae.post.poST.ArraySpecification;
+import su.nsk.iae.post.poST.ArraySpecificationInit;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
@@ -49,7 +50,10 @@ import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
-import su.nsk.iae.post.poST.ProcessTemplateElements;
+import su.nsk.iae.post.poST.ProcessVarDeclaration;
+import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
+import su.nsk.iae.post.poST.ProcessVarList;
+import su.nsk.iae.post.poST.ProcessVariable;
 import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
@@ -73,13 +77,16 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
 import su.nsk.iae.post.poST.VarList;
+import su.nsk.iae.post.poST.Variable;
 import su.nsk.iae.post.poST.WhileStatement;
 import su.nsk.iae.post.poST.XorExpression;
 
@@ -152,6 +159,11 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
+      public Adapter caseVariable(Variable object)
+      {
+        return createVariableAdapter();
+      }
+      @Override
       public Adapter caseConfiguration(Configuration object)
       {
         return createConfigurationAdapter();
@@ -202,9 +214,14 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createTemplateProcessConfElementAdapter();
       }
       @Override
-      public Adapter caseProcessTemplateElements(ProcessTemplateElements object)
+      public Adapter caseTemplateProcessElements(TemplateProcessElements object)
       {
-        return createProcessTemplateElementsAdapter();
+        return createTemplateProcessElementsAdapter();
+      }
+      @Override
+      public Adapter caseTemplateProcessAttachVariableConfElement(TemplateProcessAttachVariableConfElement object)
+      {
+        return createTemplateProcessAttachVariableConfElementAdapter();
       }
       @Override
       public Adapter caseProgram(Program object)
@@ -402,14 +419,19 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createSymbolicVariableAdapter();
       }
       @Override
-      public Adapter caseVarInitDeclaration(VarInitDeclaration object)
+      public Adapter caseSimpleSpecificationInit(SimpleSpecificationInit object)
       {
-        return createVarInitDeclarationAdapter();
+        return createSimpleSpecificationInitAdapter();
       }
       @Override
       public Adapter caseVarList(VarList object)
       {
         return createVarListAdapter();
+      }
+      @Override
+      public Adapter caseVarInitDeclaration(VarInitDeclaration object)
+      {
+        return createVarInitDeclarationAdapter();
       }
       @Override
       public Adapter caseInputVarDeclaration(InputVarDeclaration object)
@@ -437,19 +459,14 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createTempVarDeclarationAdapter();
       }
       @Override
-      public Adapter caseExternalVarDeclaration(ExternalVarDeclaration object)
-      {
-        return createExternalVarDeclarationAdapter();
-      }
-      @Override
       public Adapter caseExternalVarInitDeclaration(ExternalVarInitDeclaration object)
       {
         return createExternalVarInitDeclarationAdapter();
       }
       @Override
-      public Adapter caseGlobalVarDeclaration(GlobalVarDeclaration object)
+      public Adapter caseExternalVarDeclaration(ExternalVarDeclaration object)
       {
-        return createGlobalVarDeclarationAdapter();
+        return createExternalVarDeclarationAdapter();
       }
       @Override
       public Adapter caseGlobalVarInitDeclaration(GlobalVarInitDeclaration object)
@@ -457,14 +474,44 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createGlobalVarInitDeclarationAdapter();
       }
       @Override
-      public Adapter caseArraySpecInit(ArraySpecInit object)
+      public Adapter caseGlobalVarDeclaration(GlobalVarDeclaration object)
       {
-        return createArraySpecInitAdapter();
+        return createGlobalVarDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseProcessVariable(ProcessVariable object)
+      {
+        return createProcessVariableAdapter();
+      }
+      @Override
+      public Adapter caseProcessVarList(ProcessVarList object)
+      {
+        return createProcessVarListAdapter();
+      }
+      @Override
+      public Adapter caseProcessVarInitDeclaration(ProcessVarInitDeclaration object)
+      {
+        return createProcessVarInitDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseProcessVarDeclaration(ProcessVarDeclaration object)
+      {
+        return createProcessVarDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseArraySpecificationInit(ArraySpecificationInit object)
+      {
+        return createArraySpecificationInitAdapter();
       }
       @Override
       public Adapter caseArraySpecification(ArraySpecification object)
       {
         return createArraySpecificationAdapter();
+      }
+      @Override
+      public Adapter caseArrayInterval(ArrayInterval object)
+      {
+        return createArrayIntervalAdapter();
       }
       @Override
       public Adapter caseArrayInitialization(ArrayInitialization object)
@@ -475,11 +522,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseTimeLiteral(TimeLiteral object)
       {
         return createTimeLiteralAdapter();
-      }
-      @Override
-      public Adapter caseSimpleSpecificationInit(SimpleSpecificationInit object)
-      {
-        return createSimpleSpecificationInitAdapter();
       }
       @Override
       public Adapter caseConstant(Constant object)
@@ -539,6 +581,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.Variable
+   * @generated
+   */
+  public Adapter createVariableAdapter()
   {
     return null;
   }
@@ -694,16 +751,31 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessTemplateElements <em>Process Template Elements</em>}'.
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.TemplateProcessElements <em>Template Process Elements</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see su.nsk.iae.post.poST.ProcessTemplateElements
+   * @see su.nsk.iae.post.poST.TemplateProcessElements
    * @generated
    */
-  public Adapter createProcessTemplateElementsAdapter()
+  public Adapter createTemplateProcessElementsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement <em>Template Process Attach Variable Conf Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement
+   * @generated
+   */
+  public Adapter createTemplateProcessAttachVariableConfElementAdapter()
   {
     return null;
   }
@@ -1294,16 +1366,16 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.VarInitDeclaration <em>Var Init Declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.SimpleSpecificationInit <em>Simple Specification Init</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see su.nsk.iae.post.poST.VarInitDeclaration
+   * @see su.nsk.iae.post.poST.SimpleSpecificationInit
    * @generated
    */
-  public Adapter createVarInitDeclarationAdapter()
+  public Adapter createSimpleSpecificationInitAdapter()
   {
     return null;
   }
@@ -1319,6 +1391,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createVarListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.VarInitDeclaration <em>Var Init Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.VarInitDeclaration
+   * @generated
+   */
+  public Adapter createVarInitDeclarationAdapter()
   {
     return null;
   }
@@ -1399,21 +1486,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ExternalVarDeclaration <em>External Var Declaration</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see su.nsk.iae.post.poST.ExternalVarDeclaration
-   * @generated
-   */
-  public Adapter createExternalVarDeclarationAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ExternalVarInitDeclaration <em>External Var Init Declaration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1429,16 +1501,16 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.GlobalVarDeclaration <em>Global Var Declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ExternalVarDeclaration <em>External Var Declaration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see su.nsk.iae.post.poST.GlobalVarDeclaration
+   * @see su.nsk.iae.post.poST.ExternalVarDeclaration
    * @generated
    */
-  public Adapter createGlobalVarDeclarationAdapter()
+  public Adapter createExternalVarDeclarationAdapter()
   {
     return null;
   }
@@ -1459,16 +1531,91 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ArraySpecInit <em>Array Spec Init</em>}'.
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.GlobalVarDeclaration <em>Global Var Declaration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see su.nsk.iae.post.poST.ArraySpecInit
+   * @see su.nsk.iae.post.poST.GlobalVarDeclaration
    * @generated
    */
-  public Adapter createArraySpecInitAdapter()
+  public Adapter createGlobalVarDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVariable <em>Process Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVariable
+   * @generated
+   */
+  public Adapter createProcessVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVarList <em>Process Var List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVarList
+   * @generated
+   */
+  public Adapter createProcessVarListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVarInitDeclaration <em>Process Var Init Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVarInitDeclaration
+   * @generated
+   */
+  public Adapter createProcessVarInitDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessVarDeclaration <em>Process Var Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ProcessVarDeclaration
+   * @generated
+   */
+  public Adapter createProcessVarDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ArraySpecificationInit <em>Array Specification Init</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ArraySpecificationInit
+   * @generated
+   */
+  public Adapter createArraySpecificationInitAdapter()
   {
     return null;
   }
@@ -1484,6 +1631,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createArraySpecificationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ArrayInterval <em>Array Interval</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ArrayInterval
+   * @generated
+   */
+  public Adapter createArrayIntervalAdapter()
   {
     return null;
   }
@@ -1514,21 +1676,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTimeLiteralAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.SimpleSpecificationInit <em>Simple Specification Init</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see su.nsk.iae.post.poST.SimpleSpecificationInit
-   * @generated
-   */
-  public Adapter createSimpleSpecificationInitAdapter()
   {
     return null;
   }

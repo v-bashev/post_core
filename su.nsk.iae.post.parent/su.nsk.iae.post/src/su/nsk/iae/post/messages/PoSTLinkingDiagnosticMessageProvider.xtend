@@ -10,8 +10,14 @@ class PoSTLinkingDiagnosticMessageProvider extends LinkingDiagnosticMessageProvi
 	override getUnresolvedProxyMessage(ILinkingDiagnosticContext context) {
 		if (context.reference.EReferenceType.name.equals("SymbolicVariable")) {
 			var name = context.linkText
-			val msg = "Couldn't resolve reference to variable '" + name + "'.";
-		return new DiagnosticMessage(msg, Severity.ERROR, Diagnostic.LINKING_DIAGNOSTIC);
+			val msg = "Couldn't resolve reference to Variable '" + name + "'.";
+			return new DiagnosticMessage(msg, Severity.ERROR, Diagnostic.LINKING_DIAGNOSTIC);
+		}
+		if (context.reference.EReferenceType.name.equals("ProcessVariable") || 
+			context.reference.EReferenceType.name.equals("ProcessStatementElement")) {
+			var name = context.linkText
+			val msg = "Couldn't resolve reference to Process Variable '" + name + "'.";
+			return new DiagnosticMessage(msg, Severity.ERROR, Diagnostic.LINKING_DIAGNOSTIC);
 		}
 		return super.getUnresolvedProxyMessage(context)
 	}

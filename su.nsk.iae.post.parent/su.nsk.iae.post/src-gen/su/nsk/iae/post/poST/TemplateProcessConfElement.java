@@ -14,7 +14,6 @@ package su.nsk.iae.post.poST;
  * </p>
  * <ul>
  *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#isActive <em>Active</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getName <em>Name</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getProcess <em>Process</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getArgs <em>Args</em>}</li>
  * </ul>
@@ -23,7 +22,7 @@ package su.nsk.iae.post.poST;
  * @model
  * @generated
  */
-public interface TemplateProcessConfElement extends ProgramConfElement
+public interface TemplateProcessConfElement extends Variable, ProgramConfElement
 {
   /**
    * Returns the value of the '<em><b>Active</b></em>' attribute.
@@ -46,28 +45,6 @@ public interface TemplateProcessConfElement extends ProgramConfElement
    * @generated
    */
   void setActive(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessConfElement_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Process</b></em>' reference.
@@ -96,12 +73,12 @@ public interface TemplateProcessConfElement extends ProgramConfElement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Args</em>' containment reference.
-   * @see #setArgs(ProcessTemplateElements)
+   * @see #setArgs(TemplateProcessElements)
    * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessConfElement_Args()
    * @model containment="true"
    * @generated
    */
-  ProcessTemplateElements getArgs();
+  TemplateProcessElements getArgs();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.TemplateProcessConfElement#getArgs <em>Args</em>}' containment reference.
@@ -111,6 +88,6 @@ public interface TemplateProcessConfElement extends ProgramConfElement
    * @see #getArgs()
    * @generated
    */
-  void setArgs(ProcessTemplateElements value);
+  void setArgs(TemplateProcessElements value);
 
 } // TemplateProcessConfElement

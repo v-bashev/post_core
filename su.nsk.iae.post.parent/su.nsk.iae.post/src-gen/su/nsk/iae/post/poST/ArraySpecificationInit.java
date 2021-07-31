@@ -7,22 +7,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Array Spec Init</b></em>'.
+ * A representation of the model object '<em><b>Array Specification Init</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.ArraySpecInit#getInit <em>Init</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.ArraySpecInit#getValues <em>Values</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.ArraySpecificationInit#getInit <em>Init</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.ArraySpecificationInit#getValues <em>Values</em>}</li>
  * </ul>
  *
- * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecInit()
+ * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecificationInit()
  * @model
  * @generated
  */
-public interface ArraySpecInit extends EObject
+public interface ArraySpecificationInit extends EObject
 {
   /**
    * Returns the value of the '<em><b>Init</b></em>' containment reference.
@@ -30,14 +30,14 @@ public interface ArraySpecInit extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Init</em>' containment reference.
    * @see #setInit(ArraySpecification)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecInit_Init()
+   * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecificationInit_Init()
    * @model containment="true"
    * @generated
    */
   ArraySpecification getInit();
 
   /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.ArraySpecInit#getInit <em>Init</em>}' containment reference.
+   * Sets the value of the '{@link su.nsk.iae.post.poST.ArraySpecificationInit#getInit <em>Init</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Init</em>' containment reference.
@@ -52,14 +52,14 @@ public interface ArraySpecInit extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Values</em>' containment reference.
    * @see #setValues(ArrayInitialization)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecInit_Values()
+   * @see su.nsk.iae.post.poST.PoSTPackage#getArraySpecificationInit_Values()
    * @model containment="true"
    * @generated
    */
   ArrayInitialization getValues();
 
   /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.ArraySpecInit#getValues <em>Values</em>}' containment reference.
+   * Sets the value of the '{@link su.nsk.iae.post.poST.ArraySpecificationInit#getValues <em>Values</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Values</em>' containment reference.
@@ -68,4 +68,4 @@ public interface ArraySpecInit extends EObject
    */
   void setValues(ArrayInitialization value);
 
-} // ArraySpecInit
+} // ArraySpecificationInit

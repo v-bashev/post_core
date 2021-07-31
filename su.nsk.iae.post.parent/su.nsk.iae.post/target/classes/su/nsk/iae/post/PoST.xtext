@@ -9,6 +9,13 @@ Model:
 	(globVars+=GlobalVarDeclaration)* &
 	(programs+=Program)* &
 	(fbs+=FunctionBlock)*;
+	
+/* ======================= START Variable ======================= */
+
+Variable:
+	SymbolicVariable | ProcessVariable | Process | TemplateProcessConfElement;
+
+/* ======================= END Variable ======================= */
 
 /* ======================= START Configuration ======================= */
 
@@ -27,7 +34,8 @@ Resource:
 	'END_RESOURCE';
 
 SingleResource:
-	{SingleResource} (
+	{SingleResource} 
+	(
 		(tasks+=Task ';') |
 		(programConfs+=ProgramConfiguration ';')
 	)*;
@@ -60,7 +68,6 @@ ProgramConfElement:
 AttachVariableConfElement:
 	programVar=[SymbolicVariable] assig=AssignmentType (attVar=[SymbolicVariable] | const=Constant);
 
-
 enum AssignmentType:
 	in=':=' | out='=>';
 
@@ -69,10 +76,13 @@ enum AssignmentType:
 /* ======================= START Template Configuration ======================= */
 
 TemplateProcessConfElement:
-	'PROCESS' (active?='ACTIVE')? name=ID ':' process=[Process] ('(' args=ProcessTemplateElements ')')?;
+	'PROCESS' (active?='ACTIVE')? name=ID ':' process=[Process] ('(' args=TemplateProcessElements ')')?;
 
-ProcessTemplateElements:
-	elements+=AttachVariableConfElement (',' elements+=AttachVariableConfElement)*;
+TemplateProcessElements:
+	elements+=TemplateProcessAttachVariableConfElement (',' elements+=TemplateProcessAttachVariableConfElement)*;
+	
+TemplateProcessAttachVariableConfElement:
+	programVar=[Variable] assig=AssignmentType (attVar=[Variable] | const=Constant);
 
 /* ======================= END Template Configuration ======================= */
 
@@ -118,6 +128,7 @@ Process:
 			procInVars+=InputVarDeclaration | 
 			procOutVars+=OutputVarDeclaration |
 			procInOutVars+=InputOutputVarDeclaration |
+			procProcessVars+=ProcessVarDeclaration |
 			procVars+=VarDeclaration | 
 			procTempVars+=TempVarDeclaration
 		)*
@@ -142,16 +153,16 @@ ProcessStatements:
 	StartProcessStatement | StopProcessStatement | ErrorProcessStatement;
 
 ProcessStatusExpression:
-	'PROCESS' process=[Process] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
+	'PROCESS' process=[Variable] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
 
 StartProcessStatement:
-	{StartProcessStatement} ('START' 'PROCESS' process=[Process]) | {StartProcessStatement} 'RESTART';
+	{StartProcessStatement} ('START' 'PROCESS' process=[Variable]) | {StartProcessStatement} 'RESTART';
 
 StopProcessStatement:
-	{StopProcessStatement} 'STOP' ('PROCESS' process=[Process])?;
+	{StopProcessStatement} 'STOP' ('PROCESS' process=[Variable])?;
 
 ErrorProcessStatement:
-	{ErrorProcessStatement} 'ERROR' ('PROCESS' process=[Process])?;
+	{ErrorProcessStatement} 'ERROR' ('PROCESS' process=[Variable])?;
 
 TimeoutStatement:
 	'TIMEOUT' (const=Constant | variable=[SymbolicVariable]) 'THEN'
@@ -160,8 +171,6 @@ TimeoutStatement:
 
 ResetTimerStatement:
 	{ResetTimerStatement} 'RESET' 'TIMER';
-
-	
 
 /* ======================= END poST Expression ======================= */
 	
@@ -297,7 +306,7 @@ ExitStatement:
 	{ExitStatement} 'EXIT';
 	
 ArrayVariable:
-	varName=[SymbolicVariable] '[' index=Expression ']';
+	variable=[SymbolicVariable] '[' index=Expression ']';
 
 /* ======================= END ST Expression ======================= */
 	
@@ -305,6 +314,118 @@ ArrayVariable:
 
 SymbolicVariable:
 	name=ID;
+	
+SimpleSpecificationInit:
+	{SimpleSpecificationInit} type=DataTypeName (':=' value=Expression)?;
+	
+VarList:
+	vars+=SymbolicVariable (',' vars+=SymbolicVariable)*;
+
+VarInitDeclaration:
+	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit);
+
+InputVarDeclaration:
+	{InputVarDeclaration}
+	'VAR_INPUT'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+OutputVarDeclaration:
+	{OutputVarDeclaration}
+	'VAR_OUTPUT'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+InputOutputVarDeclaration:
+	{InputOutputVarDeclaration}
+	'VAR_IN_OUT'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+VarDeclaration:
+	{VarDeclaration}
+	'VAR' (const?='CONSTANT')?
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+TempVarDeclaration:
+	{TempVarDeclaration}
+	'VAR_TEMP'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+ExternalVarInitDeclaration:
+	varList=VarList ':' type=DataTypeName;
+	
+ExternalVarDeclaration:
+	{ExternalVarDeclaration}
+	'VAR_EXTERNAL' (const?='CONSTANT')?
+		(vars+=ExternalVarInitDeclaration ';')*
+	'END_VAR';
+	
+GlobalVarInitDeclaration:
+	varList=VarList 'AT' location=DIRECT_VARIABLE ':' type=DataTypeName;
+
+GlobalVarDeclaration:
+	{GlobalVarDeclaration}
+	'VAR_GLOBAL' (const?='CONSTANT')?
+		(
+			(varsSimple+=VarInitDeclaration ';') | 
+			(varsAs+=GlobalVarInitDeclaration ';')
+		)*
+	'END_VAR';
+
+/* ======================= END Variables ======================= */
+
+/* ======================= START poST Variables ======================= */
+
+ProcessVariable:
+	name=ID;
+	
+ProcessVarList:
+	vars+=ProcessVariable (',' vars+=ProcessVariable)*;
+	
+ProcessVarInitDeclaration:
+	varList=ProcessVarList ':' process=[Process];
+
+ProcessVarDeclaration:
+	{ProcessVarDeclaration}
+	'VAR_PROCESS'
+		(vars+=ProcessVarInitDeclaration ';')*
+	'END_VAR';
+
+/* ======================= END poST Variables ======================= */
+
+/* ======================= START Array ======================= */
+	
+ArraySpecificationInit:
+	init=ArraySpecification (':=' values=ArrayInitialization)?;
+
+ArraySpecification:
+	'ARRAY' '[' (interval=ArrayInterval | '*') ']' 'OF' type=DataTypeName;
+	
+ArrayInterval:
+	start=Expression '..' end=Expression;
+
+ArrayInitialization :
+	'[' elements+=Expression (',' elements+=Expression)* ']';
+
+/* ======================= END Array ======================= */
+	
+/* ======================= START Time Literals ======================= */
+
+TimeLiteral:
+	 TIME_PREF_LITERAL '#' '-'? interval=INTERVAL;
+
+terminal TIME_PREF_LITERAL:
+	'T';
+
+terminal INTERVAL returns ecore::EString:
+	(INTEGER 'd')? (INTEGER 'h')? (INTEGER 'm')? (INTEGER 's')? (INTEGER 'ms')?;
+
+/* ======================= END Time Literals ======================= */
+
+/* ======================= START Direct Variables ======================= */
 
 terminal DIRECT_VARIABLE returns ecore::EString:
 	'%' DIRECT_TYPE_PREFIX DIRECT_SIZE_PREFIX INTEGER ('.' INTEGER)*;
@@ -314,85 +435,8 @@ terminal fragment DIRECT_TYPE_PREFIX:
 
 terminal fragment DIRECT_SIZE_PREFIX:
 	'X' | 'B' | 'W' | 'D' | 'L';
-
-VarInitDeclaration:
-	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecInit);
-
-VarList:
-	vars+=SymbolicVariable (',' vars+=SymbolicVariable)*;
-
-InputVarDeclaration:
-	'VAR_INPUT'
-		(vars+=VarInitDeclaration ';')+
-	'END_VAR';
-
-OutputVarDeclaration:
-	'VAR_OUTPUT'
-		(vars+=VarInitDeclaration ';')+
-	'END_VAR';
-
-InputOutputVarDeclaration:
-	'VAR_IN_OUT'
-		(vars+=VarInitDeclaration ';')+
-	'END_VAR';
-
-VarDeclaration:
-	'VAR' (const?='CONSTANT')?
-		(vars+=VarInitDeclaration ';')+
-	'END_VAR';
-
-TempVarDeclaration:
-	'VAR_TEMP'
-		(vars+=VarInitDeclaration ';')+
-	'END_VAR';
-
-ExternalVarDeclaration:
-	'VAR_EXTERNAL' (const?='CONSTANT')?
-		(vars+=ExternalVarInitDeclaration ';')+
-	'END_VAR';
-
-ExternalVarInitDeclaration:
-	varList=VarList ':' type=DataTypeName;
-
-GlobalVarDeclaration:
-	'VAR_GLOBAL' (const?='CONSTANT')?
-		(
-			(varsSimple+=VarInitDeclaration ';') | 
-			(varsAs+=GlobalVarInitDeclaration ';')
-		)+
-	'END_VAR';
-
-GlobalVarInitDeclaration:
-	varList=VarList 'AT' location=DIRECT_VARIABLE ':' type=DataTypeName;
-
-/* ======================= END Variables ======================= */
-
-/* ======================= START Array ======================= */
 	
-ArraySpecInit:
-	init=ArraySpecification (':=' values=ArrayInitialization)?;
-
-ArraySpecification:
-	'ARRAY' '[' start=SignedInteger '..' end=SignedInteger ']' 'OF' type=DataTypeName;
-
-ArrayInitialization :
-	'[' elements+=Constant (',' elements+=Constant)* ']';
-
-/* ======================= END Array ======================= */
-	
-/* ======================= START Time Literals ======================= */
-
-TimeLiteral:
-	 TIME_PREF_LITERAL '#' '-'? interval=INTERVAL
-;
-
-terminal TIME_PREF_LITERAL:
-	'T';
-
-terminal INTERVAL returns ecore::EString:
-	(INTEGER 'd')? (INTEGER 'h')? (INTEGER 'm')? (INTEGER 's')? (INTEGER 'ms')?;
-
-/* ======================= END Time Literals ======================= */
+/* ======================= END Direct Variables ======================= */
 	
 /* ======================= START Elementary data types ======================= */
 
@@ -422,9 +466,6 @@ terminal TIME_TYPE_NAME returns ecore::EString:
 	
 terminal STRING_TYPE_NAME returns ecore::EString:
 	'STRING' | 'WSTRING';
-
-SimpleSpecificationInit:
-	{SimpleSpecificationInit} type=DataTypeName (':=' value=Constant)?;
 
 /* ======================= END Elementary data types ======================= */
 	

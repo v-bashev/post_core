@@ -74,12 +74,12 @@ public interface VarInitDeclaration extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Arr Spec</em>' containment reference.
-   * @see #setArrSpec(ArraySpecInit)
+   * @see #setArrSpec(ArraySpecificationInit)
    * @see su.nsk.iae.post.poST.PoSTPackage#getVarInitDeclaration_ArrSpec()
    * @model containment="true"
    * @generated
    */
-  ArraySpecInit getArrSpec();
+  ArraySpecificationInit getArrSpec();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.VarInitDeclaration#getArrSpec <em>Arr Spec</em>}' containment reference.
@@ -89,6 +89,6 @@ public interface VarInitDeclaration extends EObject
    * @see #getArrSpec()
    * @generated
    */
-  void setArrSpec(ArraySpecInit value);
+  void setArrSpec(ArraySpecificationInit value);
 
 } // VarInitDeclaration

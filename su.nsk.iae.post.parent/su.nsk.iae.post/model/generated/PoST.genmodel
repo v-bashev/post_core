@@ -39,6 +39,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/programs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/fbs"/>
     </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Variable/name"/>
+    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Configuration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Configuration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Configuration/confGlobVars"/>
@@ -81,12 +84,17 @@
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//TemplateProcessConfElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TemplateProcessConfElement/active"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TemplateProcessConfElement/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcessConfElement/process"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcessConfElement/args"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//ProcessTemplateElements">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProcessTemplateElements/elements"/>
+    <genClasses ecoreClass="PoST.ecore#//TemplateProcessElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcessElements/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//TemplateProcessAttachVariableConfElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcessAttachVariableConfElement/programVar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TemplateProcessAttachVariableConfElement/assig"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcessAttachVariableConfElement/attVar"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TemplateProcessAttachVariableConfElement/const"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Program">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Program/name"/>
@@ -109,10 +117,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionBlock/processes"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Process">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Process/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procInVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procOutVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procInOutVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procProcessVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/procTempVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Process/states"/>
@@ -225,19 +233,21 @@
     <genClasses ecoreClass="PoST.ecore#//SubprogramControlStatement"/>
     <genClasses ecoreClass="PoST.ecore#//ExitStatement"/>
     <genClasses ecoreClass="PoST.ecore#//ArrayVariable">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ArrayVariable/varName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ArrayVariable/variable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArrayVariable/index"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//SymbolicVariable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//SymbolicVariable/name"/>
+    <genClasses ecoreClass="PoST.ecore#//SymbolicVariable"/>
+    <genClasses ecoreClass="PoST.ecore#//SimpleSpecificationInit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//SimpleSpecificationInit/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//SimpleSpecificationInit/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//VarList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarList/vars"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//VarInitDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarInitDeclaration/varList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarInitDeclaration/spec"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarInitDeclaration/arrSpec"/>
-    </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//VarList">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarList/vars"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//InputVarDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//InputVarDeclaration/vars"/>
@@ -255,42 +265,52 @@
     <genClasses ecoreClass="PoST.ecore#//TempVarDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TempVarDeclaration/vars"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//ExternalVarDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ExternalVarDeclaration/const"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ExternalVarDeclaration/vars"/>
-    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ExternalVarInitDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ExternalVarInitDeclaration/varList"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ExternalVarInitDeclaration/type"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//GlobalVarDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//GlobalVarDeclaration/const"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//GlobalVarDeclaration/varsSimple"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//GlobalVarDeclaration/varsAs"/>
+    <genClasses ecoreClass="PoST.ecore#//ExternalVarDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ExternalVarDeclaration/const"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ExternalVarDeclaration/vars"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//GlobalVarInitDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//GlobalVarInitDeclaration/varList"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//GlobalVarInitDeclaration/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//GlobalVarInitDeclaration/type"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//ArraySpecInit">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArraySpecInit/init"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArraySpecInit/values"/>
+    <genClasses ecoreClass="PoST.ecore#//GlobalVarDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//GlobalVarDeclaration/const"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//GlobalVarDeclaration/varsSimple"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//GlobalVarDeclaration/varsAs"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ProcessVariable"/>
+    <genClasses ecoreClass="PoST.ecore#//ProcessVarList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProcessVarList/vars"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ProcessVarInitDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProcessVarInitDeclaration/varList"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ProcessVarInitDeclaration/process"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ProcessVarDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ProcessVarDeclaration/vars"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ArraySpecificationInit">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArraySpecificationInit/init"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArraySpecificationInit/values"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ArraySpecification">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArraySpecification/start"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArraySpecification/end"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArraySpecification/interval"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ArraySpecification/type"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ArrayInterval">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArrayInterval/start"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArrayInterval/end"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ArrayInitialization">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ArrayInitialization/elements"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//TimeLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//TimeLiteral/interval"/>
-    </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//SimpleSpecificationInit">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//SimpleSpecificationInit/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//SimpleSpecificationInit/value"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Constant">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Constant/num"/>
