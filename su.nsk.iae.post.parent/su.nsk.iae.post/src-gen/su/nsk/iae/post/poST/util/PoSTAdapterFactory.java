@@ -48,10 +48,8 @@ import su.nsk.iae.post.poST.OutputVarDeclaration;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
-import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
-import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.ProcessVarDeclaration;
 import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
 import su.nsk.iae.post.poST.ProcessVarList;
@@ -79,13 +77,16 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
 import su.nsk.iae.post.poST.VarList;
+import su.nsk.iae.post.poST.Variable;
 import su.nsk.iae.post.poST.WhileStatement;
 import su.nsk.iae.post.poST.XorExpression;
 
@@ -158,6 +159,11 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
+      public Adapter caseVariable(Variable object)
+      {
+        return createVariableAdapter();
+      }
+      @Override
       public Adapter caseConfiguration(Configuration object)
       {
         return createConfigurationAdapter();
@@ -208,9 +214,14 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createTemplateProcessConfElementAdapter();
       }
       @Override
-      public Adapter caseProcessTemplateElements(ProcessTemplateElements object)
+      public Adapter caseTemplateProcessElements(TemplateProcessElements object)
       {
-        return createProcessTemplateElementsAdapter();
+        return createTemplateProcessElementsAdapter();
+      }
+      @Override
+      public Adapter caseTemplateProcessAttachVariableConfElement(TemplateProcessAttachVariableConfElement object)
+      {
+        return createTemplateProcessAttachVariableConfElementAdapter();
       }
       @Override
       public Adapter caseProgram(Program object)
@@ -241,11 +252,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseProcessStatements(ProcessStatements object)
       {
         return createProcessStatementsAdapter();
-      }
-      @Override
-      public Adapter caseProcessStatementElement(ProcessStatementElement object)
-      {
-        return createProcessStatementElementAdapter();
       }
       @Override
       public Adapter caseProcessStatusExpression(ProcessStatusExpression object)
@@ -580,6 +586,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.Variable
+   * @generated
+   */
+  public Adapter createVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.Configuration <em>Configuration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -730,16 +751,31 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessTemplateElements <em>Process Template Elements</em>}'.
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.TemplateProcessElements <em>Template Process Elements</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see su.nsk.iae.post.poST.ProcessTemplateElements
+   * @see su.nsk.iae.post.poST.TemplateProcessElements
    * @generated
    */
-  public Adapter createProcessTemplateElementsAdapter()
+  public Adapter createTemplateProcessElementsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement <em>Template Process Attach Variable Conf Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement
+   * @generated
+   */
+  public Adapter createTemplateProcessAttachVariableConfElementAdapter()
   {
     return null;
   }
@@ -830,21 +866,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createProcessStatementsAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ProcessStatementElement <em>Process Statement Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see su.nsk.iae.post.poST.ProcessStatementElement
-   * @generated
-   */
-  public Adapter createProcessStatementElementAdapter()
   {
     return null;
   }

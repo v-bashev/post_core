@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import su.nsk.iae.post.poST.PoSTPackage;
-import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatements;
+import su.nsk.iae.post.poST.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * @generated
    * @ordered
    */
-  protected ProcessStatementElement process;
+  protected Variable process;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,12 +66,12 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * @generated
    */
   @Override
-  public ProcessStatementElement getProcess()
+  public Variable getProcess()
   {
     if (process != null && process.eIsProxy())
     {
       InternalEObject oldProcess = (InternalEObject)process;
-      process = (ProcessStatementElement)eResolveProxy(oldProcess);
+      process = (Variable)eResolveProxy(oldProcess);
       if (process != oldProcess)
       {
         if (eNotificationRequired())
@@ -86,7 +86,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * <!-- end-user-doc -->
    * @generated
    */
-  public ProcessStatementElement basicGetProcess()
+  public Variable basicGetProcess()
   {
     return process;
   }
@@ -97,9 +97,9 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
    * @generated
    */
   @Override
-  public void setProcess(ProcessStatementElement newProcess)
+  public void setProcess(Variable newProcess)
   {
-    ProcessStatementElement oldProcess = process;
+    Variable oldProcess = process;
     process = newProcess;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROCESS_STATEMENTS__PROCESS, oldProcess, process));
@@ -133,7 +133,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATEMENTS__PROCESS:
-        setProcess((ProcessStatementElement)newValue);
+        setProcess((Variable)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -150,7 +150,7 @@ public class ProcessStatementsImpl extends StatementImpl implements ProcessState
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATEMENTS__PROCESS:
-        setProcess((ProcessStatementElement)null);
+        setProcess((Variable)null);
         return;
     }
     super.eUnset(featureID);

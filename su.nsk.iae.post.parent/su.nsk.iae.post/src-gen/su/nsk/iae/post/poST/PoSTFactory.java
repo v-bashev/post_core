@@ -33,6 +33,15 @@ public interface PoSTFactory extends EFactory
   Model createModel();
 
   /**
+   * Returns a new object of class '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable</em>'.
+   * @generated
+   */
+  Variable createVariable();
+
+  /**
    * Returns a new object of class '<em>Configuration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -123,13 +132,22 @@ public interface PoSTFactory extends EFactory
   TemplateProcessConfElement createTemplateProcessConfElement();
 
   /**
-   * Returns a new object of class '<em>Process Template Elements</em>'.
+   * Returns a new object of class '<em>Template Process Elements</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Process Template Elements</em>'.
+   * @return a new object of class '<em>Template Process Elements</em>'.
    * @generated
    */
-  ProcessTemplateElements createProcessTemplateElements();
+  TemplateProcessElements createTemplateProcessElements();
+
+  /**
+   * Returns a new object of class '<em>Template Process Attach Variable Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Template Process Attach Variable Conf Element</em>'.
+   * @generated
+   */
+  TemplateProcessAttachVariableConfElement createTemplateProcessAttachVariableConfElement();
 
   /**
    * Returns a new object of class '<em>Program</em>'.
@@ -184,15 +202,6 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   ProcessStatements createProcessStatements();
-
-  /**
-   * Returns a new object of class '<em>Process Statement Element</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Process Statement Element</em>'.
-   * @generated
-   */
-  ProcessStatementElement createProcessStatementElement();
 
   /**
    * Returns a new object of class '<em>Process Status Expression</em>'.

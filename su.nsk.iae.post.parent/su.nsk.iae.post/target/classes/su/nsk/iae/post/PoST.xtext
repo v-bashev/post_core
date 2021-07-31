@@ -9,6 +9,13 @@ Model:
 	(globVars+=GlobalVarDeclaration)* &
 	(programs+=Program)* &
 	(fbs+=FunctionBlock)*;
+	
+/* ======================= START Variable ======================= */
+
+Variable:
+	SymbolicVariable | ProcessVariable | Process | TemplateProcessConfElement;
+
+/* ======================= END Variable ======================= */
 
 /* ======================= START Configuration ======================= */
 
@@ -61,7 +68,6 @@ ProgramConfElement:
 AttachVariableConfElement:
 	programVar=[SymbolicVariable] assig=AssignmentType (attVar=[SymbolicVariable] | const=Constant);
 
-
 enum AssignmentType:
 	in=':=' | out='=>';
 
@@ -70,10 +76,13 @@ enum AssignmentType:
 /* ======================= START Template Configuration ======================= */
 
 TemplateProcessConfElement:
-	'PROCESS' (active?='ACTIVE')? name=ID ':' process=[Process] ('(' args=ProcessTemplateElements ')')?;
+	'PROCESS' (active?='ACTIVE')? name=ID ':' process=[Process] ('(' args=TemplateProcessElements ')')?;
 
-ProcessTemplateElements:
-	elements+=AttachVariableConfElement (',' elements+=AttachVariableConfElement)*;
+TemplateProcessElements:
+	elements+=TemplateProcessAttachVariableConfElement (',' elements+=TemplateProcessAttachVariableConfElement)*;
+	
+TemplateProcessAttachVariableConfElement:
+	programVar=[Variable] assig=AssignmentType (attVar=[Variable] | const=Constant);
 
 /* ======================= END Template Configuration ======================= */
 
@@ -143,20 +152,17 @@ SetStateStatement:
 ProcessStatements:
 	StartProcessStatement | StopProcessStatement | ErrorProcessStatement;
 
-ProcessStatementElement:
-	Process | ProcessVariable;
-
 ProcessStatusExpression:
-	'PROCESS' process=[ProcessStatementElement] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
+	'PROCESS' process=[Variable] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
 
 StartProcessStatement:
-	{StartProcessStatement} ('START' 'PROCESS' process=[ProcessStatementElement]) | {StartProcessStatement} 'RESTART';
+	{StartProcessStatement} ('START' 'PROCESS' process=[Variable]) | {StartProcessStatement} 'RESTART';
 
 StopProcessStatement:
-	{StopProcessStatement} 'STOP' ('PROCESS' process=[ProcessStatementElement])?;
+	{StopProcessStatement} 'STOP' ('PROCESS' process=[Variable])?;
 
 ErrorProcessStatement:
-	{ErrorProcessStatement} 'ERROR' ('PROCESS' process=[ProcessStatementElement])?;
+	{ErrorProcessStatement} 'ERROR' ('PROCESS' process=[Variable])?;
 
 TimeoutStatement:
 	'TIMEOUT' (const=Constant | variable=[SymbolicVariable]) 'THEN'

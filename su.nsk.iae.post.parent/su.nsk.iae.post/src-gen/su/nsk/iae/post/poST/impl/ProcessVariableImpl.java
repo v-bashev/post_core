@@ -15,7 +15,7 @@ import su.nsk.iae.post.poST.ProcessVariable;
  *
  * @generated
  */
-public class ProcessVariableImpl extends ProcessStatementElementImpl implements ProcessVariable
+public class ProcessVariableImpl extends VariableImpl implements ProcessVariable
 {
   /**
    * <!-- begin-user-doc -->

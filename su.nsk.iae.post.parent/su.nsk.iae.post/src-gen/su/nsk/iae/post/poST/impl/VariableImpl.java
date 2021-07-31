@@ -11,22 +11,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.PoSTPackage;
-import su.nsk.iae.post.poST.ProcessStatementElement;
+import su.nsk.iae.post.poST.Variable;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Process Statement Element</b></em>'.
+ * An implementation of the model object '<em><b>Variable</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.impl.ProcessStatementElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.VariableImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container implements ProcessStatementElement
+public class VariableImpl extends MinimalEObjectImpl.Container implements Variable
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -53,7 +53,7 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ProcessStatementElementImpl()
+  protected VariableImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return PoSTPackage.Literals.PROCESS_STATEMENT_ELEMENT;
+    return PoSTPackage.Literals.VARIABLE;
   }
 
   /**
@@ -91,7 +91,7 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROCESS_STATEMENT_ELEMENT__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.VARIABLE__NAME, oldName, name));
   }
 
   /**
@@ -104,7 +104,7 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_STATEMENT_ELEMENT__NAME:
+      case PoSTPackage.VARIABLE__NAME:
         return getName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -120,7 +120,7 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_STATEMENT_ELEMENT__NAME:
+      case PoSTPackage.VARIABLE__NAME:
         setName((String)newValue);
         return;
     }
@@ -137,7 +137,7 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_STATEMENT_ELEMENT__NAME:
+      case PoSTPackage.VARIABLE__NAME:
         setName(NAME_EDEFAULT);
         return;
     }
@@ -154,7 +154,7 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_STATEMENT_ELEMENT__NAME:
+      case PoSTPackage.VARIABLE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
@@ -177,4 +177,4 @@ public class ProcessStatementElementImpl extends MinimalEObjectImpl.Container im
     return result.toString();
   }
 
-} //ProcessStatementElementImpl
+} //VariableImpl

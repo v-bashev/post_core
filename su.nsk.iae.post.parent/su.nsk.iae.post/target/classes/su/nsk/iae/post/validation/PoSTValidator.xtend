@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
+import su.nsk.iae.post.poST.ArraySpecification
 import su.nsk.iae.post.poST.AssignmentStatement
 import su.nsk.iae.post.poST.AssignmentType
 import su.nsk.iae.post.poST.AttachVariableConfElement
@@ -23,7 +24,6 @@ import su.nsk.iae.post.poST.Model
 import su.nsk.iae.post.poST.OutputVarDeclaration
 import su.nsk.iae.post.poST.PoSTPackage
 import su.nsk.iae.post.poST.Process
-import su.nsk.iae.post.poST.ProcessStatementElement
 import su.nsk.iae.post.poST.ProcessStatusExpression
 import su.nsk.iae.post.poST.ProcessVarDeclaration
 import su.nsk.iae.post.poST.ProcessVarInitDeclaration
@@ -43,9 +43,9 @@ import su.nsk.iae.post.poST.TemplateProcessConfElement
 import su.nsk.iae.post.poST.TimeoutStatement
 import su.nsk.iae.post.poST.VarDeclaration
 import su.nsk.iae.post.poST.VarInitDeclaration
+import su.nsk.iae.post.poST.Variable
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import su.nsk.iae.post.poST.ArraySpecification
 
 class PoSTValidator extends AbstractPoSTValidator {
 	
@@ -59,13 +59,11 @@ class PoSTValidator extends AbstractPoSTValidator {
 		if (program !== null) {
 			val process = ele.getContainerOfType(Process)
 			if ((process !== null) && process.checkNameRepetition(ele)) {
-				error("Name error: Process already has a Variable with this name",
-						ePackage.symbolicVariable_Name)
+				error("Name error: Process already has a Variable with this name", ePackage.variable_Name)
 				return
 			}
 			if (program.checkNameRepetition(ele)) {
-				error("Name error: Program already has a Variable with this name",
-						ePackage.symbolicVariable_Name)
+				error("Name error: Program already has a Variable with this name", ePackage.variable_Name)
 				return
 			}
 		}
@@ -73,31 +71,26 @@ class PoSTValidator extends AbstractPoSTValidator {
 		if (configuration !== null) {
 			val resource = ele.getContainerOfType(Resource)
 			if ((resource !== null) && resource.checkNameRepetition(ele)) {
-				error("Name error: Resource already has a Variable with this name",
-						ePackage.symbolicVariable_Name)
+				error("Name error: Resource already has a Variable with this name", ePackage.variable_Name)
 				return
 			}
 			if (configuration.checkNameRepetition(ele)) {
-				error("Name error: Configuration already has a Variable with this name",
-						ePackage.symbolicVariable_Name)
+				error("Name error: Configuration already has a Variable with this name", ePackage.variable_Name)
 				return
 			}
 		}
 		val model = ele.getContainerOfType(Model)
 		if (model.checkNameRepetition(ele)) {
-			error("Name error: Conflict with the name of a global Variable",
-					ePackage.symbolicVariable_Name)
+			error("Name error: Conflict with the name of a global Variable", ePackage.variable_Name)
 			return
 		}
 		if ((program !== null) && (model.conf !== null)) {
 			if (model.conf.checkNameRepetition(ele)) {
-				error("Name error: Configuration already has a Variable with this name",
-						ePackage.symbolicVariable_Name)
+				error("Name error: Configuration already has a Variable with this name", ePackage.variable_Name)
 				return
 			}
 			if (model.conf.resources.stream.anyMatch([r | r.checkNameRepetition(ele)])) {
-				error("Name error: Resource already has a Variable with this name",
-						ePackage.symbolicVariable_Name)
+				error("Name error: Resource already has a Variable with this name", ePackage.variable_Name)
 			}
 		}
 	}
@@ -106,8 +99,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkProcessVariable_NameConflicts(ProcessVariable ele) {
 		val process = ele.getContainerOfType(Process)
 		if ((process !== null) && process.checkNameRepetition(ele)) {
-			error("Name error: Process already has a Process Variable with this name",
-					ePackage.symbolicVariable_Name)
+			error("Name error: Process already has a Process Variable with this name", ePackage.variable_Name)
 		}
 	}
 	
@@ -115,7 +107,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkSymbolicVariable_NeverUse(SymbolicVariable ele) {
 		val model = ele.getContainerOfType(Model)
 		if (!hasCrossReferences(model, ele)) {
-			warning("Variable is never use", ePackage.symbolicVariable_Name)
+			warning("Variable is never use", ePackage.variable_Name)
 		}
 	}
 	
@@ -187,7 +179,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 		val rogramConf = ele.getContainerOfType(ProgramConfiguration)
 		if ((rogramConf !== null) && rogramConf.checkNameRepetition(ele)) {
 			error("Name error: Program already has a Template Process with this name",
-					ePackage.templateProcessConfElement_Name)
+					ePackage, ePackage.variable_Name)
 		}
 	}
 	
@@ -258,19 +250,19 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkProcess_NameConflicts(Process ele) {
 		val program = ele.getContainerOfType(Program)
 		if ((program !== null) && program.checkNameRepetition(ele)) {
-			error("Name error: Program already has a Process with this name", ePackage.processStatementElement_Name)
+			error("Name error: Program already has a Process with this name", ePackage.variable_Name)
 			return
 		}
 		val fb = ele.getContainerOfType(FunctionBlock)
 		if (fb.checkNameRepetition(ele)) {
-			error("Name error: FunctionBlock already has a Process with this name", ePackage.processStatementElement_Name)
+			error("Name error: FunctionBlock already has a Process with this name", ePackage.variable_Name)
 		}
 	}
 	
 	@Check
 	def checkProcess_Empty(Process ele) {
 		if (ele.states.empty) {
-			error("Statement error: Process can't be empty", ePackage.processStatementElement_Name)
+			error("Statement error: Process can't be empty", ePackage.variable_Name)
 		}
 	}
 	
@@ -282,7 +274,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 				return
 			}
 			if (!program.processes.checkProcessStart(ele)) {
-				warning("Process is unreachable", ePackage.processStatementElement_Name)
+				warning("Process is unreachable", ePackage.variable_Name)
 			}
 			return
 		}
@@ -291,7 +283,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 			return
 		}
 		if (!fb.processes.checkProcessStart(ele)) {
-			warning("Process is unreachable", ePackage.processStatementElement_Name)
+			warning("Process is unreachable", ePackage.variable_Name)
 		}
 	}
 	
@@ -398,7 +390,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 		}
 	}
 	
-	private def checkProcessStatement_NameConflicts(EObject context, ProcessStatementElement ele) {
+	private def checkProcessStatement_NameConflicts(EObject context, Variable ele) {
 		if (ele === null) {
 			return
 		}

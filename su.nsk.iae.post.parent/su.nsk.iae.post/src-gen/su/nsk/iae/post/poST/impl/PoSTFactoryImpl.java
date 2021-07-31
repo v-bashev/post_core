@@ -56,10 +56,8 @@ import su.nsk.iae.post.poST.PoSTFactory;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
-import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
-import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.ProcessVarDeclaration;
 import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
 import su.nsk.iae.post.poST.ProcessVarList;
@@ -87,7 +85,9 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
@@ -95,6 +95,7 @@ import su.nsk.iae.post.poST.UnaryOperator;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
 import su.nsk.iae.post.poST.VarList;
+import su.nsk.iae.post.poST.Variable;
 import su.nsk.iae.post.poST.WhileStatement;
 import su.nsk.iae.post.poST.XorExpression;
 
@@ -151,6 +152,7 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
     switch (eClass.getClassifierID())
     {
       case PoSTPackage.MODEL: return createModel();
+      case PoSTPackage.VARIABLE: return createVariable();
       case PoSTPackage.CONFIGURATION: return createConfiguration();
       case PoSTPackage.RESOURCE: return createResource();
       case PoSTPackage.SINGLE_RESOURCE: return createSingleResource();
@@ -161,14 +163,14 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.PROGRAM_CONF_ELEMENT: return createProgramConfElement();
       case PoSTPackage.ATTACH_VARIABLE_CONF_ELEMENT: return createAttachVariableConfElement();
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT: return createTemplateProcessConfElement();
-      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS: return createProcessTemplateElements();
+      case PoSTPackage.TEMPLATE_PROCESS_ELEMENTS: return createTemplateProcessElements();
+      case PoSTPackage.TEMPLATE_PROCESS_ATTACH_VARIABLE_CONF_ELEMENT: return createTemplateProcessAttachVariableConfElement();
       case PoSTPackage.PROGRAM: return createProgram();
       case PoSTPackage.FUNCTION_BLOCK: return createFunctionBlock();
       case PoSTPackage.PROCESS: return createProcess();
       case PoSTPackage.STATE: return createState();
       case PoSTPackage.SET_STATE_STATEMENT: return createSetStateStatement();
       case PoSTPackage.PROCESS_STATEMENTS: return createProcessStatements();
-      case PoSTPackage.PROCESS_STATEMENT_ELEMENT: return createProcessStatementElement();
       case PoSTPackage.PROCESS_STATUS_EXPRESSION: return createProcessStatusExpression();
       case PoSTPackage.START_PROCESS_STATEMENT: return createStartProcessStatement();
       case PoSTPackage.STOP_PROCESS_STATEMENT: return createStopProcessStatement();
@@ -305,6 +307,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
+  public Variable createVariable()
+  {
+    VariableImpl variable = new VariableImpl();
+    return variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Configuration createConfiguration()
   {
     ConfigurationImpl configuration = new ConfigurationImpl();
@@ -425,10 +439,22 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public ProcessTemplateElements createProcessTemplateElements()
+  public TemplateProcessElements createTemplateProcessElements()
   {
-    ProcessTemplateElementsImpl processTemplateElements = new ProcessTemplateElementsImpl();
-    return processTemplateElements;
+    TemplateProcessElementsImpl templateProcessElements = new TemplateProcessElementsImpl();
+    return templateProcessElements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TemplateProcessAttachVariableConfElement createTemplateProcessAttachVariableConfElement()
+  {
+    TemplateProcessAttachVariableConfElementImpl templateProcessAttachVariableConfElement = new TemplateProcessAttachVariableConfElementImpl();
+    return templateProcessAttachVariableConfElement;
   }
 
   /**
@@ -501,18 +527,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ProcessStatementsImpl processStatements = new ProcessStatementsImpl();
     return processStatements;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ProcessStatementElement createProcessStatementElement()
-  {
-    ProcessStatementElementImpl processStatementElement = new ProcessStatementElementImpl();
-    return processStatementElement;
   }
 
   /**

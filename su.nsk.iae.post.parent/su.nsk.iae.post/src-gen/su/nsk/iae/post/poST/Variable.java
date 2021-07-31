@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Process Statement Element</b></em>'.
+ * A representation of the model object '<em><b>Variable</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.ProcessStatementElement#getName <em>Name</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.Variable#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see su.nsk.iae.post.poST.PoSTPackage#getProcessStatementElement()
+ * @see su.nsk.iae.post.poST.PoSTPackage#getVariable()
  * @model
  * @generated
  */
-public interface ProcessStatementElement extends EObject
+public interface Variable extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -29,14 +29,14 @@ public interface ProcessStatementElement extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see su.nsk.iae.post.poST.PoSTPackage#getProcessStatementElement_Name()
+   * @see su.nsk.iae.post.poST.PoSTPackage#getVariable_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link su.nsk.iae.post.poST.ProcessStatementElement#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link su.nsk.iae.post.poST.Variable#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -45,4 +45,4 @@ public interface ProcessStatementElement extends EObject
    */
   void setName(String value);
 
-} // ProcessStatementElement
+} // Variable

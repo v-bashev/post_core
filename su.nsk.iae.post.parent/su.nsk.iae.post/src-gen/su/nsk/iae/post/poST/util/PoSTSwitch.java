@@ -46,10 +46,8 @@ import su.nsk.iae.post.poST.OutputVarDeclaration;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
-import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatements;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
-import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.ProcessVarDeclaration;
 import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
 import su.nsk.iae.post.poST.ProcessVarList;
@@ -77,13 +75,16 @@ import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TaskInitialization;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 import su.nsk.iae.post.poST.TimeLiteral;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.UnaryExpression;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
 import su.nsk.iae.post.poST.VarList;
+import su.nsk.iae.post.poST.Variable;
 import su.nsk.iae.post.poST.WhileStatement;
 import su.nsk.iae.post.poST.XorExpression;
 
@@ -157,6 +158,13 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PoSTPackage.VARIABLE:
+      {
+        Variable variable = (Variable)theEObject;
+        T result = caseVariable(variable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case PoSTPackage.CONFIGURATION:
       {
         Configuration configuration = (Configuration)theEObject;
@@ -225,14 +233,22 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         TemplateProcessConfElement templateProcessConfElement = (TemplateProcessConfElement)theEObject;
         T result = caseTemplateProcessConfElement(templateProcessConfElement);
+        if (result == null) result = caseVariable(templateProcessConfElement);
         if (result == null) result = caseProgramConfElement(templateProcessConfElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS:
+      case PoSTPackage.TEMPLATE_PROCESS_ELEMENTS:
       {
-        ProcessTemplateElements processTemplateElements = (ProcessTemplateElements)theEObject;
-        T result = caseProcessTemplateElements(processTemplateElements);
+        TemplateProcessElements templateProcessElements = (TemplateProcessElements)theEObject;
+        T result = caseTemplateProcessElements(templateProcessElements);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.TEMPLATE_PROCESS_ATTACH_VARIABLE_CONF_ELEMENT:
+      {
+        TemplateProcessAttachVariableConfElement templateProcessAttachVariableConfElement = (TemplateProcessAttachVariableConfElement)theEObject;
+        T result = caseTemplateProcessAttachVariableConfElement(templateProcessAttachVariableConfElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -254,7 +270,7 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         su.nsk.iae.post.poST.Process process = (su.nsk.iae.post.poST.Process)theEObject;
         T result = caseProcess(process);
-        if (result == null) result = caseProcessStatementElement(process);
+        if (result == null) result = caseVariable(process);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -278,13 +294,6 @@ public class PoSTSwitch<T> extends Switch<T>
         ProcessStatements processStatements = (ProcessStatements)theEObject;
         T result = caseProcessStatements(processStatements);
         if (result == null) result = caseStatement(processStatements);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PoSTPackage.PROCESS_STATEMENT_ELEMENT:
-      {
-        ProcessStatementElement processStatementElement = (ProcessStatementElement)theEObject;
-        T result = caseProcessStatementElement(processStatementElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -583,6 +592,7 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         SymbolicVariable symbolicVariable = (SymbolicVariable)theEObject;
         T result = caseSymbolicVariable(symbolicVariable);
+        if (result == null) result = caseVariable(symbolicVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -674,7 +684,7 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         ProcessVariable processVariable = (ProcessVariable)theEObject;
         T result = caseProcessVariable(processVariable);
-        if (result == null) result = caseProcessStatementElement(processVariable);
+        if (result == null) result = caseVariable(processVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -787,6 +797,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseModel(Model object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariable(Variable object)
   {
     return null;
   }
@@ -952,17 +978,33 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Process Template Elements</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Template Process Elements</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Process Template Elements</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Template Process Elements</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProcessTemplateElements(ProcessTemplateElements object)
+  public T caseTemplateProcessElements(TemplateProcessElements object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Template Process Attach Variable Conf Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Template Process Attach Variable Conf Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTemplateProcessAttachVariableConfElement(TemplateProcessAttachVariableConfElement object)
   {
     return null;
   }
@@ -1059,22 +1101,6 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProcessStatements(ProcessStatements object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Process Statement Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Process Statement Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseProcessStatementElement(ProcessStatementElement object)
   {
     return null;
   }

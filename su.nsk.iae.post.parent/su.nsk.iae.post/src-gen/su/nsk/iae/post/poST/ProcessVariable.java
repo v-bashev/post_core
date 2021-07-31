@@ -14,6 +14,6 @@ package su.nsk.iae.post.poST;
  * @model
  * @generated
  */
-public interface ProcessVariable extends ProcessStatementElement
+public interface ProcessVariable extends Variable
 {
 } // ProcessVariable

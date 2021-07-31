@@ -9,32 +9,32 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Process Template Elements</b></em>'.
+ * A representation of the model object '<em><b>Template Process Elements</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.ProcessTemplateElements#getElements <em>Elements</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.TemplateProcessElements#getElements <em>Elements</em>}</li>
  * </ul>
  *
- * @see su.nsk.iae.post.poST.PoSTPackage#getProcessTemplateElements()
+ * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessElements()
  * @model
  * @generated
  */
-public interface ProcessTemplateElements extends EObject
+public interface TemplateProcessElements extends EObject
 {
   /**
    * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
-   * The list contents are of type {@link su.nsk.iae.post.poST.AttachVariableConfElement}.
+   * The list contents are of type {@link su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Elements</em>' containment reference list.
-   * @see su.nsk.iae.post.poST.PoSTPackage#getProcessTemplateElements_Elements()
+   * @see su.nsk.iae.post.poST.PoSTPackage#getTemplateProcessElements_Elements()
    * @model containment="true"
    * @generated
    */
-  EList<AttachVariableConfElement> getElements();
+  EList<TemplateProcessAttachVariableConfElement> getElements();
 
-} // ProcessTemplateElements
+} // TemplateProcessElements

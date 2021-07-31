@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.PoSTPackage;
-import su.nsk.iae.post.poST.ProcessStatementElement;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
+import su.nsk.iae.post.poST.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * @generated
    * @ordered
    */
-  protected ProcessStatementElement process;
+  protected Variable process;
 
   /**
    * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
@@ -151,12 +151,12 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public ProcessStatementElement getProcess()
+  public Variable getProcess()
   {
     if (process != null && process.eIsProxy())
     {
       InternalEObject oldProcess = (InternalEObject)process;
-      process = (ProcessStatementElement)eResolveProxy(oldProcess);
+      process = (Variable)eResolveProxy(oldProcess);
       if (process != oldProcess)
       {
         if (eNotificationRequired())
@@ -171,7 +171,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public ProcessStatementElement basicGetProcess()
+  public Variable basicGetProcess()
   {
     return process;
   }
@@ -182,9 +182,9 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public void setProcess(ProcessStatementElement newProcess)
+  public void setProcess(Variable newProcess)
   {
-    ProcessStatementElement oldProcess = process;
+    Variable oldProcess = process;
     process = newProcess;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PROCESS_STATUS_EXPRESSION__PROCESS, oldProcess, process));
@@ -326,7 +326,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__PROCESS:
-        setProcess((ProcessStatementElement)newValue);
+        setProcess((Variable)newValue);
         return;
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__ACTIVE:
         setActive((Boolean)newValue);
@@ -355,7 +355,7 @@ public class ProcessStatusExpressionImpl extends MinimalEObjectImpl.Container im
     switch (featureID)
     {
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__PROCESS:
-        setProcess((ProcessStatementElement)null);
+        setProcess((Variable)null);
         return;
       case PoSTPackage.PROCESS_STATUS_EXPRESSION__ACTIVE:
         setActive(ACTIVE_EDEFAULT);

@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Process extends ProcessStatementElement
+public interface Process extends Variable
 {
   /**
    * Returns the value of the '<em><b>Proc In Vars</b></em>' containment reference list.

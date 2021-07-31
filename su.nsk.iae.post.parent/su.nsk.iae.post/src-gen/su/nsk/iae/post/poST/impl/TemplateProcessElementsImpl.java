@@ -17,24 +17,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.PoSTPackage;
-import su.nsk.iae.post.poST.ProcessTemplateElements;
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Process Template Elements</b></em>'.
+ * An implementation of the model object '<em><b>Template Process Elements</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.impl.ProcessTemplateElementsImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.TemplateProcessElementsImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container implements ProcessTemplateElements
+public class TemplateProcessElementsImpl extends MinimalEObjectImpl.Container implements TemplateProcessElements
 {
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
@@ -44,14 +44,14 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
    * @generated
    * @ordered
    */
-  protected EList<AttachVariableConfElement> elements;
+  protected EList<TemplateProcessAttachVariableConfElement> elements;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ProcessTemplateElementsImpl()
+  protected TemplateProcessElementsImpl()
   {
     super();
   }
@@ -64,7 +64,7 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return PoSTPackage.Literals.PROCESS_TEMPLATE_ELEMENTS;
+    return PoSTPackage.Literals.TEMPLATE_PROCESS_ELEMENTS;
   }
 
   /**
@@ -73,11 +73,11 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public EList<AttachVariableConfElement> getElements()
+  public EList<TemplateProcessAttachVariableConfElement> getElements()
   {
     if (elements == null)
     {
-      elements = new EObjectContainmentEList<AttachVariableConfElement>(AttachVariableConfElement.class, this, PoSTPackage.PROCESS_TEMPLATE_ELEMENTS__ELEMENTS);
+      elements = new EObjectContainmentEList<TemplateProcessAttachVariableConfElement>(TemplateProcessAttachVariableConfElement.class, this, PoSTPackage.TEMPLATE_PROCESS_ELEMENTS__ELEMENTS);
     }
     return elements;
   }
@@ -92,7 +92,7 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS__ELEMENTS:
+      case PoSTPackage.TEMPLATE_PROCESS_ELEMENTS__ELEMENTS:
         return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -108,7 +108,7 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS__ELEMENTS:
+      case PoSTPackage.TEMPLATE_PROCESS_ELEMENTS__ELEMENTS:
         return getElements();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -125,9 +125,9 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS__ELEMENTS:
+      case PoSTPackage.TEMPLATE_PROCESS_ELEMENTS__ELEMENTS:
         getElements().clear();
-        getElements().addAll((Collection<? extends AttachVariableConfElement>)newValue);
+        getElements().addAll((Collection<? extends TemplateProcessAttachVariableConfElement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -143,7 +143,7 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS__ELEMENTS:
+      case PoSTPackage.TEMPLATE_PROCESS_ELEMENTS__ELEMENTS:
         getElements().clear();
         return;
     }
@@ -160,10 +160,10 @@ public class ProcessTemplateElementsImpl extends MinimalEObjectImpl.Container im
   {
     switch (featureID)
     {
-      case PoSTPackage.PROCESS_TEMPLATE_ELEMENTS__ELEMENTS:
+      case PoSTPackage.TEMPLATE_PROCESS_ELEMENTS__ELEMENTS:
         return elements != null && !elements.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ProcessTemplateElementsImpl
+} //TemplateProcessElementsImpl

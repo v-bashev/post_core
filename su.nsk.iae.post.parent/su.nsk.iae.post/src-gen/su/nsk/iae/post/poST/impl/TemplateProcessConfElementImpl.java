@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import su.nsk.iae.post.poST.PoSTPackage;
-import su.nsk.iae.post.poST.ProcessTemplateElements;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,14 +24,13 @@ import su.nsk.iae.post.poST.TemplateProcessConfElement;
  * </p>
  * <ul>
  *   <li>{@link su.nsk.iae.post.poST.impl.TemplateProcessConfElementImpl#isActive <em>Active</em>}</li>
- *   <li>{@link su.nsk.iae.post.poST.impl.TemplateProcessConfElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.TemplateProcessConfElementImpl#getProcess <em>Process</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.TemplateProcessConfElementImpl#getArgs <em>Args</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TemplateProcessConfElementImpl extends ProgramConfElementImpl implements TemplateProcessConfElement
+public class TemplateProcessConfElementImpl extends VariableImpl implements TemplateProcessConfElement
 {
   /**
    * The default value of the '{@link #isActive() <em>Active</em>}' attribute.
@@ -54,26 +53,6 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
   protected boolean active = ACTIVE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
-  /**
    * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -91,7 +70,7 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
    * @generated
    * @ordered
    */
-  protected ProcessTemplateElements args;
+  protected TemplateProcessElements args;
 
   /**
    * <!-- begin-user-doc -->
@@ -145,31 +124,6 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
    * @generated
    */
   @Override
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public su.nsk.iae.post.poST.Process getProcess()
   {
     if (process != null && process.eIsProxy())
@@ -215,7 +169,7 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
    * @generated
    */
   @Override
-  public ProcessTemplateElements getArgs()
+  public TemplateProcessElements getArgs()
   {
     return args;
   }
@@ -225,9 +179,9 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArgs(ProcessTemplateElements newArgs, NotificationChain msgs)
+  public NotificationChain basicSetArgs(TemplateProcessElements newArgs, NotificationChain msgs)
   {
-    ProcessTemplateElements oldArgs = args;
+    TemplateProcessElements oldArgs = args;
     args = newArgs;
     if (eNotificationRequired())
     {
@@ -243,7 +197,7 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
    * @generated
    */
   @Override
-  public void setArgs(ProcessTemplateElements newArgs)
+  public void setArgs(TemplateProcessElements newArgs)
   {
     if (newArgs != args)
     {
@@ -287,8 +241,6 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
     {
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__ACTIVE:
         return isActive();
-      case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__NAME:
-        return getName();
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__PROCESS:
         if (resolve) return getProcess();
         return basicGetProcess();
@@ -311,14 +263,11 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__ACTIVE:
         setActive((Boolean)newValue);
         return;
-      case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__NAME:
-        setName((String)newValue);
-        return;
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__PROCESS:
         setProcess((su.nsk.iae.post.poST.Process)newValue);
         return;
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__ARGS:
-        setArgs((ProcessTemplateElements)newValue);
+        setArgs((TemplateProcessElements)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -337,14 +286,11 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__ACTIVE:
         setActive(ACTIVE_EDEFAULT);
         return;
-      case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__PROCESS:
         setProcess((su.nsk.iae.post.poST.Process)null);
         return;
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__ARGS:
-        setArgs((ProcessTemplateElements)null);
+        setArgs((TemplateProcessElements)null);
         return;
     }
     super.eUnset(featureID);
@@ -362,8 +308,6 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
     {
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__ACTIVE:
         return active != ACTIVE_EDEFAULT;
-      case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__PROCESS:
         return process != null;
       case PoSTPackage.TEMPLATE_PROCESS_CONF_ELEMENT__ARGS:
@@ -385,8 +329,6 @@ public class TemplateProcessConfElementImpl extends ProgramConfElementImpl imple
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (active: ");
     result.append(active);
-    result.append(", name: ");
-    result.append(name);
     result.append(')');
     return result.toString();
   }

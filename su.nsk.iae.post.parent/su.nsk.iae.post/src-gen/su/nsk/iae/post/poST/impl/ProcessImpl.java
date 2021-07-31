@@ -43,7 +43,7 @@ import su.nsk.iae.post.poST.VarDeclaration;
  *
  * @generated
  */
-public class ProcessImpl extends ProcessStatementElementImpl implements su.nsk.iae.post.poST.Process
+public class ProcessImpl extends VariableImpl implements su.nsk.iae.post.poST.Process
 {
   /**
    * The cached value of the '{@link #getProcInVars() <em>Proc In Vars</em>}' containment reference list.
