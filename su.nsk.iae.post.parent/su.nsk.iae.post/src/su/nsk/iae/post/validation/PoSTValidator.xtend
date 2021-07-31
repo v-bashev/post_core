@@ -39,6 +39,7 @@ import su.nsk.iae.post.poST.StopProcessStatement
 import su.nsk.iae.post.poST.SymbolicVariable
 import su.nsk.iae.post.poST.Task
 import su.nsk.iae.post.poST.TempVarDeclaration
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement
 import su.nsk.iae.post.poST.TemplateProcessConfElement
 import su.nsk.iae.post.poST.TimeoutStatement
 import su.nsk.iae.post.poST.VarDeclaration
@@ -119,13 +120,11 @@ class PoSTValidator extends AbstractPoSTValidator {
 						ePackage.simpleSpecificationInit_Value)
 				return
 			}
-			
 			if (ele.checkContainer(OutputVarDeclaration)) {
 				error("Initialization error: Output Variable cannot be initialized",
 						ePackage.simpleSpecificationInit_Value)
 				return
 			}
-			
 			if (ele.checkContainer(InputOutputVarDeclaration)) {
 				error("Initialization error: InputOutput Variable cannot be initialized",
 						ePackage.simpleSpecificationInit_Value)
@@ -175,15 +174,6 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkTemplateProcessConfElement_NameConflicts(TemplateProcessConfElement ele) {
-		val rogramConf = ele.getContainerOfType(ProgramConfiguration)
-		if ((rogramConf !== null) && rogramConf.checkNameRepetition(ele)) {
-			error("Name error: Program already has a Template Process with this name",
-					ePackage, ePackage.variable_Name)
-		}
-	}
-	
-	@Check
 	def checkProgramConfiguration_NumberOfArgs(ProgramConfiguration ele) {
 		if (ele.args === null) {
 			return
@@ -209,6 +199,57 @@ class PoSTValidator extends AbstractPoSTValidator {
 		if ((ele.assig == AssignmentType.OUT) && !ele.programVar.checkContainer(OutputVarDeclaration)) {
 			error("Attached error: Must be a output Variable",
 					ePackage.attachVariableConfElement_ProgramVar)
+		}
+	}
+	
+	@Check
+	def checkTemplateProcessConfElement_NameConflicts(TemplateProcessConfElement ele) {
+		val programConf = ele.getContainerOfType(ProgramConfiguration)
+		if ((programConf !== null) && programConf.checkNameRepetition(ele)) {
+			error("Name error: Program already has a Template Process with this name",
+					ePackage.variable_Name)
+		}
+	}
+	
+	@Check
+	def checkTemplateProcessConfElement_NumberOfArgs(TemplateProcessConfElement ele) {
+		if (ele.args === null) {
+			return
+		}
+		val process = ele.process
+		val attachVars = process.procInVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
+						 process.procOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
+						 process.procInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
+						 process.procProcessVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count
+		val programVars = ele.args.elements.stream.count
+		if (attachVars != programVars) {
+			error("Process attached error: Not all input output and Process Variables are used",
+					ePackage.templateProcessConfElement_Process)
+		}
+	}
+	
+	@Check
+	def checkTemplateProcessAttachVariableConfElement_AttachType(TemplateProcessAttachVariableConfElement ele) {
+		val programVar = ele.programVar
+		val attVar = ele.attVar
+		if (programVar instanceof SymbolicVariable) {
+			if ((attVar !== null) && !(attVar instanceof SymbolicVariable)) {
+				error("Attached error: Attach Variable must be a Global Variable or a Constant",
+						ePackage.templateProcessAttachVariableConfElement_AttVar)
+				return
+			}
+		}
+		if (programVar instanceof ProcessVariable) {
+			if (attVar === null) {
+				error("Process attached error: Process attach Variable can't be a Constant",
+						ePackage.templateProcessAttachVariableConfElement_AttVar)
+				return
+			}
+			if (!(attVar instanceof TemplateProcessConfElement)) {
+				error("Process attached error: Process attach Variable must be a Template Process",
+						ePackage.templateProcessAttachVariableConfElement_AttVar)
+				return
+			}
 		}
 	}
 

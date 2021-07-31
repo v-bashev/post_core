@@ -47,7 +47,9 @@ import su.nsk.iae.post.poST.StopProcessStatement;
 import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessAttachVariableConfElement;
 import su.nsk.iae.post.poST.TemplateProcessConfElement;
+import su.nsk.iae.post.poST.TemplateProcessElements;
 import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
@@ -196,15 +198,6 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkTemplateProcessConfElement_NameConflicts(final TemplateProcessConfElement ele) {
-    final ProgramConfiguration rogramConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(ele, ProgramConfiguration.class);
-    if (((rogramConf != null) && this.checkNameRepetition(rogramConf, ele))) {
-      this.error("Name error: Program already has a Template Process with this name", 
-        this.ePackage, this.ePackage.getVariable_Name());
-    }
-  }
-  
-  @Check
   public void checkProgramConfiguration_NumberOfArgs(final ProgramConfiguration ele) {
     ProgramConfElements _args = ele.getArgs();
     boolean _tripleEquals = (_args == null);
@@ -273,6 +266,110 @@ public class PoSTValidator extends AbstractPoSTValidator {
     if ((Objects.equal(ele.getAssig(), AssignmentType.OUT) && (!this.<OutputVarDeclaration>checkContainer(ele.getProgramVar(), OutputVarDeclaration.class)))) {
       this.error("Attached error: Must be a output Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessConfElement_NameConflicts(final TemplateProcessConfElement ele) {
+    final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(ele, ProgramConfiguration.class);
+    if (((programConf != null) && this.checkNameRepetition(programConf, ele))) {
+      this.error("Name error: Program already has a Template Process with this name", 
+        this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessConfElement_NumberOfArgs(final TemplateProcessConfElement ele) {
+    TemplateProcessElements _args = ele.getArgs();
+    boolean _tripleEquals = (_args == null);
+    if (_tripleEquals) {
+      return;
+    }
+    final su.nsk.iae.post.poST.Process process = ele.getProcess();
+    final Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_3 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count = process.getProcInVars().stream().<EList<VarInitDeclaration>>map(_function).<VarInitDeclaration>flatMap(_function_1).<EList<SymbolicVariable>>map(_function_2).<SymbolicVariable>flatMap(_function_3).count();
+    final Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_4 = (OutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_5 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_6 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_7 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count_1 = process.getProcOutVars().stream().<EList<VarInitDeclaration>>map(_function_4).<VarInitDeclaration>flatMap(_function_5).<EList<SymbolicVariable>>map(_function_6).<SymbolicVariable>flatMap(_function_7).count();
+    long _plus = (_count + _count_1);
+    final Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_8 = (InputOutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_9 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_10 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_11 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count_2 = process.getProcInOutVars().stream().<EList<VarInitDeclaration>>map(_function_8).<VarInitDeclaration>flatMap(_function_9).<EList<SymbolicVariable>>map(_function_10).<SymbolicVariable>flatMap(_function_11).count();
+    long _plus_1 = (_plus + _count_2);
+    final Function<ProcessVarDeclaration, EList<ProcessVarInitDeclaration>> _function_12 = (ProcessVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<ProcessVarInitDeclaration>, Stream<ProcessVarInitDeclaration>> _function_13 = (EList<ProcessVarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<ProcessVarInitDeclaration, EList<ProcessVariable>> _function_14 = (ProcessVarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<ProcessVariable>, Stream<ProcessVariable>> _function_15 = (EList<ProcessVariable> x) -> {
+      return x.stream();
+    };
+    long _count_3 = process.getProcProcessVars().stream().<EList<ProcessVarInitDeclaration>>map(_function_12).<ProcessVarInitDeclaration>flatMap(_function_13).<EList<ProcessVariable>>map(_function_14).<ProcessVariable>flatMap(_function_15).count();
+    final long attachVars = (_plus_1 + _count_3);
+    final long programVars = ele.getArgs().getElements().stream().count();
+    if ((attachVars != programVars)) {
+      this.error("Process attached error: Not all input output and Process Variables are used", 
+        this.ePackage.getTemplateProcessConfElement_Process());
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessAttachVariableConfElement_AttachType(final TemplateProcessAttachVariableConfElement ele) {
+    final Variable programVar = ele.getProgramVar();
+    final Variable attVar = ele.getAttVar();
+    if ((programVar instanceof SymbolicVariable)) {
+      if (((attVar != null) && (!(attVar instanceof SymbolicVariable)))) {
+        this.error("Attached error: Attach Variable must be a Global Variable or a Constant", 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
+        return;
+      }
+    }
+    if ((programVar instanceof ProcessVariable)) {
+      if ((attVar == null)) {
+        this.error("Process attached error: Process attach Variable can\'t be a Constant", 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
+        return;
+      }
+      if ((!(attVar instanceof TemplateProcessConfElement))) {
+        this.error("Process attached error: Process attach Variable must be a Template Process", 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
+        return;
+      }
     }
   }
   
