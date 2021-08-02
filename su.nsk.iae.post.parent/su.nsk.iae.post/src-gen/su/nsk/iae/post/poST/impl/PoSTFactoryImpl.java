@@ -202,7 +202,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.REPEAT_STATEMENT: return createRepeatStatement();
       case PoSTPackage.SUBPROGRAM_CONTROL_STATEMENT: return createSubprogramControlStatement();
       case PoSTPackage.EXIT_STATEMENT: return createExitStatement();
-      case PoSTPackage.ARRAY_VARIABLE: return createArrayVariable();
       case PoSTPackage.SYMBOLIC_VARIABLE: return createSymbolicVariable();
       case PoSTPackage.SIMPLE_SPECIFICATION_INIT: return createSimpleSpecificationInit();
       case PoSTPackage.VAR_LIST: return createVarList();
@@ -220,6 +219,7 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.PROCESS_VAR_LIST: return createProcessVarList();
       case PoSTPackage.PROCESS_VAR_INIT_DECLARATION: return createProcessVarInitDeclaration();
       case PoSTPackage.PROCESS_VAR_DECLARATION: return createProcessVarDeclaration();
+      case PoSTPackage.ARRAY_VARIABLE: return createArrayVariable();
       case PoSTPackage.ARRAY_SPECIFICATION_INIT: return createArraySpecificationInit();
       case PoSTPackage.ARRAY_SPECIFICATION: return createArraySpecification();
       case PoSTPackage.ARRAY_INTERVAL: return createArrayInterval();
@@ -907,18 +907,6 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
-  public ArrayVariable createArrayVariable()
-  {
-    ArrayVariableImpl arrayVariable = new ArrayVariableImpl();
-    return arrayVariable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public SymbolicVariable createSymbolicVariable()
   {
     SymbolicVariableImpl symbolicVariable = new SymbolicVariableImpl();
@@ -1115,6 +1103,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ProcessVarDeclarationImpl processVarDeclaration = new ProcessVarDeclarationImpl();
     return processVarDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ArrayVariable createArrayVariable()
+  {
+    ArrayVariableImpl arrayVariable = new ArrayVariableImpl();
+    return arrayVariable;
   }
 
   /**

@@ -409,11 +409,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createExitStatementAdapter();
       }
       @Override
-      public Adapter caseArrayVariable(ArrayVariable object)
-      {
-        return createArrayVariableAdapter();
-      }
-      @Override
       public Adapter caseSymbolicVariable(SymbolicVariable object)
       {
         return createSymbolicVariableAdapter();
@@ -497,6 +492,11 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseProcessVarDeclaration(ProcessVarDeclaration object)
       {
         return createProcessVarDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseArrayVariable(ArrayVariable object)
+      {
+        return createArrayVariableAdapter();
       }
       @Override
       public Adapter caseArraySpecificationInit(ArraySpecificationInit object)
@@ -1336,21 +1336,6 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ArrayVariable <em>Array Variable</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see su.nsk.iae.post.poST.ArrayVariable
-   * @generated
-   */
-  public Adapter createArrayVariableAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.SymbolicVariable <em>Symbolic Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1601,6 +1586,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createProcessVarDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ArrayVariable <em>Array Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ArrayVariable
+   * @generated
+   */
+  public Adapter createArrayVariableAdapter()
   {
     return null;
   }

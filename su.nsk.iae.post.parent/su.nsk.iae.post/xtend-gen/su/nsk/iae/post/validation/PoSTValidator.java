@@ -198,6 +198,15 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
+  public void checkProgramConfiguration_LowerCase(final ProgramConfiguration ele) {
+    boolean _isLowerCase = Character.isLowerCase(ele.getName().charAt(0));
+    boolean _not = (!_isLowerCase);
+    if (_not) {
+      this.warning("Template Process name should start with LowerCase", this.ePackage.getProgramConfiguration_Name());
+    }
+  }
+  
+  @Check
   public void checkProgramConfiguration_NumberOfArgs(final ProgramConfiguration ele) {
     ProgramConfElements _args = ele.getArgs();
     boolean _tripleEquals = (_args == null);
@@ -272,9 +281,26 @@ public class PoSTValidator extends AbstractPoSTValidator {
   @Check
   public void checkTemplateProcessConfElement_NameConflicts(final TemplateProcessConfElement ele) {
     final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(ele, ProgramConfiguration.class);
-    if (((programConf != null) && this.checkNameRepetition(programConf, ele))) {
-      this.error("Name error: Program already has a Template Process with this name", 
-        this.ePackage.getVariable_Name());
+    if ((programConf != null)) {
+      boolean _checkNameRepetition = this.checkNameRepetition(programConf, ele);
+      if (_checkNameRepetition) {
+        this.error("Name error: Program already has a Template Process with this name", 
+          this.ePackage.getVariable_Name());
+      }
+      boolean _checkNameRepetition_1 = this.checkNameRepetition(programConf.getProgram(), ele);
+      if (_checkNameRepetition_1) {
+        this.error("Name error: Program already has a Process with this name", 
+          this.ePackage.getVariable_Name());
+      }
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessConfElement_LowerCase(final TemplateProcessConfElement ele) {
+    boolean _isLowerCase = Character.isLowerCase(ele.getName().charAt(0));
+    boolean _not = (!_isLowerCase);
+    if (_not) {
+      this.warning("Template Process name should start with LowerCase", this.ePackage.getVariable_Name());
     }
   }
   
@@ -386,6 +412,23 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
+  public void checkProgram_UpperCase(final Program ele) {
+    boolean _isUpperCase = Character.isUpperCase(ele.getName().charAt(0));
+    boolean _not = (!_isUpperCase);
+    if (_not) {
+      this.warning("Program name should start with UpperCase", this.ePackage.getProgram_Name());
+    }
+  }
+  
+  @Check
+  public void checkProgram_Empty(final Program ele) {
+    boolean _isEmpty = ele.getProcesses().isEmpty();
+    if (_isEmpty) {
+      this.error("Statement error: Program can\'t be empty", this.ePackage.getProgram_Name());
+    }
+  }
+  
+  @Check
   public void checkFunctionBlock_NameConflicts(final FunctionBlock ele) {
     final Model model = EcoreUtil2.<Model>getContainerOfType(ele, Model.class);
     boolean _checkNameRepetition = this.checkNameRepetition(model, ele);
@@ -395,10 +438,11 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkProgram_Empty(final Program ele) {
-    boolean _isEmpty = ele.getProcesses().isEmpty();
-    if (_isEmpty) {
-      this.error("Statement error: Program can\'t be empty", this.ePackage.getProgram_Name());
+  public void checkFunctionBlock_UpperCase(final FunctionBlock ele) {
+    boolean _isUpperCase = Character.isUpperCase(ele.getName().charAt(0));
+    boolean _not = (!_isUpperCase);
+    if (_not) {
+      this.warning("FunctionBlock name should start with UpperCase", this.ePackage.getFunctionBlock_Name());
     }
   }
   
@@ -425,6 +469,15 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
+  public void checkProcess_UpperCase(final su.nsk.iae.post.poST.Process ele) {
+    boolean _isUpperCase = Character.isUpperCase(ele.getName().charAt(0));
+    boolean _not = (!_isUpperCase);
+    if (_not) {
+      this.warning("Process name should start with UpperCase", this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
   public void checkProcess_Empty(final su.nsk.iae.post.poST.Process ele) {
     boolean _isEmpty = ele.getStates().isEmpty();
     if (_isEmpty) {
@@ -434,6 +487,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkProcess_Unreachable(final su.nsk.iae.post.poST.Process ele) {
+    boolean _isTemplate = this.isTemplate(ele);
+    if (_isTemplate) {
+      return;
+    }
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
     if ((program != null)) {
       int _indexOf = program.getProcesses().indexOf(ele);
@@ -507,7 +564,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
       }
     } else {
       if ((!check)) {
-        this.warning("State must be LOOPED", this.ePackage.getState_Name());
+        this.warning("State should be LOOPED", this.ePackage.getState_Name());
       }
     }
   }
@@ -672,6 +729,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
     return (_size != 0);
   }
   
+  private boolean isTemplate(final su.nsk.iae.post.poST.Process process) {
+    return ((((!process.getProcInVars().isEmpty()) || (!process.getProcOutVars().isEmpty())) || (!process.getProcInOutVars().isEmpty())) || (!process.getProcProcessVars().isEmpty()));
+  }
+  
   private boolean checkNameRepetition(final Model model, final Program ele) {
     return (model.getPrograms().stream().anyMatch(((Predicate<Program>) (Program x) -> {
       return ((x != ele) && x.getName().equals(ele.getName()));
@@ -740,6 +801,16 @@ public class PoSTValidator extends AbstractPoSTValidator {
       return ((x != ele) && ((TemplateProcessConfElement) x).getName().equals(ele.getName()));
     };
     return programConf.getArgs().getElements().stream().filter(_function).anyMatch(_function_1);
+  }
+  
+  private boolean checkNameRepetition(final Program program, final TemplateProcessConfElement ele) {
+    String _upperCase = ele.getName().substring(0, 1).toUpperCase();
+    String _substring = ele.getName().substring(1);
+    final String name = (_upperCase + _substring);
+    final Predicate<su.nsk.iae.post.poST.Process> _function = (su.nsk.iae.post.poST.Process x) -> {
+      return ((!this.isTemplate(x)) && x.getName().equals(name));
+    };
+    return program.getProcesses().stream().anyMatch(_function);
   }
   
   private boolean checkNameRepetition(final Model model, final SymbolicVariable ele) {

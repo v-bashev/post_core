@@ -46,6 +46,8 @@ import su.nsk.iae.post.poST.VarDeclaration
 import su.nsk.iae.post.poST.VarInitDeclaration
 import su.nsk.iae.post.poST.Variable
 
+import static extension java.lang.Character.isLowerCase
+import static extension java.lang.Character.isUpperCase
 import static extension org.eclipse.xtext.EcoreUtil2.*
 
 class PoSTValidator extends AbstractPoSTValidator {
@@ -174,6 +176,13 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
+	def checkProgramConfiguration_LowerCase(ProgramConfiguration ele) {
+		if (!ele.name.charAt(0).isLowerCase) {
+			warning("Template Process name should start with LowerCase", ePackage.programConfiguration_Name)
+		}
+	}
+	
+	@Check
 	def checkProgramConfiguration_NumberOfArgs(ProgramConfiguration ele) {
 		if (ele.args === null) {
 			return
@@ -205,9 +214,22 @@ class PoSTValidator extends AbstractPoSTValidator {
 	@Check
 	def checkTemplateProcessConfElement_NameConflicts(TemplateProcessConfElement ele) {
 		val programConf = ele.getContainerOfType(ProgramConfiguration)
-		if ((programConf !== null) && programConf.checkNameRepetition(ele)) {
-			error("Name error: Program already has a Template Process with this name",
-					ePackage.variable_Name)
+		if (programConf !== null) {
+			if (programConf.checkNameRepetition(ele)) {
+				error("Name error: Program already has a Template Process with this name",
+						ePackage.variable_Name)
+			}
+			if (programConf.program.checkNameRepetition(ele)) {
+				error("Name error: Program already has a Process with this name",
+						ePackage.variable_Name)
+			}
+		}
+	}
+	
+	@Check
+	def checkTemplateProcessConfElement_LowerCase(TemplateProcessConfElement ele) {
+		if (!ele.name.charAt(0).isLowerCase) {
+			warning("Template Process name should start with LowerCase", ePackage.variable_Name)
 		}
 	}
 	
@@ -266,17 +288,31 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
+	def checkProgram_UpperCase(Program ele) {
+		if (!ele.name.charAt(0).isUpperCase) {
+			warning("Program name should start with UpperCase", ePackage.program_Name)
+		}
+	}
+	
+	@Check
+	def checkProgram_Empty(Program ele) {
+		if (ele.processes.empty) {
+			error("Statement error: Program can't be empty", ePackage.program_Name)
+		}
+	}
+	
+	@Check
 	def checkFunctionBlock_NameConflicts(FunctionBlock ele) {
 		val model = ele.getContainerOfType(Model)
 		if (model.checkNameRepetition(ele)) {
 			error("Name error: Process or FunctionBlock with this name already exists", ePackage.functionBlock_Name)
 		}
 	}
-
+	
 	@Check
-	def checkProgram_Empty(Program ele) {
-		if (ele.processes.empty) {
-			error("Statement error: Program can't be empty", ePackage.program_Name)
+	def checkFunctionBlock_UpperCase(FunctionBlock ele) {
+		if (!ele.name.charAt(0).isUpperCase) {
+			warning("FunctionBlock name should start with UpperCase", ePackage.functionBlock_Name)
 		}
 	}
 	
@@ -301,6 +337,13 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
+	def checkProcess_UpperCase(Process ele) {
+		if (!ele.name.charAt(0).isUpperCase) {
+			warning("Process name should start with UpperCase", ePackage.variable_Name)
+		}
+	}
+	
+	@Check
 	def checkProcess_Empty(Process ele) {
 		if (ele.states.empty) {
 			error("Statement error: Process can't be empty", ePackage.variable_Name)
@@ -309,6 +352,9 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	def checkProcess_Unreachable(Process ele) {
+		if (ele.template) {
+			return
+		}
 		val program = ele.getContainerOfType(Program)
 		if (program !== null) {
 			if (program.processes.indexOf(ele) === 0) {
@@ -371,7 +417,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 			}
 		} else {
 			if (!check) {
-				warning("State must be LOOPED", ePackage.state_Name)
+				warning("State should be LOOPED", ePackage.state_Name)
 			}
 		}
 	}
@@ -504,6 +550,10 @@ class PoSTValidator extends AbstractPoSTValidator {
 		return ele.getAllContentsOfType(type).size !== 0
 	}
 	
+	private def boolean isTemplate(Process process) {
+		return !process.procInVars.empty || !process.procOutVars.empty || !process.procInOutVars.empty || !process.procProcessVars.empty
+	}
+	
 	private def boolean checkNameRepetition(Model model, Program ele) {
 		return model.programs.stream.anyMatch([x | (x !== ele) && x.name.equals(ele.name)]) ||
 			   model.fbs.stream.anyMatch([x | x.name.equals(ele.name)])
@@ -541,6 +591,10 @@ class PoSTValidator extends AbstractPoSTValidator {
 	private def boolean checkNameRepetition(ProgramConfiguration programConf, TemplateProcessConfElement ele) {
 		return programConf.args.elements.stream.filter([x | x instanceof TemplateProcessConfElement])
 			   .anyMatch([x | (x !== ele) && (x as TemplateProcessConfElement).name.equals(ele.name)])
+	}
+	private def boolean checkNameRepetition(Program program, TemplateProcessConfElement ele) {
+		val name = ele.name.substring(0, 1).toUpperCase + ele.name.substring(1)
+		return program.processes.stream.anyMatch([x | !x.template && x.name.equals(name)])
 	}
 	
 	private def boolean checkNameRepetition(Model model, SymbolicVariable ele) {

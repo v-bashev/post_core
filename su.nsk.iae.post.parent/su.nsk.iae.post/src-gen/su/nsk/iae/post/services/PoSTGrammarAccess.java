@@ -2602,45 +2602,6 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'EXIT'
 		public Keyword getEXITKeyword_1() { return cEXITKeyword_1; }
 	}
-	public class ArrayVariableElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.ArrayVariable");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVariableAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cVariableSymbolicVariableCrossReference_0_0 = (CrossReference)cVariableAssignment_0.eContents().get(0);
-		private final RuleCall cVariableSymbolicVariableIDTerminalRuleCall_0_0_1 = (RuleCall)cVariableSymbolicVariableCrossReference_0_0.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cIndexAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cIndexExpressionParserRuleCall_2_0 = (RuleCall)cIndexAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//ArrayVariable:
-		//    variable=[SymbolicVariable] '[' index=Expression ']';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//variable=[SymbolicVariable] '[' index=Expression ']'
-		public Group getGroup() { return cGroup; }
-		
-		//variable=[SymbolicVariable]
-		public Assignment getVariableAssignment_0() { return cVariableAssignment_0; }
-		
-		//[SymbolicVariable]
-		public CrossReference getVariableSymbolicVariableCrossReference_0_0() { return cVariableSymbolicVariableCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getVariableSymbolicVariableIDTerminalRuleCall_0_0_1() { return cVariableSymbolicVariableIDTerminalRuleCall_0_0_1; }
-		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
-		
-		//index=Expression
-		public Assignment getIndexAssignment_2() { return cIndexAssignment_2; }
-		
-		//Expression
-		public RuleCall getIndexExpressionParserRuleCall_2_0() { return cIndexExpressionParserRuleCall_2_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
-	}
 	public class SymbolicVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.SymbolicVariable");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
@@ -3349,6 +3310,47 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'END_VAR'
 		public Keyword getEND_VARKeyword_3() { return cEND_VARKeyword_3; }
 	}
+	public class ArrayVariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.ArrayVariable");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVariableAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cVariableSymbolicVariableCrossReference_0_0 = (CrossReference)cVariableAssignment_0.eContents().get(0);
+		private final RuleCall cVariableSymbolicVariableIDTerminalRuleCall_0_0_1 = (RuleCall)cVariableSymbolicVariableCrossReference_0_0.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIndexAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cIndexExpressionParserRuleCall_2_0 = (RuleCall)cIndexAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		///* ======================= END poST Variables ======================= */
+		///* ======================= START Array ======================= */
+		//ArrayVariable:
+		//    variable=[SymbolicVariable] '[' index=Expression ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//variable=[SymbolicVariable] '[' index=Expression ']'
+		public Group getGroup() { return cGroup; }
+		
+		//variable=[SymbolicVariable]
+		public Assignment getVariableAssignment_0() { return cVariableAssignment_0; }
+		
+		//[SymbolicVariable]
+		public CrossReference getVariableSymbolicVariableCrossReference_0_0() { return cVariableSymbolicVariableCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getVariableSymbolicVariableIDTerminalRuleCall_0_0_1() { return cVariableSymbolicVariableIDTerminalRuleCall_0_0_1; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		
+		//index=Expression
+		public Assignment getIndexAssignment_2() { return cIndexAssignment_2; }
+		
+		//Expression
+		public RuleCall getIndexExpressionParserRuleCall_2_0() { return cIndexExpressionParserRuleCall_2_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
 	public class ArraySpecificationInitElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.ArraySpecificationInit");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -3359,8 +3361,6 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cValuesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cValuesArrayInitializationParserRuleCall_1_1_0 = (RuleCall)cValuesAssignment_1_1.eContents().get(0);
 		
-		///* ======================= END poST Variables ======================= */
-		///* ======================= START Array ======================= */
 		//ArraySpecificationInit:
 		//    init=ArraySpecification (':=' values=ArrayInitialization)?;
 		@Override public ParserRule getRule() { return rule; }
@@ -4056,7 +4056,6 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final RepeatStatementElements pRepeatStatement;
 	private final SubprogramControlStatementElements pSubprogramControlStatement;
 	private final ExitStatementElements pExitStatement;
-	private final ArrayVariableElements pArrayVariable;
 	private final SymbolicVariableElements pSymbolicVariable;
 	private final SimpleSpecificationInitElements pSimpleSpecificationInit;
 	private final VarListElements pVarList;
@@ -4074,6 +4073,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final ProcessVarListElements pProcessVarList;
 	private final ProcessVarInitDeclarationElements pProcessVarInitDeclaration;
 	private final ProcessVarDeclarationElements pProcessVarDeclaration;
+	private final ArrayVariableElements pArrayVariable;
 	private final ArraySpecificationInitElements pArraySpecificationInit;
 	private final ArraySpecificationElements pArraySpecification;
 	private final ArrayIntervalElements pArrayInterval;
@@ -4184,7 +4184,6 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pRepeatStatement = new RepeatStatementElements();
 		this.pSubprogramControlStatement = new SubprogramControlStatementElements();
 		this.pExitStatement = new ExitStatementElements();
-		this.pArrayVariable = new ArrayVariableElements();
 		this.pSymbolicVariable = new SymbolicVariableElements();
 		this.pSimpleSpecificationInit = new SimpleSpecificationInitElements();
 		this.pVarList = new VarListElements();
@@ -4202,6 +4201,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pProcessVarList = new ProcessVarListElements();
 		this.pProcessVarInitDeclaration = new ProcessVarInitDeclarationElements();
 		this.pProcessVarDeclaration = new ProcessVarDeclarationElements();
+		this.pArrayVariable = new ArrayVariableElements();
 		this.pArraySpecificationInit = new ArraySpecificationInitElements();
 		this.pArraySpecification = new ArraySpecificationElements();
 		this.pArrayInterval = new ArrayIntervalElements();
@@ -4971,16 +4971,6 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getExitStatementAccess().getRule();
 	}
 	
-	//ArrayVariable:
-	//    variable=[SymbolicVariable] '[' index=Expression ']';
-	public ArrayVariableElements getArrayVariableAccess() {
-		return pArrayVariable;
-	}
-	
-	public ParserRule getArrayVariableRule() {
-		return getArrayVariableAccess().getRule();
-	}
-	
 	///* ======================= END ST Expression ======================= */
 	///* ======================= START Variables ======================= */
 	//SymbolicVariable:
@@ -5184,6 +5174,16 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	///* ======================= END poST Variables ======================= */
 	///* ======================= START Array ======================= */
+	//ArrayVariable:
+	//    variable=[SymbolicVariable] '[' index=Expression ']';
+	public ArrayVariableElements getArrayVariableAccess() {
+		return pArrayVariable;
+	}
+	
+	public ParserRule getArrayVariableRule() {
+		return getArrayVariableAccess().getRule();
+	}
+	
 	//ArraySpecificationInit:
 	//    init=ArraySpecification (':=' values=ArrayInitialization)?;
 	public ArraySpecificationInitElements getArraySpecificationInitAccess() {

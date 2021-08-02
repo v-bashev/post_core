@@ -4124,65 +4124,6 @@ ruleExitStatement returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleArrayVariable
-entryRuleArrayVariable returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getArrayVariableRule()); }
-	iv_ruleArrayVariable=ruleArrayVariable
-	{ $current=$iv_ruleArrayVariable.current; }
-	EOF;
-
-// Rule ArrayVariable
-ruleArrayVariable returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getArrayVariableRule());
-					}
-				}
-				otherlv_0=RULE_ID
-				{
-					newLeafNode(otherlv_0, grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableCrossReference_0_0());
-				}
-			)
-		)
-		otherlv_1='['
-		{
-			newLeafNode(otherlv_1, grammarAccess.getArrayVariableAccess().getLeftSquareBracketKeyword_1());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getArrayVariableAccess().getIndexExpressionParserRuleCall_2_0());
-				}
-				lv_index_2_0=ruleExpression
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getArrayVariableRule());
-					}
-					set(
-						$current,
-						"index",
-						lv_index_2_0,
-						"su.nsk.iae.post.PoST.Expression");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_3=']'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getArrayVariableAccess().getRightSquareBracketKeyword_3());
-		}
-	)
-;
-
 // Entry rule entryRuleSymbolicVariable
 entryRuleSymbolicVariable returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getSymbolicVariableRule()); }
@@ -5269,6 +5210,65 @@ ruleProcessVarDeclaration returns [EObject current=null]
 		otherlv_4='END_VAR'
 		{
 			newLeafNode(otherlv_4, grammarAccess.getProcessVarDeclarationAccess().getEND_VARKeyword_3());
+		}
+	)
+;
+
+// Entry rule entryRuleArrayVariable
+entryRuleArrayVariable returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getArrayVariableRule()); }
+	iv_ruleArrayVariable=ruleArrayVariable
+	{ $current=$iv_ruleArrayVariable.current; }
+	EOF;
+
+// Rule ArrayVariable
+ruleArrayVariable returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getArrayVariableRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableCrossReference_0_0());
+				}
+			)
+		)
+		otherlv_1='['
+		{
+			newLeafNode(otherlv_1, grammarAccess.getArrayVariableAccess().getLeftSquareBracketKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getArrayVariableAccess().getIndexExpressionParserRuleCall_2_0());
+				}
+				lv_index_2_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getArrayVariableRule());
+					}
+					set(
+						$current,
+						"index",
+						lv_index_2_0,
+						"su.nsk.iae.post.PoST.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=']'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getArrayVariableAccess().getRightSquareBracketKeyword_3());
 		}
 	)
 ;

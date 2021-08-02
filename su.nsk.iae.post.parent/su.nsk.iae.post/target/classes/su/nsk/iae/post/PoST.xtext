@@ -304,9 +304,6 @@ SubprogramControlStatement:
 
 ExitStatement:
 	{ExitStatement} 'EXIT';
-	
-ArrayVariable:
-	variable=[SymbolicVariable] '[' index=Expression ']';
 
 /* ======================= END ST Expression ======================= */
 	
@@ -397,6 +394,9 @@ ProcessVarDeclaration:
 /* ======================= END poST Variables ======================= */
 
 /* ======================= START Array ======================= */
+
+ArrayVariable:
+	variable=[SymbolicVariable] '[' index=Expression ']';
 	
 ArraySpecificationInit:
 	init=ArraySpecification (':=' values=ArrayInitialization)?;

@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_BIT_STRING_TYPE_NAME", "RULE_TIME_TYPE_NAME", "RULE_STRING_TYPE_NAME", "RULE_REAL_TYPE_NAME", "RULE_SIGNED_INTEGER_TYPE_NAME", "RULE_UNSIGNED_INTEGER_TYPE_NAME", "RULE_BINARY_INTEGER", "RULE_OCTAL_INTEGER", "RULE_HEX_INTEGER", "RULE_BOOLEAN_LITERAL", "RULE_SINGLE_DECLARATION", "RULE_PRIORITY_DECLARATION", "RULE_INTERVAL_DECLARATION", "RULE_OR_OPERATOR", "RULE_XOR_OPERATOR", "RULE_AND_OPERATOR", "RULE_POWER_OPERATOR", "RULE_TIME_PREF_LITERAL", "RULE_ID", "RULE_INTEGER", "RULE_DIRECT_VARIABLE", "RULE_INTERVAL", "RULE_REAL", "RULE_DIRECT_TYPE_PREFIX", "RULE_DIRECT_SIZE_PREFIX", "RULE_DIGIT", "RULE_BIT", "RULE_OCTAL_DIGIT", "RULE_HEX_DIGIT", "RULE_LETTER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "':='", "'=>'", "'='", "'<>'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'/'", "'MOD'", "'NOT'", "'CONFIGURATION'", "'END_CONFIGURATION'", "'RESOURCE'", "'ON'", "'END_RESOURCE'", "';'", "'TASK'", "'('", "')'", "','", "'PROGRAM'", "':'", "'WITH'", "'PROCESS'", "'END_PROGRAM'", "'FUNCTION_BLOCK'", "'END_FUNCTION_BLOCK'", "'END_PROCESS'", "'STATE'", "'END_STATE'", "'SET'", "'IN'", "'START'", "'RESTART'", "'STOP'", "'ERROR'", "'TIMEOUT'", "'THEN'", "'END_TIMEOUT'", "'RESET'", "'TIMER'", "'IF'", "'END_IF'", "'ELSIF'", "'ELSE'", "'CASE'", "'OF'", "'END_CASE'", "'FOR'", "'DO'", "'END_FOR'", "'TO'", "'BY'", "'WHILE'", "'END_WHILE'", "'REPEAT'", "'UNTIL'", "'END_REPEAT'", "'RETURN'", "'EXIT'", "'['", "']'", "'VAR_INPUT'", "'END_VAR'", "'VAR_OUTPUT'", "'VAR_IN_OUT'", "'VAR'", "'VAR_TEMP'", "'VAR_EXTERNAL'", "'AT'", "'VAR_GLOBAL'", "'VAR_PROCESS'", "'ARRAY'", "'..'", "'#'", "'ACTIVE'", "'LOOPED'", "'NEXT'", "'INACTIVE'", "'CONSTANT'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_BIT_STRING_TYPE_NAME", "RULE_TIME_TYPE_NAME", "RULE_STRING_TYPE_NAME", "RULE_REAL_TYPE_NAME", "RULE_SIGNED_INTEGER_TYPE_NAME", "RULE_UNSIGNED_INTEGER_TYPE_NAME", "RULE_BINARY_INTEGER", "RULE_OCTAL_INTEGER", "RULE_HEX_INTEGER", "RULE_BOOLEAN_LITERAL", "RULE_SINGLE_DECLARATION", "RULE_PRIORITY_DECLARATION", "RULE_INTERVAL_DECLARATION", "RULE_OR_OPERATOR", "RULE_XOR_OPERATOR", "RULE_AND_OPERATOR", "RULE_POWER_OPERATOR", "RULE_TIME_PREF_LITERAL", "RULE_ID", "RULE_INTEGER", "RULE_DIRECT_VARIABLE", "RULE_INTERVAL", "RULE_REAL", "RULE_DIRECT_TYPE_PREFIX", "RULE_DIRECT_SIZE_PREFIX", "RULE_DIGIT", "RULE_BIT", "RULE_OCTAL_DIGIT", "RULE_HEX_DIGIT", "RULE_LETTER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "':='", "'=>'", "'='", "'<>'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'/'", "'MOD'", "'NOT'", "'CONFIGURATION'", "'END_CONFIGURATION'", "'RESOURCE'", "'ON'", "'END_RESOURCE'", "';'", "'TASK'", "'('", "')'", "','", "'PROGRAM'", "':'", "'WITH'", "'PROCESS'", "'END_PROGRAM'", "'FUNCTION_BLOCK'", "'END_FUNCTION_BLOCK'", "'END_PROCESS'", "'STATE'", "'END_STATE'", "'SET'", "'IN'", "'START'", "'RESTART'", "'STOP'", "'ERROR'", "'TIMEOUT'", "'THEN'", "'END_TIMEOUT'", "'RESET'", "'TIMER'", "'IF'", "'END_IF'", "'ELSIF'", "'ELSE'", "'CASE'", "'OF'", "'END_CASE'", "'FOR'", "'DO'", "'END_FOR'", "'TO'", "'BY'", "'WHILE'", "'END_WHILE'", "'REPEAT'", "'UNTIL'", "'END_REPEAT'", "'RETURN'", "'EXIT'", "'VAR_INPUT'", "'END_VAR'", "'VAR_OUTPUT'", "'VAR_IN_OUT'", "'VAR'", "'VAR_TEMP'", "'VAR_EXTERNAL'", "'AT'", "'VAR_GLOBAL'", "'VAR_PROCESS'", "'['", "']'", "'ARRAY'", "'..'", "'#'", "'ACTIVE'", "'LOOPED'", "'NEXT'", "'INACTIVE'", "'CONSTANT'"
     };
     public static final int T__50=50;
     public static final int RULE_PRIORITY_DECLARATION=15;
@@ -4430,97 +4430,12 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleExitStatement"
 
 
-    // $ANTLR start "entryRuleArrayVariable"
-    // InternalPoST.g:1303:1: entryRuleArrayVariable : ruleArrayVariable EOF ;
-    public final void entryRuleArrayVariable() throws RecognitionException {
-        try {
-            // InternalPoST.g:1304:1: ( ruleArrayVariable EOF )
-            // InternalPoST.g:1305:1: ruleArrayVariable EOF
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableRule()); 
-            }
-            pushFollow(FOLLOW_1);
-            ruleArrayVariable();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableRule()); 
-            }
-            match(input,EOF,FOLLOW_2); if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleArrayVariable"
-
-
-    // $ANTLR start "ruleArrayVariable"
-    // InternalPoST.g:1312:1: ruleArrayVariable : ( ( rule__ArrayVariable__Group__0 ) ) ;
-    public final void ruleArrayVariable() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:1316:2: ( ( ( rule__ArrayVariable__Group__0 ) ) )
-            // InternalPoST.g:1317:2: ( ( rule__ArrayVariable__Group__0 ) )
-            {
-            // InternalPoST.g:1317:2: ( ( rule__ArrayVariable__Group__0 ) )
-            // InternalPoST.g:1318:3: ( rule__ArrayVariable__Group__0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getGroup()); 
-            }
-            // InternalPoST.g:1319:3: ( rule__ArrayVariable__Group__0 )
-            // InternalPoST.g:1319:4: rule__ArrayVariable__Group__0
-            {
-            pushFollow(FOLLOW_2);
-            rule__ArrayVariable__Group__0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getGroup()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleArrayVariable"
-
-
     // $ANTLR start "entryRuleSymbolicVariable"
-    // InternalPoST.g:1328:1: entryRuleSymbolicVariable : ruleSymbolicVariable EOF ;
+    // InternalPoST.g:1303:1: entryRuleSymbolicVariable : ruleSymbolicVariable EOF ;
     public final void entryRuleSymbolicVariable() throws RecognitionException {
         try {
-            // InternalPoST.g:1329:1: ( ruleSymbolicVariable EOF )
-            // InternalPoST.g:1330:1: ruleSymbolicVariable EOF
+            // InternalPoST.g:1304:1: ( ruleSymbolicVariable EOF )
+            // InternalPoST.g:1305:1: ruleSymbolicVariable EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSymbolicVariableRule()); 
@@ -4550,23 +4465,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleSymbolicVariable"
-    // InternalPoST.g:1337:1: ruleSymbolicVariable : ( ( rule__SymbolicVariable__NameAssignment ) ) ;
+    // InternalPoST.g:1312:1: ruleSymbolicVariable : ( ( rule__SymbolicVariable__NameAssignment ) ) ;
     public final void ruleSymbolicVariable() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1341:2: ( ( ( rule__SymbolicVariable__NameAssignment ) ) )
-            // InternalPoST.g:1342:2: ( ( rule__SymbolicVariable__NameAssignment ) )
+            // InternalPoST.g:1316:2: ( ( ( rule__SymbolicVariable__NameAssignment ) ) )
+            // InternalPoST.g:1317:2: ( ( rule__SymbolicVariable__NameAssignment ) )
             {
-            // InternalPoST.g:1342:2: ( ( rule__SymbolicVariable__NameAssignment ) )
-            // InternalPoST.g:1343:3: ( rule__SymbolicVariable__NameAssignment )
+            // InternalPoST.g:1317:2: ( ( rule__SymbolicVariable__NameAssignment ) )
+            // InternalPoST.g:1318:3: ( rule__SymbolicVariable__NameAssignment )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSymbolicVariableAccess().getNameAssignment()); 
             }
-            // InternalPoST.g:1344:3: ( rule__SymbolicVariable__NameAssignment )
-            // InternalPoST.g:1344:4: rule__SymbolicVariable__NameAssignment
+            // InternalPoST.g:1319:3: ( rule__SymbolicVariable__NameAssignment )
+            // InternalPoST.g:1319:4: rule__SymbolicVariable__NameAssignment
             {
             pushFollow(FOLLOW_2);
             rule__SymbolicVariable__NameAssignment();
@@ -4601,11 +4516,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleSimpleSpecificationInit"
-    // InternalPoST.g:1353:1: entryRuleSimpleSpecificationInit : ruleSimpleSpecificationInit EOF ;
+    // InternalPoST.g:1328:1: entryRuleSimpleSpecificationInit : ruleSimpleSpecificationInit EOF ;
     public final void entryRuleSimpleSpecificationInit() throws RecognitionException {
         try {
-            // InternalPoST.g:1354:1: ( ruleSimpleSpecificationInit EOF )
-            // InternalPoST.g:1355:1: ruleSimpleSpecificationInit EOF
+            // InternalPoST.g:1329:1: ( ruleSimpleSpecificationInit EOF )
+            // InternalPoST.g:1330:1: ruleSimpleSpecificationInit EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitRule()); 
@@ -4635,23 +4550,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleSimpleSpecificationInit"
-    // InternalPoST.g:1362:1: ruleSimpleSpecificationInit : ( ( rule__SimpleSpecificationInit__Group__0 ) ) ;
+    // InternalPoST.g:1337:1: ruleSimpleSpecificationInit : ( ( rule__SimpleSpecificationInit__Group__0 ) ) ;
     public final void ruleSimpleSpecificationInit() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1366:2: ( ( ( rule__SimpleSpecificationInit__Group__0 ) ) )
-            // InternalPoST.g:1367:2: ( ( rule__SimpleSpecificationInit__Group__0 ) )
+            // InternalPoST.g:1341:2: ( ( ( rule__SimpleSpecificationInit__Group__0 ) ) )
+            // InternalPoST.g:1342:2: ( ( rule__SimpleSpecificationInit__Group__0 ) )
             {
-            // InternalPoST.g:1367:2: ( ( rule__SimpleSpecificationInit__Group__0 ) )
-            // InternalPoST.g:1368:3: ( rule__SimpleSpecificationInit__Group__0 )
+            // InternalPoST.g:1342:2: ( ( rule__SimpleSpecificationInit__Group__0 ) )
+            // InternalPoST.g:1343:3: ( rule__SimpleSpecificationInit__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getGroup()); 
             }
-            // InternalPoST.g:1369:3: ( rule__SimpleSpecificationInit__Group__0 )
-            // InternalPoST.g:1369:4: rule__SimpleSpecificationInit__Group__0
+            // InternalPoST.g:1344:3: ( rule__SimpleSpecificationInit__Group__0 )
+            // InternalPoST.g:1344:4: rule__SimpleSpecificationInit__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__SimpleSpecificationInit__Group__0();
@@ -4686,11 +4601,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleVarList"
-    // InternalPoST.g:1378:1: entryRuleVarList : ruleVarList EOF ;
+    // InternalPoST.g:1353:1: entryRuleVarList : ruleVarList EOF ;
     public final void entryRuleVarList() throws RecognitionException {
         try {
-            // InternalPoST.g:1379:1: ( ruleVarList EOF )
-            // InternalPoST.g:1380:1: ruleVarList EOF
+            // InternalPoST.g:1354:1: ( ruleVarList EOF )
+            // InternalPoST.g:1355:1: ruleVarList EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListRule()); 
@@ -4720,23 +4635,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleVarList"
-    // InternalPoST.g:1387:1: ruleVarList : ( ( rule__VarList__Group__0 ) ) ;
+    // InternalPoST.g:1362:1: ruleVarList : ( ( rule__VarList__Group__0 ) ) ;
     public final void ruleVarList() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1391:2: ( ( ( rule__VarList__Group__0 ) ) )
-            // InternalPoST.g:1392:2: ( ( rule__VarList__Group__0 ) )
+            // InternalPoST.g:1366:2: ( ( ( rule__VarList__Group__0 ) ) )
+            // InternalPoST.g:1367:2: ( ( rule__VarList__Group__0 ) )
             {
-            // InternalPoST.g:1392:2: ( ( rule__VarList__Group__0 ) )
-            // InternalPoST.g:1393:3: ( rule__VarList__Group__0 )
+            // InternalPoST.g:1367:2: ( ( rule__VarList__Group__0 ) )
+            // InternalPoST.g:1368:3: ( rule__VarList__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListAccess().getGroup()); 
             }
-            // InternalPoST.g:1394:3: ( rule__VarList__Group__0 )
-            // InternalPoST.g:1394:4: rule__VarList__Group__0
+            // InternalPoST.g:1369:3: ( rule__VarList__Group__0 )
+            // InternalPoST.g:1369:4: rule__VarList__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__VarList__Group__0();
@@ -4771,11 +4686,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleVarInitDeclaration"
-    // InternalPoST.g:1403:1: entryRuleVarInitDeclaration : ruleVarInitDeclaration EOF ;
+    // InternalPoST.g:1378:1: entryRuleVarInitDeclaration : ruleVarInitDeclaration EOF ;
     public final void entryRuleVarInitDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1404:1: ( ruleVarInitDeclaration EOF )
-            // InternalPoST.g:1405:1: ruleVarInitDeclaration EOF
+            // InternalPoST.g:1379:1: ( ruleVarInitDeclaration EOF )
+            // InternalPoST.g:1380:1: ruleVarInitDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationRule()); 
@@ -4805,23 +4720,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleVarInitDeclaration"
-    // InternalPoST.g:1412:1: ruleVarInitDeclaration : ( ( rule__VarInitDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1387:1: ruleVarInitDeclaration : ( ( rule__VarInitDeclaration__Group__0 ) ) ;
     public final void ruleVarInitDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1416:2: ( ( ( rule__VarInitDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1417:2: ( ( rule__VarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1391:2: ( ( ( rule__VarInitDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1392:2: ( ( rule__VarInitDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1417:2: ( ( rule__VarInitDeclaration__Group__0 ) )
-            // InternalPoST.g:1418:3: ( rule__VarInitDeclaration__Group__0 )
+            // InternalPoST.g:1392:2: ( ( rule__VarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1393:3: ( rule__VarInitDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1419:3: ( rule__VarInitDeclaration__Group__0 )
-            // InternalPoST.g:1419:4: rule__VarInitDeclaration__Group__0
+            // InternalPoST.g:1394:3: ( rule__VarInitDeclaration__Group__0 )
+            // InternalPoST.g:1394:4: rule__VarInitDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__VarInitDeclaration__Group__0();
@@ -4856,11 +4771,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleInputVarDeclaration"
-    // InternalPoST.g:1428:1: entryRuleInputVarDeclaration : ruleInputVarDeclaration EOF ;
+    // InternalPoST.g:1403:1: entryRuleInputVarDeclaration : ruleInputVarDeclaration EOF ;
     public final void entryRuleInputVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1429:1: ( ruleInputVarDeclaration EOF )
-            // InternalPoST.g:1430:1: ruleInputVarDeclaration EOF
+            // InternalPoST.g:1404:1: ( ruleInputVarDeclaration EOF )
+            // InternalPoST.g:1405:1: ruleInputVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationRule()); 
@@ -4890,23 +4805,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleInputVarDeclaration"
-    // InternalPoST.g:1437:1: ruleInputVarDeclaration : ( ( rule__InputVarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1412:1: ruleInputVarDeclaration : ( ( rule__InputVarDeclaration__Group__0 ) ) ;
     public final void ruleInputVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1441:2: ( ( ( rule__InputVarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1442:2: ( ( rule__InputVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1416:2: ( ( ( rule__InputVarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1417:2: ( ( rule__InputVarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1442:2: ( ( rule__InputVarDeclaration__Group__0 ) )
-            // InternalPoST.g:1443:3: ( rule__InputVarDeclaration__Group__0 )
+            // InternalPoST.g:1417:2: ( ( rule__InputVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1418:3: ( rule__InputVarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1444:3: ( rule__InputVarDeclaration__Group__0 )
-            // InternalPoST.g:1444:4: rule__InputVarDeclaration__Group__0
+            // InternalPoST.g:1419:3: ( rule__InputVarDeclaration__Group__0 )
+            // InternalPoST.g:1419:4: rule__InputVarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__InputVarDeclaration__Group__0();
@@ -4941,11 +4856,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleOutputVarDeclaration"
-    // InternalPoST.g:1453:1: entryRuleOutputVarDeclaration : ruleOutputVarDeclaration EOF ;
+    // InternalPoST.g:1428:1: entryRuleOutputVarDeclaration : ruleOutputVarDeclaration EOF ;
     public final void entryRuleOutputVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1454:1: ( ruleOutputVarDeclaration EOF )
-            // InternalPoST.g:1455:1: ruleOutputVarDeclaration EOF
+            // InternalPoST.g:1429:1: ( ruleOutputVarDeclaration EOF )
+            // InternalPoST.g:1430:1: ruleOutputVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationRule()); 
@@ -4975,23 +4890,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleOutputVarDeclaration"
-    // InternalPoST.g:1462:1: ruleOutputVarDeclaration : ( ( rule__OutputVarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1437:1: ruleOutputVarDeclaration : ( ( rule__OutputVarDeclaration__Group__0 ) ) ;
     public final void ruleOutputVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1466:2: ( ( ( rule__OutputVarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1467:2: ( ( rule__OutputVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1441:2: ( ( ( rule__OutputVarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1442:2: ( ( rule__OutputVarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1467:2: ( ( rule__OutputVarDeclaration__Group__0 ) )
-            // InternalPoST.g:1468:3: ( rule__OutputVarDeclaration__Group__0 )
+            // InternalPoST.g:1442:2: ( ( rule__OutputVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1443:3: ( rule__OutputVarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1469:3: ( rule__OutputVarDeclaration__Group__0 )
-            // InternalPoST.g:1469:4: rule__OutputVarDeclaration__Group__0
+            // InternalPoST.g:1444:3: ( rule__OutputVarDeclaration__Group__0 )
+            // InternalPoST.g:1444:4: rule__OutputVarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__OutputVarDeclaration__Group__0();
@@ -5026,11 +4941,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleInputOutputVarDeclaration"
-    // InternalPoST.g:1478:1: entryRuleInputOutputVarDeclaration : ruleInputOutputVarDeclaration EOF ;
+    // InternalPoST.g:1453:1: entryRuleInputOutputVarDeclaration : ruleInputOutputVarDeclaration EOF ;
     public final void entryRuleInputOutputVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1479:1: ( ruleInputOutputVarDeclaration EOF )
-            // InternalPoST.g:1480:1: ruleInputOutputVarDeclaration EOF
+            // InternalPoST.g:1454:1: ( ruleInputOutputVarDeclaration EOF )
+            // InternalPoST.g:1455:1: ruleInputOutputVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationRule()); 
@@ -5060,23 +4975,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleInputOutputVarDeclaration"
-    // InternalPoST.g:1487:1: ruleInputOutputVarDeclaration : ( ( rule__InputOutputVarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1462:1: ruleInputOutputVarDeclaration : ( ( rule__InputOutputVarDeclaration__Group__0 ) ) ;
     public final void ruleInputOutputVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1491:2: ( ( ( rule__InputOutputVarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1492:2: ( ( rule__InputOutputVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1466:2: ( ( ( rule__InputOutputVarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1467:2: ( ( rule__InputOutputVarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1492:2: ( ( rule__InputOutputVarDeclaration__Group__0 ) )
-            // InternalPoST.g:1493:3: ( rule__InputOutputVarDeclaration__Group__0 )
+            // InternalPoST.g:1467:2: ( ( rule__InputOutputVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1468:3: ( rule__InputOutputVarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1494:3: ( rule__InputOutputVarDeclaration__Group__0 )
-            // InternalPoST.g:1494:4: rule__InputOutputVarDeclaration__Group__0
+            // InternalPoST.g:1469:3: ( rule__InputOutputVarDeclaration__Group__0 )
+            // InternalPoST.g:1469:4: rule__InputOutputVarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__InputOutputVarDeclaration__Group__0();
@@ -5111,11 +5026,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleVarDeclaration"
-    // InternalPoST.g:1503:1: entryRuleVarDeclaration : ruleVarDeclaration EOF ;
+    // InternalPoST.g:1478:1: entryRuleVarDeclaration : ruleVarDeclaration EOF ;
     public final void entryRuleVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1504:1: ( ruleVarDeclaration EOF )
-            // InternalPoST.g:1505:1: ruleVarDeclaration EOF
+            // InternalPoST.g:1479:1: ( ruleVarDeclaration EOF )
+            // InternalPoST.g:1480:1: ruleVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationRule()); 
@@ -5145,23 +5060,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleVarDeclaration"
-    // InternalPoST.g:1512:1: ruleVarDeclaration : ( ( rule__VarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1487:1: ruleVarDeclaration : ( ( rule__VarDeclaration__Group__0 ) ) ;
     public final void ruleVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1516:2: ( ( ( rule__VarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1517:2: ( ( rule__VarDeclaration__Group__0 ) )
+            // InternalPoST.g:1491:2: ( ( ( rule__VarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1492:2: ( ( rule__VarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1517:2: ( ( rule__VarDeclaration__Group__0 ) )
-            // InternalPoST.g:1518:3: ( rule__VarDeclaration__Group__0 )
+            // InternalPoST.g:1492:2: ( ( rule__VarDeclaration__Group__0 ) )
+            // InternalPoST.g:1493:3: ( rule__VarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1519:3: ( rule__VarDeclaration__Group__0 )
-            // InternalPoST.g:1519:4: rule__VarDeclaration__Group__0
+            // InternalPoST.g:1494:3: ( rule__VarDeclaration__Group__0 )
+            // InternalPoST.g:1494:4: rule__VarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__VarDeclaration__Group__0();
@@ -5196,11 +5111,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleTempVarDeclaration"
-    // InternalPoST.g:1528:1: entryRuleTempVarDeclaration : ruleTempVarDeclaration EOF ;
+    // InternalPoST.g:1503:1: entryRuleTempVarDeclaration : ruleTempVarDeclaration EOF ;
     public final void entryRuleTempVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1529:1: ( ruleTempVarDeclaration EOF )
-            // InternalPoST.g:1530:1: ruleTempVarDeclaration EOF
+            // InternalPoST.g:1504:1: ( ruleTempVarDeclaration EOF )
+            // InternalPoST.g:1505:1: ruleTempVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationRule()); 
@@ -5230,23 +5145,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleTempVarDeclaration"
-    // InternalPoST.g:1537:1: ruleTempVarDeclaration : ( ( rule__TempVarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1512:1: ruleTempVarDeclaration : ( ( rule__TempVarDeclaration__Group__0 ) ) ;
     public final void ruleTempVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1541:2: ( ( ( rule__TempVarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1542:2: ( ( rule__TempVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1516:2: ( ( ( rule__TempVarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1517:2: ( ( rule__TempVarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1542:2: ( ( rule__TempVarDeclaration__Group__0 ) )
-            // InternalPoST.g:1543:3: ( rule__TempVarDeclaration__Group__0 )
+            // InternalPoST.g:1517:2: ( ( rule__TempVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1518:3: ( rule__TempVarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1544:3: ( rule__TempVarDeclaration__Group__0 )
-            // InternalPoST.g:1544:4: rule__TempVarDeclaration__Group__0
+            // InternalPoST.g:1519:3: ( rule__TempVarDeclaration__Group__0 )
+            // InternalPoST.g:1519:4: rule__TempVarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__TempVarDeclaration__Group__0();
@@ -5281,11 +5196,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleExternalVarInitDeclaration"
-    // InternalPoST.g:1553:1: entryRuleExternalVarInitDeclaration : ruleExternalVarInitDeclaration EOF ;
+    // InternalPoST.g:1528:1: entryRuleExternalVarInitDeclaration : ruleExternalVarInitDeclaration EOF ;
     public final void entryRuleExternalVarInitDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1554:1: ( ruleExternalVarInitDeclaration EOF )
-            // InternalPoST.g:1555:1: ruleExternalVarInitDeclaration EOF
+            // InternalPoST.g:1529:1: ( ruleExternalVarInitDeclaration EOF )
+            // InternalPoST.g:1530:1: ruleExternalVarInitDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarInitDeclarationRule()); 
@@ -5315,23 +5230,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleExternalVarInitDeclaration"
-    // InternalPoST.g:1562:1: ruleExternalVarInitDeclaration : ( ( rule__ExternalVarInitDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1537:1: ruleExternalVarInitDeclaration : ( ( rule__ExternalVarInitDeclaration__Group__0 ) ) ;
     public final void ruleExternalVarInitDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1566:2: ( ( ( rule__ExternalVarInitDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1567:2: ( ( rule__ExternalVarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1541:2: ( ( ( rule__ExternalVarInitDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1542:2: ( ( rule__ExternalVarInitDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1567:2: ( ( rule__ExternalVarInitDeclaration__Group__0 ) )
-            // InternalPoST.g:1568:3: ( rule__ExternalVarInitDeclaration__Group__0 )
+            // InternalPoST.g:1542:2: ( ( rule__ExternalVarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1543:3: ( rule__ExternalVarInitDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarInitDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1569:3: ( rule__ExternalVarInitDeclaration__Group__0 )
-            // InternalPoST.g:1569:4: rule__ExternalVarInitDeclaration__Group__0
+            // InternalPoST.g:1544:3: ( rule__ExternalVarInitDeclaration__Group__0 )
+            // InternalPoST.g:1544:4: rule__ExternalVarInitDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarInitDeclaration__Group__0();
@@ -5366,11 +5281,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleExternalVarDeclaration"
-    // InternalPoST.g:1578:1: entryRuleExternalVarDeclaration : ruleExternalVarDeclaration EOF ;
+    // InternalPoST.g:1553:1: entryRuleExternalVarDeclaration : ruleExternalVarDeclaration EOF ;
     public final void entryRuleExternalVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1579:1: ( ruleExternalVarDeclaration EOF )
-            // InternalPoST.g:1580:1: ruleExternalVarDeclaration EOF
+            // InternalPoST.g:1554:1: ( ruleExternalVarDeclaration EOF )
+            // InternalPoST.g:1555:1: ruleExternalVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationRule()); 
@@ -5400,23 +5315,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleExternalVarDeclaration"
-    // InternalPoST.g:1587:1: ruleExternalVarDeclaration : ( ( rule__ExternalVarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1562:1: ruleExternalVarDeclaration : ( ( rule__ExternalVarDeclaration__Group__0 ) ) ;
     public final void ruleExternalVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1591:2: ( ( ( rule__ExternalVarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1592:2: ( ( rule__ExternalVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1566:2: ( ( ( rule__ExternalVarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1567:2: ( ( rule__ExternalVarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1592:2: ( ( rule__ExternalVarDeclaration__Group__0 ) )
-            // InternalPoST.g:1593:3: ( rule__ExternalVarDeclaration__Group__0 )
+            // InternalPoST.g:1567:2: ( ( rule__ExternalVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1568:3: ( rule__ExternalVarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1594:3: ( rule__ExternalVarDeclaration__Group__0 )
-            // InternalPoST.g:1594:4: rule__ExternalVarDeclaration__Group__0
+            // InternalPoST.g:1569:3: ( rule__ExternalVarDeclaration__Group__0 )
+            // InternalPoST.g:1569:4: rule__ExternalVarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarDeclaration__Group__0();
@@ -5451,11 +5366,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleGlobalVarInitDeclaration"
-    // InternalPoST.g:1603:1: entryRuleGlobalVarInitDeclaration : ruleGlobalVarInitDeclaration EOF ;
+    // InternalPoST.g:1578:1: entryRuleGlobalVarInitDeclaration : ruleGlobalVarInitDeclaration EOF ;
     public final void entryRuleGlobalVarInitDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1604:1: ( ruleGlobalVarInitDeclaration EOF )
-            // InternalPoST.g:1605:1: ruleGlobalVarInitDeclaration EOF
+            // InternalPoST.g:1579:1: ( ruleGlobalVarInitDeclaration EOF )
+            // InternalPoST.g:1580:1: ruleGlobalVarInitDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationRule()); 
@@ -5485,23 +5400,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleGlobalVarInitDeclaration"
-    // InternalPoST.g:1612:1: ruleGlobalVarInitDeclaration : ( ( rule__GlobalVarInitDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1587:1: ruleGlobalVarInitDeclaration : ( ( rule__GlobalVarInitDeclaration__Group__0 ) ) ;
     public final void ruleGlobalVarInitDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1616:2: ( ( ( rule__GlobalVarInitDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1617:2: ( ( rule__GlobalVarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1591:2: ( ( ( rule__GlobalVarInitDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1592:2: ( ( rule__GlobalVarInitDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1617:2: ( ( rule__GlobalVarInitDeclaration__Group__0 ) )
-            // InternalPoST.g:1618:3: ( rule__GlobalVarInitDeclaration__Group__0 )
+            // InternalPoST.g:1592:2: ( ( rule__GlobalVarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1593:3: ( rule__GlobalVarInitDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1619:3: ( rule__GlobalVarInitDeclaration__Group__0 )
-            // InternalPoST.g:1619:4: rule__GlobalVarInitDeclaration__Group__0
+            // InternalPoST.g:1594:3: ( rule__GlobalVarInitDeclaration__Group__0 )
+            // InternalPoST.g:1594:4: rule__GlobalVarInitDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarInitDeclaration__Group__0();
@@ -5536,11 +5451,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleGlobalVarDeclaration"
-    // InternalPoST.g:1628:1: entryRuleGlobalVarDeclaration : ruleGlobalVarDeclaration EOF ;
+    // InternalPoST.g:1603:1: entryRuleGlobalVarDeclaration : ruleGlobalVarDeclaration EOF ;
     public final void entryRuleGlobalVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1629:1: ( ruleGlobalVarDeclaration EOF )
-            // InternalPoST.g:1630:1: ruleGlobalVarDeclaration EOF
+            // InternalPoST.g:1604:1: ( ruleGlobalVarDeclaration EOF )
+            // InternalPoST.g:1605:1: ruleGlobalVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationRule()); 
@@ -5570,23 +5485,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleGlobalVarDeclaration"
-    // InternalPoST.g:1637:1: ruleGlobalVarDeclaration : ( ( rule__GlobalVarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1612:1: ruleGlobalVarDeclaration : ( ( rule__GlobalVarDeclaration__Group__0 ) ) ;
     public final void ruleGlobalVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1641:2: ( ( ( rule__GlobalVarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1642:2: ( ( rule__GlobalVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1616:2: ( ( ( rule__GlobalVarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1617:2: ( ( rule__GlobalVarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1642:2: ( ( rule__GlobalVarDeclaration__Group__0 ) )
-            // InternalPoST.g:1643:3: ( rule__GlobalVarDeclaration__Group__0 )
+            // InternalPoST.g:1617:2: ( ( rule__GlobalVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1618:3: ( rule__GlobalVarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1644:3: ( rule__GlobalVarDeclaration__Group__0 )
-            // InternalPoST.g:1644:4: rule__GlobalVarDeclaration__Group__0
+            // InternalPoST.g:1619:3: ( rule__GlobalVarDeclaration__Group__0 )
+            // InternalPoST.g:1619:4: rule__GlobalVarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarDeclaration__Group__0();
@@ -5621,11 +5536,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleProcessVariable"
-    // InternalPoST.g:1653:1: entryRuleProcessVariable : ruleProcessVariable EOF ;
+    // InternalPoST.g:1628:1: entryRuleProcessVariable : ruleProcessVariable EOF ;
     public final void entryRuleProcessVariable() throws RecognitionException {
         try {
-            // InternalPoST.g:1654:1: ( ruleProcessVariable EOF )
-            // InternalPoST.g:1655:1: ruleProcessVariable EOF
+            // InternalPoST.g:1629:1: ( ruleProcessVariable EOF )
+            // InternalPoST.g:1630:1: ruleProcessVariable EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVariableRule()); 
@@ -5655,23 +5570,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleProcessVariable"
-    // InternalPoST.g:1662:1: ruleProcessVariable : ( ( rule__ProcessVariable__NameAssignment ) ) ;
+    // InternalPoST.g:1637:1: ruleProcessVariable : ( ( rule__ProcessVariable__NameAssignment ) ) ;
     public final void ruleProcessVariable() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1666:2: ( ( ( rule__ProcessVariable__NameAssignment ) ) )
-            // InternalPoST.g:1667:2: ( ( rule__ProcessVariable__NameAssignment ) )
+            // InternalPoST.g:1641:2: ( ( ( rule__ProcessVariable__NameAssignment ) ) )
+            // InternalPoST.g:1642:2: ( ( rule__ProcessVariable__NameAssignment ) )
             {
-            // InternalPoST.g:1667:2: ( ( rule__ProcessVariable__NameAssignment ) )
-            // InternalPoST.g:1668:3: ( rule__ProcessVariable__NameAssignment )
+            // InternalPoST.g:1642:2: ( ( rule__ProcessVariable__NameAssignment ) )
+            // InternalPoST.g:1643:3: ( rule__ProcessVariable__NameAssignment )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVariableAccess().getNameAssignment()); 
             }
-            // InternalPoST.g:1669:3: ( rule__ProcessVariable__NameAssignment )
-            // InternalPoST.g:1669:4: rule__ProcessVariable__NameAssignment
+            // InternalPoST.g:1644:3: ( rule__ProcessVariable__NameAssignment )
+            // InternalPoST.g:1644:4: rule__ProcessVariable__NameAssignment
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVariable__NameAssignment();
@@ -5706,11 +5621,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleProcessVarList"
-    // InternalPoST.g:1678:1: entryRuleProcessVarList : ruleProcessVarList EOF ;
+    // InternalPoST.g:1653:1: entryRuleProcessVarList : ruleProcessVarList EOF ;
     public final void entryRuleProcessVarList() throws RecognitionException {
         try {
-            // InternalPoST.g:1679:1: ( ruleProcessVarList EOF )
-            // InternalPoST.g:1680:1: ruleProcessVarList EOF
+            // InternalPoST.g:1654:1: ( ruleProcessVarList EOF )
+            // InternalPoST.g:1655:1: ruleProcessVarList EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListRule()); 
@@ -5740,23 +5655,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleProcessVarList"
-    // InternalPoST.g:1687:1: ruleProcessVarList : ( ( rule__ProcessVarList__Group__0 ) ) ;
+    // InternalPoST.g:1662:1: ruleProcessVarList : ( ( rule__ProcessVarList__Group__0 ) ) ;
     public final void ruleProcessVarList() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1691:2: ( ( ( rule__ProcessVarList__Group__0 ) ) )
-            // InternalPoST.g:1692:2: ( ( rule__ProcessVarList__Group__0 ) )
+            // InternalPoST.g:1666:2: ( ( ( rule__ProcessVarList__Group__0 ) ) )
+            // InternalPoST.g:1667:2: ( ( rule__ProcessVarList__Group__0 ) )
             {
-            // InternalPoST.g:1692:2: ( ( rule__ProcessVarList__Group__0 ) )
-            // InternalPoST.g:1693:3: ( rule__ProcessVarList__Group__0 )
+            // InternalPoST.g:1667:2: ( ( rule__ProcessVarList__Group__0 ) )
+            // InternalPoST.g:1668:3: ( rule__ProcessVarList__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListAccess().getGroup()); 
             }
-            // InternalPoST.g:1694:3: ( rule__ProcessVarList__Group__0 )
-            // InternalPoST.g:1694:4: rule__ProcessVarList__Group__0
+            // InternalPoST.g:1669:3: ( rule__ProcessVarList__Group__0 )
+            // InternalPoST.g:1669:4: rule__ProcessVarList__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarList__Group__0();
@@ -5791,11 +5706,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleProcessVarInitDeclaration"
-    // InternalPoST.g:1703:1: entryRuleProcessVarInitDeclaration : ruleProcessVarInitDeclaration EOF ;
+    // InternalPoST.g:1678:1: entryRuleProcessVarInitDeclaration : ruleProcessVarInitDeclaration EOF ;
     public final void entryRuleProcessVarInitDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1704:1: ( ruleProcessVarInitDeclaration EOF )
-            // InternalPoST.g:1705:1: ruleProcessVarInitDeclaration EOF
+            // InternalPoST.g:1679:1: ( ruleProcessVarInitDeclaration EOF )
+            // InternalPoST.g:1680:1: ruleProcessVarInitDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationRule()); 
@@ -5825,23 +5740,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleProcessVarInitDeclaration"
-    // InternalPoST.g:1712:1: ruleProcessVarInitDeclaration : ( ( rule__ProcessVarInitDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1687:1: ruleProcessVarInitDeclaration : ( ( rule__ProcessVarInitDeclaration__Group__0 ) ) ;
     public final void ruleProcessVarInitDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1716:2: ( ( ( rule__ProcessVarInitDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1717:2: ( ( rule__ProcessVarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1691:2: ( ( ( rule__ProcessVarInitDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1692:2: ( ( rule__ProcessVarInitDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1717:2: ( ( rule__ProcessVarInitDeclaration__Group__0 ) )
-            // InternalPoST.g:1718:3: ( rule__ProcessVarInitDeclaration__Group__0 )
+            // InternalPoST.g:1692:2: ( ( rule__ProcessVarInitDeclaration__Group__0 ) )
+            // InternalPoST.g:1693:3: ( rule__ProcessVarInitDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1719:3: ( rule__ProcessVarInitDeclaration__Group__0 )
-            // InternalPoST.g:1719:4: rule__ProcessVarInitDeclaration__Group__0
+            // InternalPoST.g:1694:3: ( rule__ProcessVarInitDeclaration__Group__0 )
+            // InternalPoST.g:1694:4: rule__ProcessVarInitDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarInitDeclaration__Group__0();
@@ -5876,11 +5791,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuleProcessVarDeclaration"
-    // InternalPoST.g:1728:1: entryRuleProcessVarDeclaration : ruleProcessVarDeclaration EOF ;
+    // InternalPoST.g:1703:1: entryRuleProcessVarDeclaration : ruleProcessVarDeclaration EOF ;
     public final void entryRuleProcessVarDeclaration() throws RecognitionException {
         try {
-            // InternalPoST.g:1729:1: ( ruleProcessVarDeclaration EOF )
-            // InternalPoST.g:1730:1: ruleProcessVarDeclaration EOF
+            // InternalPoST.g:1704:1: ( ruleProcessVarDeclaration EOF )
+            // InternalPoST.g:1705:1: ruleProcessVarDeclaration EOF
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationRule()); 
@@ -5910,23 +5825,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleProcessVarDeclaration"
-    // InternalPoST.g:1737:1: ruleProcessVarDeclaration : ( ( rule__ProcessVarDeclaration__Group__0 ) ) ;
+    // InternalPoST.g:1712:1: ruleProcessVarDeclaration : ( ( rule__ProcessVarDeclaration__Group__0 ) ) ;
     public final void ruleProcessVarDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:1741:2: ( ( ( rule__ProcessVarDeclaration__Group__0 ) ) )
-            // InternalPoST.g:1742:2: ( ( rule__ProcessVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1716:2: ( ( ( rule__ProcessVarDeclaration__Group__0 ) ) )
+            // InternalPoST.g:1717:2: ( ( rule__ProcessVarDeclaration__Group__0 ) )
             {
-            // InternalPoST.g:1742:2: ( ( rule__ProcessVarDeclaration__Group__0 ) )
-            // InternalPoST.g:1743:3: ( rule__ProcessVarDeclaration__Group__0 )
+            // InternalPoST.g:1717:2: ( ( rule__ProcessVarDeclaration__Group__0 ) )
+            // InternalPoST.g:1718:3: ( rule__ProcessVarDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getGroup()); 
             }
-            // InternalPoST.g:1744:3: ( rule__ProcessVarDeclaration__Group__0 )
-            // InternalPoST.g:1744:4: rule__ProcessVarDeclaration__Group__0
+            // InternalPoST.g:1719:3: ( rule__ProcessVarDeclaration__Group__0 )
+            // InternalPoST.g:1719:4: rule__ProcessVarDeclaration__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarDeclaration__Group__0();
@@ -5958,6 +5873,91 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "ruleProcessVarDeclaration"
+
+
+    // $ANTLR start "entryRuleArrayVariable"
+    // InternalPoST.g:1728:1: entryRuleArrayVariable : ruleArrayVariable EOF ;
+    public final void entryRuleArrayVariable() throws RecognitionException {
+        try {
+            // InternalPoST.g:1729:1: ( ruleArrayVariable EOF )
+            // InternalPoST.g:1730:1: ruleArrayVariable EOF
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableRule()); 
+            }
+            pushFollow(FOLLOW_1);
+            ruleArrayVariable();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableRule()); 
+            }
+            match(input,EOF,FOLLOW_2); if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleArrayVariable"
+
+
+    // $ANTLR start "ruleArrayVariable"
+    // InternalPoST.g:1737:1: ruleArrayVariable : ( ( rule__ArrayVariable__Group__0 ) ) ;
+    public final void ruleArrayVariable() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:1741:2: ( ( ( rule__ArrayVariable__Group__0 ) ) )
+            // InternalPoST.g:1742:2: ( ( rule__ArrayVariable__Group__0 ) )
+            {
+            // InternalPoST.g:1742:2: ( ( rule__ArrayVariable__Group__0 ) )
+            // InternalPoST.g:1743:3: ( rule__ArrayVariable__Group__0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getGroup()); 
+            }
+            // InternalPoST.g:1744:3: ( rule__ArrayVariable__Group__0 )
+            // InternalPoST.g:1744:4: rule__ArrayVariable__Group__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__ArrayVariable__Group__0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getGroup()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleArrayVariable"
 
 
     // $ANTLR start "entryRuleArraySpecificationInit"
@@ -7382,7 +7382,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==112) ) {
+            if ( (LA1_0==110) ) {
                 alt1=1;
             }
             else if ( (LA1_0==54) ) {
@@ -7969,32 +7969,32 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             // InternalPoST.g:2303:1: ( ( ( rule__Program__ProgInVarsAssignment_2_0 ) ) | ( ( rule__Program__ProgOutVarsAssignment_2_1 ) ) | ( ( rule__Program__ProgInOutVarsAssignment_2_2 ) ) | ( ( rule__Program__ProgVarsAssignment_2_3 ) ) | ( ( rule__Program__ProgTempVarsAssignment_2_4 ) ) | ( ( rule__Program__ProgExternVarsAssignment_2_5 ) ) )
             int alt7=6;
             switch ( input.LA(1) ) {
-            case 104:
+            case 102:
                 {
                 alt7=1;
                 }
                 break;
-            case 106:
+            case 104:
                 {
                 alt7=2;
                 }
                 break;
-            case 107:
+            case 105:
                 {
                 alt7=3;
                 }
                 break;
-            case 108:
+            case 106:
                 {
                 alt7=4;
                 }
                 break;
-            case 109:
+            case 107:
                 {
                 alt7=5;
                 }
                 break;
-            case 110:
+            case 108:
                 {
                 alt7=6;
                 }
@@ -8209,32 +8209,32 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             // InternalPoST.g:2348:1: ( ( ( rule__FunctionBlock__FbInVarsAssignment_2_0 ) ) | ( ( rule__FunctionBlock__FbOutVarsAssignment_2_1 ) ) | ( ( rule__FunctionBlock__FbInOutVarsAssignment_2_2 ) ) | ( ( rule__FunctionBlock__FbVarsAssignment_2_3 ) ) | ( ( rule__FunctionBlock__FbTempVarsAssignment_2_4 ) ) | ( ( rule__FunctionBlock__FbExternVarsAssignment_2_5 ) ) )
             int alt8=6;
             switch ( input.LA(1) ) {
-            case 104:
+            case 102:
                 {
                 alt8=1;
                 }
                 break;
-            case 106:
+            case 104:
                 {
                 alt8=2;
                 }
                 break;
-            case 107:
+            case 105:
                 {
                 alt8=3;
                 }
                 break;
-            case 108:
+            case 106:
                 {
                 alt8=4;
                 }
                 break;
-            case 109:
+            case 107:
                 {
                 alt8=5;
                 }
                 break;
-            case 110:
+            case 108:
                 {
                 alt8=6;
                 }
@@ -8449,32 +8449,32 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             // InternalPoST.g:2393:1: ( ( ( rule__Process__ProcInVarsAssignment_2_0 ) ) | ( ( rule__Process__ProcOutVarsAssignment_2_1 ) ) | ( ( rule__Process__ProcInOutVarsAssignment_2_2 ) ) | ( ( rule__Process__ProcProcessVarsAssignment_2_3 ) ) | ( ( rule__Process__ProcVarsAssignment_2_4 ) ) | ( ( rule__Process__ProcTempVarsAssignment_2_5 ) ) )
             int alt9=6;
             switch ( input.LA(1) ) {
-            case 104:
+            case 102:
                 {
                 alt9=1;
                 }
                 break;
-            case 106:
+            case 104:
                 {
                 alt9=2;
                 }
                 break;
-            case 107:
+            case 105:
                 {
                 alt9=3;
                 }
                 break;
-            case 113:
+            case 111:
                 {
                 alt9=4;
                 }
                 break;
-            case 108:
+            case 106:
                 {
                 alt9=5;
                 }
                 break;
-            case 109:
+            case 107:
                 {
                 alt9=6;
                 }
@@ -9450,11 +9450,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
                 {
                 int LA16_2 = input.LA(2);
 
-                if ( (LA16_2==EOF||(LA16_2>=RULE_OR_OPERATOR && LA16_2<=RULE_POWER_OPERATOR)||LA16_2==38||(LA16_2>=41 && LA16_2<=50)||LA16_2==57||(LA16_2>=60 && LA16_2<=61)||LA16_2==79||LA16_2==88||LA16_2==91||(LA16_2>=93 && LA16_2<=94)||LA16_2==99||LA16_2==103||LA16_2==115) ) {
-                    alt16=2;
-                }
-                else if ( (LA16_2==102) ) {
+                if ( (LA16_2==112) ) {
                     alt16=3;
+                }
+                else if ( (LA16_2==EOF||(LA16_2>=RULE_OR_OPERATOR && LA16_2<=RULE_POWER_OPERATOR)||LA16_2==38||(LA16_2>=41 && LA16_2<=50)||LA16_2==57||(LA16_2>=60 && LA16_2<=61)||LA16_2==79||LA16_2==88||LA16_2==91||(LA16_2>=93 && LA16_2<=94)||LA16_2==99||LA16_2==113||LA16_2==115) ) {
+                    alt16=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -9962,11 +9962,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( (LA18_0==RULE_ID) ) {
                 int LA18_1 = input.LA(2);
 
-                if ( (LA18_1==39) ) {
-                    alt18=1;
-                }
-                else if ( (LA18_1==102) ) {
+                if ( (LA18_1==112) ) {
                     alt18=2;
+                }
+                else if ( (LA18_1==39) ) {
+                    alt18=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -12115,7 +12115,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
                 int alt36=2;
                 int LA36_0 = input.LA(1);
 
-                if ( (LA36_0==54||LA36_0==112) ) {
+                if ( (LA36_0==54||LA36_0==110) ) {
                     alt36=1;
                 }
 
@@ -12632,7 +12632,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
                 int alt37=2;
                 int LA37_0 = input.LA(1);
 
-                if ( (LA37_0==112) ) {
+                if ( (LA37_0==110) ) {
                     alt37=1;
                 }
 
@@ -17822,7 +17822,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
                 int alt45=2;
                 int LA45_0 = input.LA(1);
 
-                if ( (LA45_0==104||(LA45_0>=106 && LA45_0<=110)) ) {
+                if ( (LA45_0==102||(LA45_0>=104 && LA45_0<=108)) ) {
                     alt45=1;
                 }
 
@@ -18278,7 +18278,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
                 int alt47=2;
                 int LA47_0 = input.LA(1);
 
-                if ( (LA47_0==104||(LA47_0>=106 && LA47_0<=110)) ) {
+                if ( (LA47_0==102||(LA47_0>=104 && LA47_0<=108)) ) {
                     alt47=1;
                 }
 
@@ -18734,7 +18734,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
                 int alt49=2;
                 int LA49_0 = input.LA(1);
 
-                if ( (LA49_0==104||(LA49_0>=106 && LA49_0<=109)||LA49_0==113) ) {
+                if ( (LA49_0==102||(LA49_0>=104 && LA49_0<=107)||LA49_0==111) ) {
                     alt49=1;
                 }
 
@@ -32242,348 +32242,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ExitStatement__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ArrayVariable__Group__0"
-    // InternalPoST.g:9593:1: rule__ArrayVariable__Group__0 : rule__ArrayVariable__Group__0__Impl rule__ArrayVariable__Group__1 ;
-    public final void rule__ArrayVariable__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9597:1: ( rule__ArrayVariable__Group__0__Impl rule__ArrayVariable__Group__1 )
-            // InternalPoST.g:9598:2: rule__ArrayVariable__Group__0__Impl rule__ArrayVariable__Group__1
-            {
-            pushFollow(FOLLOW_84);
-            rule__ArrayVariable__Group__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FOLLOW_2);
-            rule__ArrayVariable__Group__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__0"
-
-
-    // $ANTLR start "rule__ArrayVariable__Group__0__Impl"
-    // InternalPoST.g:9605:1: rule__ArrayVariable__Group__0__Impl : ( ( rule__ArrayVariable__VariableAssignment_0 ) ) ;
-    public final void rule__ArrayVariable__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9609:1: ( ( ( rule__ArrayVariable__VariableAssignment_0 ) ) )
-            // InternalPoST.g:9610:1: ( ( rule__ArrayVariable__VariableAssignment_0 ) )
-            {
-            // InternalPoST.g:9610:1: ( ( rule__ArrayVariable__VariableAssignment_0 ) )
-            // InternalPoST.g:9611:2: ( rule__ArrayVariable__VariableAssignment_0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getVariableAssignment_0()); 
-            }
-            // InternalPoST.g:9612:2: ( rule__ArrayVariable__VariableAssignment_0 )
-            // InternalPoST.g:9612:3: rule__ArrayVariable__VariableAssignment_0
-            {
-            pushFollow(FOLLOW_2);
-            rule__ArrayVariable__VariableAssignment_0();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getVariableAssignment_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__0__Impl"
-
-
-    // $ANTLR start "rule__ArrayVariable__Group__1"
-    // InternalPoST.g:9620:1: rule__ArrayVariable__Group__1 : rule__ArrayVariable__Group__1__Impl rule__ArrayVariable__Group__2 ;
-    public final void rule__ArrayVariable__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9624:1: ( rule__ArrayVariable__Group__1__Impl rule__ArrayVariable__Group__2 )
-            // InternalPoST.g:9625:2: rule__ArrayVariable__Group__1__Impl rule__ArrayVariable__Group__2
-            {
-            pushFollow(FOLLOW_52);
-            rule__ArrayVariable__Group__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FOLLOW_2);
-            rule__ArrayVariable__Group__2();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__1"
-
-
-    // $ANTLR start "rule__ArrayVariable__Group__1__Impl"
-    // InternalPoST.g:9632:1: rule__ArrayVariable__Group__1__Impl : ( '[' ) ;
-    public final void rule__ArrayVariable__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9636:1: ( ( '[' ) )
-            // InternalPoST.g:9637:1: ( '[' )
-            {
-            // InternalPoST.g:9637:1: ( '[' )
-            // InternalPoST.g:9638:2: '['
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getLeftSquareBracketKeyword_1()); 
-            }
-            match(input,102,FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getLeftSquareBracketKeyword_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__1__Impl"
-
-
-    // $ANTLR start "rule__ArrayVariable__Group__2"
-    // InternalPoST.g:9647:1: rule__ArrayVariable__Group__2 : rule__ArrayVariable__Group__2__Impl rule__ArrayVariable__Group__3 ;
-    public final void rule__ArrayVariable__Group__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9651:1: ( rule__ArrayVariable__Group__2__Impl rule__ArrayVariable__Group__3 )
-            // InternalPoST.g:9652:2: rule__ArrayVariable__Group__2__Impl rule__ArrayVariable__Group__3
-            {
-            pushFollow(FOLLOW_85);
-            rule__ArrayVariable__Group__2__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FOLLOW_2);
-            rule__ArrayVariable__Group__3();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__2"
-
-
-    // $ANTLR start "rule__ArrayVariable__Group__2__Impl"
-    // InternalPoST.g:9659:1: rule__ArrayVariable__Group__2__Impl : ( ( rule__ArrayVariable__IndexAssignment_2 ) ) ;
-    public final void rule__ArrayVariable__Group__2__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9663:1: ( ( ( rule__ArrayVariable__IndexAssignment_2 ) ) )
-            // InternalPoST.g:9664:1: ( ( rule__ArrayVariable__IndexAssignment_2 ) )
-            {
-            // InternalPoST.g:9664:1: ( ( rule__ArrayVariable__IndexAssignment_2 ) )
-            // InternalPoST.g:9665:2: ( rule__ArrayVariable__IndexAssignment_2 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getIndexAssignment_2()); 
-            }
-            // InternalPoST.g:9666:2: ( rule__ArrayVariable__IndexAssignment_2 )
-            // InternalPoST.g:9666:3: rule__ArrayVariable__IndexAssignment_2
-            {
-            pushFollow(FOLLOW_2);
-            rule__ArrayVariable__IndexAssignment_2();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getIndexAssignment_2()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__2__Impl"
-
-
-    // $ANTLR start "rule__ArrayVariable__Group__3"
-    // InternalPoST.g:9674:1: rule__ArrayVariable__Group__3 : rule__ArrayVariable__Group__3__Impl ;
-    public final void rule__ArrayVariable__Group__3() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9678:1: ( rule__ArrayVariable__Group__3__Impl )
-            // InternalPoST.g:9679:2: rule__ArrayVariable__Group__3__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__ArrayVariable__Group__3__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__3"
-
-
-    // $ANTLR start "rule__ArrayVariable__Group__3__Impl"
-    // InternalPoST.g:9685:1: rule__ArrayVariable__Group__3__Impl : ( ']' ) ;
-    public final void rule__ArrayVariable__Group__3__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:9689:1: ( ( ']' ) )
-            // InternalPoST.g:9690:1: ( ']' )
-            {
-            // InternalPoST.g:9690:1: ( ']' )
-            // InternalPoST.g:9691:2: ']'
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getRightSquareBracketKeyword_3()); 
-            }
-            match(input,103,FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getRightSquareBracketKeyword_3()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__Group__3__Impl"
-
-
     // $ANTLR start "rule__SimpleSpecificationInit__Group__0"
-    // InternalPoST.g:9701:1: rule__SimpleSpecificationInit__Group__0 : rule__SimpleSpecificationInit__Group__0__Impl rule__SimpleSpecificationInit__Group__1 ;
+    // InternalPoST.g:9593:1: rule__SimpleSpecificationInit__Group__0 : rule__SimpleSpecificationInit__Group__0__Impl rule__SimpleSpecificationInit__Group__1 ;
     public final void rule__SimpleSpecificationInit__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9705:1: ( rule__SimpleSpecificationInit__Group__0__Impl rule__SimpleSpecificationInit__Group__1 )
-            // InternalPoST.g:9706:2: rule__SimpleSpecificationInit__Group__0__Impl rule__SimpleSpecificationInit__Group__1
+            // InternalPoST.g:9597:1: ( rule__SimpleSpecificationInit__Group__0__Impl rule__SimpleSpecificationInit__Group__1 )
+            // InternalPoST.g:9598:2: rule__SimpleSpecificationInit__Group__0__Impl rule__SimpleSpecificationInit__Group__1
             {
-            pushFollow(FOLLOW_86);
+            pushFollow(FOLLOW_84);
             rule__SimpleSpecificationInit__Group__0__Impl();
 
             state._fsp--;
@@ -32612,23 +32281,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group__0__Impl"
-    // InternalPoST.g:9713:1: rule__SimpleSpecificationInit__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:9605:1: rule__SimpleSpecificationInit__Group__0__Impl : ( () ) ;
     public final void rule__SimpleSpecificationInit__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9717:1: ( ( () ) )
-            // InternalPoST.g:9718:1: ( () )
+            // InternalPoST.g:9609:1: ( ( () ) )
+            // InternalPoST.g:9610:1: ( () )
             {
-            // InternalPoST.g:9718:1: ( () )
-            // InternalPoST.g:9719:2: ()
+            // InternalPoST.g:9610:1: ( () )
+            // InternalPoST.g:9611:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getSimpleSpecificationInitAction_0()); 
             }
-            // InternalPoST.g:9720:2: ()
-            // InternalPoST.g:9720:3: 
+            // InternalPoST.g:9612:2: ()
+            // InternalPoST.g:9612:3: 
             {
             }
 
@@ -32653,14 +32322,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group__1"
-    // InternalPoST.g:9728:1: rule__SimpleSpecificationInit__Group__1 : rule__SimpleSpecificationInit__Group__1__Impl rule__SimpleSpecificationInit__Group__2 ;
+    // InternalPoST.g:9620:1: rule__SimpleSpecificationInit__Group__1 : rule__SimpleSpecificationInit__Group__1__Impl rule__SimpleSpecificationInit__Group__2 ;
     public final void rule__SimpleSpecificationInit__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9732:1: ( rule__SimpleSpecificationInit__Group__1__Impl rule__SimpleSpecificationInit__Group__2 )
-            // InternalPoST.g:9733:2: rule__SimpleSpecificationInit__Group__1__Impl rule__SimpleSpecificationInit__Group__2
+            // InternalPoST.g:9624:1: ( rule__SimpleSpecificationInit__Group__1__Impl rule__SimpleSpecificationInit__Group__2 )
+            // InternalPoST.g:9625:2: rule__SimpleSpecificationInit__Group__1__Impl rule__SimpleSpecificationInit__Group__2
             {
             pushFollow(FOLLOW_15);
             rule__SimpleSpecificationInit__Group__1__Impl();
@@ -32691,23 +32360,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group__1__Impl"
-    // InternalPoST.g:9740:1: rule__SimpleSpecificationInit__Group__1__Impl : ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) ) ;
+    // InternalPoST.g:9632:1: rule__SimpleSpecificationInit__Group__1__Impl : ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) ) ;
     public final void rule__SimpleSpecificationInit__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9744:1: ( ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) ) )
-            // InternalPoST.g:9745:1: ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) )
+            // InternalPoST.g:9636:1: ( ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) ) )
+            // InternalPoST.g:9637:1: ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) )
             {
-            // InternalPoST.g:9745:1: ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) )
-            // InternalPoST.g:9746:2: ( rule__SimpleSpecificationInit__TypeAssignment_1 )
+            // InternalPoST.g:9637:1: ( ( rule__SimpleSpecificationInit__TypeAssignment_1 ) )
+            // InternalPoST.g:9638:2: ( rule__SimpleSpecificationInit__TypeAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getTypeAssignment_1()); 
             }
-            // InternalPoST.g:9747:2: ( rule__SimpleSpecificationInit__TypeAssignment_1 )
-            // InternalPoST.g:9747:3: rule__SimpleSpecificationInit__TypeAssignment_1
+            // InternalPoST.g:9639:2: ( rule__SimpleSpecificationInit__TypeAssignment_1 )
+            // InternalPoST.g:9639:3: rule__SimpleSpecificationInit__TypeAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__SimpleSpecificationInit__TypeAssignment_1();
@@ -32742,14 +32411,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group__2"
-    // InternalPoST.g:9755:1: rule__SimpleSpecificationInit__Group__2 : rule__SimpleSpecificationInit__Group__2__Impl ;
+    // InternalPoST.g:9647:1: rule__SimpleSpecificationInit__Group__2 : rule__SimpleSpecificationInit__Group__2__Impl ;
     public final void rule__SimpleSpecificationInit__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9759:1: ( rule__SimpleSpecificationInit__Group__2__Impl )
-            // InternalPoST.g:9760:2: rule__SimpleSpecificationInit__Group__2__Impl
+            // InternalPoST.g:9651:1: ( rule__SimpleSpecificationInit__Group__2__Impl )
+            // InternalPoST.g:9652:2: rule__SimpleSpecificationInit__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SimpleSpecificationInit__Group__2__Impl();
@@ -32775,22 +32444,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group__2__Impl"
-    // InternalPoST.g:9766:1: rule__SimpleSpecificationInit__Group__2__Impl : ( ( rule__SimpleSpecificationInit__Group_2__0 )? ) ;
+    // InternalPoST.g:9658:1: rule__SimpleSpecificationInit__Group__2__Impl : ( ( rule__SimpleSpecificationInit__Group_2__0 )? ) ;
     public final void rule__SimpleSpecificationInit__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9770:1: ( ( ( rule__SimpleSpecificationInit__Group_2__0 )? ) )
-            // InternalPoST.g:9771:1: ( ( rule__SimpleSpecificationInit__Group_2__0 )? )
+            // InternalPoST.g:9662:1: ( ( ( rule__SimpleSpecificationInit__Group_2__0 )? ) )
+            // InternalPoST.g:9663:1: ( ( rule__SimpleSpecificationInit__Group_2__0 )? )
             {
-            // InternalPoST.g:9771:1: ( ( rule__SimpleSpecificationInit__Group_2__0 )? )
-            // InternalPoST.g:9772:2: ( rule__SimpleSpecificationInit__Group_2__0 )?
+            // InternalPoST.g:9663:1: ( ( rule__SimpleSpecificationInit__Group_2__0 )? )
+            // InternalPoST.g:9664:2: ( rule__SimpleSpecificationInit__Group_2__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getGroup_2()); 
             }
-            // InternalPoST.g:9773:2: ( rule__SimpleSpecificationInit__Group_2__0 )?
+            // InternalPoST.g:9665:2: ( rule__SimpleSpecificationInit__Group_2__0 )?
             int alt70=2;
             int LA70_0 = input.LA(1);
 
@@ -32799,7 +32468,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             }
             switch (alt70) {
                 case 1 :
-                    // InternalPoST.g:9773:3: rule__SimpleSpecificationInit__Group_2__0
+                    // InternalPoST.g:9665:3: rule__SimpleSpecificationInit__Group_2__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__SimpleSpecificationInit__Group_2__0();
@@ -32837,14 +32506,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group_2__0"
-    // InternalPoST.g:9782:1: rule__SimpleSpecificationInit__Group_2__0 : rule__SimpleSpecificationInit__Group_2__0__Impl rule__SimpleSpecificationInit__Group_2__1 ;
+    // InternalPoST.g:9674:1: rule__SimpleSpecificationInit__Group_2__0 : rule__SimpleSpecificationInit__Group_2__0__Impl rule__SimpleSpecificationInit__Group_2__1 ;
     public final void rule__SimpleSpecificationInit__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9786:1: ( rule__SimpleSpecificationInit__Group_2__0__Impl rule__SimpleSpecificationInit__Group_2__1 )
-            // InternalPoST.g:9787:2: rule__SimpleSpecificationInit__Group_2__0__Impl rule__SimpleSpecificationInit__Group_2__1
+            // InternalPoST.g:9678:1: ( rule__SimpleSpecificationInit__Group_2__0__Impl rule__SimpleSpecificationInit__Group_2__1 )
+            // InternalPoST.g:9679:2: rule__SimpleSpecificationInit__Group_2__0__Impl rule__SimpleSpecificationInit__Group_2__1
             {
             pushFollow(FOLLOW_52);
             rule__SimpleSpecificationInit__Group_2__0__Impl();
@@ -32875,17 +32544,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group_2__0__Impl"
-    // InternalPoST.g:9794:1: rule__SimpleSpecificationInit__Group_2__0__Impl : ( ':=' ) ;
+    // InternalPoST.g:9686:1: rule__SimpleSpecificationInit__Group_2__0__Impl : ( ':=' ) ;
     public final void rule__SimpleSpecificationInit__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9798:1: ( ( ':=' ) )
-            // InternalPoST.g:9799:1: ( ':=' )
+            // InternalPoST.g:9690:1: ( ( ':=' ) )
+            // InternalPoST.g:9691:1: ( ':=' )
             {
-            // InternalPoST.g:9799:1: ( ':=' )
-            // InternalPoST.g:9800:2: ':='
+            // InternalPoST.g:9691:1: ( ':=' )
+            // InternalPoST.g:9692:2: ':='
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getColonEqualsSignKeyword_2_0()); 
@@ -32916,14 +32585,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group_2__1"
-    // InternalPoST.g:9809:1: rule__SimpleSpecificationInit__Group_2__1 : rule__SimpleSpecificationInit__Group_2__1__Impl ;
+    // InternalPoST.g:9701:1: rule__SimpleSpecificationInit__Group_2__1 : rule__SimpleSpecificationInit__Group_2__1__Impl ;
     public final void rule__SimpleSpecificationInit__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9813:1: ( rule__SimpleSpecificationInit__Group_2__1__Impl )
-            // InternalPoST.g:9814:2: rule__SimpleSpecificationInit__Group_2__1__Impl
+            // InternalPoST.g:9705:1: ( rule__SimpleSpecificationInit__Group_2__1__Impl )
+            // InternalPoST.g:9706:2: rule__SimpleSpecificationInit__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SimpleSpecificationInit__Group_2__1__Impl();
@@ -32949,23 +32618,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__Group_2__1__Impl"
-    // InternalPoST.g:9820:1: rule__SimpleSpecificationInit__Group_2__1__Impl : ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) ) ;
+    // InternalPoST.g:9712:1: rule__SimpleSpecificationInit__Group_2__1__Impl : ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) ) ;
     public final void rule__SimpleSpecificationInit__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9824:1: ( ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) ) )
-            // InternalPoST.g:9825:1: ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) )
+            // InternalPoST.g:9716:1: ( ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) ) )
+            // InternalPoST.g:9717:1: ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) )
             {
-            // InternalPoST.g:9825:1: ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) )
-            // InternalPoST.g:9826:2: ( rule__SimpleSpecificationInit__ValueAssignment_2_1 )
+            // InternalPoST.g:9717:1: ( ( rule__SimpleSpecificationInit__ValueAssignment_2_1 ) )
+            // InternalPoST.g:9718:2: ( rule__SimpleSpecificationInit__ValueAssignment_2_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getValueAssignment_2_1()); 
             }
-            // InternalPoST.g:9827:2: ( rule__SimpleSpecificationInit__ValueAssignment_2_1 )
-            // InternalPoST.g:9827:3: rule__SimpleSpecificationInit__ValueAssignment_2_1
+            // InternalPoST.g:9719:2: ( rule__SimpleSpecificationInit__ValueAssignment_2_1 )
+            // InternalPoST.g:9719:3: rule__SimpleSpecificationInit__ValueAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__SimpleSpecificationInit__ValueAssignment_2_1();
@@ -33000,14 +32669,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group__0"
-    // InternalPoST.g:9836:1: rule__VarList__Group__0 : rule__VarList__Group__0__Impl rule__VarList__Group__1 ;
+    // InternalPoST.g:9728:1: rule__VarList__Group__0 : rule__VarList__Group__0__Impl rule__VarList__Group__1 ;
     public final void rule__VarList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9840:1: ( rule__VarList__Group__0__Impl rule__VarList__Group__1 )
-            // InternalPoST.g:9841:2: rule__VarList__Group__0__Impl rule__VarList__Group__1
+            // InternalPoST.g:9732:1: ( rule__VarList__Group__0__Impl rule__VarList__Group__1 )
+            // InternalPoST.g:9733:2: rule__VarList__Group__0__Impl rule__VarList__Group__1
             {
             pushFollow(FOLLOW_17);
             rule__VarList__Group__0__Impl();
@@ -33038,23 +32707,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group__0__Impl"
-    // InternalPoST.g:9848:1: rule__VarList__Group__0__Impl : ( ( rule__VarList__VarsAssignment_0 ) ) ;
+    // InternalPoST.g:9740:1: rule__VarList__Group__0__Impl : ( ( rule__VarList__VarsAssignment_0 ) ) ;
     public final void rule__VarList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9852:1: ( ( ( rule__VarList__VarsAssignment_0 ) ) )
-            // InternalPoST.g:9853:1: ( ( rule__VarList__VarsAssignment_0 ) )
+            // InternalPoST.g:9744:1: ( ( ( rule__VarList__VarsAssignment_0 ) ) )
+            // InternalPoST.g:9745:1: ( ( rule__VarList__VarsAssignment_0 ) )
             {
-            // InternalPoST.g:9853:1: ( ( rule__VarList__VarsAssignment_0 ) )
-            // InternalPoST.g:9854:2: ( rule__VarList__VarsAssignment_0 )
+            // InternalPoST.g:9745:1: ( ( rule__VarList__VarsAssignment_0 ) )
+            // InternalPoST.g:9746:2: ( rule__VarList__VarsAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListAccess().getVarsAssignment_0()); 
             }
-            // InternalPoST.g:9855:2: ( rule__VarList__VarsAssignment_0 )
-            // InternalPoST.g:9855:3: rule__VarList__VarsAssignment_0
+            // InternalPoST.g:9747:2: ( rule__VarList__VarsAssignment_0 )
+            // InternalPoST.g:9747:3: rule__VarList__VarsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__VarList__VarsAssignment_0();
@@ -33089,14 +32758,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group__1"
-    // InternalPoST.g:9863:1: rule__VarList__Group__1 : rule__VarList__Group__1__Impl ;
+    // InternalPoST.g:9755:1: rule__VarList__Group__1 : rule__VarList__Group__1__Impl ;
     public final void rule__VarList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9867:1: ( rule__VarList__Group__1__Impl )
-            // InternalPoST.g:9868:2: rule__VarList__Group__1__Impl
+            // InternalPoST.g:9759:1: ( rule__VarList__Group__1__Impl )
+            // InternalPoST.g:9760:2: rule__VarList__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VarList__Group__1__Impl();
@@ -33122,22 +32791,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group__1__Impl"
-    // InternalPoST.g:9874:1: rule__VarList__Group__1__Impl : ( ( rule__VarList__Group_1__0 )* ) ;
+    // InternalPoST.g:9766:1: rule__VarList__Group__1__Impl : ( ( rule__VarList__Group_1__0 )* ) ;
     public final void rule__VarList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9878:1: ( ( ( rule__VarList__Group_1__0 )* ) )
-            // InternalPoST.g:9879:1: ( ( rule__VarList__Group_1__0 )* )
+            // InternalPoST.g:9770:1: ( ( ( rule__VarList__Group_1__0 )* ) )
+            // InternalPoST.g:9771:1: ( ( rule__VarList__Group_1__0 )* )
             {
-            // InternalPoST.g:9879:1: ( ( rule__VarList__Group_1__0 )* )
-            // InternalPoST.g:9880:2: ( rule__VarList__Group_1__0 )*
+            // InternalPoST.g:9771:1: ( ( rule__VarList__Group_1__0 )* )
+            // InternalPoST.g:9772:2: ( rule__VarList__Group_1__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListAccess().getGroup_1()); 
             }
-            // InternalPoST.g:9881:2: ( rule__VarList__Group_1__0 )*
+            // InternalPoST.g:9773:2: ( rule__VarList__Group_1__0 )*
             loop71:
             do {
                 int alt71=2;
@@ -33150,7 +32819,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt71) {
             	case 1 :
-            	    // InternalPoST.g:9881:3: rule__VarList__Group_1__0
+            	    // InternalPoST.g:9773:3: rule__VarList__Group_1__0
             	    {
             	    pushFollow(FOLLOW_22);
             	    rule__VarList__Group_1__0();
@@ -33191,14 +32860,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group_1__0"
-    // InternalPoST.g:9890:1: rule__VarList__Group_1__0 : rule__VarList__Group_1__0__Impl rule__VarList__Group_1__1 ;
+    // InternalPoST.g:9782:1: rule__VarList__Group_1__0 : rule__VarList__Group_1__0__Impl rule__VarList__Group_1__1 ;
     public final void rule__VarList__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9894:1: ( rule__VarList__Group_1__0__Impl rule__VarList__Group_1__1 )
-            // InternalPoST.g:9895:2: rule__VarList__Group_1__0__Impl rule__VarList__Group_1__1
+            // InternalPoST.g:9786:1: ( rule__VarList__Group_1__0__Impl rule__VarList__Group_1__1 )
+            // InternalPoST.g:9787:2: rule__VarList__Group_1__0__Impl rule__VarList__Group_1__1
             {
             pushFollow(FOLLOW_3);
             rule__VarList__Group_1__0__Impl();
@@ -33229,17 +32898,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group_1__0__Impl"
-    // InternalPoST.g:9902:1: rule__VarList__Group_1__0__Impl : ( ',' ) ;
+    // InternalPoST.g:9794:1: rule__VarList__Group_1__0__Impl : ( ',' ) ;
     public final void rule__VarList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9906:1: ( ( ',' ) )
-            // InternalPoST.g:9907:1: ( ',' )
+            // InternalPoST.g:9798:1: ( ( ',' ) )
+            // InternalPoST.g:9799:1: ( ',' )
             {
-            // InternalPoST.g:9907:1: ( ',' )
-            // InternalPoST.g:9908:2: ','
+            // InternalPoST.g:9799:1: ( ',' )
+            // InternalPoST.g:9800:2: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListAccess().getCommaKeyword_1_0()); 
@@ -33270,14 +32939,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group_1__1"
-    // InternalPoST.g:9917:1: rule__VarList__Group_1__1 : rule__VarList__Group_1__1__Impl ;
+    // InternalPoST.g:9809:1: rule__VarList__Group_1__1 : rule__VarList__Group_1__1__Impl ;
     public final void rule__VarList__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9921:1: ( rule__VarList__Group_1__1__Impl )
-            // InternalPoST.g:9922:2: rule__VarList__Group_1__1__Impl
+            // InternalPoST.g:9813:1: ( rule__VarList__Group_1__1__Impl )
+            // InternalPoST.g:9814:2: rule__VarList__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VarList__Group_1__1__Impl();
@@ -33303,23 +32972,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__Group_1__1__Impl"
-    // InternalPoST.g:9928:1: rule__VarList__Group_1__1__Impl : ( ( rule__VarList__VarsAssignment_1_1 ) ) ;
+    // InternalPoST.g:9820:1: rule__VarList__Group_1__1__Impl : ( ( rule__VarList__VarsAssignment_1_1 ) ) ;
     public final void rule__VarList__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9932:1: ( ( ( rule__VarList__VarsAssignment_1_1 ) ) )
-            // InternalPoST.g:9933:1: ( ( rule__VarList__VarsAssignment_1_1 ) )
+            // InternalPoST.g:9824:1: ( ( ( rule__VarList__VarsAssignment_1_1 ) ) )
+            // InternalPoST.g:9825:1: ( ( rule__VarList__VarsAssignment_1_1 ) )
             {
-            // InternalPoST.g:9933:1: ( ( rule__VarList__VarsAssignment_1_1 ) )
-            // InternalPoST.g:9934:2: ( rule__VarList__VarsAssignment_1_1 )
+            // InternalPoST.g:9825:1: ( ( rule__VarList__VarsAssignment_1_1 ) )
+            // InternalPoST.g:9826:2: ( rule__VarList__VarsAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListAccess().getVarsAssignment_1_1()); 
             }
-            // InternalPoST.g:9935:2: ( rule__VarList__VarsAssignment_1_1 )
-            // InternalPoST.g:9935:3: rule__VarList__VarsAssignment_1_1
+            // InternalPoST.g:9827:2: ( rule__VarList__VarsAssignment_1_1 )
+            // InternalPoST.g:9827:3: rule__VarList__VarsAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__VarList__VarsAssignment_1_1();
@@ -33354,14 +33023,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__Group__0"
-    // InternalPoST.g:9944:1: rule__VarInitDeclaration__Group__0 : rule__VarInitDeclaration__Group__0__Impl rule__VarInitDeclaration__Group__1 ;
+    // InternalPoST.g:9836:1: rule__VarInitDeclaration__Group__0 : rule__VarInitDeclaration__Group__0__Impl rule__VarInitDeclaration__Group__1 ;
     public final void rule__VarInitDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9948:1: ( rule__VarInitDeclaration__Group__0__Impl rule__VarInitDeclaration__Group__1 )
-            // InternalPoST.g:9949:2: rule__VarInitDeclaration__Group__0__Impl rule__VarInitDeclaration__Group__1
+            // InternalPoST.g:9840:1: ( rule__VarInitDeclaration__Group__0__Impl rule__VarInitDeclaration__Group__1 )
+            // InternalPoST.g:9841:2: rule__VarInitDeclaration__Group__0__Impl rule__VarInitDeclaration__Group__1
             {
             pushFollow(FOLLOW_26);
             rule__VarInitDeclaration__Group__0__Impl();
@@ -33392,23 +33061,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__Group__0__Impl"
-    // InternalPoST.g:9956:1: rule__VarInitDeclaration__Group__0__Impl : ( ( rule__VarInitDeclaration__VarListAssignment_0 ) ) ;
+    // InternalPoST.g:9848:1: rule__VarInitDeclaration__Group__0__Impl : ( ( rule__VarInitDeclaration__VarListAssignment_0 ) ) ;
     public final void rule__VarInitDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9960:1: ( ( ( rule__VarInitDeclaration__VarListAssignment_0 ) ) )
-            // InternalPoST.g:9961:1: ( ( rule__VarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:9852:1: ( ( ( rule__VarInitDeclaration__VarListAssignment_0 ) ) )
+            // InternalPoST.g:9853:1: ( ( rule__VarInitDeclaration__VarListAssignment_0 ) )
             {
-            // InternalPoST.g:9961:1: ( ( rule__VarInitDeclaration__VarListAssignment_0 ) )
-            // InternalPoST.g:9962:2: ( rule__VarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:9853:1: ( ( rule__VarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:9854:2: ( rule__VarInitDeclaration__VarListAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationAccess().getVarListAssignment_0()); 
             }
-            // InternalPoST.g:9963:2: ( rule__VarInitDeclaration__VarListAssignment_0 )
-            // InternalPoST.g:9963:3: rule__VarInitDeclaration__VarListAssignment_0
+            // InternalPoST.g:9855:2: ( rule__VarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:9855:3: rule__VarInitDeclaration__VarListAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__VarInitDeclaration__VarListAssignment_0();
@@ -33443,16 +33112,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__Group__1"
-    // InternalPoST.g:9971:1: rule__VarInitDeclaration__Group__1 : rule__VarInitDeclaration__Group__1__Impl rule__VarInitDeclaration__Group__2 ;
+    // InternalPoST.g:9863:1: rule__VarInitDeclaration__Group__1 : rule__VarInitDeclaration__Group__1__Impl rule__VarInitDeclaration__Group__2 ;
     public final void rule__VarInitDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9975:1: ( rule__VarInitDeclaration__Group__1__Impl rule__VarInitDeclaration__Group__2 )
-            // InternalPoST.g:9976:2: rule__VarInitDeclaration__Group__1__Impl rule__VarInitDeclaration__Group__2
+            // InternalPoST.g:9867:1: ( rule__VarInitDeclaration__Group__1__Impl rule__VarInitDeclaration__Group__2 )
+            // InternalPoST.g:9868:2: rule__VarInitDeclaration__Group__1__Impl rule__VarInitDeclaration__Group__2
             {
-            pushFollow(FOLLOW_87);
+            pushFollow(FOLLOW_85);
             rule__VarInitDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -33481,17 +33150,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__Group__1__Impl"
-    // InternalPoST.g:9983:1: rule__VarInitDeclaration__Group__1__Impl : ( ':' ) ;
+    // InternalPoST.g:9875:1: rule__VarInitDeclaration__Group__1__Impl : ( ':' ) ;
     public final void rule__VarInitDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:9987:1: ( ( ':' ) )
-            // InternalPoST.g:9988:1: ( ':' )
+            // InternalPoST.g:9879:1: ( ( ':' ) )
+            // InternalPoST.g:9880:1: ( ':' )
             {
-            // InternalPoST.g:9988:1: ( ':' )
-            // InternalPoST.g:9989:2: ':'
+            // InternalPoST.g:9880:1: ( ':' )
+            // InternalPoST.g:9881:2: ':'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationAccess().getColonKeyword_1()); 
@@ -33522,14 +33191,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__Group__2"
-    // InternalPoST.g:9998:1: rule__VarInitDeclaration__Group__2 : rule__VarInitDeclaration__Group__2__Impl ;
+    // InternalPoST.g:9890:1: rule__VarInitDeclaration__Group__2 : rule__VarInitDeclaration__Group__2__Impl ;
     public final void rule__VarInitDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10002:1: ( rule__VarInitDeclaration__Group__2__Impl )
-            // InternalPoST.g:10003:2: rule__VarInitDeclaration__Group__2__Impl
+            // InternalPoST.g:9894:1: ( rule__VarInitDeclaration__Group__2__Impl )
+            // InternalPoST.g:9895:2: rule__VarInitDeclaration__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VarInitDeclaration__Group__2__Impl();
@@ -33555,23 +33224,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__Group__2__Impl"
-    // InternalPoST.g:10009:1: rule__VarInitDeclaration__Group__2__Impl : ( ( rule__VarInitDeclaration__Alternatives_2 ) ) ;
+    // InternalPoST.g:9901:1: rule__VarInitDeclaration__Group__2__Impl : ( ( rule__VarInitDeclaration__Alternatives_2 ) ) ;
     public final void rule__VarInitDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10013:1: ( ( ( rule__VarInitDeclaration__Alternatives_2 ) ) )
-            // InternalPoST.g:10014:1: ( ( rule__VarInitDeclaration__Alternatives_2 ) )
+            // InternalPoST.g:9905:1: ( ( ( rule__VarInitDeclaration__Alternatives_2 ) ) )
+            // InternalPoST.g:9906:1: ( ( rule__VarInitDeclaration__Alternatives_2 ) )
             {
-            // InternalPoST.g:10014:1: ( ( rule__VarInitDeclaration__Alternatives_2 ) )
-            // InternalPoST.g:10015:2: ( rule__VarInitDeclaration__Alternatives_2 )
+            // InternalPoST.g:9906:1: ( ( rule__VarInitDeclaration__Alternatives_2 ) )
+            // InternalPoST.g:9907:2: ( rule__VarInitDeclaration__Alternatives_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationAccess().getAlternatives_2()); 
             }
-            // InternalPoST.g:10016:2: ( rule__VarInitDeclaration__Alternatives_2 )
-            // InternalPoST.g:10016:3: rule__VarInitDeclaration__Alternatives_2
+            // InternalPoST.g:9908:2: ( rule__VarInitDeclaration__Alternatives_2 )
+            // InternalPoST.g:9908:3: rule__VarInitDeclaration__Alternatives_2
             {
             pushFollow(FOLLOW_2);
             rule__VarInitDeclaration__Alternatives_2();
@@ -33606,16 +33275,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__0"
-    // InternalPoST.g:10025:1: rule__InputVarDeclaration__Group__0 : rule__InputVarDeclaration__Group__0__Impl rule__InputVarDeclaration__Group__1 ;
+    // InternalPoST.g:9917:1: rule__InputVarDeclaration__Group__0 : rule__InputVarDeclaration__Group__0__Impl rule__InputVarDeclaration__Group__1 ;
     public final void rule__InputVarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10029:1: ( rule__InputVarDeclaration__Group__0__Impl rule__InputVarDeclaration__Group__1 )
-            // InternalPoST.g:10030:2: rule__InputVarDeclaration__Group__0__Impl rule__InputVarDeclaration__Group__1
+            // InternalPoST.g:9921:1: ( rule__InputVarDeclaration__Group__0__Impl rule__InputVarDeclaration__Group__1 )
+            // InternalPoST.g:9922:2: rule__InputVarDeclaration__Group__0__Impl rule__InputVarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_88);
+            pushFollow(FOLLOW_86);
             rule__InputVarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -33644,23 +33313,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__0__Impl"
-    // InternalPoST.g:10037:1: rule__InputVarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:9929:1: rule__InputVarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__InputVarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10041:1: ( ( () ) )
-            // InternalPoST.g:10042:1: ( () )
+            // InternalPoST.g:9933:1: ( ( () ) )
+            // InternalPoST.g:9934:1: ( () )
             {
-            // InternalPoST.g:10042:1: ( () )
-            // InternalPoST.g:10043:2: ()
+            // InternalPoST.g:9934:1: ( () )
+            // InternalPoST.g:9935:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getInputVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:10044:2: ()
-            // InternalPoST.g:10044:3: 
+            // InternalPoST.g:9936:2: ()
+            // InternalPoST.g:9936:3: 
             {
             }
 
@@ -33685,16 +33354,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__1"
-    // InternalPoST.g:10052:1: rule__InputVarDeclaration__Group__1 : rule__InputVarDeclaration__Group__1__Impl rule__InputVarDeclaration__Group__2 ;
+    // InternalPoST.g:9944:1: rule__InputVarDeclaration__Group__1 : rule__InputVarDeclaration__Group__1__Impl rule__InputVarDeclaration__Group__2 ;
     public final void rule__InputVarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10056:1: ( rule__InputVarDeclaration__Group__1__Impl rule__InputVarDeclaration__Group__2 )
-            // InternalPoST.g:10057:2: rule__InputVarDeclaration__Group__1__Impl rule__InputVarDeclaration__Group__2
+            // InternalPoST.g:9948:1: ( rule__InputVarDeclaration__Group__1__Impl rule__InputVarDeclaration__Group__2 )
+            // InternalPoST.g:9949:2: rule__InputVarDeclaration__Group__1__Impl rule__InputVarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__InputVarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -33723,22 +33392,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__1__Impl"
-    // InternalPoST.g:10064:1: rule__InputVarDeclaration__Group__1__Impl : ( 'VAR_INPUT' ) ;
+    // InternalPoST.g:9956:1: rule__InputVarDeclaration__Group__1__Impl : ( 'VAR_INPUT' ) ;
     public final void rule__InputVarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10068:1: ( ( 'VAR_INPUT' ) )
-            // InternalPoST.g:10069:1: ( 'VAR_INPUT' )
+            // InternalPoST.g:9960:1: ( ( 'VAR_INPUT' ) )
+            // InternalPoST.g:9961:1: ( 'VAR_INPUT' )
             {
-            // InternalPoST.g:10069:1: ( 'VAR_INPUT' )
-            // InternalPoST.g:10070:2: 'VAR_INPUT'
+            // InternalPoST.g:9961:1: ( 'VAR_INPUT' )
+            // InternalPoST.g:9962:2: 'VAR_INPUT'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getVAR_INPUTKeyword_1()); 
             }
-            match(input,104,FOLLOW_2); if (state.failed) return ;
+            match(input,102,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getInputVarDeclarationAccess().getVAR_INPUTKeyword_1()); 
             }
@@ -33764,16 +33433,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__2"
-    // InternalPoST.g:10079:1: rule__InputVarDeclaration__Group__2 : rule__InputVarDeclaration__Group__2__Impl rule__InputVarDeclaration__Group__3 ;
+    // InternalPoST.g:9971:1: rule__InputVarDeclaration__Group__2 : rule__InputVarDeclaration__Group__2__Impl rule__InputVarDeclaration__Group__3 ;
     public final void rule__InputVarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10083:1: ( rule__InputVarDeclaration__Group__2__Impl rule__InputVarDeclaration__Group__3 )
-            // InternalPoST.g:10084:2: rule__InputVarDeclaration__Group__2__Impl rule__InputVarDeclaration__Group__3
+            // InternalPoST.g:9975:1: ( rule__InputVarDeclaration__Group__2__Impl rule__InputVarDeclaration__Group__3 )
+            // InternalPoST.g:9976:2: rule__InputVarDeclaration__Group__2__Impl rule__InputVarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__InputVarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -33802,22 +33471,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__2__Impl"
-    // InternalPoST.g:10091:1: rule__InputVarDeclaration__Group__2__Impl : ( ( rule__InputVarDeclaration__Group_2__0 )* ) ;
+    // InternalPoST.g:9983:1: rule__InputVarDeclaration__Group__2__Impl : ( ( rule__InputVarDeclaration__Group_2__0 )* ) ;
     public final void rule__InputVarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10095:1: ( ( ( rule__InputVarDeclaration__Group_2__0 )* ) )
-            // InternalPoST.g:10096:1: ( ( rule__InputVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:9987:1: ( ( ( rule__InputVarDeclaration__Group_2__0 )* ) )
+            // InternalPoST.g:9988:1: ( ( rule__InputVarDeclaration__Group_2__0 )* )
             {
-            // InternalPoST.g:10096:1: ( ( rule__InputVarDeclaration__Group_2__0 )* )
-            // InternalPoST.g:10097:2: ( rule__InputVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:9988:1: ( ( rule__InputVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:9989:2: ( rule__InputVarDeclaration__Group_2__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getGroup_2()); 
             }
-            // InternalPoST.g:10098:2: ( rule__InputVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:9990:2: ( rule__InputVarDeclaration__Group_2__0 )*
             loop72:
             do {
                 int alt72=2;
@@ -33830,9 +33499,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt72) {
             	case 1 :
-            	    // InternalPoST.g:10098:3: rule__InputVarDeclaration__Group_2__0
+            	    // InternalPoST.g:9990:3: rule__InputVarDeclaration__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__InputVarDeclaration__Group_2__0();
 
             	    state._fsp--;
@@ -33871,14 +33540,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__3"
-    // InternalPoST.g:10106:1: rule__InputVarDeclaration__Group__3 : rule__InputVarDeclaration__Group__3__Impl ;
+    // InternalPoST.g:9998:1: rule__InputVarDeclaration__Group__3 : rule__InputVarDeclaration__Group__3__Impl ;
     public final void rule__InputVarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10110:1: ( rule__InputVarDeclaration__Group__3__Impl )
-            // InternalPoST.g:10111:2: rule__InputVarDeclaration__Group__3__Impl
+            // InternalPoST.g:10002:1: ( rule__InputVarDeclaration__Group__3__Impl )
+            // InternalPoST.g:10003:2: rule__InputVarDeclaration__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__InputVarDeclaration__Group__3__Impl();
@@ -33904,22 +33573,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group__3__Impl"
-    // InternalPoST.g:10117:1: rule__InputVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:10009:1: rule__InputVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
     public final void rule__InputVarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10121:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:10122:1: ( 'END_VAR' )
+            // InternalPoST.g:10013:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:10014:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:10122:1: ( 'END_VAR' )
-            // InternalPoST.g:10123:2: 'END_VAR'
+            // InternalPoST.g:10014:1: ( 'END_VAR' )
+            // InternalPoST.g:10015:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getInputVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
@@ -33945,14 +33614,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group_2__0"
-    // InternalPoST.g:10133:1: rule__InputVarDeclaration__Group_2__0 : rule__InputVarDeclaration__Group_2__0__Impl rule__InputVarDeclaration__Group_2__1 ;
+    // InternalPoST.g:10025:1: rule__InputVarDeclaration__Group_2__0 : rule__InputVarDeclaration__Group_2__0__Impl rule__InputVarDeclaration__Group_2__1 ;
     public final void rule__InputVarDeclaration__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10137:1: ( rule__InputVarDeclaration__Group_2__0__Impl rule__InputVarDeclaration__Group_2__1 )
-            // InternalPoST.g:10138:2: rule__InputVarDeclaration__Group_2__0__Impl rule__InputVarDeclaration__Group_2__1
+            // InternalPoST.g:10029:1: ( rule__InputVarDeclaration__Group_2__0__Impl rule__InputVarDeclaration__Group_2__1 )
+            // InternalPoST.g:10030:2: rule__InputVarDeclaration__Group_2__0__Impl rule__InputVarDeclaration__Group_2__1
             {
             pushFollow(FOLLOW_11);
             rule__InputVarDeclaration__Group_2__0__Impl();
@@ -33983,23 +33652,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group_2__0__Impl"
-    // InternalPoST.g:10145:1: rule__InputVarDeclaration__Group_2__0__Impl : ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) ) ;
+    // InternalPoST.g:10037:1: rule__InputVarDeclaration__Group_2__0__Impl : ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) ) ;
     public final void rule__InputVarDeclaration__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10149:1: ( ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) ) )
-            // InternalPoST.g:10150:1: ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10041:1: ( ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) ) )
+            // InternalPoST.g:10042:1: ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) )
             {
-            // InternalPoST.g:10150:1: ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) )
-            // InternalPoST.g:10151:2: ( rule__InputVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10042:1: ( ( rule__InputVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10043:2: ( rule__InputVarDeclaration__VarsAssignment_2_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getVarsAssignment_2_0()); 
             }
-            // InternalPoST.g:10152:2: ( rule__InputVarDeclaration__VarsAssignment_2_0 )
-            // InternalPoST.g:10152:3: rule__InputVarDeclaration__VarsAssignment_2_0
+            // InternalPoST.g:10044:2: ( rule__InputVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10044:3: rule__InputVarDeclaration__VarsAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__InputVarDeclaration__VarsAssignment_2_0();
@@ -34034,14 +33703,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group_2__1"
-    // InternalPoST.g:10160:1: rule__InputVarDeclaration__Group_2__1 : rule__InputVarDeclaration__Group_2__1__Impl ;
+    // InternalPoST.g:10052:1: rule__InputVarDeclaration__Group_2__1 : rule__InputVarDeclaration__Group_2__1__Impl ;
     public final void rule__InputVarDeclaration__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10164:1: ( rule__InputVarDeclaration__Group_2__1__Impl )
-            // InternalPoST.g:10165:2: rule__InputVarDeclaration__Group_2__1__Impl
+            // InternalPoST.g:10056:1: ( rule__InputVarDeclaration__Group_2__1__Impl )
+            // InternalPoST.g:10057:2: rule__InputVarDeclaration__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__InputVarDeclaration__Group_2__1__Impl();
@@ -34067,17 +33736,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__Group_2__1__Impl"
-    // InternalPoST.g:10171:1: rule__InputVarDeclaration__Group_2__1__Impl : ( ';' ) ;
+    // InternalPoST.g:10063:1: rule__InputVarDeclaration__Group_2__1__Impl : ( ';' ) ;
     public final void rule__InputVarDeclaration__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10175:1: ( ( ';' ) )
-            // InternalPoST.g:10176:1: ( ';' )
+            // InternalPoST.g:10067:1: ( ( ';' ) )
+            // InternalPoST.g:10068:1: ( ';' )
             {
-            // InternalPoST.g:10176:1: ( ';' )
-            // InternalPoST.g:10177:2: ';'
+            // InternalPoST.g:10068:1: ( ';' )
+            // InternalPoST.g:10069:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getSemicolonKeyword_2_1()); 
@@ -34108,16 +33777,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__0"
-    // InternalPoST.g:10187:1: rule__OutputVarDeclaration__Group__0 : rule__OutputVarDeclaration__Group__0__Impl rule__OutputVarDeclaration__Group__1 ;
+    // InternalPoST.g:10079:1: rule__OutputVarDeclaration__Group__0 : rule__OutputVarDeclaration__Group__0__Impl rule__OutputVarDeclaration__Group__1 ;
     public final void rule__OutputVarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10191:1: ( rule__OutputVarDeclaration__Group__0__Impl rule__OutputVarDeclaration__Group__1 )
-            // InternalPoST.g:10192:2: rule__OutputVarDeclaration__Group__0__Impl rule__OutputVarDeclaration__Group__1
+            // InternalPoST.g:10083:1: ( rule__OutputVarDeclaration__Group__0__Impl rule__OutputVarDeclaration__Group__1 )
+            // InternalPoST.g:10084:2: rule__OutputVarDeclaration__Group__0__Impl rule__OutputVarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_91);
+            pushFollow(FOLLOW_89);
             rule__OutputVarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -34146,23 +33815,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__0__Impl"
-    // InternalPoST.g:10199:1: rule__OutputVarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:10091:1: rule__OutputVarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__OutputVarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10203:1: ( ( () ) )
-            // InternalPoST.g:10204:1: ( () )
+            // InternalPoST.g:10095:1: ( ( () ) )
+            // InternalPoST.g:10096:1: ( () )
             {
-            // InternalPoST.g:10204:1: ( () )
-            // InternalPoST.g:10205:2: ()
+            // InternalPoST.g:10096:1: ( () )
+            // InternalPoST.g:10097:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getOutputVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:10206:2: ()
-            // InternalPoST.g:10206:3: 
+            // InternalPoST.g:10098:2: ()
+            // InternalPoST.g:10098:3: 
             {
             }
 
@@ -34187,16 +33856,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__1"
-    // InternalPoST.g:10214:1: rule__OutputVarDeclaration__Group__1 : rule__OutputVarDeclaration__Group__1__Impl rule__OutputVarDeclaration__Group__2 ;
+    // InternalPoST.g:10106:1: rule__OutputVarDeclaration__Group__1 : rule__OutputVarDeclaration__Group__1__Impl rule__OutputVarDeclaration__Group__2 ;
     public final void rule__OutputVarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10218:1: ( rule__OutputVarDeclaration__Group__1__Impl rule__OutputVarDeclaration__Group__2 )
-            // InternalPoST.g:10219:2: rule__OutputVarDeclaration__Group__1__Impl rule__OutputVarDeclaration__Group__2
+            // InternalPoST.g:10110:1: ( rule__OutputVarDeclaration__Group__1__Impl rule__OutputVarDeclaration__Group__2 )
+            // InternalPoST.g:10111:2: rule__OutputVarDeclaration__Group__1__Impl rule__OutputVarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__OutputVarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -34225,22 +33894,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__1__Impl"
-    // InternalPoST.g:10226:1: rule__OutputVarDeclaration__Group__1__Impl : ( 'VAR_OUTPUT' ) ;
+    // InternalPoST.g:10118:1: rule__OutputVarDeclaration__Group__1__Impl : ( 'VAR_OUTPUT' ) ;
     public final void rule__OutputVarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10230:1: ( ( 'VAR_OUTPUT' ) )
-            // InternalPoST.g:10231:1: ( 'VAR_OUTPUT' )
+            // InternalPoST.g:10122:1: ( ( 'VAR_OUTPUT' ) )
+            // InternalPoST.g:10123:1: ( 'VAR_OUTPUT' )
             {
-            // InternalPoST.g:10231:1: ( 'VAR_OUTPUT' )
-            // InternalPoST.g:10232:2: 'VAR_OUTPUT'
+            // InternalPoST.g:10123:1: ( 'VAR_OUTPUT' )
+            // InternalPoST.g:10124:2: 'VAR_OUTPUT'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getVAR_OUTPUTKeyword_1()); 
             }
-            match(input,106,FOLLOW_2); if (state.failed) return ;
+            match(input,104,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getOutputVarDeclarationAccess().getVAR_OUTPUTKeyword_1()); 
             }
@@ -34266,16 +33935,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__2"
-    // InternalPoST.g:10241:1: rule__OutputVarDeclaration__Group__2 : rule__OutputVarDeclaration__Group__2__Impl rule__OutputVarDeclaration__Group__3 ;
+    // InternalPoST.g:10133:1: rule__OutputVarDeclaration__Group__2 : rule__OutputVarDeclaration__Group__2__Impl rule__OutputVarDeclaration__Group__3 ;
     public final void rule__OutputVarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10245:1: ( rule__OutputVarDeclaration__Group__2__Impl rule__OutputVarDeclaration__Group__3 )
-            // InternalPoST.g:10246:2: rule__OutputVarDeclaration__Group__2__Impl rule__OutputVarDeclaration__Group__3
+            // InternalPoST.g:10137:1: ( rule__OutputVarDeclaration__Group__2__Impl rule__OutputVarDeclaration__Group__3 )
+            // InternalPoST.g:10138:2: rule__OutputVarDeclaration__Group__2__Impl rule__OutputVarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__OutputVarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -34304,22 +33973,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__2__Impl"
-    // InternalPoST.g:10253:1: rule__OutputVarDeclaration__Group__2__Impl : ( ( rule__OutputVarDeclaration__Group_2__0 )* ) ;
+    // InternalPoST.g:10145:1: rule__OutputVarDeclaration__Group__2__Impl : ( ( rule__OutputVarDeclaration__Group_2__0 )* ) ;
     public final void rule__OutputVarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10257:1: ( ( ( rule__OutputVarDeclaration__Group_2__0 )* ) )
-            // InternalPoST.g:10258:1: ( ( rule__OutputVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:10149:1: ( ( ( rule__OutputVarDeclaration__Group_2__0 )* ) )
+            // InternalPoST.g:10150:1: ( ( rule__OutputVarDeclaration__Group_2__0 )* )
             {
-            // InternalPoST.g:10258:1: ( ( rule__OutputVarDeclaration__Group_2__0 )* )
-            // InternalPoST.g:10259:2: ( rule__OutputVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:10150:1: ( ( rule__OutputVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:10151:2: ( rule__OutputVarDeclaration__Group_2__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getGroup_2()); 
             }
-            // InternalPoST.g:10260:2: ( rule__OutputVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:10152:2: ( rule__OutputVarDeclaration__Group_2__0 )*
             loop73:
             do {
                 int alt73=2;
@@ -34332,9 +34001,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt73) {
             	case 1 :
-            	    // InternalPoST.g:10260:3: rule__OutputVarDeclaration__Group_2__0
+            	    // InternalPoST.g:10152:3: rule__OutputVarDeclaration__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__OutputVarDeclaration__Group_2__0();
 
             	    state._fsp--;
@@ -34373,14 +34042,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__3"
-    // InternalPoST.g:10268:1: rule__OutputVarDeclaration__Group__3 : rule__OutputVarDeclaration__Group__3__Impl ;
+    // InternalPoST.g:10160:1: rule__OutputVarDeclaration__Group__3 : rule__OutputVarDeclaration__Group__3__Impl ;
     public final void rule__OutputVarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10272:1: ( rule__OutputVarDeclaration__Group__3__Impl )
-            // InternalPoST.g:10273:2: rule__OutputVarDeclaration__Group__3__Impl
+            // InternalPoST.g:10164:1: ( rule__OutputVarDeclaration__Group__3__Impl )
+            // InternalPoST.g:10165:2: rule__OutputVarDeclaration__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OutputVarDeclaration__Group__3__Impl();
@@ -34406,22 +34075,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group__3__Impl"
-    // InternalPoST.g:10279:1: rule__OutputVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:10171:1: rule__OutputVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
     public final void rule__OutputVarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10283:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:10284:1: ( 'END_VAR' )
+            // InternalPoST.g:10175:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:10176:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:10284:1: ( 'END_VAR' )
-            // InternalPoST.g:10285:2: 'END_VAR'
+            // InternalPoST.g:10176:1: ( 'END_VAR' )
+            // InternalPoST.g:10177:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getOutputVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
@@ -34447,14 +34116,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group_2__0"
-    // InternalPoST.g:10295:1: rule__OutputVarDeclaration__Group_2__0 : rule__OutputVarDeclaration__Group_2__0__Impl rule__OutputVarDeclaration__Group_2__1 ;
+    // InternalPoST.g:10187:1: rule__OutputVarDeclaration__Group_2__0 : rule__OutputVarDeclaration__Group_2__0__Impl rule__OutputVarDeclaration__Group_2__1 ;
     public final void rule__OutputVarDeclaration__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10299:1: ( rule__OutputVarDeclaration__Group_2__0__Impl rule__OutputVarDeclaration__Group_2__1 )
-            // InternalPoST.g:10300:2: rule__OutputVarDeclaration__Group_2__0__Impl rule__OutputVarDeclaration__Group_2__1
+            // InternalPoST.g:10191:1: ( rule__OutputVarDeclaration__Group_2__0__Impl rule__OutputVarDeclaration__Group_2__1 )
+            // InternalPoST.g:10192:2: rule__OutputVarDeclaration__Group_2__0__Impl rule__OutputVarDeclaration__Group_2__1
             {
             pushFollow(FOLLOW_11);
             rule__OutputVarDeclaration__Group_2__0__Impl();
@@ -34485,23 +34154,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group_2__0__Impl"
-    // InternalPoST.g:10307:1: rule__OutputVarDeclaration__Group_2__0__Impl : ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) ) ;
+    // InternalPoST.g:10199:1: rule__OutputVarDeclaration__Group_2__0__Impl : ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) ) ;
     public final void rule__OutputVarDeclaration__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10311:1: ( ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) ) )
-            // InternalPoST.g:10312:1: ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10203:1: ( ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) ) )
+            // InternalPoST.g:10204:1: ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) )
             {
-            // InternalPoST.g:10312:1: ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) )
-            // InternalPoST.g:10313:2: ( rule__OutputVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10204:1: ( ( rule__OutputVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10205:2: ( rule__OutputVarDeclaration__VarsAssignment_2_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getVarsAssignment_2_0()); 
             }
-            // InternalPoST.g:10314:2: ( rule__OutputVarDeclaration__VarsAssignment_2_0 )
-            // InternalPoST.g:10314:3: rule__OutputVarDeclaration__VarsAssignment_2_0
+            // InternalPoST.g:10206:2: ( rule__OutputVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10206:3: rule__OutputVarDeclaration__VarsAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__OutputVarDeclaration__VarsAssignment_2_0();
@@ -34536,14 +34205,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group_2__1"
-    // InternalPoST.g:10322:1: rule__OutputVarDeclaration__Group_2__1 : rule__OutputVarDeclaration__Group_2__1__Impl ;
+    // InternalPoST.g:10214:1: rule__OutputVarDeclaration__Group_2__1 : rule__OutputVarDeclaration__Group_2__1__Impl ;
     public final void rule__OutputVarDeclaration__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10326:1: ( rule__OutputVarDeclaration__Group_2__1__Impl )
-            // InternalPoST.g:10327:2: rule__OutputVarDeclaration__Group_2__1__Impl
+            // InternalPoST.g:10218:1: ( rule__OutputVarDeclaration__Group_2__1__Impl )
+            // InternalPoST.g:10219:2: rule__OutputVarDeclaration__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OutputVarDeclaration__Group_2__1__Impl();
@@ -34569,17 +34238,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__Group_2__1__Impl"
-    // InternalPoST.g:10333:1: rule__OutputVarDeclaration__Group_2__1__Impl : ( ';' ) ;
+    // InternalPoST.g:10225:1: rule__OutputVarDeclaration__Group_2__1__Impl : ( ';' ) ;
     public final void rule__OutputVarDeclaration__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10337:1: ( ( ';' ) )
-            // InternalPoST.g:10338:1: ( ';' )
+            // InternalPoST.g:10229:1: ( ( ';' ) )
+            // InternalPoST.g:10230:1: ( ';' )
             {
-            // InternalPoST.g:10338:1: ( ';' )
-            // InternalPoST.g:10339:2: ';'
+            // InternalPoST.g:10230:1: ( ';' )
+            // InternalPoST.g:10231:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getSemicolonKeyword_2_1()); 
@@ -34610,16 +34279,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__0"
-    // InternalPoST.g:10349:1: rule__InputOutputVarDeclaration__Group__0 : rule__InputOutputVarDeclaration__Group__0__Impl rule__InputOutputVarDeclaration__Group__1 ;
+    // InternalPoST.g:10241:1: rule__InputOutputVarDeclaration__Group__0 : rule__InputOutputVarDeclaration__Group__0__Impl rule__InputOutputVarDeclaration__Group__1 ;
     public final void rule__InputOutputVarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10353:1: ( rule__InputOutputVarDeclaration__Group__0__Impl rule__InputOutputVarDeclaration__Group__1 )
-            // InternalPoST.g:10354:2: rule__InputOutputVarDeclaration__Group__0__Impl rule__InputOutputVarDeclaration__Group__1
+            // InternalPoST.g:10245:1: ( rule__InputOutputVarDeclaration__Group__0__Impl rule__InputOutputVarDeclaration__Group__1 )
+            // InternalPoST.g:10246:2: rule__InputOutputVarDeclaration__Group__0__Impl rule__InputOutputVarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_92);
+            pushFollow(FOLLOW_90);
             rule__InputOutputVarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -34648,23 +34317,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__0__Impl"
-    // InternalPoST.g:10361:1: rule__InputOutputVarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:10253:1: rule__InputOutputVarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__InputOutputVarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10365:1: ( ( () ) )
-            // InternalPoST.g:10366:1: ( () )
+            // InternalPoST.g:10257:1: ( ( () ) )
+            // InternalPoST.g:10258:1: ( () )
             {
-            // InternalPoST.g:10366:1: ( () )
-            // InternalPoST.g:10367:2: ()
+            // InternalPoST.g:10258:1: ( () )
+            // InternalPoST.g:10259:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getInputOutputVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:10368:2: ()
-            // InternalPoST.g:10368:3: 
+            // InternalPoST.g:10260:2: ()
+            // InternalPoST.g:10260:3: 
             {
             }
 
@@ -34689,16 +34358,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__1"
-    // InternalPoST.g:10376:1: rule__InputOutputVarDeclaration__Group__1 : rule__InputOutputVarDeclaration__Group__1__Impl rule__InputOutputVarDeclaration__Group__2 ;
+    // InternalPoST.g:10268:1: rule__InputOutputVarDeclaration__Group__1 : rule__InputOutputVarDeclaration__Group__1__Impl rule__InputOutputVarDeclaration__Group__2 ;
     public final void rule__InputOutputVarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10380:1: ( rule__InputOutputVarDeclaration__Group__1__Impl rule__InputOutputVarDeclaration__Group__2 )
-            // InternalPoST.g:10381:2: rule__InputOutputVarDeclaration__Group__1__Impl rule__InputOutputVarDeclaration__Group__2
+            // InternalPoST.g:10272:1: ( rule__InputOutputVarDeclaration__Group__1__Impl rule__InputOutputVarDeclaration__Group__2 )
+            // InternalPoST.g:10273:2: rule__InputOutputVarDeclaration__Group__1__Impl rule__InputOutputVarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__InputOutputVarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -34727,22 +34396,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__1__Impl"
-    // InternalPoST.g:10388:1: rule__InputOutputVarDeclaration__Group__1__Impl : ( 'VAR_IN_OUT' ) ;
+    // InternalPoST.g:10280:1: rule__InputOutputVarDeclaration__Group__1__Impl : ( 'VAR_IN_OUT' ) ;
     public final void rule__InputOutputVarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10392:1: ( ( 'VAR_IN_OUT' ) )
-            // InternalPoST.g:10393:1: ( 'VAR_IN_OUT' )
+            // InternalPoST.g:10284:1: ( ( 'VAR_IN_OUT' ) )
+            // InternalPoST.g:10285:1: ( 'VAR_IN_OUT' )
             {
-            // InternalPoST.g:10393:1: ( 'VAR_IN_OUT' )
-            // InternalPoST.g:10394:2: 'VAR_IN_OUT'
+            // InternalPoST.g:10285:1: ( 'VAR_IN_OUT' )
+            // InternalPoST.g:10286:2: 'VAR_IN_OUT'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getVAR_IN_OUTKeyword_1()); 
             }
-            match(input,107,FOLLOW_2); if (state.failed) return ;
+            match(input,105,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getInputOutputVarDeclarationAccess().getVAR_IN_OUTKeyword_1()); 
             }
@@ -34768,16 +34437,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__2"
-    // InternalPoST.g:10403:1: rule__InputOutputVarDeclaration__Group__2 : rule__InputOutputVarDeclaration__Group__2__Impl rule__InputOutputVarDeclaration__Group__3 ;
+    // InternalPoST.g:10295:1: rule__InputOutputVarDeclaration__Group__2 : rule__InputOutputVarDeclaration__Group__2__Impl rule__InputOutputVarDeclaration__Group__3 ;
     public final void rule__InputOutputVarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10407:1: ( rule__InputOutputVarDeclaration__Group__2__Impl rule__InputOutputVarDeclaration__Group__3 )
-            // InternalPoST.g:10408:2: rule__InputOutputVarDeclaration__Group__2__Impl rule__InputOutputVarDeclaration__Group__3
+            // InternalPoST.g:10299:1: ( rule__InputOutputVarDeclaration__Group__2__Impl rule__InputOutputVarDeclaration__Group__3 )
+            // InternalPoST.g:10300:2: rule__InputOutputVarDeclaration__Group__2__Impl rule__InputOutputVarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__InputOutputVarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -34806,22 +34475,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__2__Impl"
-    // InternalPoST.g:10415:1: rule__InputOutputVarDeclaration__Group__2__Impl : ( ( rule__InputOutputVarDeclaration__Group_2__0 )* ) ;
+    // InternalPoST.g:10307:1: rule__InputOutputVarDeclaration__Group__2__Impl : ( ( rule__InputOutputVarDeclaration__Group_2__0 )* ) ;
     public final void rule__InputOutputVarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10419:1: ( ( ( rule__InputOutputVarDeclaration__Group_2__0 )* ) )
-            // InternalPoST.g:10420:1: ( ( rule__InputOutputVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:10311:1: ( ( ( rule__InputOutputVarDeclaration__Group_2__0 )* ) )
+            // InternalPoST.g:10312:1: ( ( rule__InputOutputVarDeclaration__Group_2__0 )* )
             {
-            // InternalPoST.g:10420:1: ( ( rule__InputOutputVarDeclaration__Group_2__0 )* )
-            // InternalPoST.g:10421:2: ( rule__InputOutputVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:10312:1: ( ( rule__InputOutputVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:10313:2: ( rule__InputOutputVarDeclaration__Group_2__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getGroup_2()); 
             }
-            // InternalPoST.g:10422:2: ( rule__InputOutputVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:10314:2: ( rule__InputOutputVarDeclaration__Group_2__0 )*
             loop74:
             do {
                 int alt74=2;
@@ -34834,9 +34503,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt74) {
             	case 1 :
-            	    // InternalPoST.g:10422:3: rule__InputOutputVarDeclaration__Group_2__0
+            	    // InternalPoST.g:10314:3: rule__InputOutputVarDeclaration__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__InputOutputVarDeclaration__Group_2__0();
 
             	    state._fsp--;
@@ -34875,14 +34544,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__3"
-    // InternalPoST.g:10430:1: rule__InputOutputVarDeclaration__Group__3 : rule__InputOutputVarDeclaration__Group__3__Impl ;
+    // InternalPoST.g:10322:1: rule__InputOutputVarDeclaration__Group__3 : rule__InputOutputVarDeclaration__Group__3__Impl ;
     public final void rule__InputOutputVarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10434:1: ( rule__InputOutputVarDeclaration__Group__3__Impl )
-            // InternalPoST.g:10435:2: rule__InputOutputVarDeclaration__Group__3__Impl
+            // InternalPoST.g:10326:1: ( rule__InputOutputVarDeclaration__Group__3__Impl )
+            // InternalPoST.g:10327:2: rule__InputOutputVarDeclaration__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__InputOutputVarDeclaration__Group__3__Impl();
@@ -34908,22 +34577,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group__3__Impl"
-    // InternalPoST.g:10441:1: rule__InputOutputVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:10333:1: rule__InputOutputVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
     public final void rule__InputOutputVarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10445:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:10446:1: ( 'END_VAR' )
+            // InternalPoST.g:10337:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:10338:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:10446:1: ( 'END_VAR' )
-            // InternalPoST.g:10447:2: 'END_VAR'
+            // InternalPoST.g:10338:1: ( 'END_VAR' )
+            // InternalPoST.g:10339:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getInputOutputVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
@@ -34949,14 +34618,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group_2__0"
-    // InternalPoST.g:10457:1: rule__InputOutputVarDeclaration__Group_2__0 : rule__InputOutputVarDeclaration__Group_2__0__Impl rule__InputOutputVarDeclaration__Group_2__1 ;
+    // InternalPoST.g:10349:1: rule__InputOutputVarDeclaration__Group_2__0 : rule__InputOutputVarDeclaration__Group_2__0__Impl rule__InputOutputVarDeclaration__Group_2__1 ;
     public final void rule__InputOutputVarDeclaration__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10461:1: ( rule__InputOutputVarDeclaration__Group_2__0__Impl rule__InputOutputVarDeclaration__Group_2__1 )
-            // InternalPoST.g:10462:2: rule__InputOutputVarDeclaration__Group_2__0__Impl rule__InputOutputVarDeclaration__Group_2__1
+            // InternalPoST.g:10353:1: ( rule__InputOutputVarDeclaration__Group_2__0__Impl rule__InputOutputVarDeclaration__Group_2__1 )
+            // InternalPoST.g:10354:2: rule__InputOutputVarDeclaration__Group_2__0__Impl rule__InputOutputVarDeclaration__Group_2__1
             {
             pushFollow(FOLLOW_11);
             rule__InputOutputVarDeclaration__Group_2__0__Impl();
@@ -34987,23 +34656,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group_2__0__Impl"
-    // InternalPoST.g:10469:1: rule__InputOutputVarDeclaration__Group_2__0__Impl : ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) ) ;
+    // InternalPoST.g:10361:1: rule__InputOutputVarDeclaration__Group_2__0__Impl : ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) ) ;
     public final void rule__InputOutputVarDeclaration__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10473:1: ( ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) ) )
-            // InternalPoST.g:10474:1: ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10365:1: ( ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) ) )
+            // InternalPoST.g:10366:1: ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) )
             {
-            // InternalPoST.g:10474:1: ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) )
-            // InternalPoST.g:10475:2: ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10366:1: ( ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10367:2: ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getVarsAssignment_2_0()); 
             }
-            // InternalPoST.g:10476:2: ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 )
-            // InternalPoST.g:10476:3: rule__InputOutputVarDeclaration__VarsAssignment_2_0
+            // InternalPoST.g:10368:2: ( rule__InputOutputVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10368:3: rule__InputOutputVarDeclaration__VarsAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__InputOutputVarDeclaration__VarsAssignment_2_0();
@@ -35038,14 +34707,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group_2__1"
-    // InternalPoST.g:10484:1: rule__InputOutputVarDeclaration__Group_2__1 : rule__InputOutputVarDeclaration__Group_2__1__Impl ;
+    // InternalPoST.g:10376:1: rule__InputOutputVarDeclaration__Group_2__1 : rule__InputOutputVarDeclaration__Group_2__1__Impl ;
     public final void rule__InputOutputVarDeclaration__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10488:1: ( rule__InputOutputVarDeclaration__Group_2__1__Impl )
-            // InternalPoST.g:10489:2: rule__InputOutputVarDeclaration__Group_2__1__Impl
+            // InternalPoST.g:10380:1: ( rule__InputOutputVarDeclaration__Group_2__1__Impl )
+            // InternalPoST.g:10381:2: rule__InputOutputVarDeclaration__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__InputOutputVarDeclaration__Group_2__1__Impl();
@@ -35071,17 +34740,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__Group_2__1__Impl"
-    // InternalPoST.g:10495:1: rule__InputOutputVarDeclaration__Group_2__1__Impl : ( ';' ) ;
+    // InternalPoST.g:10387:1: rule__InputOutputVarDeclaration__Group_2__1__Impl : ( ';' ) ;
     public final void rule__InputOutputVarDeclaration__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10499:1: ( ( ';' ) )
-            // InternalPoST.g:10500:1: ( ';' )
+            // InternalPoST.g:10391:1: ( ( ';' ) )
+            // InternalPoST.g:10392:1: ( ';' )
             {
-            // InternalPoST.g:10500:1: ( ';' )
-            // InternalPoST.g:10501:2: ';'
+            // InternalPoST.g:10392:1: ( ';' )
+            // InternalPoST.g:10393:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getSemicolonKeyword_2_1()); 
@@ -35112,16 +34781,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__0"
-    // InternalPoST.g:10511:1: rule__VarDeclaration__Group__0 : rule__VarDeclaration__Group__0__Impl rule__VarDeclaration__Group__1 ;
+    // InternalPoST.g:10403:1: rule__VarDeclaration__Group__0 : rule__VarDeclaration__Group__0__Impl rule__VarDeclaration__Group__1 ;
     public final void rule__VarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10515:1: ( rule__VarDeclaration__Group__0__Impl rule__VarDeclaration__Group__1 )
-            // InternalPoST.g:10516:2: rule__VarDeclaration__Group__0__Impl rule__VarDeclaration__Group__1
+            // InternalPoST.g:10407:1: ( rule__VarDeclaration__Group__0__Impl rule__VarDeclaration__Group__1 )
+            // InternalPoST.g:10408:2: rule__VarDeclaration__Group__0__Impl rule__VarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_93);
+            pushFollow(FOLLOW_91);
             rule__VarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -35150,23 +34819,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__0__Impl"
-    // InternalPoST.g:10523:1: rule__VarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:10415:1: rule__VarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__VarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10527:1: ( ( () ) )
-            // InternalPoST.g:10528:1: ( () )
+            // InternalPoST.g:10419:1: ( ( () ) )
+            // InternalPoST.g:10420:1: ( () )
             {
-            // InternalPoST.g:10528:1: ( () )
-            // InternalPoST.g:10529:2: ()
+            // InternalPoST.g:10420:1: ( () )
+            // InternalPoST.g:10421:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:10530:2: ()
-            // InternalPoST.g:10530:3: 
+            // InternalPoST.g:10422:2: ()
+            // InternalPoST.g:10422:3: 
             {
             }
 
@@ -35191,16 +34860,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__1"
-    // InternalPoST.g:10538:1: rule__VarDeclaration__Group__1 : rule__VarDeclaration__Group__1__Impl rule__VarDeclaration__Group__2 ;
+    // InternalPoST.g:10430:1: rule__VarDeclaration__Group__1 : rule__VarDeclaration__Group__1__Impl rule__VarDeclaration__Group__2 ;
     public final void rule__VarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10542:1: ( rule__VarDeclaration__Group__1__Impl rule__VarDeclaration__Group__2 )
-            // InternalPoST.g:10543:2: rule__VarDeclaration__Group__1__Impl rule__VarDeclaration__Group__2
+            // InternalPoST.g:10434:1: ( rule__VarDeclaration__Group__1__Impl rule__VarDeclaration__Group__2 )
+            // InternalPoST.g:10435:2: rule__VarDeclaration__Group__1__Impl rule__VarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__VarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -35229,22 +34898,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__1__Impl"
-    // InternalPoST.g:10550:1: rule__VarDeclaration__Group__1__Impl : ( 'VAR' ) ;
+    // InternalPoST.g:10442:1: rule__VarDeclaration__Group__1__Impl : ( 'VAR' ) ;
     public final void rule__VarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10554:1: ( ( 'VAR' ) )
-            // InternalPoST.g:10555:1: ( 'VAR' )
+            // InternalPoST.g:10446:1: ( ( 'VAR' ) )
+            // InternalPoST.g:10447:1: ( 'VAR' )
             {
-            // InternalPoST.g:10555:1: ( 'VAR' )
-            // InternalPoST.g:10556:2: 'VAR'
+            // InternalPoST.g:10447:1: ( 'VAR' )
+            // InternalPoST.g:10448:2: 'VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getVARKeyword_1()); 
             }
-            match(input,108,FOLLOW_2); if (state.failed) return ;
+            match(input,106,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVarDeclarationAccess().getVARKeyword_1()); 
             }
@@ -35270,16 +34939,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__2"
-    // InternalPoST.g:10565:1: rule__VarDeclaration__Group__2 : rule__VarDeclaration__Group__2__Impl rule__VarDeclaration__Group__3 ;
+    // InternalPoST.g:10457:1: rule__VarDeclaration__Group__2 : rule__VarDeclaration__Group__2__Impl rule__VarDeclaration__Group__3 ;
     public final void rule__VarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10569:1: ( rule__VarDeclaration__Group__2__Impl rule__VarDeclaration__Group__3 )
-            // InternalPoST.g:10570:2: rule__VarDeclaration__Group__2__Impl rule__VarDeclaration__Group__3
+            // InternalPoST.g:10461:1: ( rule__VarDeclaration__Group__2__Impl rule__VarDeclaration__Group__3 )
+            // InternalPoST.g:10462:2: rule__VarDeclaration__Group__2__Impl rule__VarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__VarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -35308,22 +34977,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__2__Impl"
-    // InternalPoST.g:10577:1: rule__VarDeclaration__Group__2__Impl : ( ( rule__VarDeclaration__ConstAssignment_2 )? ) ;
+    // InternalPoST.g:10469:1: rule__VarDeclaration__Group__2__Impl : ( ( rule__VarDeclaration__ConstAssignment_2 )? ) ;
     public final void rule__VarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10581:1: ( ( ( rule__VarDeclaration__ConstAssignment_2 )? ) )
-            // InternalPoST.g:10582:1: ( ( rule__VarDeclaration__ConstAssignment_2 )? )
+            // InternalPoST.g:10473:1: ( ( ( rule__VarDeclaration__ConstAssignment_2 )? ) )
+            // InternalPoST.g:10474:1: ( ( rule__VarDeclaration__ConstAssignment_2 )? )
             {
-            // InternalPoST.g:10582:1: ( ( rule__VarDeclaration__ConstAssignment_2 )? )
-            // InternalPoST.g:10583:2: ( rule__VarDeclaration__ConstAssignment_2 )?
+            // InternalPoST.g:10474:1: ( ( rule__VarDeclaration__ConstAssignment_2 )? )
+            // InternalPoST.g:10475:2: ( rule__VarDeclaration__ConstAssignment_2 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getConstAssignment_2()); 
             }
-            // InternalPoST.g:10584:2: ( rule__VarDeclaration__ConstAssignment_2 )?
+            // InternalPoST.g:10476:2: ( rule__VarDeclaration__ConstAssignment_2 )?
             int alt75=2;
             int LA75_0 = input.LA(1);
 
@@ -35332,7 +35001,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             }
             switch (alt75) {
                 case 1 :
-                    // InternalPoST.g:10584:3: rule__VarDeclaration__ConstAssignment_2
+                    // InternalPoST.g:10476:3: rule__VarDeclaration__ConstAssignment_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__VarDeclaration__ConstAssignment_2();
@@ -35370,16 +35039,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__3"
-    // InternalPoST.g:10592:1: rule__VarDeclaration__Group__3 : rule__VarDeclaration__Group__3__Impl rule__VarDeclaration__Group__4 ;
+    // InternalPoST.g:10484:1: rule__VarDeclaration__Group__3 : rule__VarDeclaration__Group__3__Impl rule__VarDeclaration__Group__4 ;
     public final void rule__VarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10596:1: ( rule__VarDeclaration__Group__3__Impl rule__VarDeclaration__Group__4 )
-            // InternalPoST.g:10597:2: rule__VarDeclaration__Group__3__Impl rule__VarDeclaration__Group__4
+            // InternalPoST.g:10488:1: ( rule__VarDeclaration__Group__3__Impl rule__VarDeclaration__Group__4 )
+            // InternalPoST.g:10489:2: rule__VarDeclaration__Group__3__Impl rule__VarDeclaration__Group__4
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__VarDeclaration__Group__3__Impl();
 
             state._fsp--;
@@ -35408,22 +35077,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__3__Impl"
-    // InternalPoST.g:10604:1: rule__VarDeclaration__Group__3__Impl : ( ( rule__VarDeclaration__Group_3__0 )* ) ;
+    // InternalPoST.g:10496:1: rule__VarDeclaration__Group__3__Impl : ( ( rule__VarDeclaration__Group_3__0 )* ) ;
     public final void rule__VarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10608:1: ( ( ( rule__VarDeclaration__Group_3__0 )* ) )
-            // InternalPoST.g:10609:1: ( ( rule__VarDeclaration__Group_3__0 )* )
+            // InternalPoST.g:10500:1: ( ( ( rule__VarDeclaration__Group_3__0 )* ) )
+            // InternalPoST.g:10501:1: ( ( rule__VarDeclaration__Group_3__0 )* )
             {
-            // InternalPoST.g:10609:1: ( ( rule__VarDeclaration__Group_3__0 )* )
-            // InternalPoST.g:10610:2: ( rule__VarDeclaration__Group_3__0 )*
+            // InternalPoST.g:10501:1: ( ( rule__VarDeclaration__Group_3__0 )* )
+            // InternalPoST.g:10502:2: ( rule__VarDeclaration__Group_3__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getGroup_3()); 
             }
-            // InternalPoST.g:10611:2: ( rule__VarDeclaration__Group_3__0 )*
+            // InternalPoST.g:10503:2: ( rule__VarDeclaration__Group_3__0 )*
             loop76:
             do {
                 int alt76=2;
@@ -35436,9 +35105,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt76) {
             	case 1 :
-            	    // InternalPoST.g:10611:3: rule__VarDeclaration__Group_3__0
+            	    // InternalPoST.g:10503:3: rule__VarDeclaration__Group_3__0
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__VarDeclaration__Group_3__0();
 
             	    state._fsp--;
@@ -35477,14 +35146,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__4"
-    // InternalPoST.g:10619:1: rule__VarDeclaration__Group__4 : rule__VarDeclaration__Group__4__Impl ;
+    // InternalPoST.g:10511:1: rule__VarDeclaration__Group__4 : rule__VarDeclaration__Group__4__Impl ;
     public final void rule__VarDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10623:1: ( rule__VarDeclaration__Group__4__Impl )
-            // InternalPoST.g:10624:2: rule__VarDeclaration__Group__4__Impl
+            // InternalPoST.g:10515:1: ( rule__VarDeclaration__Group__4__Impl )
+            // InternalPoST.g:10516:2: rule__VarDeclaration__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VarDeclaration__Group__4__Impl();
@@ -35510,22 +35179,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group__4__Impl"
-    // InternalPoST.g:10630:1: rule__VarDeclaration__Group__4__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:10522:1: rule__VarDeclaration__Group__4__Impl : ( 'END_VAR' ) ;
     public final void rule__VarDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10634:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:10635:1: ( 'END_VAR' )
+            // InternalPoST.g:10526:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:10527:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:10635:1: ( 'END_VAR' )
-            // InternalPoST.g:10636:2: 'END_VAR'
+            // InternalPoST.g:10527:1: ( 'END_VAR' )
+            // InternalPoST.g:10528:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getEND_VARKeyword_4()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVarDeclarationAccess().getEND_VARKeyword_4()); 
             }
@@ -35551,14 +35220,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group_3__0"
-    // InternalPoST.g:10646:1: rule__VarDeclaration__Group_3__0 : rule__VarDeclaration__Group_3__0__Impl rule__VarDeclaration__Group_3__1 ;
+    // InternalPoST.g:10538:1: rule__VarDeclaration__Group_3__0 : rule__VarDeclaration__Group_3__0__Impl rule__VarDeclaration__Group_3__1 ;
     public final void rule__VarDeclaration__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10650:1: ( rule__VarDeclaration__Group_3__0__Impl rule__VarDeclaration__Group_3__1 )
-            // InternalPoST.g:10651:2: rule__VarDeclaration__Group_3__0__Impl rule__VarDeclaration__Group_3__1
+            // InternalPoST.g:10542:1: ( rule__VarDeclaration__Group_3__0__Impl rule__VarDeclaration__Group_3__1 )
+            // InternalPoST.g:10543:2: rule__VarDeclaration__Group_3__0__Impl rule__VarDeclaration__Group_3__1
             {
             pushFollow(FOLLOW_11);
             rule__VarDeclaration__Group_3__0__Impl();
@@ -35589,23 +35258,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group_3__0__Impl"
-    // InternalPoST.g:10658:1: rule__VarDeclaration__Group_3__0__Impl : ( ( rule__VarDeclaration__VarsAssignment_3_0 ) ) ;
+    // InternalPoST.g:10550:1: rule__VarDeclaration__Group_3__0__Impl : ( ( rule__VarDeclaration__VarsAssignment_3_0 ) ) ;
     public final void rule__VarDeclaration__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10662:1: ( ( ( rule__VarDeclaration__VarsAssignment_3_0 ) ) )
-            // InternalPoST.g:10663:1: ( ( rule__VarDeclaration__VarsAssignment_3_0 ) )
+            // InternalPoST.g:10554:1: ( ( ( rule__VarDeclaration__VarsAssignment_3_0 ) ) )
+            // InternalPoST.g:10555:1: ( ( rule__VarDeclaration__VarsAssignment_3_0 ) )
             {
-            // InternalPoST.g:10663:1: ( ( rule__VarDeclaration__VarsAssignment_3_0 ) )
-            // InternalPoST.g:10664:2: ( rule__VarDeclaration__VarsAssignment_3_0 )
+            // InternalPoST.g:10555:1: ( ( rule__VarDeclaration__VarsAssignment_3_0 ) )
+            // InternalPoST.g:10556:2: ( rule__VarDeclaration__VarsAssignment_3_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getVarsAssignment_3_0()); 
             }
-            // InternalPoST.g:10665:2: ( rule__VarDeclaration__VarsAssignment_3_0 )
-            // InternalPoST.g:10665:3: rule__VarDeclaration__VarsAssignment_3_0
+            // InternalPoST.g:10557:2: ( rule__VarDeclaration__VarsAssignment_3_0 )
+            // InternalPoST.g:10557:3: rule__VarDeclaration__VarsAssignment_3_0
             {
             pushFollow(FOLLOW_2);
             rule__VarDeclaration__VarsAssignment_3_0();
@@ -35640,14 +35309,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group_3__1"
-    // InternalPoST.g:10673:1: rule__VarDeclaration__Group_3__1 : rule__VarDeclaration__Group_3__1__Impl ;
+    // InternalPoST.g:10565:1: rule__VarDeclaration__Group_3__1 : rule__VarDeclaration__Group_3__1__Impl ;
     public final void rule__VarDeclaration__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10677:1: ( rule__VarDeclaration__Group_3__1__Impl )
-            // InternalPoST.g:10678:2: rule__VarDeclaration__Group_3__1__Impl
+            // InternalPoST.g:10569:1: ( rule__VarDeclaration__Group_3__1__Impl )
+            // InternalPoST.g:10570:2: rule__VarDeclaration__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__VarDeclaration__Group_3__1__Impl();
@@ -35673,17 +35342,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__Group_3__1__Impl"
-    // InternalPoST.g:10684:1: rule__VarDeclaration__Group_3__1__Impl : ( ';' ) ;
+    // InternalPoST.g:10576:1: rule__VarDeclaration__Group_3__1__Impl : ( ';' ) ;
     public final void rule__VarDeclaration__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10688:1: ( ( ';' ) )
-            // InternalPoST.g:10689:1: ( ';' )
+            // InternalPoST.g:10580:1: ( ( ';' ) )
+            // InternalPoST.g:10581:1: ( ';' )
             {
-            // InternalPoST.g:10689:1: ( ';' )
-            // InternalPoST.g:10690:2: ';'
+            // InternalPoST.g:10581:1: ( ';' )
+            // InternalPoST.g:10582:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getSemicolonKeyword_3_1()); 
@@ -35714,16 +35383,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__0"
-    // InternalPoST.g:10700:1: rule__TempVarDeclaration__Group__0 : rule__TempVarDeclaration__Group__0__Impl rule__TempVarDeclaration__Group__1 ;
+    // InternalPoST.g:10592:1: rule__TempVarDeclaration__Group__0 : rule__TempVarDeclaration__Group__0__Impl rule__TempVarDeclaration__Group__1 ;
     public final void rule__TempVarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10704:1: ( rule__TempVarDeclaration__Group__0__Impl rule__TempVarDeclaration__Group__1 )
-            // InternalPoST.g:10705:2: rule__TempVarDeclaration__Group__0__Impl rule__TempVarDeclaration__Group__1
+            // InternalPoST.g:10596:1: ( rule__TempVarDeclaration__Group__0__Impl rule__TempVarDeclaration__Group__1 )
+            // InternalPoST.g:10597:2: rule__TempVarDeclaration__Group__0__Impl rule__TempVarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_95);
+            pushFollow(FOLLOW_93);
             rule__TempVarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -35752,23 +35421,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__0__Impl"
-    // InternalPoST.g:10712:1: rule__TempVarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:10604:1: rule__TempVarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__TempVarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10716:1: ( ( () ) )
-            // InternalPoST.g:10717:1: ( () )
+            // InternalPoST.g:10608:1: ( ( () ) )
+            // InternalPoST.g:10609:1: ( () )
             {
-            // InternalPoST.g:10717:1: ( () )
-            // InternalPoST.g:10718:2: ()
+            // InternalPoST.g:10609:1: ( () )
+            // InternalPoST.g:10610:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getTempVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:10719:2: ()
-            // InternalPoST.g:10719:3: 
+            // InternalPoST.g:10611:2: ()
+            // InternalPoST.g:10611:3: 
             {
             }
 
@@ -35793,16 +35462,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__1"
-    // InternalPoST.g:10727:1: rule__TempVarDeclaration__Group__1 : rule__TempVarDeclaration__Group__1__Impl rule__TempVarDeclaration__Group__2 ;
+    // InternalPoST.g:10619:1: rule__TempVarDeclaration__Group__1 : rule__TempVarDeclaration__Group__1__Impl rule__TempVarDeclaration__Group__2 ;
     public final void rule__TempVarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10731:1: ( rule__TempVarDeclaration__Group__1__Impl rule__TempVarDeclaration__Group__2 )
-            // InternalPoST.g:10732:2: rule__TempVarDeclaration__Group__1__Impl rule__TempVarDeclaration__Group__2
+            // InternalPoST.g:10623:1: ( rule__TempVarDeclaration__Group__1__Impl rule__TempVarDeclaration__Group__2 )
+            // InternalPoST.g:10624:2: rule__TempVarDeclaration__Group__1__Impl rule__TempVarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__TempVarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -35831,22 +35500,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__1__Impl"
-    // InternalPoST.g:10739:1: rule__TempVarDeclaration__Group__1__Impl : ( 'VAR_TEMP' ) ;
+    // InternalPoST.g:10631:1: rule__TempVarDeclaration__Group__1__Impl : ( 'VAR_TEMP' ) ;
     public final void rule__TempVarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10743:1: ( ( 'VAR_TEMP' ) )
-            // InternalPoST.g:10744:1: ( 'VAR_TEMP' )
+            // InternalPoST.g:10635:1: ( ( 'VAR_TEMP' ) )
+            // InternalPoST.g:10636:1: ( 'VAR_TEMP' )
             {
-            // InternalPoST.g:10744:1: ( 'VAR_TEMP' )
-            // InternalPoST.g:10745:2: 'VAR_TEMP'
+            // InternalPoST.g:10636:1: ( 'VAR_TEMP' )
+            // InternalPoST.g:10637:2: 'VAR_TEMP'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getVAR_TEMPKeyword_1()); 
             }
-            match(input,109,FOLLOW_2); if (state.failed) return ;
+            match(input,107,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTempVarDeclarationAccess().getVAR_TEMPKeyword_1()); 
             }
@@ -35872,16 +35541,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__2"
-    // InternalPoST.g:10754:1: rule__TempVarDeclaration__Group__2 : rule__TempVarDeclaration__Group__2__Impl rule__TempVarDeclaration__Group__3 ;
+    // InternalPoST.g:10646:1: rule__TempVarDeclaration__Group__2 : rule__TempVarDeclaration__Group__2__Impl rule__TempVarDeclaration__Group__3 ;
     public final void rule__TempVarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10758:1: ( rule__TempVarDeclaration__Group__2__Impl rule__TempVarDeclaration__Group__3 )
-            // InternalPoST.g:10759:2: rule__TempVarDeclaration__Group__2__Impl rule__TempVarDeclaration__Group__3
+            // InternalPoST.g:10650:1: ( rule__TempVarDeclaration__Group__2__Impl rule__TempVarDeclaration__Group__3 )
+            // InternalPoST.g:10651:2: rule__TempVarDeclaration__Group__2__Impl rule__TempVarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__TempVarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -35910,22 +35579,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__2__Impl"
-    // InternalPoST.g:10766:1: rule__TempVarDeclaration__Group__2__Impl : ( ( rule__TempVarDeclaration__Group_2__0 )* ) ;
+    // InternalPoST.g:10658:1: rule__TempVarDeclaration__Group__2__Impl : ( ( rule__TempVarDeclaration__Group_2__0 )* ) ;
     public final void rule__TempVarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10770:1: ( ( ( rule__TempVarDeclaration__Group_2__0 )* ) )
-            // InternalPoST.g:10771:1: ( ( rule__TempVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:10662:1: ( ( ( rule__TempVarDeclaration__Group_2__0 )* ) )
+            // InternalPoST.g:10663:1: ( ( rule__TempVarDeclaration__Group_2__0 )* )
             {
-            // InternalPoST.g:10771:1: ( ( rule__TempVarDeclaration__Group_2__0 )* )
-            // InternalPoST.g:10772:2: ( rule__TempVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:10663:1: ( ( rule__TempVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:10664:2: ( rule__TempVarDeclaration__Group_2__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getGroup_2()); 
             }
-            // InternalPoST.g:10773:2: ( rule__TempVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:10665:2: ( rule__TempVarDeclaration__Group_2__0 )*
             loop77:
             do {
                 int alt77=2;
@@ -35938,9 +35607,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt77) {
             	case 1 :
-            	    // InternalPoST.g:10773:3: rule__TempVarDeclaration__Group_2__0
+            	    // InternalPoST.g:10665:3: rule__TempVarDeclaration__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__TempVarDeclaration__Group_2__0();
 
             	    state._fsp--;
@@ -35979,14 +35648,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__3"
-    // InternalPoST.g:10781:1: rule__TempVarDeclaration__Group__3 : rule__TempVarDeclaration__Group__3__Impl ;
+    // InternalPoST.g:10673:1: rule__TempVarDeclaration__Group__3 : rule__TempVarDeclaration__Group__3__Impl ;
     public final void rule__TempVarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10785:1: ( rule__TempVarDeclaration__Group__3__Impl )
-            // InternalPoST.g:10786:2: rule__TempVarDeclaration__Group__3__Impl
+            // InternalPoST.g:10677:1: ( rule__TempVarDeclaration__Group__3__Impl )
+            // InternalPoST.g:10678:2: rule__TempVarDeclaration__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TempVarDeclaration__Group__3__Impl();
@@ -36012,22 +35681,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group__3__Impl"
-    // InternalPoST.g:10792:1: rule__TempVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:10684:1: rule__TempVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
     public final void rule__TempVarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10796:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:10797:1: ( 'END_VAR' )
+            // InternalPoST.g:10688:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:10689:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:10797:1: ( 'END_VAR' )
-            // InternalPoST.g:10798:2: 'END_VAR'
+            // InternalPoST.g:10689:1: ( 'END_VAR' )
+            // InternalPoST.g:10690:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTempVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
@@ -36053,14 +35722,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group_2__0"
-    // InternalPoST.g:10808:1: rule__TempVarDeclaration__Group_2__0 : rule__TempVarDeclaration__Group_2__0__Impl rule__TempVarDeclaration__Group_2__1 ;
+    // InternalPoST.g:10700:1: rule__TempVarDeclaration__Group_2__0 : rule__TempVarDeclaration__Group_2__0__Impl rule__TempVarDeclaration__Group_2__1 ;
     public final void rule__TempVarDeclaration__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10812:1: ( rule__TempVarDeclaration__Group_2__0__Impl rule__TempVarDeclaration__Group_2__1 )
-            // InternalPoST.g:10813:2: rule__TempVarDeclaration__Group_2__0__Impl rule__TempVarDeclaration__Group_2__1
+            // InternalPoST.g:10704:1: ( rule__TempVarDeclaration__Group_2__0__Impl rule__TempVarDeclaration__Group_2__1 )
+            // InternalPoST.g:10705:2: rule__TempVarDeclaration__Group_2__0__Impl rule__TempVarDeclaration__Group_2__1
             {
             pushFollow(FOLLOW_11);
             rule__TempVarDeclaration__Group_2__0__Impl();
@@ -36091,23 +35760,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group_2__0__Impl"
-    // InternalPoST.g:10820:1: rule__TempVarDeclaration__Group_2__0__Impl : ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) ) ;
+    // InternalPoST.g:10712:1: rule__TempVarDeclaration__Group_2__0__Impl : ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) ) ;
     public final void rule__TempVarDeclaration__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10824:1: ( ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) ) )
-            // InternalPoST.g:10825:1: ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10716:1: ( ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) ) )
+            // InternalPoST.g:10717:1: ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) )
             {
-            // InternalPoST.g:10825:1: ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) )
-            // InternalPoST.g:10826:2: ( rule__TempVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10717:1: ( ( rule__TempVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:10718:2: ( rule__TempVarDeclaration__VarsAssignment_2_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getVarsAssignment_2_0()); 
             }
-            // InternalPoST.g:10827:2: ( rule__TempVarDeclaration__VarsAssignment_2_0 )
-            // InternalPoST.g:10827:3: rule__TempVarDeclaration__VarsAssignment_2_0
+            // InternalPoST.g:10719:2: ( rule__TempVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:10719:3: rule__TempVarDeclaration__VarsAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__TempVarDeclaration__VarsAssignment_2_0();
@@ -36142,14 +35811,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group_2__1"
-    // InternalPoST.g:10835:1: rule__TempVarDeclaration__Group_2__1 : rule__TempVarDeclaration__Group_2__1__Impl ;
+    // InternalPoST.g:10727:1: rule__TempVarDeclaration__Group_2__1 : rule__TempVarDeclaration__Group_2__1__Impl ;
     public final void rule__TempVarDeclaration__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10839:1: ( rule__TempVarDeclaration__Group_2__1__Impl )
-            // InternalPoST.g:10840:2: rule__TempVarDeclaration__Group_2__1__Impl
+            // InternalPoST.g:10731:1: ( rule__TempVarDeclaration__Group_2__1__Impl )
+            // InternalPoST.g:10732:2: rule__TempVarDeclaration__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__TempVarDeclaration__Group_2__1__Impl();
@@ -36175,17 +35844,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__Group_2__1__Impl"
-    // InternalPoST.g:10846:1: rule__TempVarDeclaration__Group_2__1__Impl : ( ';' ) ;
+    // InternalPoST.g:10738:1: rule__TempVarDeclaration__Group_2__1__Impl : ( ';' ) ;
     public final void rule__TempVarDeclaration__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10850:1: ( ( ';' ) )
-            // InternalPoST.g:10851:1: ( ';' )
+            // InternalPoST.g:10742:1: ( ( ';' ) )
+            // InternalPoST.g:10743:1: ( ';' )
             {
-            // InternalPoST.g:10851:1: ( ';' )
-            // InternalPoST.g:10852:2: ';'
+            // InternalPoST.g:10743:1: ( ';' )
+            // InternalPoST.g:10744:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getSemicolonKeyword_2_1()); 
@@ -36216,14 +35885,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__Group__0"
-    // InternalPoST.g:10862:1: rule__ExternalVarInitDeclaration__Group__0 : rule__ExternalVarInitDeclaration__Group__0__Impl rule__ExternalVarInitDeclaration__Group__1 ;
+    // InternalPoST.g:10754:1: rule__ExternalVarInitDeclaration__Group__0 : rule__ExternalVarInitDeclaration__Group__0__Impl rule__ExternalVarInitDeclaration__Group__1 ;
     public final void rule__ExternalVarInitDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10866:1: ( rule__ExternalVarInitDeclaration__Group__0__Impl rule__ExternalVarInitDeclaration__Group__1 )
-            // InternalPoST.g:10867:2: rule__ExternalVarInitDeclaration__Group__0__Impl rule__ExternalVarInitDeclaration__Group__1
+            // InternalPoST.g:10758:1: ( rule__ExternalVarInitDeclaration__Group__0__Impl rule__ExternalVarInitDeclaration__Group__1 )
+            // InternalPoST.g:10759:2: rule__ExternalVarInitDeclaration__Group__0__Impl rule__ExternalVarInitDeclaration__Group__1
             {
             pushFollow(FOLLOW_26);
             rule__ExternalVarInitDeclaration__Group__0__Impl();
@@ -36254,23 +35923,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__Group__0__Impl"
-    // InternalPoST.g:10874:1: rule__ExternalVarInitDeclaration__Group__0__Impl : ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) ) ;
+    // InternalPoST.g:10766:1: rule__ExternalVarInitDeclaration__Group__0__Impl : ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) ) ;
     public final void rule__ExternalVarInitDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10878:1: ( ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) ) )
-            // InternalPoST.g:10879:1: ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:10770:1: ( ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) ) )
+            // InternalPoST.g:10771:1: ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) )
             {
-            // InternalPoST.g:10879:1: ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) )
-            // InternalPoST.g:10880:2: ( rule__ExternalVarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:10771:1: ( ( rule__ExternalVarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:10772:2: ( rule__ExternalVarInitDeclaration__VarListAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarInitDeclarationAccess().getVarListAssignment_0()); 
             }
-            // InternalPoST.g:10881:2: ( rule__ExternalVarInitDeclaration__VarListAssignment_0 )
-            // InternalPoST.g:10881:3: rule__ExternalVarInitDeclaration__VarListAssignment_0
+            // InternalPoST.g:10773:2: ( rule__ExternalVarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:10773:3: rule__ExternalVarInitDeclaration__VarListAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarInitDeclaration__VarListAssignment_0();
@@ -36305,16 +35974,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__Group__1"
-    // InternalPoST.g:10889:1: rule__ExternalVarInitDeclaration__Group__1 : rule__ExternalVarInitDeclaration__Group__1__Impl rule__ExternalVarInitDeclaration__Group__2 ;
+    // InternalPoST.g:10781:1: rule__ExternalVarInitDeclaration__Group__1 : rule__ExternalVarInitDeclaration__Group__1__Impl rule__ExternalVarInitDeclaration__Group__2 ;
     public final void rule__ExternalVarInitDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10893:1: ( rule__ExternalVarInitDeclaration__Group__1__Impl rule__ExternalVarInitDeclaration__Group__2 )
-            // InternalPoST.g:10894:2: rule__ExternalVarInitDeclaration__Group__1__Impl rule__ExternalVarInitDeclaration__Group__2
+            // InternalPoST.g:10785:1: ( rule__ExternalVarInitDeclaration__Group__1__Impl rule__ExternalVarInitDeclaration__Group__2 )
+            // InternalPoST.g:10786:2: rule__ExternalVarInitDeclaration__Group__1__Impl rule__ExternalVarInitDeclaration__Group__2
             {
-            pushFollow(FOLLOW_86);
+            pushFollow(FOLLOW_84);
             rule__ExternalVarInitDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -36343,17 +36012,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__Group__1__Impl"
-    // InternalPoST.g:10901:1: rule__ExternalVarInitDeclaration__Group__1__Impl : ( ':' ) ;
+    // InternalPoST.g:10793:1: rule__ExternalVarInitDeclaration__Group__1__Impl : ( ':' ) ;
     public final void rule__ExternalVarInitDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10905:1: ( ( ':' ) )
-            // InternalPoST.g:10906:1: ( ':' )
+            // InternalPoST.g:10797:1: ( ( ':' ) )
+            // InternalPoST.g:10798:1: ( ':' )
             {
-            // InternalPoST.g:10906:1: ( ':' )
-            // InternalPoST.g:10907:2: ':'
+            // InternalPoST.g:10798:1: ( ':' )
+            // InternalPoST.g:10799:2: ':'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarInitDeclarationAccess().getColonKeyword_1()); 
@@ -36384,14 +36053,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__Group__2"
-    // InternalPoST.g:10916:1: rule__ExternalVarInitDeclaration__Group__2 : rule__ExternalVarInitDeclaration__Group__2__Impl ;
+    // InternalPoST.g:10808:1: rule__ExternalVarInitDeclaration__Group__2 : rule__ExternalVarInitDeclaration__Group__2__Impl ;
     public final void rule__ExternalVarInitDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10920:1: ( rule__ExternalVarInitDeclaration__Group__2__Impl )
-            // InternalPoST.g:10921:2: rule__ExternalVarInitDeclaration__Group__2__Impl
+            // InternalPoST.g:10812:1: ( rule__ExternalVarInitDeclaration__Group__2__Impl )
+            // InternalPoST.g:10813:2: rule__ExternalVarInitDeclaration__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarInitDeclaration__Group__2__Impl();
@@ -36417,23 +36086,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__Group__2__Impl"
-    // InternalPoST.g:10927:1: rule__ExternalVarInitDeclaration__Group__2__Impl : ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) ) ;
+    // InternalPoST.g:10819:1: rule__ExternalVarInitDeclaration__Group__2__Impl : ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) ) ;
     public final void rule__ExternalVarInitDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10931:1: ( ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) ) )
-            // InternalPoST.g:10932:1: ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) )
+            // InternalPoST.g:10823:1: ( ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) ) )
+            // InternalPoST.g:10824:1: ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) )
             {
-            // InternalPoST.g:10932:1: ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) )
-            // InternalPoST.g:10933:2: ( rule__ExternalVarInitDeclaration__TypeAssignment_2 )
+            // InternalPoST.g:10824:1: ( ( rule__ExternalVarInitDeclaration__TypeAssignment_2 ) )
+            // InternalPoST.g:10825:2: ( rule__ExternalVarInitDeclaration__TypeAssignment_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarInitDeclarationAccess().getTypeAssignment_2()); 
             }
-            // InternalPoST.g:10934:2: ( rule__ExternalVarInitDeclaration__TypeAssignment_2 )
-            // InternalPoST.g:10934:3: rule__ExternalVarInitDeclaration__TypeAssignment_2
+            // InternalPoST.g:10826:2: ( rule__ExternalVarInitDeclaration__TypeAssignment_2 )
+            // InternalPoST.g:10826:3: rule__ExternalVarInitDeclaration__TypeAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarInitDeclaration__TypeAssignment_2();
@@ -36468,16 +36137,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__0"
-    // InternalPoST.g:10943:1: rule__ExternalVarDeclaration__Group__0 : rule__ExternalVarDeclaration__Group__0__Impl rule__ExternalVarDeclaration__Group__1 ;
+    // InternalPoST.g:10835:1: rule__ExternalVarDeclaration__Group__0 : rule__ExternalVarDeclaration__Group__0__Impl rule__ExternalVarDeclaration__Group__1 ;
     public final void rule__ExternalVarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10947:1: ( rule__ExternalVarDeclaration__Group__0__Impl rule__ExternalVarDeclaration__Group__1 )
-            // InternalPoST.g:10948:2: rule__ExternalVarDeclaration__Group__0__Impl rule__ExternalVarDeclaration__Group__1
+            // InternalPoST.g:10839:1: ( rule__ExternalVarDeclaration__Group__0__Impl rule__ExternalVarDeclaration__Group__1 )
+            // InternalPoST.g:10840:2: rule__ExternalVarDeclaration__Group__0__Impl rule__ExternalVarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_96);
+            pushFollow(FOLLOW_94);
             rule__ExternalVarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -36506,23 +36175,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__0__Impl"
-    // InternalPoST.g:10955:1: rule__ExternalVarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:10847:1: rule__ExternalVarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__ExternalVarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10959:1: ( ( () ) )
-            // InternalPoST.g:10960:1: ( () )
+            // InternalPoST.g:10851:1: ( ( () ) )
+            // InternalPoST.g:10852:1: ( () )
             {
-            // InternalPoST.g:10960:1: ( () )
-            // InternalPoST.g:10961:2: ()
+            // InternalPoST.g:10852:1: ( () )
+            // InternalPoST.g:10853:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getExternalVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:10962:2: ()
-            // InternalPoST.g:10962:3: 
+            // InternalPoST.g:10854:2: ()
+            // InternalPoST.g:10854:3: 
             {
             }
 
@@ -36547,16 +36216,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__1"
-    // InternalPoST.g:10970:1: rule__ExternalVarDeclaration__Group__1 : rule__ExternalVarDeclaration__Group__1__Impl rule__ExternalVarDeclaration__Group__2 ;
+    // InternalPoST.g:10862:1: rule__ExternalVarDeclaration__Group__1 : rule__ExternalVarDeclaration__Group__1__Impl rule__ExternalVarDeclaration__Group__2 ;
     public final void rule__ExternalVarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10974:1: ( rule__ExternalVarDeclaration__Group__1__Impl rule__ExternalVarDeclaration__Group__2 )
-            // InternalPoST.g:10975:2: rule__ExternalVarDeclaration__Group__1__Impl rule__ExternalVarDeclaration__Group__2
+            // InternalPoST.g:10866:1: ( rule__ExternalVarDeclaration__Group__1__Impl rule__ExternalVarDeclaration__Group__2 )
+            // InternalPoST.g:10867:2: rule__ExternalVarDeclaration__Group__1__Impl rule__ExternalVarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__ExternalVarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -36585,22 +36254,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__1__Impl"
-    // InternalPoST.g:10982:1: rule__ExternalVarDeclaration__Group__1__Impl : ( 'VAR_EXTERNAL' ) ;
+    // InternalPoST.g:10874:1: rule__ExternalVarDeclaration__Group__1__Impl : ( 'VAR_EXTERNAL' ) ;
     public final void rule__ExternalVarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:10986:1: ( ( 'VAR_EXTERNAL' ) )
-            // InternalPoST.g:10987:1: ( 'VAR_EXTERNAL' )
+            // InternalPoST.g:10878:1: ( ( 'VAR_EXTERNAL' ) )
+            // InternalPoST.g:10879:1: ( 'VAR_EXTERNAL' )
             {
-            // InternalPoST.g:10987:1: ( 'VAR_EXTERNAL' )
-            // InternalPoST.g:10988:2: 'VAR_EXTERNAL'
+            // InternalPoST.g:10879:1: ( 'VAR_EXTERNAL' )
+            // InternalPoST.g:10880:2: 'VAR_EXTERNAL'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getVAR_EXTERNALKeyword_1()); 
             }
-            match(input,110,FOLLOW_2); if (state.failed) return ;
+            match(input,108,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExternalVarDeclarationAccess().getVAR_EXTERNALKeyword_1()); 
             }
@@ -36626,16 +36295,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__2"
-    // InternalPoST.g:10997:1: rule__ExternalVarDeclaration__Group__2 : rule__ExternalVarDeclaration__Group__2__Impl rule__ExternalVarDeclaration__Group__3 ;
+    // InternalPoST.g:10889:1: rule__ExternalVarDeclaration__Group__2 : rule__ExternalVarDeclaration__Group__2__Impl rule__ExternalVarDeclaration__Group__3 ;
     public final void rule__ExternalVarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11001:1: ( rule__ExternalVarDeclaration__Group__2__Impl rule__ExternalVarDeclaration__Group__3 )
-            // InternalPoST.g:11002:2: rule__ExternalVarDeclaration__Group__2__Impl rule__ExternalVarDeclaration__Group__3
+            // InternalPoST.g:10893:1: ( rule__ExternalVarDeclaration__Group__2__Impl rule__ExternalVarDeclaration__Group__3 )
+            // InternalPoST.g:10894:2: rule__ExternalVarDeclaration__Group__2__Impl rule__ExternalVarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__ExternalVarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -36664,22 +36333,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__2__Impl"
-    // InternalPoST.g:11009:1: rule__ExternalVarDeclaration__Group__2__Impl : ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? ) ;
+    // InternalPoST.g:10901:1: rule__ExternalVarDeclaration__Group__2__Impl : ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? ) ;
     public final void rule__ExternalVarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11013:1: ( ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? ) )
-            // InternalPoST.g:11014:1: ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? )
+            // InternalPoST.g:10905:1: ( ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? ) )
+            // InternalPoST.g:10906:1: ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? )
             {
-            // InternalPoST.g:11014:1: ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? )
-            // InternalPoST.g:11015:2: ( rule__ExternalVarDeclaration__ConstAssignment_2 )?
+            // InternalPoST.g:10906:1: ( ( rule__ExternalVarDeclaration__ConstAssignment_2 )? )
+            // InternalPoST.g:10907:2: ( rule__ExternalVarDeclaration__ConstAssignment_2 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getConstAssignment_2()); 
             }
-            // InternalPoST.g:11016:2: ( rule__ExternalVarDeclaration__ConstAssignment_2 )?
+            // InternalPoST.g:10908:2: ( rule__ExternalVarDeclaration__ConstAssignment_2 )?
             int alt78=2;
             int LA78_0 = input.LA(1);
 
@@ -36688,7 +36357,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             }
             switch (alt78) {
                 case 1 :
-                    // InternalPoST.g:11016:3: rule__ExternalVarDeclaration__ConstAssignment_2
+                    // InternalPoST.g:10908:3: rule__ExternalVarDeclaration__ConstAssignment_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__ExternalVarDeclaration__ConstAssignment_2();
@@ -36726,16 +36395,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__3"
-    // InternalPoST.g:11024:1: rule__ExternalVarDeclaration__Group__3 : rule__ExternalVarDeclaration__Group__3__Impl rule__ExternalVarDeclaration__Group__4 ;
+    // InternalPoST.g:10916:1: rule__ExternalVarDeclaration__Group__3 : rule__ExternalVarDeclaration__Group__3__Impl rule__ExternalVarDeclaration__Group__4 ;
     public final void rule__ExternalVarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11028:1: ( rule__ExternalVarDeclaration__Group__3__Impl rule__ExternalVarDeclaration__Group__4 )
-            // InternalPoST.g:11029:2: rule__ExternalVarDeclaration__Group__3__Impl rule__ExternalVarDeclaration__Group__4
+            // InternalPoST.g:10920:1: ( rule__ExternalVarDeclaration__Group__3__Impl rule__ExternalVarDeclaration__Group__4 )
+            // InternalPoST.g:10921:2: rule__ExternalVarDeclaration__Group__3__Impl rule__ExternalVarDeclaration__Group__4
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__ExternalVarDeclaration__Group__3__Impl();
 
             state._fsp--;
@@ -36764,22 +36433,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__3__Impl"
-    // InternalPoST.g:11036:1: rule__ExternalVarDeclaration__Group__3__Impl : ( ( rule__ExternalVarDeclaration__Group_3__0 )* ) ;
+    // InternalPoST.g:10928:1: rule__ExternalVarDeclaration__Group__3__Impl : ( ( rule__ExternalVarDeclaration__Group_3__0 )* ) ;
     public final void rule__ExternalVarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11040:1: ( ( ( rule__ExternalVarDeclaration__Group_3__0 )* ) )
-            // InternalPoST.g:11041:1: ( ( rule__ExternalVarDeclaration__Group_3__0 )* )
+            // InternalPoST.g:10932:1: ( ( ( rule__ExternalVarDeclaration__Group_3__0 )* ) )
+            // InternalPoST.g:10933:1: ( ( rule__ExternalVarDeclaration__Group_3__0 )* )
             {
-            // InternalPoST.g:11041:1: ( ( rule__ExternalVarDeclaration__Group_3__0 )* )
-            // InternalPoST.g:11042:2: ( rule__ExternalVarDeclaration__Group_3__0 )*
+            // InternalPoST.g:10933:1: ( ( rule__ExternalVarDeclaration__Group_3__0 )* )
+            // InternalPoST.g:10934:2: ( rule__ExternalVarDeclaration__Group_3__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getGroup_3()); 
             }
-            // InternalPoST.g:11043:2: ( rule__ExternalVarDeclaration__Group_3__0 )*
+            // InternalPoST.g:10935:2: ( rule__ExternalVarDeclaration__Group_3__0 )*
             loop79:
             do {
                 int alt79=2;
@@ -36792,9 +36461,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt79) {
             	case 1 :
-            	    // InternalPoST.g:11043:3: rule__ExternalVarDeclaration__Group_3__0
+            	    // InternalPoST.g:10935:3: rule__ExternalVarDeclaration__Group_3__0
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__ExternalVarDeclaration__Group_3__0();
 
             	    state._fsp--;
@@ -36833,14 +36502,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__4"
-    // InternalPoST.g:11051:1: rule__ExternalVarDeclaration__Group__4 : rule__ExternalVarDeclaration__Group__4__Impl ;
+    // InternalPoST.g:10943:1: rule__ExternalVarDeclaration__Group__4 : rule__ExternalVarDeclaration__Group__4__Impl ;
     public final void rule__ExternalVarDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11055:1: ( rule__ExternalVarDeclaration__Group__4__Impl )
-            // InternalPoST.g:11056:2: rule__ExternalVarDeclaration__Group__4__Impl
+            // InternalPoST.g:10947:1: ( rule__ExternalVarDeclaration__Group__4__Impl )
+            // InternalPoST.g:10948:2: rule__ExternalVarDeclaration__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarDeclaration__Group__4__Impl();
@@ -36866,22 +36535,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group__4__Impl"
-    // InternalPoST.g:11062:1: rule__ExternalVarDeclaration__Group__4__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:10954:1: rule__ExternalVarDeclaration__Group__4__Impl : ( 'END_VAR' ) ;
     public final void rule__ExternalVarDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11066:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:11067:1: ( 'END_VAR' )
+            // InternalPoST.g:10958:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:10959:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:11067:1: ( 'END_VAR' )
-            // InternalPoST.g:11068:2: 'END_VAR'
+            // InternalPoST.g:10959:1: ( 'END_VAR' )
+            // InternalPoST.g:10960:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getEND_VARKeyword_4()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExternalVarDeclarationAccess().getEND_VARKeyword_4()); 
             }
@@ -36907,14 +36576,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group_3__0"
-    // InternalPoST.g:11078:1: rule__ExternalVarDeclaration__Group_3__0 : rule__ExternalVarDeclaration__Group_3__0__Impl rule__ExternalVarDeclaration__Group_3__1 ;
+    // InternalPoST.g:10970:1: rule__ExternalVarDeclaration__Group_3__0 : rule__ExternalVarDeclaration__Group_3__0__Impl rule__ExternalVarDeclaration__Group_3__1 ;
     public final void rule__ExternalVarDeclaration__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11082:1: ( rule__ExternalVarDeclaration__Group_3__0__Impl rule__ExternalVarDeclaration__Group_3__1 )
-            // InternalPoST.g:11083:2: rule__ExternalVarDeclaration__Group_3__0__Impl rule__ExternalVarDeclaration__Group_3__1
+            // InternalPoST.g:10974:1: ( rule__ExternalVarDeclaration__Group_3__0__Impl rule__ExternalVarDeclaration__Group_3__1 )
+            // InternalPoST.g:10975:2: rule__ExternalVarDeclaration__Group_3__0__Impl rule__ExternalVarDeclaration__Group_3__1
             {
             pushFollow(FOLLOW_11);
             rule__ExternalVarDeclaration__Group_3__0__Impl();
@@ -36945,23 +36614,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group_3__0__Impl"
-    // InternalPoST.g:11090:1: rule__ExternalVarDeclaration__Group_3__0__Impl : ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) ) ;
+    // InternalPoST.g:10982:1: rule__ExternalVarDeclaration__Group_3__0__Impl : ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) ) ;
     public final void rule__ExternalVarDeclaration__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11094:1: ( ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) ) )
-            // InternalPoST.g:11095:1: ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) )
+            // InternalPoST.g:10986:1: ( ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) ) )
+            // InternalPoST.g:10987:1: ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) )
             {
-            // InternalPoST.g:11095:1: ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) )
-            // InternalPoST.g:11096:2: ( rule__ExternalVarDeclaration__VarsAssignment_3_0 )
+            // InternalPoST.g:10987:1: ( ( rule__ExternalVarDeclaration__VarsAssignment_3_0 ) )
+            // InternalPoST.g:10988:2: ( rule__ExternalVarDeclaration__VarsAssignment_3_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getVarsAssignment_3_0()); 
             }
-            // InternalPoST.g:11097:2: ( rule__ExternalVarDeclaration__VarsAssignment_3_0 )
-            // InternalPoST.g:11097:3: rule__ExternalVarDeclaration__VarsAssignment_3_0
+            // InternalPoST.g:10989:2: ( rule__ExternalVarDeclaration__VarsAssignment_3_0 )
+            // InternalPoST.g:10989:3: rule__ExternalVarDeclaration__VarsAssignment_3_0
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarDeclaration__VarsAssignment_3_0();
@@ -36996,14 +36665,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group_3__1"
-    // InternalPoST.g:11105:1: rule__ExternalVarDeclaration__Group_3__1 : rule__ExternalVarDeclaration__Group_3__1__Impl ;
+    // InternalPoST.g:10997:1: rule__ExternalVarDeclaration__Group_3__1 : rule__ExternalVarDeclaration__Group_3__1__Impl ;
     public final void rule__ExternalVarDeclaration__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11109:1: ( rule__ExternalVarDeclaration__Group_3__1__Impl )
-            // InternalPoST.g:11110:2: rule__ExternalVarDeclaration__Group_3__1__Impl
+            // InternalPoST.g:11001:1: ( rule__ExternalVarDeclaration__Group_3__1__Impl )
+            // InternalPoST.g:11002:2: rule__ExternalVarDeclaration__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExternalVarDeclaration__Group_3__1__Impl();
@@ -37029,17 +36698,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__Group_3__1__Impl"
-    // InternalPoST.g:11116:1: rule__ExternalVarDeclaration__Group_3__1__Impl : ( ';' ) ;
+    // InternalPoST.g:11008:1: rule__ExternalVarDeclaration__Group_3__1__Impl : ( ';' ) ;
     public final void rule__ExternalVarDeclaration__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11120:1: ( ( ';' ) )
-            // InternalPoST.g:11121:1: ( ';' )
+            // InternalPoST.g:11012:1: ( ( ';' ) )
+            // InternalPoST.g:11013:1: ( ';' )
             {
-            // InternalPoST.g:11121:1: ( ';' )
-            // InternalPoST.g:11122:2: ';'
+            // InternalPoST.g:11013:1: ( ';' )
+            // InternalPoST.g:11014:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getSemicolonKeyword_3_1()); 
@@ -37070,16 +36739,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__0"
-    // InternalPoST.g:11132:1: rule__GlobalVarInitDeclaration__Group__0 : rule__GlobalVarInitDeclaration__Group__0__Impl rule__GlobalVarInitDeclaration__Group__1 ;
+    // InternalPoST.g:11024:1: rule__GlobalVarInitDeclaration__Group__0 : rule__GlobalVarInitDeclaration__Group__0__Impl rule__GlobalVarInitDeclaration__Group__1 ;
     public final void rule__GlobalVarInitDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11136:1: ( rule__GlobalVarInitDeclaration__Group__0__Impl rule__GlobalVarInitDeclaration__Group__1 )
-            // InternalPoST.g:11137:2: rule__GlobalVarInitDeclaration__Group__0__Impl rule__GlobalVarInitDeclaration__Group__1
+            // InternalPoST.g:11028:1: ( rule__GlobalVarInitDeclaration__Group__0__Impl rule__GlobalVarInitDeclaration__Group__1 )
+            // InternalPoST.g:11029:2: rule__GlobalVarInitDeclaration__Group__0__Impl rule__GlobalVarInitDeclaration__Group__1
             {
-            pushFollow(FOLLOW_97);
+            pushFollow(FOLLOW_95);
             rule__GlobalVarInitDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -37108,23 +36777,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__0__Impl"
-    // InternalPoST.g:11144:1: rule__GlobalVarInitDeclaration__Group__0__Impl : ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) ) ;
+    // InternalPoST.g:11036:1: rule__GlobalVarInitDeclaration__Group__0__Impl : ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) ) ;
     public final void rule__GlobalVarInitDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11148:1: ( ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) ) )
-            // InternalPoST.g:11149:1: ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:11040:1: ( ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) ) )
+            // InternalPoST.g:11041:1: ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) )
             {
-            // InternalPoST.g:11149:1: ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) )
-            // InternalPoST.g:11150:2: ( rule__GlobalVarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:11041:1: ( ( rule__GlobalVarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:11042:2: ( rule__GlobalVarInitDeclaration__VarListAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getVarListAssignment_0()); 
             }
-            // InternalPoST.g:11151:2: ( rule__GlobalVarInitDeclaration__VarListAssignment_0 )
-            // InternalPoST.g:11151:3: rule__GlobalVarInitDeclaration__VarListAssignment_0
+            // InternalPoST.g:11043:2: ( rule__GlobalVarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:11043:3: rule__GlobalVarInitDeclaration__VarListAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarInitDeclaration__VarListAssignment_0();
@@ -37159,16 +36828,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__1"
-    // InternalPoST.g:11159:1: rule__GlobalVarInitDeclaration__Group__1 : rule__GlobalVarInitDeclaration__Group__1__Impl rule__GlobalVarInitDeclaration__Group__2 ;
+    // InternalPoST.g:11051:1: rule__GlobalVarInitDeclaration__Group__1 : rule__GlobalVarInitDeclaration__Group__1__Impl rule__GlobalVarInitDeclaration__Group__2 ;
     public final void rule__GlobalVarInitDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11163:1: ( rule__GlobalVarInitDeclaration__Group__1__Impl rule__GlobalVarInitDeclaration__Group__2 )
-            // InternalPoST.g:11164:2: rule__GlobalVarInitDeclaration__Group__1__Impl rule__GlobalVarInitDeclaration__Group__2
+            // InternalPoST.g:11055:1: ( rule__GlobalVarInitDeclaration__Group__1__Impl rule__GlobalVarInitDeclaration__Group__2 )
+            // InternalPoST.g:11056:2: rule__GlobalVarInitDeclaration__Group__1__Impl rule__GlobalVarInitDeclaration__Group__2
             {
-            pushFollow(FOLLOW_98);
+            pushFollow(FOLLOW_96);
             rule__GlobalVarInitDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -37197,22 +36866,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__1__Impl"
-    // InternalPoST.g:11171:1: rule__GlobalVarInitDeclaration__Group__1__Impl : ( 'AT' ) ;
+    // InternalPoST.g:11063:1: rule__GlobalVarInitDeclaration__Group__1__Impl : ( 'AT' ) ;
     public final void rule__GlobalVarInitDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11175:1: ( ( 'AT' ) )
-            // InternalPoST.g:11176:1: ( 'AT' )
+            // InternalPoST.g:11067:1: ( ( 'AT' ) )
+            // InternalPoST.g:11068:1: ( 'AT' )
             {
-            // InternalPoST.g:11176:1: ( 'AT' )
-            // InternalPoST.g:11177:2: 'AT'
+            // InternalPoST.g:11068:1: ( 'AT' )
+            // InternalPoST.g:11069:2: 'AT'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getATKeyword_1()); 
             }
-            match(input,111,FOLLOW_2); if (state.failed) return ;
+            match(input,109,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getGlobalVarInitDeclarationAccess().getATKeyword_1()); 
             }
@@ -37238,14 +36907,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__2"
-    // InternalPoST.g:11186:1: rule__GlobalVarInitDeclaration__Group__2 : rule__GlobalVarInitDeclaration__Group__2__Impl rule__GlobalVarInitDeclaration__Group__3 ;
+    // InternalPoST.g:11078:1: rule__GlobalVarInitDeclaration__Group__2 : rule__GlobalVarInitDeclaration__Group__2__Impl rule__GlobalVarInitDeclaration__Group__3 ;
     public final void rule__GlobalVarInitDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11190:1: ( rule__GlobalVarInitDeclaration__Group__2__Impl rule__GlobalVarInitDeclaration__Group__3 )
-            // InternalPoST.g:11191:2: rule__GlobalVarInitDeclaration__Group__2__Impl rule__GlobalVarInitDeclaration__Group__3
+            // InternalPoST.g:11082:1: ( rule__GlobalVarInitDeclaration__Group__2__Impl rule__GlobalVarInitDeclaration__Group__3 )
+            // InternalPoST.g:11083:2: rule__GlobalVarInitDeclaration__Group__2__Impl rule__GlobalVarInitDeclaration__Group__3
             {
             pushFollow(FOLLOW_26);
             rule__GlobalVarInitDeclaration__Group__2__Impl();
@@ -37276,23 +36945,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__2__Impl"
-    // InternalPoST.g:11198:1: rule__GlobalVarInitDeclaration__Group__2__Impl : ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) ) ;
+    // InternalPoST.g:11090:1: rule__GlobalVarInitDeclaration__Group__2__Impl : ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) ) ;
     public final void rule__GlobalVarInitDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11202:1: ( ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) ) )
-            // InternalPoST.g:11203:1: ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) )
+            // InternalPoST.g:11094:1: ( ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) ) )
+            // InternalPoST.g:11095:1: ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) )
             {
-            // InternalPoST.g:11203:1: ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) )
-            // InternalPoST.g:11204:2: ( rule__GlobalVarInitDeclaration__LocationAssignment_2 )
+            // InternalPoST.g:11095:1: ( ( rule__GlobalVarInitDeclaration__LocationAssignment_2 ) )
+            // InternalPoST.g:11096:2: ( rule__GlobalVarInitDeclaration__LocationAssignment_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getLocationAssignment_2()); 
             }
-            // InternalPoST.g:11205:2: ( rule__GlobalVarInitDeclaration__LocationAssignment_2 )
-            // InternalPoST.g:11205:3: rule__GlobalVarInitDeclaration__LocationAssignment_2
+            // InternalPoST.g:11097:2: ( rule__GlobalVarInitDeclaration__LocationAssignment_2 )
+            // InternalPoST.g:11097:3: rule__GlobalVarInitDeclaration__LocationAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarInitDeclaration__LocationAssignment_2();
@@ -37327,16 +36996,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__3"
-    // InternalPoST.g:11213:1: rule__GlobalVarInitDeclaration__Group__3 : rule__GlobalVarInitDeclaration__Group__3__Impl rule__GlobalVarInitDeclaration__Group__4 ;
+    // InternalPoST.g:11105:1: rule__GlobalVarInitDeclaration__Group__3 : rule__GlobalVarInitDeclaration__Group__3__Impl rule__GlobalVarInitDeclaration__Group__4 ;
     public final void rule__GlobalVarInitDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11217:1: ( rule__GlobalVarInitDeclaration__Group__3__Impl rule__GlobalVarInitDeclaration__Group__4 )
-            // InternalPoST.g:11218:2: rule__GlobalVarInitDeclaration__Group__3__Impl rule__GlobalVarInitDeclaration__Group__4
+            // InternalPoST.g:11109:1: ( rule__GlobalVarInitDeclaration__Group__3__Impl rule__GlobalVarInitDeclaration__Group__4 )
+            // InternalPoST.g:11110:2: rule__GlobalVarInitDeclaration__Group__3__Impl rule__GlobalVarInitDeclaration__Group__4
             {
-            pushFollow(FOLLOW_86);
+            pushFollow(FOLLOW_84);
             rule__GlobalVarInitDeclaration__Group__3__Impl();
 
             state._fsp--;
@@ -37365,17 +37034,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__3__Impl"
-    // InternalPoST.g:11225:1: rule__GlobalVarInitDeclaration__Group__3__Impl : ( ':' ) ;
+    // InternalPoST.g:11117:1: rule__GlobalVarInitDeclaration__Group__3__Impl : ( ':' ) ;
     public final void rule__GlobalVarInitDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11229:1: ( ( ':' ) )
-            // InternalPoST.g:11230:1: ( ':' )
+            // InternalPoST.g:11121:1: ( ( ':' ) )
+            // InternalPoST.g:11122:1: ( ':' )
             {
-            // InternalPoST.g:11230:1: ( ':' )
-            // InternalPoST.g:11231:2: ':'
+            // InternalPoST.g:11122:1: ( ':' )
+            // InternalPoST.g:11123:2: ':'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getColonKeyword_3()); 
@@ -37406,14 +37075,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__4"
-    // InternalPoST.g:11240:1: rule__GlobalVarInitDeclaration__Group__4 : rule__GlobalVarInitDeclaration__Group__4__Impl ;
+    // InternalPoST.g:11132:1: rule__GlobalVarInitDeclaration__Group__4 : rule__GlobalVarInitDeclaration__Group__4__Impl ;
     public final void rule__GlobalVarInitDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11244:1: ( rule__GlobalVarInitDeclaration__Group__4__Impl )
-            // InternalPoST.g:11245:2: rule__GlobalVarInitDeclaration__Group__4__Impl
+            // InternalPoST.g:11136:1: ( rule__GlobalVarInitDeclaration__Group__4__Impl )
+            // InternalPoST.g:11137:2: rule__GlobalVarInitDeclaration__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarInitDeclaration__Group__4__Impl();
@@ -37439,23 +37108,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__Group__4__Impl"
-    // InternalPoST.g:11251:1: rule__GlobalVarInitDeclaration__Group__4__Impl : ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) ) ;
+    // InternalPoST.g:11143:1: rule__GlobalVarInitDeclaration__Group__4__Impl : ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) ) ;
     public final void rule__GlobalVarInitDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11255:1: ( ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) ) )
-            // InternalPoST.g:11256:1: ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) )
+            // InternalPoST.g:11147:1: ( ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) ) )
+            // InternalPoST.g:11148:1: ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) )
             {
-            // InternalPoST.g:11256:1: ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) )
-            // InternalPoST.g:11257:2: ( rule__GlobalVarInitDeclaration__TypeAssignment_4 )
+            // InternalPoST.g:11148:1: ( ( rule__GlobalVarInitDeclaration__TypeAssignment_4 ) )
+            // InternalPoST.g:11149:2: ( rule__GlobalVarInitDeclaration__TypeAssignment_4 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getTypeAssignment_4()); 
             }
-            // InternalPoST.g:11258:2: ( rule__GlobalVarInitDeclaration__TypeAssignment_4 )
-            // InternalPoST.g:11258:3: rule__GlobalVarInitDeclaration__TypeAssignment_4
+            // InternalPoST.g:11150:2: ( rule__GlobalVarInitDeclaration__TypeAssignment_4 )
+            // InternalPoST.g:11150:3: rule__GlobalVarInitDeclaration__TypeAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarInitDeclaration__TypeAssignment_4();
@@ -37490,16 +37159,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__0"
-    // InternalPoST.g:11267:1: rule__GlobalVarDeclaration__Group__0 : rule__GlobalVarDeclaration__Group__0__Impl rule__GlobalVarDeclaration__Group__1 ;
+    // InternalPoST.g:11159:1: rule__GlobalVarDeclaration__Group__0 : rule__GlobalVarDeclaration__Group__0__Impl rule__GlobalVarDeclaration__Group__1 ;
     public final void rule__GlobalVarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11271:1: ( rule__GlobalVarDeclaration__Group__0__Impl rule__GlobalVarDeclaration__Group__1 )
-            // InternalPoST.g:11272:2: rule__GlobalVarDeclaration__Group__0__Impl rule__GlobalVarDeclaration__Group__1
+            // InternalPoST.g:11163:1: ( rule__GlobalVarDeclaration__Group__0__Impl rule__GlobalVarDeclaration__Group__1 )
+            // InternalPoST.g:11164:2: rule__GlobalVarDeclaration__Group__0__Impl rule__GlobalVarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_99);
+            pushFollow(FOLLOW_97);
             rule__GlobalVarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -37528,23 +37197,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__0__Impl"
-    // InternalPoST.g:11279:1: rule__GlobalVarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:11171:1: rule__GlobalVarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__GlobalVarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11283:1: ( ( () ) )
-            // InternalPoST.g:11284:1: ( () )
+            // InternalPoST.g:11175:1: ( ( () ) )
+            // InternalPoST.g:11176:1: ( () )
             {
-            // InternalPoST.g:11284:1: ( () )
-            // InternalPoST.g:11285:2: ()
+            // InternalPoST.g:11176:1: ( () )
+            // InternalPoST.g:11177:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getGlobalVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:11286:2: ()
-            // InternalPoST.g:11286:3: 
+            // InternalPoST.g:11178:2: ()
+            // InternalPoST.g:11178:3: 
             {
             }
 
@@ -37569,16 +37238,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__1"
-    // InternalPoST.g:11294:1: rule__GlobalVarDeclaration__Group__1 : rule__GlobalVarDeclaration__Group__1__Impl rule__GlobalVarDeclaration__Group__2 ;
+    // InternalPoST.g:11186:1: rule__GlobalVarDeclaration__Group__1 : rule__GlobalVarDeclaration__Group__1__Impl rule__GlobalVarDeclaration__Group__2 ;
     public final void rule__GlobalVarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11298:1: ( rule__GlobalVarDeclaration__Group__1__Impl rule__GlobalVarDeclaration__Group__2 )
-            // InternalPoST.g:11299:2: rule__GlobalVarDeclaration__Group__1__Impl rule__GlobalVarDeclaration__Group__2
+            // InternalPoST.g:11190:1: ( rule__GlobalVarDeclaration__Group__1__Impl rule__GlobalVarDeclaration__Group__2 )
+            // InternalPoST.g:11191:2: rule__GlobalVarDeclaration__Group__1__Impl rule__GlobalVarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__GlobalVarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -37607,22 +37276,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__1__Impl"
-    // InternalPoST.g:11306:1: rule__GlobalVarDeclaration__Group__1__Impl : ( 'VAR_GLOBAL' ) ;
+    // InternalPoST.g:11198:1: rule__GlobalVarDeclaration__Group__1__Impl : ( 'VAR_GLOBAL' ) ;
     public final void rule__GlobalVarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11310:1: ( ( 'VAR_GLOBAL' ) )
-            // InternalPoST.g:11311:1: ( 'VAR_GLOBAL' )
+            // InternalPoST.g:11202:1: ( ( 'VAR_GLOBAL' ) )
+            // InternalPoST.g:11203:1: ( 'VAR_GLOBAL' )
             {
-            // InternalPoST.g:11311:1: ( 'VAR_GLOBAL' )
-            // InternalPoST.g:11312:2: 'VAR_GLOBAL'
+            // InternalPoST.g:11203:1: ( 'VAR_GLOBAL' )
+            // InternalPoST.g:11204:2: 'VAR_GLOBAL'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getVAR_GLOBALKeyword_1()); 
             }
-            match(input,112,FOLLOW_2); if (state.failed) return ;
+            match(input,110,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getGlobalVarDeclarationAccess().getVAR_GLOBALKeyword_1()); 
             }
@@ -37648,16 +37317,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__2"
-    // InternalPoST.g:11321:1: rule__GlobalVarDeclaration__Group__2 : rule__GlobalVarDeclaration__Group__2__Impl rule__GlobalVarDeclaration__Group__3 ;
+    // InternalPoST.g:11213:1: rule__GlobalVarDeclaration__Group__2 : rule__GlobalVarDeclaration__Group__2__Impl rule__GlobalVarDeclaration__Group__3 ;
     public final void rule__GlobalVarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11325:1: ( rule__GlobalVarDeclaration__Group__2__Impl rule__GlobalVarDeclaration__Group__3 )
-            // InternalPoST.g:11326:2: rule__GlobalVarDeclaration__Group__2__Impl rule__GlobalVarDeclaration__Group__3
+            // InternalPoST.g:11217:1: ( rule__GlobalVarDeclaration__Group__2__Impl rule__GlobalVarDeclaration__Group__3 )
+            // InternalPoST.g:11218:2: rule__GlobalVarDeclaration__Group__2__Impl rule__GlobalVarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__GlobalVarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -37686,22 +37355,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__2__Impl"
-    // InternalPoST.g:11333:1: rule__GlobalVarDeclaration__Group__2__Impl : ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? ) ;
+    // InternalPoST.g:11225:1: rule__GlobalVarDeclaration__Group__2__Impl : ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? ) ;
     public final void rule__GlobalVarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11337:1: ( ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? ) )
-            // InternalPoST.g:11338:1: ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? )
+            // InternalPoST.g:11229:1: ( ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? ) )
+            // InternalPoST.g:11230:1: ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? )
             {
-            // InternalPoST.g:11338:1: ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? )
-            // InternalPoST.g:11339:2: ( rule__GlobalVarDeclaration__ConstAssignment_2 )?
+            // InternalPoST.g:11230:1: ( ( rule__GlobalVarDeclaration__ConstAssignment_2 )? )
+            // InternalPoST.g:11231:2: ( rule__GlobalVarDeclaration__ConstAssignment_2 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getConstAssignment_2()); 
             }
-            // InternalPoST.g:11340:2: ( rule__GlobalVarDeclaration__ConstAssignment_2 )?
+            // InternalPoST.g:11232:2: ( rule__GlobalVarDeclaration__ConstAssignment_2 )?
             int alt80=2;
             int LA80_0 = input.LA(1);
 
@@ -37710,7 +37379,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             }
             switch (alt80) {
                 case 1 :
-                    // InternalPoST.g:11340:3: rule__GlobalVarDeclaration__ConstAssignment_2
+                    // InternalPoST.g:11232:3: rule__GlobalVarDeclaration__ConstAssignment_2
                     {
                     pushFollow(FOLLOW_2);
                     rule__GlobalVarDeclaration__ConstAssignment_2();
@@ -37748,16 +37417,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__3"
-    // InternalPoST.g:11348:1: rule__GlobalVarDeclaration__Group__3 : rule__GlobalVarDeclaration__Group__3__Impl rule__GlobalVarDeclaration__Group__4 ;
+    // InternalPoST.g:11240:1: rule__GlobalVarDeclaration__Group__3 : rule__GlobalVarDeclaration__Group__3__Impl rule__GlobalVarDeclaration__Group__4 ;
     public final void rule__GlobalVarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11352:1: ( rule__GlobalVarDeclaration__Group__3__Impl rule__GlobalVarDeclaration__Group__4 )
-            // InternalPoST.g:11353:2: rule__GlobalVarDeclaration__Group__3__Impl rule__GlobalVarDeclaration__Group__4
+            // InternalPoST.g:11244:1: ( rule__GlobalVarDeclaration__Group__3__Impl rule__GlobalVarDeclaration__Group__4 )
+            // InternalPoST.g:11245:2: rule__GlobalVarDeclaration__Group__3__Impl rule__GlobalVarDeclaration__Group__4
             {
-            pushFollow(FOLLOW_94);
+            pushFollow(FOLLOW_92);
             rule__GlobalVarDeclaration__Group__3__Impl();
 
             state._fsp--;
@@ -37786,22 +37455,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__3__Impl"
-    // InternalPoST.g:11360:1: rule__GlobalVarDeclaration__Group__3__Impl : ( ( rule__GlobalVarDeclaration__Alternatives_3 )* ) ;
+    // InternalPoST.g:11252:1: rule__GlobalVarDeclaration__Group__3__Impl : ( ( rule__GlobalVarDeclaration__Alternatives_3 )* ) ;
     public final void rule__GlobalVarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11364:1: ( ( ( rule__GlobalVarDeclaration__Alternatives_3 )* ) )
-            // InternalPoST.g:11365:1: ( ( rule__GlobalVarDeclaration__Alternatives_3 )* )
+            // InternalPoST.g:11256:1: ( ( ( rule__GlobalVarDeclaration__Alternatives_3 )* ) )
+            // InternalPoST.g:11257:1: ( ( rule__GlobalVarDeclaration__Alternatives_3 )* )
             {
-            // InternalPoST.g:11365:1: ( ( rule__GlobalVarDeclaration__Alternatives_3 )* )
-            // InternalPoST.g:11366:2: ( rule__GlobalVarDeclaration__Alternatives_3 )*
+            // InternalPoST.g:11257:1: ( ( rule__GlobalVarDeclaration__Alternatives_3 )* )
+            // InternalPoST.g:11258:2: ( rule__GlobalVarDeclaration__Alternatives_3 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getAlternatives_3()); 
             }
-            // InternalPoST.g:11367:2: ( rule__GlobalVarDeclaration__Alternatives_3 )*
+            // InternalPoST.g:11259:2: ( rule__GlobalVarDeclaration__Alternatives_3 )*
             loop81:
             do {
                 int alt81=2;
@@ -37814,9 +37483,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt81) {
             	case 1 :
-            	    // InternalPoST.g:11367:3: rule__GlobalVarDeclaration__Alternatives_3
+            	    // InternalPoST.g:11259:3: rule__GlobalVarDeclaration__Alternatives_3
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__GlobalVarDeclaration__Alternatives_3();
 
             	    state._fsp--;
@@ -37855,14 +37524,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__4"
-    // InternalPoST.g:11375:1: rule__GlobalVarDeclaration__Group__4 : rule__GlobalVarDeclaration__Group__4__Impl ;
+    // InternalPoST.g:11267:1: rule__GlobalVarDeclaration__Group__4 : rule__GlobalVarDeclaration__Group__4__Impl ;
     public final void rule__GlobalVarDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11379:1: ( rule__GlobalVarDeclaration__Group__4__Impl )
-            // InternalPoST.g:11380:2: rule__GlobalVarDeclaration__Group__4__Impl
+            // InternalPoST.g:11271:1: ( rule__GlobalVarDeclaration__Group__4__Impl )
+            // InternalPoST.g:11272:2: rule__GlobalVarDeclaration__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarDeclaration__Group__4__Impl();
@@ -37888,22 +37557,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group__4__Impl"
-    // InternalPoST.g:11386:1: rule__GlobalVarDeclaration__Group__4__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:11278:1: rule__GlobalVarDeclaration__Group__4__Impl : ( 'END_VAR' ) ;
     public final void rule__GlobalVarDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11390:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:11391:1: ( 'END_VAR' )
+            // InternalPoST.g:11282:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:11283:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:11391:1: ( 'END_VAR' )
-            // InternalPoST.g:11392:2: 'END_VAR'
+            // InternalPoST.g:11283:1: ( 'END_VAR' )
+            // InternalPoST.g:11284:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getEND_VARKeyword_4()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getGlobalVarDeclarationAccess().getEND_VARKeyword_4()); 
             }
@@ -37929,14 +37598,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_0__0"
-    // InternalPoST.g:11402:1: rule__GlobalVarDeclaration__Group_3_0__0 : rule__GlobalVarDeclaration__Group_3_0__0__Impl rule__GlobalVarDeclaration__Group_3_0__1 ;
+    // InternalPoST.g:11294:1: rule__GlobalVarDeclaration__Group_3_0__0 : rule__GlobalVarDeclaration__Group_3_0__0__Impl rule__GlobalVarDeclaration__Group_3_0__1 ;
     public final void rule__GlobalVarDeclaration__Group_3_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11406:1: ( rule__GlobalVarDeclaration__Group_3_0__0__Impl rule__GlobalVarDeclaration__Group_3_0__1 )
-            // InternalPoST.g:11407:2: rule__GlobalVarDeclaration__Group_3_0__0__Impl rule__GlobalVarDeclaration__Group_3_0__1
+            // InternalPoST.g:11298:1: ( rule__GlobalVarDeclaration__Group_3_0__0__Impl rule__GlobalVarDeclaration__Group_3_0__1 )
+            // InternalPoST.g:11299:2: rule__GlobalVarDeclaration__Group_3_0__0__Impl rule__GlobalVarDeclaration__Group_3_0__1
             {
             pushFollow(FOLLOW_11);
             rule__GlobalVarDeclaration__Group_3_0__0__Impl();
@@ -37967,23 +37636,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_0__0__Impl"
-    // InternalPoST.g:11414:1: rule__GlobalVarDeclaration__Group_3_0__0__Impl : ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) ) ;
+    // InternalPoST.g:11306:1: rule__GlobalVarDeclaration__Group_3_0__0__Impl : ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) ) ;
     public final void rule__GlobalVarDeclaration__Group_3_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11418:1: ( ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) ) )
-            // InternalPoST.g:11419:1: ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) )
+            // InternalPoST.g:11310:1: ( ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) ) )
+            // InternalPoST.g:11311:1: ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) )
             {
-            // InternalPoST.g:11419:1: ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) )
-            // InternalPoST.g:11420:2: ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 )
+            // InternalPoST.g:11311:1: ( ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 ) )
+            // InternalPoST.g:11312:2: ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getVarsSimpleAssignment_3_0_0()); 
             }
-            // InternalPoST.g:11421:2: ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 )
-            // InternalPoST.g:11421:3: rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0
+            // InternalPoST.g:11313:2: ( rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 )
+            // InternalPoST.g:11313:3: rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0();
@@ -38018,14 +37687,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_0__1"
-    // InternalPoST.g:11429:1: rule__GlobalVarDeclaration__Group_3_0__1 : rule__GlobalVarDeclaration__Group_3_0__1__Impl ;
+    // InternalPoST.g:11321:1: rule__GlobalVarDeclaration__Group_3_0__1 : rule__GlobalVarDeclaration__Group_3_0__1__Impl ;
     public final void rule__GlobalVarDeclaration__Group_3_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11433:1: ( rule__GlobalVarDeclaration__Group_3_0__1__Impl )
-            // InternalPoST.g:11434:2: rule__GlobalVarDeclaration__Group_3_0__1__Impl
+            // InternalPoST.g:11325:1: ( rule__GlobalVarDeclaration__Group_3_0__1__Impl )
+            // InternalPoST.g:11326:2: rule__GlobalVarDeclaration__Group_3_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarDeclaration__Group_3_0__1__Impl();
@@ -38051,17 +37720,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_0__1__Impl"
-    // InternalPoST.g:11440:1: rule__GlobalVarDeclaration__Group_3_0__1__Impl : ( ';' ) ;
+    // InternalPoST.g:11332:1: rule__GlobalVarDeclaration__Group_3_0__1__Impl : ( ';' ) ;
     public final void rule__GlobalVarDeclaration__Group_3_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11444:1: ( ( ';' ) )
-            // InternalPoST.g:11445:1: ( ';' )
+            // InternalPoST.g:11336:1: ( ( ';' ) )
+            // InternalPoST.g:11337:1: ( ';' )
             {
-            // InternalPoST.g:11445:1: ( ';' )
-            // InternalPoST.g:11446:2: ';'
+            // InternalPoST.g:11337:1: ( ';' )
+            // InternalPoST.g:11338:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getSemicolonKeyword_3_0_1()); 
@@ -38092,14 +37761,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_1__0"
-    // InternalPoST.g:11456:1: rule__GlobalVarDeclaration__Group_3_1__0 : rule__GlobalVarDeclaration__Group_3_1__0__Impl rule__GlobalVarDeclaration__Group_3_1__1 ;
+    // InternalPoST.g:11348:1: rule__GlobalVarDeclaration__Group_3_1__0 : rule__GlobalVarDeclaration__Group_3_1__0__Impl rule__GlobalVarDeclaration__Group_3_1__1 ;
     public final void rule__GlobalVarDeclaration__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11460:1: ( rule__GlobalVarDeclaration__Group_3_1__0__Impl rule__GlobalVarDeclaration__Group_3_1__1 )
-            // InternalPoST.g:11461:2: rule__GlobalVarDeclaration__Group_3_1__0__Impl rule__GlobalVarDeclaration__Group_3_1__1
+            // InternalPoST.g:11352:1: ( rule__GlobalVarDeclaration__Group_3_1__0__Impl rule__GlobalVarDeclaration__Group_3_1__1 )
+            // InternalPoST.g:11353:2: rule__GlobalVarDeclaration__Group_3_1__0__Impl rule__GlobalVarDeclaration__Group_3_1__1
             {
             pushFollow(FOLLOW_11);
             rule__GlobalVarDeclaration__Group_3_1__0__Impl();
@@ -38130,23 +37799,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_1__0__Impl"
-    // InternalPoST.g:11468:1: rule__GlobalVarDeclaration__Group_3_1__0__Impl : ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) ) ;
+    // InternalPoST.g:11360:1: rule__GlobalVarDeclaration__Group_3_1__0__Impl : ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) ) ;
     public final void rule__GlobalVarDeclaration__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11472:1: ( ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) ) )
-            // InternalPoST.g:11473:1: ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) )
+            // InternalPoST.g:11364:1: ( ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) ) )
+            // InternalPoST.g:11365:1: ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) )
             {
-            // InternalPoST.g:11473:1: ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) )
-            // InternalPoST.g:11474:2: ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 )
+            // InternalPoST.g:11365:1: ( ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 ) )
+            // InternalPoST.g:11366:2: ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getVarsAsAssignment_3_1_0()); 
             }
-            // InternalPoST.g:11475:2: ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 )
-            // InternalPoST.g:11475:3: rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0
+            // InternalPoST.g:11367:2: ( rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 )
+            // InternalPoST.g:11367:3: rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0();
@@ -38181,14 +37850,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_1__1"
-    // InternalPoST.g:11483:1: rule__GlobalVarDeclaration__Group_3_1__1 : rule__GlobalVarDeclaration__Group_3_1__1__Impl ;
+    // InternalPoST.g:11375:1: rule__GlobalVarDeclaration__Group_3_1__1 : rule__GlobalVarDeclaration__Group_3_1__1__Impl ;
     public final void rule__GlobalVarDeclaration__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11487:1: ( rule__GlobalVarDeclaration__Group_3_1__1__Impl )
-            // InternalPoST.g:11488:2: rule__GlobalVarDeclaration__Group_3_1__1__Impl
+            // InternalPoST.g:11379:1: ( rule__GlobalVarDeclaration__Group_3_1__1__Impl )
+            // InternalPoST.g:11380:2: rule__GlobalVarDeclaration__Group_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__GlobalVarDeclaration__Group_3_1__1__Impl();
@@ -38214,17 +37883,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__Group_3_1__1__Impl"
-    // InternalPoST.g:11494:1: rule__GlobalVarDeclaration__Group_3_1__1__Impl : ( ';' ) ;
+    // InternalPoST.g:11386:1: rule__GlobalVarDeclaration__Group_3_1__1__Impl : ( ';' ) ;
     public final void rule__GlobalVarDeclaration__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11498:1: ( ( ';' ) )
-            // InternalPoST.g:11499:1: ( ';' )
+            // InternalPoST.g:11390:1: ( ( ';' ) )
+            // InternalPoST.g:11391:1: ( ';' )
             {
-            // InternalPoST.g:11499:1: ( ';' )
-            // InternalPoST.g:11500:2: ';'
+            // InternalPoST.g:11391:1: ( ';' )
+            // InternalPoST.g:11392:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getSemicolonKeyword_3_1_1()); 
@@ -38255,14 +37924,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group__0"
-    // InternalPoST.g:11510:1: rule__ProcessVarList__Group__0 : rule__ProcessVarList__Group__0__Impl rule__ProcessVarList__Group__1 ;
+    // InternalPoST.g:11402:1: rule__ProcessVarList__Group__0 : rule__ProcessVarList__Group__0__Impl rule__ProcessVarList__Group__1 ;
     public final void rule__ProcessVarList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11514:1: ( rule__ProcessVarList__Group__0__Impl rule__ProcessVarList__Group__1 )
-            // InternalPoST.g:11515:2: rule__ProcessVarList__Group__0__Impl rule__ProcessVarList__Group__1
+            // InternalPoST.g:11406:1: ( rule__ProcessVarList__Group__0__Impl rule__ProcessVarList__Group__1 )
+            // InternalPoST.g:11407:2: rule__ProcessVarList__Group__0__Impl rule__ProcessVarList__Group__1
             {
             pushFollow(FOLLOW_17);
             rule__ProcessVarList__Group__0__Impl();
@@ -38293,23 +37962,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group__0__Impl"
-    // InternalPoST.g:11522:1: rule__ProcessVarList__Group__0__Impl : ( ( rule__ProcessVarList__VarsAssignment_0 ) ) ;
+    // InternalPoST.g:11414:1: rule__ProcessVarList__Group__0__Impl : ( ( rule__ProcessVarList__VarsAssignment_0 ) ) ;
     public final void rule__ProcessVarList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11526:1: ( ( ( rule__ProcessVarList__VarsAssignment_0 ) ) )
-            // InternalPoST.g:11527:1: ( ( rule__ProcessVarList__VarsAssignment_0 ) )
+            // InternalPoST.g:11418:1: ( ( ( rule__ProcessVarList__VarsAssignment_0 ) ) )
+            // InternalPoST.g:11419:1: ( ( rule__ProcessVarList__VarsAssignment_0 ) )
             {
-            // InternalPoST.g:11527:1: ( ( rule__ProcessVarList__VarsAssignment_0 ) )
-            // InternalPoST.g:11528:2: ( rule__ProcessVarList__VarsAssignment_0 )
+            // InternalPoST.g:11419:1: ( ( rule__ProcessVarList__VarsAssignment_0 ) )
+            // InternalPoST.g:11420:2: ( rule__ProcessVarList__VarsAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListAccess().getVarsAssignment_0()); 
             }
-            // InternalPoST.g:11529:2: ( rule__ProcessVarList__VarsAssignment_0 )
-            // InternalPoST.g:11529:3: rule__ProcessVarList__VarsAssignment_0
+            // InternalPoST.g:11421:2: ( rule__ProcessVarList__VarsAssignment_0 )
+            // InternalPoST.g:11421:3: rule__ProcessVarList__VarsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarList__VarsAssignment_0();
@@ -38344,14 +38013,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group__1"
-    // InternalPoST.g:11537:1: rule__ProcessVarList__Group__1 : rule__ProcessVarList__Group__1__Impl ;
+    // InternalPoST.g:11429:1: rule__ProcessVarList__Group__1 : rule__ProcessVarList__Group__1__Impl ;
     public final void rule__ProcessVarList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11541:1: ( rule__ProcessVarList__Group__1__Impl )
-            // InternalPoST.g:11542:2: rule__ProcessVarList__Group__1__Impl
+            // InternalPoST.g:11433:1: ( rule__ProcessVarList__Group__1__Impl )
+            // InternalPoST.g:11434:2: rule__ProcessVarList__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarList__Group__1__Impl();
@@ -38377,22 +38046,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group__1__Impl"
-    // InternalPoST.g:11548:1: rule__ProcessVarList__Group__1__Impl : ( ( rule__ProcessVarList__Group_1__0 )* ) ;
+    // InternalPoST.g:11440:1: rule__ProcessVarList__Group__1__Impl : ( ( rule__ProcessVarList__Group_1__0 )* ) ;
     public final void rule__ProcessVarList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11552:1: ( ( ( rule__ProcessVarList__Group_1__0 )* ) )
-            // InternalPoST.g:11553:1: ( ( rule__ProcessVarList__Group_1__0 )* )
+            // InternalPoST.g:11444:1: ( ( ( rule__ProcessVarList__Group_1__0 )* ) )
+            // InternalPoST.g:11445:1: ( ( rule__ProcessVarList__Group_1__0 )* )
             {
-            // InternalPoST.g:11553:1: ( ( rule__ProcessVarList__Group_1__0 )* )
-            // InternalPoST.g:11554:2: ( rule__ProcessVarList__Group_1__0 )*
+            // InternalPoST.g:11445:1: ( ( rule__ProcessVarList__Group_1__0 )* )
+            // InternalPoST.g:11446:2: ( rule__ProcessVarList__Group_1__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListAccess().getGroup_1()); 
             }
-            // InternalPoST.g:11555:2: ( rule__ProcessVarList__Group_1__0 )*
+            // InternalPoST.g:11447:2: ( rule__ProcessVarList__Group_1__0 )*
             loop82:
             do {
                 int alt82=2;
@@ -38405,7 +38074,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt82) {
             	case 1 :
-            	    // InternalPoST.g:11555:3: rule__ProcessVarList__Group_1__0
+            	    // InternalPoST.g:11447:3: rule__ProcessVarList__Group_1__0
             	    {
             	    pushFollow(FOLLOW_22);
             	    rule__ProcessVarList__Group_1__0();
@@ -38446,14 +38115,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group_1__0"
-    // InternalPoST.g:11564:1: rule__ProcessVarList__Group_1__0 : rule__ProcessVarList__Group_1__0__Impl rule__ProcessVarList__Group_1__1 ;
+    // InternalPoST.g:11456:1: rule__ProcessVarList__Group_1__0 : rule__ProcessVarList__Group_1__0__Impl rule__ProcessVarList__Group_1__1 ;
     public final void rule__ProcessVarList__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11568:1: ( rule__ProcessVarList__Group_1__0__Impl rule__ProcessVarList__Group_1__1 )
-            // InternalPoST.g:11569:2: rule__ProcessVarList__Group_1__0__Impl rule__ProcessVarList__Group_1__1
+            // InternalPoST.g:11460:1: ( rule__ProcessVarList__Group_1__0__Impl rule__ProcessVarList__Group_1__1 )
+            // InternalPoST.g:11461:2: rule__ProcessVarList__Group_1__0__Impl rule__ProcessVarList__Group_1__1
             {
             pushFollow(FOLLOW_3);
             rule__ProcessVarList__Group_1__0__Impl();
@@ -38484,17 +38153,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group_1__0__Impl"
-    // InternalPoST.g:11576:1: rule__ProcessVarList__Group_1__0__Impl : ( ',' ) ;
+    // InternalPoST.g:11468:1: rule__ProcessVarList__Group_1__0__Impl : ( ',' ) ;
     public final void rule__ProcessVarList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11580:1: ( ( ',' ) )
-            // InternalPoST.g:11581:1: ( ',' )
+            // InternalPoST.g:11472:1: ( ( ',' ) )
+            // InternalPoST.g:11473:1: ( ',' )
             {
-            // InternalPoST.g:11581:1: ( ',' )
-            // InternalPoST.g:11582:2: ','
+            // InternalPoST.g:11473:1: ( ',' )
+            // InternalPoST.g:11474:2: ','
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListAccess().getCommaKeyword_1_0()); 
@@ -38525,14 +38194,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group_1__1"
-    // InternalPoST.g:11591:1: rule__ProcessVarList__Group_1__1 : rule__ProcessVarList__Group_1__1__Impl ;
+    // InternalPoST.g:11483:1: rule__ProcessVarList__Group_1__1 : rule__ProcessVarList__Group_1__1__Impl ;
     public final void rule__ProcessVarList__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11595:1: ( rule__ProcessVarList__Group_1__1__Impl )
-            // InternalPoST.g:11596:2: rule__ProcessVarList__Group_1__1__Impl
+            // InternalPoST.g:11487:1: ( rule__ProcessVarList__Group_1__1__Impl )
+            // InternalPoST.g:11488:2: rule__ProcessVarList__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarList__Group_1__1__Impl();
@@ -38558,23 +38227,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__Group_1__1__Impl"
-    // InternalPoST.g:11602:1: rule__ProcessVarList__Group_1__1__Impl : ( ( rule__ProcessVarList__VarsAssignment_1_1 ) ) ;
+    // InternalPoST.g:11494:1: rule__ProcessVarList__Group_1__1__Impl : ( ( rule__ProcessVarList__VarsAssignment_1_1 ) ) ;
     public final void rule__ProcessVarList__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11606:1: ( ( ( rule__ProcessVarList__VarsAssignment_1_1 ) ) )
-            // InternalPoST.g:11607:1: ( ( rule__ProcessVarList__VarsAssignment_1_1 ) )
+            // InternalPoST.g:11498:1: ( ( ( rule__ProcessVarList__VarsAssignment_1_1 ) ) )
+            // InternalPoST.g:11499:1: ( ( rule__ProcessVarList__VarsAssignment_1_1 ) )
             {
-            // InternalPoST.g:11607:1: ( ( rule__ProcessVarList__VarsAssignment_1_1 ) )
-            // InternalPoST.g:11608:2: ( rule__ProcessVarList__VarsAssignment_1_1 )
+            // InternalPoST.g:11499:1: ( ( rule__ProcessVarList__VarsAssignment_1_1 ) )
+            // InternalPoST.g:11500:2: ( rule__ProcessVarList__VarsAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListAccess().getVarsAssignment_1_1()); 
             }
-            // InternalPoST.g:11609:2: ( rule__ProcessVarList__VarsAssignment_1_1 )
-            // InternalPoST.g:11609:3: rule__ProcessVarList__VarsAssignment_1_1
+            // InternalPoST.g:11501:2: ( rule__ProcessVarList__VarsAssignment_1_1 )
+            // InternalPoST.g:11501:3: rule__ProcessVarList__VarsAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarList__VarsAssignment_1_1();
@@ -38609,14 +38278,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__Group__0"
-    // InternalPoST.g:11618:1: rule__ProcessVarInitDeclaration__Group__0 : rule__ProcessVarInitDeclaration__Group__0__Impl rule__ProcessVarInitDeclaration__Group__1 ;
+    // InternalPoST.g:11510:1: rule__ProcessVarInitDeclaration__Group__0 : rule__ProcessVarInitDeclaration__Group__0__Impl rule__ProcessVarInitDeclaration__Group__1 ;
     public final void rule__ProcessVarInitDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11622:1: ( rule__ProcessVarInitDeclaration__Group__0__Impl rule__ProcessVarInitDeclaration__Group__1 )
-            // InternalPoST.g:11623:2: rule__ProcessVarInitDeclaration__Group__0__Impl rule__ProcessVarInitDeclaration__Group__1
+            // InternalPoST.g:11514:1: ( rule__ProcessVarInitDeclaration__Group__0__Impl rule__ProcessVarInitDeclaration__Group__1 )
+            // InternalPoST.g:11515:2: rule__ProcessVarInitDeclaration__Group__0__Impl rule__ProcessVarInitDeclaration__Group__1
             {
             pushFollow(FOLLOW_26);
             rule__ProcessVarInitDeclaration__Group__0__Impl();
@@ -38647,23 +38316,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__Group__0__Impl"
-    // InternalPoST.g:11630:1: rule__ProcessVarInitDeclaration__Group__0__Impl : ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) ) ;
+    // InternalPoST.g:11522:1: rule__ProcessVarInitDeclaration__Group__0__Impl : ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) ) ;
     public final void rule__ProcessVarInitDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11634:1: ( ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) ) )
-            // InternalPoST.g:11635:1: ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:11526:1: ( ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) ) )
+            // InternalPoST.g:11527:1: ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) )
             {
-            // InternalPoST.g:11635:1: ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) )
-            // InternalPoST.g:11636:2: ( rule__ProcessVarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:11527:1: ( ( rule__ProcessVarInitDeclaration__VarListAssignment_0 ) )
+            // InternalPoST.g:11528:2: ( rule__ProcessVarInitDeclaration__VarListAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationAccess().getVarListAssignment_0()); 
             }
-            // InternalPoST.g:11637:2: ( rule__ProcessVarInitDeclaration__VarListAssignment_0 )
-            // InternalPoST.g:11637:3: rule__ProcessVarInitDeclaration__VarListAssignment_0
+            // InternalPoST.g:11529:2: ( rule__ProcessVarInitDeclaration__VarListAssignment_0 )
+            // InternalPoST.g:11529:3: rule__ProcessVarInitDeclaration__VarListAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarInitDeclaration__VarListAssignment_0();
@@ -38698,14 +38367,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__Group__1"
-    // InternalPoST.g:11645:1: rule__ProcessVarInitDeclaration__Group__1 : rule__ProcessVarInitDeclaration__Group__1__Impl rule__ProcessVarInitDeclaration__Group__2 ;
+    // InternalPoST.g:11537:1: rule__ProcessVarInitDeclaration__Group__1 : rule__ProcessVarInitDeclaration__Group__1__Impl rule__ProcessVarInitDeclaration__Group__2 ;
     public final void rule__ProcessVarInitDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11649:1: ( rule__ProcessVarInitDeclaration__Group__1__Impl rule__ProcessVarInitDeclaration__Group__2 )
-            // InternalPoST.g:11650:2: rule__ProcessVarInitDeclaration__Group__1__Impl rule__ProcessVarInitDeclaration__Group__2
+            // InternalPoST.g:11541:1: ( rule__ProcessVarInitDeclaration__Group__1__Impl rule__ProcessVarInitDeclaration__Group__2 )
+            // InternalPoST.g:11542:2: rule__ProcessVarInitDeclaration__Group__1__Impl rule__ProcessVarInitDeclaration__Group__2
             {
             pushFollow(FOLLOW_3);
             rule__ProcessVarInitDeclaration__Group__1__Impl();
@@ -38736,17 +38405,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__Group__1__Impl"
-    // InternalPoST.g:11657:1: rule__ProcessVarInitDeclaration__Group__1__Impl : ( ':' ) ;
+    // InternalPoST.g:11549:1: rule__ProcessVarInitDeclaration__Group__1__Impl : ( ':' ) ;
     public final void rule__ProcessVarInitDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11661:1: ( ( ':' ) )
-            // InternalPoST.g:11662:1: ( ':' )
+            // InternalPoST.g:11553:1: ( ( ':' ) )
+            // InternalPoST.g:11554:1: ( ':' )
             {
-            // InternalPoST.g:11662:1: ( ':' )
-            // InternalPoST.g:11663:2: ':'
+            // InternalPoST.g:11554:1: ( ':' )
+            // InternalPoST.g:11555:2: ':'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationAccess().getColonKeyword_1()); 
@@ -38777,14 +38446,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__Group__2"
-    // InternalPoST.g:11672:1: rule__ProcessVarInitDeclaration__Group__2 : rule__ProcessVarInitDeclaration__Group__2__Impl ;
+    // InternalPoST.g:11564:1: rule__ProcessVarInitDeclaration__Group__2 : rule__ProcessVarInitDeclaration__Group__2__Impl ;
     public final void rule__ProcessVarInitDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11676:1: ( rule__ProcessVarInitDeclaration__Group__2__Impl )
-            // InternalPoST.g:11677:2: rule__ProcessVarInitDeclaration__Group__2__Impl
+            // InternalPoST.g:11568:1: ( rule__ProcessVarInitDeclaration__Group__2__Impl )
+            // InternalPoST.g:11569:2: rule__ProcessVarInitDeclaration__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarInitDeclaration__Group__2__Impl();
@@ -38810,23 +38479,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__Group__2__Impl"
-    // InternalPoST.g:11683:1: rule__ProcessVarInitDeclaration__Group__2__Impl : ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) ) ;
+    // InternalPoST.g:11575:1: rule__ProcessVarInitDeclaration__Group__2__Impl : ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) ) ;
     public final void rule__ProcessVarInitDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11687:1: ( ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) ) )
-            // InternalPoST.g:11688:1: ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) )
+            // InternalPoST.g:11579:1: ( ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) ) )
+            // InternalPoST.g:11580:1: ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) )
             {
-            // InternalPoST.g:11688:1: ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) )
-            // InternalPoST.g:11689:2: ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 )
+            // InternalPoST.g:11580:1: ( ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 ) )
+            // InternalPoST.g:11581:2: ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationAccess().getProcessAssignment_2()); 
             }
-            // InternalPoST.g:11690:2: ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 )
-            // InternalPoST.g:11690:3: rule__ProcessVarInitDeclaration__ProcessAssignment_2
+            // InternalPoST.g:11582:2: ( rule__ProcessVarInitDeclaration__ProcessAssignment_2 )
+            // InternalPoST.g:11582:3: rule__ProcessVarInitDeclaration__ProcessAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarInitDeclaration__ProcessAssignment_2();
@@ -38861,16 +38530,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__0"
-    // InternalPoST.g:11699:1: rule__ProcessVarDeclaration__Group__0 : rule__ProcessVarDeclaration__Group__0__Impl rule__ProcessVarDeclaration__Group__1 ;
+    // InternalPoST.g:11591:1: rule__ProcessVarDeclaration__Group__0 : rule__ProcessVarDeclaration__Group__0__Impl rule__ProcessVarDeclaration__Group__1 ;
     public final void rule__ProcessVarDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11703:1: ( rule__ProcessVarDeclaration__Group__0__Impl rule__ProcessVarDeclaration__Group__1 )
-            // InternalPoST.g:11704:2: rule__ProcessVarDeclaration__Group__0__Impl rule__ProcessVarDeclaration__Group__1
+            // InternalPoST.g:11595:1: ( rule__ProcessVarDeclaration__Group__0__Impl rule__ProcessVarDeclaration__Group__1 )
+            // InternalPoST.g:11596:2: rule__ProcessVarDeclaration__Group__0__Impl rule__ProcessVarDeclaration__Group__1
             {
-            pushFollow(FOLLOW_100);
+            pushFollow(FOLLOW_98);
             rule__ProcessVarDeclaration__Group__0__Impl();
 
             state._fsp--;
@@ -38899,23 +38568,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__0__Impl"
-    // InternalPoST.g:11711:1: rule__ProcessVarDeclaration__Group__0__Impl : ( () ) ;
+    // InternalPoST.g:11603:1: rule__ProcessVarDeclaration__Group__0__Impl : ( () ) ;
     public final void rule__ProcessVarDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11715:1: ( ( () ) )
-            // InternalPoST.g:11716:1: ( () )
+            // InternalPoST.g:11607:1: ( ( () ) )
+            // InternalPoST.g:11608:1: ( () )
             {
-            // InternalPoST.g:11716:1: ( () )
-            // InternalPoST.g:11717:2: ()
+            // InternalPoST.g:11608:1: ( () )
+            // InternalPoST.g:11609:2: ()
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getProcessVarDeclarationAction_0()); 
             }
-            // InternalPoST.g:11718:2: ()
-            // InternalPoST.g:11718:3: 
+            // InternalPoST.g:11610:2: ()
+            // InternalPoST.g:11610:3: 
             {
             }
 
@@ -38940,16 +38609,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__1"
-    // InternalPoST.g:11726:1: rule__ProcessVarDeclaration__Group__1 : rule__ProcessVarDeclaration__Group__1__Impl rule__ProcessVarDeclaration__Group__2 ;
+    // InternalPoST.g:11618:1: rule__ProcessVarDeclaration__Group__1 : rule__ProcessVarDeclaration__Group__1__Impl rule__ProcessVarDeclaration__Group__2 ;
     public final void rule__ProcessVarDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11730:1: ( rule__ProcessVarDeclaration__Group__1__Impl rule__ProcessVarDeclaration__Group__2 )
-            // InternalPoST.g:11731:2: rule__ProcessVarDeclaration__Group__1__Impl rule__ProcessVarDeclaration__Group__2
+            // InternalPoST.g:11622:1: ( rule__ProcessVarDeclaration__Group__1__Impl rule__ProcessVarDeclaration__Group__2 )
+            // InternalPoST.g:11623:2: rule__ProcessVarDeclaration__Group__1__Impl rule__ProcessVarDeclaration__Group__2
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__ProcessVarDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -38978,22 +38647,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__1__Impl"
-    // InternalPoST.g:11738:1: rule__ProcessVarDeclaration__Group__1__Impl : ( 'VAR_PROCESS' ) ;
+    // InternalPoST.g:11630:1: rule__ProcessVarDeclaration__Group__1__Impl : ( 'VAR_PROCESS' ) ;
     public final void rule__ProcessVarDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11742:1: ( ( 'VAR_PROCESS' ) )
-            // InternalPoST.g:11743:1: ( 'VAR_PROCESS' )
+            // InternalPoST.g:11634:1: ( ( 'VAR_PROCESS' ) )
+            // InternalPoST.g:11635:1: ( 'VAR_PROCESS' )
             {
-            // InternalPoST.g:11743:1: ( 'VAR_PROCESS' )
-            // InternalPoST.g:11744:2: 'VAR_PROCESS'
+            // InternalPoST.g:11635:1: ( 'VAR_PROCESS' )
+            // InternalPoST.g:11636:2: 'VAR_PROCESS'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getVAR_PROCESSKeyword_1()); 
             }
-            match(input,113,FOLLOW_2); if (state.failed) return ;
+            match(input,111,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getProcessVarDeclarationAccess().getVAR_PROCESSKeyword_1()); 
             }
@@ -39019,16 +38688,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__2"
-    // InternalPoST.g:11753:1: rule__ProcessVarDeclaration__Group__2 : rule__ProcessVarDeclaration__Group__2__Impl rule__ProcessVarDeclaration__Group__3 ;
+    // InternalPoST.g:11645:1: rule__ProcessVarDeclaration__Group__2 : rule__ProcessVarDeclaration__Group__2__Impl rule__ProcessVarDeclaration__Group__3 ;
     public final void rule__ProcessVarDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11757:1: ( rule__ProcessVarDeclaration__Group__2__Impl rule__ProcessVarDeclaration__Group__3 )
-            // InternalPoST.g:11758:2: rule__ProcessVarDeclaration__Group__2__Impl rule__ProcessVarDeclaration__Group__3
+            // InternalPoST.g:11649:1: ( rule__ProcessVarDeclaration__Group__2__Impl rule__ProcessVarDeclaration__Group__3 )
+            // InternalPoST.g:11650:2: rule__ProcessVarDeclaration__Group__2__Impl rule__ProcessVarDeclaration__Group__3
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_87);
             rule__ProcessVarDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -39057,22 +38726,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__2__Impl"
-    // InternalPoST.g:11765:1: rule__ProcessVarDeclaration__Group__2__Impl : ( ( rule__ProcessVarDeclaration__Group_2__0 )* ) ;
+    // InternalPoST.g:11657:1: rule__ProcessVarDeclaration__Group__2__Impl : ( ( rule__ProcessVarDeclaration__Group_2__0 )* ) ;
     public final void rule__ProcessVarDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11769:1: ( ( ( rule__ProcessVarDeclaration__Group_2__0 )* ) )
-            // InternalPoST.g:11770:1: ( ( rule__ProcessVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:11661:1: ( ( ( rule__ProcessVarDeclaration__Group_2__0 )* ) )
+            // InternalPoST.g:11662:1: ( ( rule__ProcessVarDeclaration__Group_2__0 )* )
             {
-            // InternalPoST.g:11770:1: ( ( rule__ProcessVarDeclaration__Group_2__0 )* )
-            // InternalPoST.g:11771:2: ( rule__ProcessVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:11662:1: ( ( rule__ProcessVarDeclaration__Group_2__0 )* )
+            // InternalPoST.g:11663:2: ( rule__ProcessVarDeclaration__Group_2__0 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getGroup_2()); 
             }
-            // InternalPoST.g:11772:2: ( rule__ProcessVarDeclaration__Group_2__0 )*
+            // InternalPoST.g:11664:2: ( rule__ProcessVarDeclaration__Group_2__0 )*
             loop83:
             do {
                 int alt83=2;
@@ -39085,9 +38754,9 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
                 switch (alt83) {
             	case 1 :
-            	    // InternalPoST.g:11772:3: rule__ProcessVarDeclaration__Group_2__0
+            	    // InternalPoST.g:11664:3: rule__ProcessVarDeclaration__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_90);
+            	    pushFollow(FOLLOW_88);
             	    rule__ProcessVarDeclaration__Group_2__0();
 
             	    state._fsp--;
@@ -39126,14 +38795,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__3"
-    // InternalPoST.g:11780:1: rule__ProcessVarDeclaration__Group__3 : rule__ProcessVarDeclaration__Group__3__Impl ;
+    // InternalPoST.g:11672:1: rule__ProcessVarDeclaration__Group__3 : rule__ProcessVarDeclaration__Group__3__Impl ;
     public final void rule__ProcessVarDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11784:1: ( rule__ProcessVarDeclaration__Group__3__Impl )
-            // InternalPoST.g:11785:2: rule__ProcessVarDeclaration__Group__3__Impl
+            // InternalPoST.g:11676:1: ( rule__ProcessVarDeclaration__Group__3__Impl )
+            // InternalPoST.g:11677:2: rule__ProcessVarDeclaration__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarDeclaration__Group__3__Impl();
@@ -39159,22 +38828,22 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group__3__Impl"
-    // InternalPoST.g:11791:1: rule__ProcessVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
+    // InternalPoST.g:11683:1: rule__ProcessVarDeclaration__Group__3__Impl : ( 'END_VAR' ) ;
     public final void rule__ProcessVarDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11795:1: ( ( 'END_VAR' ) )
-            // InternalPoST.g:11796:1: ( 'END_VAR' )
+            // InternalPoST.g:11687:1: ( ( 'END_VAR' ) )
+            // InternalPoST.g:11688:1: ( 'END_VAR' )
             {
-            // InternalPoST.g:11796:1: ( 'END_VAR' )
-            // InternalPoST.g:11797:2: 'END_VAR'
+            // InternalPoST.g:11688:1: ( 'END_VAR' )
+            // InternalPoST.g:11689:2: 'END_VAR'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
-            match(input,105,FOLLOW_2); if (state.failed) return ;
+            match(input,103,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getProcessVarDeclarationAccess().getEND_VARKeyword_3()); 
             }
@@ -39200,14 +38869,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group_2__0"
-    // InternalPoST.g:11807:1: rule__ProcessVarDeclaration__Group_2__0 : rule__ProcessVarDeclaration__Group_2__0__Impl rule__ProcessVarDeclaration__Group_2__1 ;
+    // InternalPoST.g:11699:1: rule__ProcessVarDeclaration__Group_2__0 : rule__ProcessVarDeclaration__Group_2__0__Impl rule__ProcessVarDeclaration__Group_2__1 ;
     public final void rule__ProcessVarDeclaration__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11811:1: ( rule__ProcessVarDeclaration__Group_2__0__Impl rule__ProcessVarDeclaration__Group_2__1 )
-            // InternalPoST.g:11812:2: rule__ProcessVarDeclaration__Group_2__0__Impl rule__ProcessVarDeclaration__Group_2__1
+            // InternalPoST.g:11703:1: ( rule__ProcessVarDeclaration__Group_2__0__Impl rule__ProcessVarDeclaration__Group_2__1 )
+            // InternalPoST.g:11704:2: rule__ProcessVarDeclaration__Group_2__0__Impl rule__ProcessVarDeclaration__Group_2__1
             {
             pushFollow(FOLLOW_11);
             rule__ProcessVarDeclaration__Group_2__0__Impl();
@@ -39238,23 +38907,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group_2__0__Impl"
-    // InternalPoST.g:11819:1: rule__ProcessVarDeclaration__Group_2__0__Impl : ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) ) ;
+    // InternalPoST.g:11711:1: rule__ProcessVarDeclaration__Group_2__0__Impl : ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) ) ;
     public final void rule__ProcessVarDeclaration__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11823:1: ( ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) ) )
-            // InternalPoST.g:11824:1: ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:11715:1: ( ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) ) )
+            // InternalPoST.g:11716:1: ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) )
             {
-            // InternalPoST.g:11824:1: ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) )
-            // InternalPoST.g:11825:2: ( rule__ProcessVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:11716:1: ( ( rule__ProcessVarDeclaration__VarsAssignment_2_0 ) )
+            // InternalPoST.g:11717:2: ( rule__ProcessVarDeclaration__VarsAssignment_2_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getVarsAssignment_2_0()); 
             }
-            // InternalPoST.g:11826:2: ( rule__ProcessVarDeclaration__VarsAssignment_2_0 )
-            // InternalPoST.g:11826:3: rule__ProcessVarDeclaration__VarsAssignment_2_0
+            // InternalPoST.g:11718:2: ( rule__ProcessVarDeclaration__VarsAssignment_2_0 )
+            // InternalPoST.g:11718:3: rule__ProcessVarDeclaration__VarsAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarDeclaration__VarsAssignment_2_0();
@@ -39289,14 +38958,14 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group_2__1"
-    // InternalPoST.g:11834:1: rule__ProcessVarDeclaration__Group_2__1 : rule__ProcessVarDeclaration__Group_2__1__Impl ;
+    // InternalPoST.g:11726:1: rule__ProcessVarDeclaration__Group_2__1 : rule__ProcessVarDeclaration__Group_2__1__Impl ;
     public final void rule__ProcessVarDeclaration__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11838:1: ( rule__ProcessVarDeclaration__Group_2__1__Impl )
-            // InternalPoST.g:11839:2: rule__ProcessVarDeclaration__Group_2__1__Impl
+            // InternalPoST.g:11730:1: ( rule__ProcessVarDeclaration__Group_2__1__Impl )
+            // InternalPoST.g:11731:2: rule__ProcessVarDeclaration__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ProcessVarDeclaration__Group_2__1__Impl();
@@ -39322,17 +38991,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__Group_2__1__Impl"
-    // InternalPoST.g:11845:1: rule__ProcessVarDeclaration__Group_2__1__Impl : ( ';' ) ;
+    // InternalPoST.g:11737:1: rule__ProcessVarDeclaration__Group_2__1__Impl : ( ';' ) ;
     public final void rule__ProcessVarDeclaration__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:11849:1: ( ( ';' ) )
-            // InternalPoST.g:11850:1: ( ';' )
+            // InternalPoST.g:11741:1: ( ( ';' ) )
+            // InternalPoST.g:11742:1: ( ';' )
             {
-            // InternalPoST.g:11850:1: ( ';' )
-            // InternalPoST.g:11851:2: ';'
+            // InternalPoST.g:11742:1: ( ';' )
+            // InternalPoST.g:11743:2: ';'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getSemicolonKeyword_2_1()); 
@@ -39360,6 +39029,337 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "rule__ProcessVarDeclaration__Group_2__1__Impl"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__0"
+    // InternalPoST.g:11753:1: rule__ArrayVariable__Group__0 : rule__ArrayVariable__Group__0__Impl rule__ArrayVariable__Group__1 ;
+    public final void rule__ArrayVariable__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11757:1: ( rule__ArrayVariable__Group__0__Impl rule__ArrayVariable__Group__1 )
+            // InternalPoST.g:11758:2: rule__ArrayVariable__Group__0__Impl rule__ArrayVariable__Group__1
+            {
+            pushFollow(FOLLOW_99);
+            rule__ArrayVariable__Group__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__ArrayVariable__Group__1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__0"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__0__Impl"
+    // InternalPoST.g:11765:1: rule__ArrayVariable__Group__0__Impl : ( ( rule__ArrayVariable__VariableAssignment_0 ) ) ;
+    public final void rule__ArrayVariable__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11769:1: ( ( ( rule__ArrayVariable__VariableAssignment_0 ) ) )
+            // InternalPoST.g:11770:1: ( ( rule__ArrayVariable__VariableAssignment_0 ) )
+            {
+            // InternalPoST.g:11770:1: ( ( rule__ArrayVariable__VariableAssignment_0 ) )
+            // InternalPoST.g:11771:2: ( rule__ArrayVariable__VariableAssignment_0 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getVariableAssignment_0()); 
+            }
+            // InternalPoST.g:11772:2: ( rule__ArrayVariable__VariableAssignment_0 )
+            // InternalPoST.g:11772:3: rule__ArrayVariable__VariableAssignment_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__ArrayVariable__VariableAssignment_0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getVariableAssignment_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__0__Impl"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__1"
+    // InternalPoST.g:11780:1: rule__ArrayVariable__Group__1 : rule__ArrayVariable__Group__1__Impl rule__ArrayVariable__Group__2 ;
+    public final void rule__ArrayVariable__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11784:1: ( rule__ArrayVariable__Group__1__Impl rule__ArrayVariable__Group__2 )
+            // InternalPoST.g:11785:2: rule__ArrayVariable__Group__1__Impl rule__ArrayVariable__Group__2
+            {
+            pushFollow(FOLLOW_52);
+            rule__ArrayVariable__Group__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__ArrayVariable__Group__2();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__1"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__1__Impl"
+    // InternalPoST.g:11792:1: rule__ArrayVariable__Group__1__Impl : ( '[' ) ;
+    public final void rule__ArrayVariable__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11796:1: ( ( '[' ) )
+            // InternalPoST.g:11797:1: ( '[' )
+            {
+            // InternalPoST.g:11797:1: ( '[' )
+            // InternalPoST.g:11798:2: '['
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getLeftSquareBracketKeyword_1()); 
+            }
+            match(input,112,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getLeftSquareBracketKeyword_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__1__Impl"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__2"
+    // InternalPoST.g:11807:1: rule__ArrayVariable__Group__2 : rule__ArrayVariable__Group__2__Impl rule__ArrayVariable__Group__3 ;
+    public final void rule__ArrayVariable__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11811:1: ( rule__ArrayVariable__Group__2__Impl rule__ArrayVariable__Group__3 )
+            // InternalPoST.g:11812:2: rule__ArrayVariable__Group__2__Impl rule__ArrayVariable__Group__3
+            {
+            pushFollow(FOLLOW_100);
+            rule__ArrayVariable__Group__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_2);
+            rule__ArrayVariable__Group__3();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__2"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__2__Impl"
+    // InternalPoST.g:11819:1: rule__ArrayVariable__Group__2__Impl : ( ( rule__ArrayVariable__IndexAssignment_2 ) ) ;
+    public final void rule__ArrayVariable__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11823:1: ( ( ( rule__ArrayVariable__IndexAssignment_2 ) ) )
+            // InternalPoST.g:11824:1: ( ( rule__ArrayVariable__IndexAssignment_2 ) )
+            {
+            // InternalPoST.g:11824:1: ( ( rule__ArrayVariable__IndexAssignment_2 ) )
+            // InternalPoST.g:11825:2: ( rule__ArrayVariable__IndexAssignment_2 )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getIndexAssignment_2()); 
+            }
+            // InternalPoST.g:11826:2: ( rule__ArrayVariable__IndexAssignment_2 )
+            // InternalPoST.g:11826:3: rule__ArrayVariable__IndexAssignment_2
+            {
+            pushFollow(FOLLOW_2);
+            rule__ArrayVariable__IndexAssignment_2();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getIndexAssignment_2()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__2__Impl"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__3"
+    // InternalPoST.g:11834:1: rule__ArrayVariable__Group__3 : rule__ArrayVariable__Group__3__Impl ;
+    public final void rule__ArrayVariable__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11838:1: ( rule__ArrayVariable__Group__3__Impl )
+            // InternalPoST.g:11839:2: rule__ArrayVariable__Group__3__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__ArrayVariable__Group__3__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__3"
+
+
+    // $ANTLR start "rule__ArrayVariable__Group__3__Impl"
+    // InternalPoST.g:11845:1: rule__ArrayVariable__Group__3__Impl : ( ']' ) ;
+    public final void rule__ArrayVariable__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:11849:1: ( ( ']' ) )
+            // InternalPoST.g:11850:1: ( ']' )
+            {
+            // InternalPoST.g:11850:1: ( ']' )
+            // InternalPoST.g:11851:2: ']'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getRightSquareBracketKeyword_3()); 
+            }
+            match(input,113,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getRightSquareBracketKeyword_3()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__Group__3__Impl"
 
 
     // $ANTLR start "rule__ArraySpecificationInit__Group__0"
@@ -39556,7 +39556,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             // InternalPoST.g:11919:1: ( rule__ArraySpecificationInit__Group_1__0__Impl rule__ArraySpecificationInit__Group_1__1 )
             // InternalPoST.g:11920:2: rule__ArraySpecificationInit__Group_1__0__Impl rule__ArraySpecificationInit__Group_1__1
             {
-            pushFollow(FOLLOW_84);
+            pushFollow(FOLLOW_99);
             rule__ArraySpecificationInit__Group_1__0__Impl();
 
             state._fsp--;
@@ -39719,7 +39719,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             // InternalPoST.g:11973:1: ( rule__ArraySpecification__Group__0__Impl rule__ArraySpecification__Group__1 )
             // InternalPoST.g:11974:2: rule__ArraySpecification__Group__0__Impl rule__ArraySpecification__Group__1
             {
-            pushFollow(FOLLOW_84);
+            pushFollow(FOLLOW_99);
             rule__ArraySpecification__Group__0__Impl();
 
             state._fsp--;
@@ -39842,7 +39842,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArraySpecificationAccess().getLeftSquareBracketKeyword_1()); 
             }
-            match(input,102,FOLLOW_2); if (state.failed) return ;
+            match(input,112,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArraySpecificationAccess().getLeftSquareBracketKeyword_1()); 
             }
@@ -39877,7 +39877,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             // InternalPoST.g:12027:1: ( rule__ArraySpecification__Group__2__Impl rule__ArraySpecification__Group__3 )
             // InternalPoST.g:12028:2: rule__ArraySpecification__Group__2__Impl rule__ArraySpecification__Group__3
             {
-            pushFollow(FOLLOW_85);
+            pushFollow(FOLLOW_100);
             rule__ArraySpecification__Group__2__Impl();
 
             state._fsp--;
@@ -40010,7 +40010,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArraySpecificationAccess().getRightSquareBracketKeyword_3()); 
             }
-            match(input,103,FOLLOW_2); if (state.failed) return ;
+            match(input,113,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArraySpecificationAccess().getRightSquareBracketKeyword_3()); 
             }
@@ -40045,7 +40045,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             // InternalPoST.g:12081:1: ( rule__ArraySpecification__Group__4__Impl rule__ArraySpecification__Group__5 )
             // InternalPoST.g:12082:2: rule__ArraySpecification__Group__4__Impl rule__ArraySpecification__Group__5
             {
-            pushFollow(FOLLOW_86);
+            pushFollow(FOLLOW_84);
             rule__ArraySpecification__Group__4__Impl();
 
             state._fsp--;
@@ -40504,7 +40504,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayInitializationAccess().getLeftSquareBracketKeyword_0()); 
             }
-            match(input,102,FOLLOW_2); if (state.failed) return ;
+            match(input,112,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayInitializationAccess().getLeftSquareBracketKeyword_0()); 
             }
@@ -40774,7 +40774,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getArrayInitializationAccess().getRightSquareBracketKeyword_3()); 
             }
-            match(input,103,FOLLOW_2); if (state.failed) return ;
+            match(input,113,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getArrayInitializationAccess().getRightSquareBracketKeyword_3()); 
             }
@@ -42296,7 +42296,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( LA91_0 == 52 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 0) ) {
                 alt91=1;
             }
-            else if ( LA91_0 == 112 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
+            else if ( LA91_0 == 110 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
                 alt91=1;
             }
             else if ( LA91_0 == 62 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 2) ) {
@@ -42357,7 +42357,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( LA95_0 == 52 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 0) ) {
                 alt95=1;
             }
-            else if ( LA95_0 == 112 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
+            else if ( LA95_0 == 110 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
                 alt95=2;
             }
             else if ( LA95_0 == 62 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 2) ) {
@@ -42474,7 +42474,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
                         int alt92=2;
                         int LA92_0 = input.LA(1);
 
-                        if ( (LA92_0==112) ) {
+                        if ( (LA92_0==110) ) {
                             int LA92_2 = input.LA(2);
 
                             if ( (synpred1_InternalPoST()) ) {
@@ -42766,7 +42766,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( LA96_0 == 52 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 0) ) {
                 alt96=1;
             }
-            else if ( LA96_0 == 112 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
+            else if ( LA96_0 == 110 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
                 alt96=1;
             }
             else if ( LA96_0 == 62 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 2) ) {
@@ -42830,7 +42830,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( LA97_0 == 52 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 0) ) {
                 alt97=1;
             }
-            else if ( LA97_0 == 112 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
+            else if ( LA97_0 == 110 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
                 alt97=1;
             }
             else if ( LA97_0 == 62 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 2) ) {
@@ -42894,7 +42894,7 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
             if ( LA98_0 == 52 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 0) ) {
                 alt98=1;
             }
-            else if ( LA98_0 == 112 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
+            else if ( LA98_0 == 110 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 1) ) {
                 alt98=1;
             }
             else if ( LA98_0 == 62 && getUnorderedGroupHelper().canSelect(grammarAccess.getModelAccess().getUnorderedGroup(), 2) ) {
@@ -48689,116 +48689,18 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__RepeatStatement__CondAssignment_3"
 
 
-    // $ANTLR start "rule__ArrayVariable__VariableAssignment_0"
-    // InternalPoST.g:14889:1: rule__ArrayVariable__VariableAssignment_0 : ( ( RULE_ID ) ) ;
-    public final void rule__ArrayVariable__VariableAssignment_0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:14893:1: ( ( ( RULE_ID ) ) )
-            // InternalPoST.g:14894:2: ( ( RULE_ID ) )
-            {
-            // InternalPoST.g:14894:2: ( ( RULE_ID ) )
-            // InternalPoST.g:14895:3: ( RULE_ID )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableCrossReference_0_0()); 
-            }
-            // InternalPoST.g:14896:3: ( RULE_ID )
-            // InternalPoST.g:14897:4: RULE_ID
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableIDTerminalRuleCall_0_0_1()); 
-            }
-            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableIDTerminalRuleCall_0_0_1()); 
-            }
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableCrossReference_0_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__VariableAssignment_0"
-
-
-    // $ANTLR start "rule__ArrayVariable__IndexAssignment_2"
-    // InternalPoST.g:14908:1: rule__ArrayVariable__IndexAssignment_2 : ( ruleExpression ) ;
-    public final void rule__ArrayVariable__IndexAssignment_2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalPoST.g:14912:1: ( ( ruleExpression ) )
-            // InternalPoST.g:14913:2: ( ruleExpression )
-            {
-            // InternalPoST.g:14913:2: ( ruleExpression )
-            // InternalPoST.g:14914:3: ruleExpression
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getArrayVariableAccess().getIndexExpressionParserRuleCall_2_0()); 
-            }
-            pushFollow(FOLLOW_2);
-            ruleExpression();
-
-            state._fsp--;
-            if (state.failed) return ;
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getArrayVariableAccess().getIndexExpressionParserRuleCall_2_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ArrayVariable__IndexAssignment_2"
-
-
     // $ANTLR start "rule__SymbolicVariable__NameAssignment"
-    // InternalPoST.g:14923:1: rule__SymbolicVariable__NameAssignment : ( RULE_ID ) ;
+    // InternalPoST.g:14889:1: rule__SymbolicVariable__NameAssignment : ( RULE_ID ) ;
     public final void rule__SymbolicVariable__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:14927:1: ( ( RULE_ID ) )
-            // InternalPoST.g:14928:2: ( RULE_ID )
+            // InternalPoST.g:14893:1: ( ( RULE_ID ) )
+            // InternalPoST.g:14894:2: ( RULE_ID )
             {
-            // InternalPoST.g:14928:2: ( RULE_ID )
-            // InternalPoST.g:14929:3: RULE_ID
+            // InternalPoST.g:14894:2: ( RULE_ID )
+            // InternalPoST.g:14895:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSymbolicVariableAccess().getNameIDTerminalRuleCall_0()); 
@@ -48829,17 +48731,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__TypeAssignment_1"
-    // InternalPoST.g:14938:1: rule__SimpleSpecificationInit__TypeAssignment_1 : ( ruleDataTypeName ) ;
+    // InternalPoST.g:14904:1: rule__SimpleSpecificationInit__TypeAssignment_1 : ( ruleDataTypeName ) ;
     public final void rule__SimpleSpecificationInit__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:14942:1: ( ( ruleDataTypeName ) )
-            // InternalPoST.g:14943:2: ( ruleDataTypeName )
+            // InternalPoST.g:14908:1: ( ( ruleDataTypeName ) )
+            // InternalPoST.g:14909:2: ( ruleDataTypeName )
             {
-            // InternalPoST.g:14943:2: ( ruleDataTypeName )
-            // InternalPoST.g:14944:3: ruleDataTypeName
+            // InternalPoST.g:14909:2: ( ruleDataTypeName )
+            // InternalPoST.g:14910:3: ruleDataTypeName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getTypeDataTypeNameParserRuleCall_1_0()); 
@@ -48874,17 +48776,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SimpleSpecificationInit__ValueAssignment_2_1"
-    // InternalPoST.g:14953:1: rule__SimpleSpecificationInit__ValueAssignment_2_1 : ( ruleExpression ) ;
+    // InternalPoST.g:14919:1: rule__SimpleSpecificationInit__ValueAssignment_2_1 : ( ruleExpression ) ;
     public final void rule__SimpleSpecificationInit__ValueAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:14957:1: ( ( ruleExpression ) )
-            // InternalPoST.g:14958:2: ( ruleExpression )
+            // InternalPoST.g:14923:1: ( ( ruleExpression ) )
+            // InternalPoST.g:14924:2: ( ruleExpression )
             {
-            // InternalPoST.g:14958:2: ( ruleExpression )
-            // InternalPoST.g:14959:3: ruleExpression
+            // InternalPoST.g:14924:2: ( ruleExpression )
+            // InternalPoST.g:14925:3: ruleExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getSimpleSpecificationInitAccess().getValueExpressionParserRuleCall_2_1_0()); 
@@ -48919,17 +48821,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__VarsAssignment_0"
-    // InternalPoST.g:14968:1: rule__VarList__VarsAssignment_0 : ( ruleSymbolicVariable ) ;
+    // InternalPoST.g:14934:1: rule__VarList__VarsAssignment_0 : ( ruleSymbolicVariable ) ;
     public final void rule__VarList__VarsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:14972:1: ( ( ruleSymbolicVariable ) )
-            // InternalPoST.g:14973:2: ( ruleSymbolicVariable )
+            // InternalPoST.g:14938:1: ( ( ruleSymbolicVariable ) )
+            // InternalPoST.g:14939:2: ( ruleSymbolicVariable )
             {
-            // InternalPoST.g:14973:2: ( ruleSymbolicVariable )
-            // InternalPoST.g:14974:3: ruleSymbolicVariable
+            // InternalPoST.g:14939:2: ( ruleSymbolicVariable )
+            // InternalPoST.g:14940:3: ruleSymbolicVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListAccess().getVarsSymbolicVariableParserRuleCall_0_0()); 
@@ -48964,17 +48866,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarList__VarsAssignment_1_1"
-    // InternalPoST.g:14983:1: rule__VarList__VarsAssignment_1_1 : ( ruleSymbolicVariable ) ;
+    // InternalPoST.g:14949:1: rule__VarList__VarsAssignment_1_1 : ( ruleSymbolicVariable ) ;
     public final void rule__VarList__VarsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:14987:1: ( ( ruleSymbolicVariable ) )
-            // InternalPoST.g:14988:2: ( ruleSymbolicVariable )
+            // InternalPoST.g:14953:1: ( ( ruleSymbolicVariable ) )
+            // InternalPoST.g:14954:2: ( ruleSymbolicVariable )
             {
-            // InternalPoST.g:14988:2: ( ruleSymbolicVariable )
-            // InternalPoST.g:14989:3: ruleSymbolicVariable
+            // InternalPoST.g:14954:2: ( ruleSymbolicVariable )
+            // InternalPoST.g:14955:3: ruleSymbolicVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarListAccess().getVarsSymbolicVariableParserRuleCall_1_1_0()); 
@@ -49009,17 +48911,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__VarListAssignment_0"
-    // InternalPoST.g:14998:1: rule__VarInitDeclaration__VarListAssignment_0 : ( ruleVarList ) ;
+    // InternalPoST.g:14964:1: rule__VarInitDeclaration__VarListAssignment_0 : ( ruleVarList ) ;
     public final void rule__VarInitDeclaration__VarListAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15002:1: ( ( ruleVarList ) )
-            // InternalPoST.g:15003:2: ( ruleVarList )
+            // InternalPoST.g:14968:1: ( ( ruleVarList ) )
+            // InternalPoST.g:14969:2: ( ruleVarList )
             {
-            // InternalPoST.g:15003:2: ( ruleVarList )
-            // InternalPoST.g:15004:3: ruleVarList
+            // InternalPoST.g:14969:2: ( ruleVarList )
+            // InternalPoST.g:14970:3: ruleVarList
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationAccess().getVarListVarListParserRuleCall_0_0()); 
@@ -49054,17 +48956,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__SpecAssignment_2_0"
-    // InternalPoST.g:15013:1: rule__VarInitDeclaration__SpecAssignment_2_0 : ( ruleSimpleSpecificationInit ) ;
+    // InternalPoST.g:14979:1: rule__VarInitDeclaration__SpecAssignment_2_0 : ( ruleSimpleSpecificationInit ) ;
     public final void rule__VarInitDeclaration__SpecAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15017:1: ( ( ruleSimpleSpecificationInit ) )
-            // InternalPoST.g:15018:2: ( ruleSimpleSpecificationInit )
+            // InternalPoST.g:14983:1: ( ( ruleSimpleSpecificationInit ) )
+            // InternalPoST.g:14984:2: ( ruleSimpleSpecificationInit )
             {
-            // InternalPoST.g:15018:2: ( ruleSimpleSpecificationInit )
-            // InternalPoST.g:15019:3: ruleSimpleSpecificationInit
+            // InternalPoST.g:14984:2: ( ruleSimpleSpecificationInit )
+            // InternalPoST.g:14985:3: ruleSimpleSpecificationInit
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationAccess().getSpecSimpleSpecificationInitParserRuleCall_2_0_0()); 
@@ -49099,17 +49001,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarInitDeclaration__ArrSpecAssignment_2_1"
-    // InternalPoST.g:15028:1: rule__VarInitDeclaration__ArrSpecAssignment_2_1 : ( ruleArraySpecificationInit ) ;
+    // InternalPoST.g:14994:1: rule__VarInitDeclaration__ArrSpecAssignment_2_1 : ( ruleArraySpecificationInit ) ;
     public final void rule__VarInitDeclaration__ArrSpecAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15032:1: ( ( ruleArraySpecificationInit ) )
-            // InternalPoST.g:15033:2: ( ruleArraySpecificationInit )
+            // InternalPoST.g:14998:1: ( ( ruleArraySpecificationInit ) )
+            // InternalPoST.g:14999:2: ( ruleArraySpecificationInit )
             {
-            // InternalPoST.g:15033:2: ( ruleArraySpecificationInit )
-            // InternalPoST.g:15034:3: ruleArraySpecificationInit
+            // InternalPoST.g:14999:2: ( ruleArraySpecificationInit )
+            // InternalPoST.g:15000:3: ruleArraySpecificationInit
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarInitDeclarationAccess().getArrSpecArraySpecificationInitParserRuleCall_2_1_0()); 
@@ -49144,17 +49046,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputVarDeclaration__VarsAssignment_2_0"
-    // InternalPoST.g:15043:1: rule__InputVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
+    // InternalPoST.g:15009:1: rule__InputVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
     public final void rule__InputVarDeclaration__VarsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15047:1: ( ( ruleVarInitDeclaration ) )
-            // InternalPoST.g:15048:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15013:1: ( ( ruleVarInitDeclaration ) )
+            // InternalPoST.g:15014:2: ( ruleVarInitDeclaration )
             {
-            // InternalPoST.g:15048:2: ( ruleVarInitDeclaration )
-            // InternalPoST.g:15049:3: ruleVarInitDeclaration
+            // InternalPoST.g:15014:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15015:3: ruleVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputVarDeclarationAccess().getVarsVarInitDeclarationParserRuleCall_2_0_0()); 
@@ -49189,17 +49091,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OutputVarDeclaration__VarsAssignment_2_0"
-    // InternalPoST.g:15058:1: rule__OutputVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
+    // InternalPoST.g:15024:1: rule__OutputVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
     public final void rule__OutputVarDeclaration__VarsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15062:1: ( ( ruleVarInitDeclaration ) )
-            // InternalPoST.g:15063:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15028:1: ( ( ruleVarInitDeclaration ) )
+            // InternalPoST.g:15029:2: ( ruleVarInitDeclaration )
             {
-            // InternalPoST.g:15063:2: ( ruleVarInitDeclaration )
-            // InternalPoST.g:15064:3: ruleVarInitDeclaration
+            // InternalPoST.g:15029:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15030:3: ruleVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputVarDeclarationAccess().getVarsVarInitDeclarationParserRuleCall_2_0_0()); 
@@ -49234,17 +49136,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InputOutputVarDeclaration__VarsAssignment_2_0"
-    // InternalPoST.g:15073:1: rule__InputOutputVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
+    // InternalPoST.g:15039:1: rule__InputOutputVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
     public final void rule__InputOutputVarDeclaration__VarsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15077:1: ( ( ruleVarInitDeclaration ) )
-            // InternalPoST.g:15078:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15043:1: ( ( ruleVarInitDeclaration ) )
+            // InternalPoST.g:15044:2: ( ruleVarInitDeclaration )
             {
-            // InternalPoST.g:15078:2: ( ruleVarInitDeclaration )
-            // InternalPoST.g:15079:3: ruleVarInitDeclaration
+            // InternalPoST.g:15044:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15045:3: ruleVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputOutputVarDeclarationAccess().getVarsVarInitDeclarationParserRuleCall_2_0_0()); 
@@ -49279,23 +49181,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__ConstAssignment_2"
-    // InternalPoST.g:15088:1: rule__VarDeclaration__ConstAssignment_2 : ( ( 'CONSTANT' ) ) ;
+    // InternalPoST.g:15054:1: rule__VarDeclaration__ConstAssignment_2 : ( ( 'CONSTANT' ) ) ;
     public final void rule__VarDeclaration__ConstAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15092:1: ( ( ( 'CONSTANT' ) ) )
-            // InternalPoST.g:15093:2: ( ( 'CONSTANT' ) )
+            // InternalPoST.g:15058:1: ( ( ( 'CONSTANT' ) ) )
+            // InternalPoST.g:15059:2: ( ( 'CONSTANT' ) )
             {
-            // InternalPoST.g:15093:2: ( ( 'CONSTANT' ) )
-            // InternalPoST.g:15094:3: ( 'CONSTANT' )
+            // InternalPoST.g:15059:2: ( ( 'CONSTANT' ) )
+            // InternalPoST.g:15060:3: ( 'CONSTANT' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getConstCONSTANTKeyword_2_0()); 
             }
-            // InternalPoST.g:15095:3: ( 'CONSTANT' )
-            // InternalPoST.g:15096:4: 'CONSTANT'
+            // InternalPoST.g:15061:3: ( 'CONSTANT' )
+            // InternalPoST.g:15062:4: 'CONSTANT'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getConstCONSTANTKeyword_2_0()); 
@@ -49332,17 +49234,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VarDeclaration__VarsAssignment_3_0"
-    // InternalPoST.g:15107:1: rule__VarDeclaration__VarsAssignment_3_0 : ( ruleVarInitDeclaration ) ;
+    // InternalPoST.g:15073:1: rule__VarDeclaration__VarsAssignment_3_0 : ( ruleVarInitDeclaration ) ;
     public final void rule__VarDeclaration__VarsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15111:1: ( ( ruleVarInitDeclaration ) )
-            // InternalPoST.g:15112:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15077:1: ( ( ruleVarInitDeclaration ) )
+            // InternalPoST.g:15078:2: ( ruleVarInitDeclaration )
             {
-            // InternalPoST.g:15112:2: ( ruleVarInitDeclaration )
-            // InternalPoST.g:15113:3: ruleVarInitDeclaration
+            // InternalPoST.g:15078:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15079:3: ruleVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarDeclarationAccess().getVarsVarInitDeclarationParserRuleCall_3_0_0()); 
@@ -49377,17 +49279,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TempVarDeclaration__VarsAssignment_2_0"
-    // InternalPoST.g:15122:1: rule__TempVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
+    // InternalPoST.g:15088:1: rule__TempVarDeclaration__VarsAssignment_2_0 : ( ruleVarInitDeclaration ) ;
     public final void rule__TempVarDeclaration__VarsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15126:1: ( ( ruleVarInitDeclaration ) )
-            // InternalPoST.g:15127:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15092:1: ( ( ruleVarInitDeclaration ) )
+            // InternalPoST.g:15093:2: ( ruleVarInitDeclaration )
             {
-            // InternalPoST.g:15127:2: ( ruleVarInitDeclaration )
-            // InternalPoST.g:15128:3: ruleVarInitDeclaration
+            // InternalPoST.g:15093:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15094:3: ruleVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTempVarDeclarationAccess().getVarsVarInitDeclarationParserRuleCall_2_0_0()); 
@@ -49422,17 +49324,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__VarListAssignment_0"
-    // InternalPoST.g:15137:1: rule__ExternalVarInitDeclaration__VarListAssignment_0 : ( ruleVarList ) ;
+    // InternalPoST.g:15103:1: rule__ExternalVarInitDeclaration__VarListAssignment_0 : ( ruleVarList ) ;
     public final void rule__ExternalVarInitDeclaration__VarListAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15141:1: ( ( ruleVarList ) )
-            // InternalPoST.g:15142:2: ( ruleVarList )
+            // InternalPoST.g:15107:1: ( ( ruleVarList ) )
+            // InternalPoST.g:15108:2: ( ruleVarList )
             {
-            // InternalPoST.g:15142:2: ( ruleVarList )
-            // InternalPoST.g:15143:3: ruleVarList
+            // InternalPoST.g:15108:2: ( ruleVarList )
+            // InternalPoST.g:15109:3: ruleVarList
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarInitDeclarationAccess().getVarListVarListParserRuleCall_0_0()); 
@@ -49467,17 +49369,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarInitDeclaration__TypeAssignment_2"
-    // InternalPoST.g:15152:1: rule__ExternalVarInitDeclaration__TypeAssignment_2 : ( ruleDataTypeName ) ;
+    // InternalPoST.g:15118:1: rule__ExternalVarInitDeclaration__TypeAssignment_2 : ( ruleDataTypeName ) ;
     public final void rule__ExternalVarInitDeclaration__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15156:1: ( ( ruleDataTypeName ) )
-            // InternalPoST.g:15157:2: ( ruleDataTypeName )
+            // InternalPoST.g:15122:1: ( ( ruleDataTypeName ) )
+            // InternalPoST.g:15123:2: ( ruleDataTypeName )
             {
-            // InternalPoST.g:15157:2: ( ruleDataTypeName )
-            // InternalPoST.g:15158:3: ruleDataTypeName
+            // InternalPoST.g:15123:2: ( ruleDataTypeName )
+            // InternalPoST.g:15124:3: ruleDataTypeName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarInitDeclarationAccess().getTypeDataTypeNameParserRuleCall_2_0()); 
@@ -49512,23 +49414,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__ConstAssignment_2"
-    // InternalPoST.g:15167:1: rule__ExternalVarDeclaration__ConstAssignment_2 : ( ( 'CONSTANT' ) ) ;
+    // InternalPoST.g:15133:1: rule__ExternalVarDeclaration__ConstAssignment_2 : ( ( 'CONSTANT' ) ) ;
     public final void rule__ExternalVarDeclaration__ConstAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15171:1: ( ( ( 'CONSTANT' ) ) )
-            // InternalPoST.g:15172:2: ( ( 'CONSTANT' ) )
+            // InternalPoST.g:15137:1: ( ( ( 'CONSTANT' ) ) )
+            // InternalPoST.g:15138:2: ( ( 'CONSTANT' ) )
             {
-            // InternalPoST.g:15172:2: ( ( 'CONSTANT' ) )
-            // InternalPoST.g:15173:3: ( 'CONSTANT' )
+            // InternalPoST.g:15138:2: ( ( 'CONSTANT' ) )
+            // InternalPoST.g:15139:3: ( 'CONSTANT' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getConstCONSTANTKeyword_2_0()); 
             }
-            // InternalPoST.g:15174:3: ( 'CONSTANT' )
-            // InternalPoST.g:15175:4: 'CONSTANT'
+            // InternalPoST.g:15140:3: ( 'CONSTANT' )
+            // InternalPoST.g:15141:4: 'CONSTANT'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getConstCONSTANTKeyword_2_0()); 
@@ -49565,17 +49467,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExternalVarDeclaration__VarsAssignment_3_0"
-    // InternalPoST.g:15186:1: rule__ExternalVarDeclaration__VarsAssignment_3_0 : ( ruleExternalVarInitDeclaration ) ;
+    // InternalPoST.g:15152:1: rule__ExternalVarDeclaration__VarsAssignment_3_0 : ( ruleExternalVarInitDeclaration ) ;
     public final void rule__ExternalVarDeclaration__VarsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15190:1: ( ( ruleExternalVarInitDeclaration ) )
-            // InternalPoST.g:15191:2: ( ruleExternalVarInitDeclaration )
+            // InternalPoST.g:15156:1: ( ( ruleExternalVarInitDeclaration ) )
+            // InternalPoST.g:15157:2: ( ruleExternalVarInitDeclaration )
             {
-            // InternalPoST.g:15191:2: ( ruleExternalVarInitDeclaration )
-            // InternalPoST.g:15192:3: ruleExternalVarInitDeclaration
+            // InternalPoST.g:15157:2: ( ruleExternalVarInitDeclaration )
+            // InternalPoST.g:15158:3: ruleExternalVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExternalVarDeclarationAccess().getVarsExternalVarInitDeclarationParserRuleCall_3_0_0()); 
@@ -49610,17 +49512,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__VarListAssignment_0"
-    // InternalPoST.g:15201:1: rule__GlobalVarInitDeclaration__VarListAssignment_0 : ( ruleVarList ) ;
+    // InternalPoST.g:15167:1: rule__GlobalVarInitDeclaration__VarListAssignment_0 : ( ruleVarList ) ;
     public final void rule__GlobalVarInitDeclaration__VarListAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15205:1: ( ( ruleVarList ) )
-            // InternalPoST.g:15206:2: ( ruleVarList )
+            // InternalPoST.g:15171:1: ( ( ruleVarList ) )
+            // InternalPoST.g:15172:2: ( ruleVarList )
             {
-            // InternalPoST.g:15206:2: ( ruleVarList )
-            // InternalPoST.g:15207:3: ruleVarList
+            // InternalPoST.g:15172:2: ( ruleVarList )
+            // InternalPoST.g:15173:3: ruleVarList
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getVarListVarListParserRuleCall_0_0()); 
@@ -49655,17 +49557,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__LocationAssignment_2"
-    // InternalPoST.g:15216:1: rule__GlobalVarInitDeclaration__LocationAssignment_2 : ( RULE_DIRECT_VARIABLE ) ;
+    // InternalPoST.g:15182:1: rule__GlobalVarInitDeclaration__LocationAssignment_2 : ( RULE_DIRECT_VARIABLE ) ;
     public final void rule__GlobalVarInitDeclaration__LocationAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15220:1: ( ( RULE_DIRECT_VARIABLE ) )
-            // InternalPoST.g:15221:2: ( RULE_DIRECT_VARIABLE )
+            // InternalPoST.g:15186:1: ( ( RULE_DIRECT_VARIABLE ) )
+            // InternalPoST.g:15187:2: ( RULE_DIRECT_VARIABLE )
             {
-            // InternalPoST.g:15221:2: ( RULE_DIRECT_VARIABLE )
-            // InternalPoST.g:15222:3: RULE_DIRECT_VARIABLE
+            // InternalPoST.g:15187:2: ( RULE_DIRECT_VARIABLE )
+            // InternalPoST.g:15188:3: RULE_DIRECT_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getLocationDIRECT_VARIABLETerminalRuleCall_2_0()); 
@@ -49696,17 +49598,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarInitDeclaration__TypeAssignment_4"
-    // InternalPoST.g:15231:1: rule__GlobalVarInitDeclaration__TypeAssignment_4 : ( ruleDataTypeName ) ;
+    // InternalPoST.g:15197:1: rule__GlobalVarInitDeclaration__TypeAssignment_4 : ( ruleDataTypeName ) ;
     public final void rule__GlobalVarInitDeclaration__TypeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15235:1: ( ( ruleDataTypeName ) )
-            // InternalPoST.g:15236:2: ( ruleDataTypeName )
+            // InternalPoST.g:15201:1: ( ( ruleDataTypeName ) )
+            // InternalPoST.g:15202:2: ( ruleDataTypeName )
             {
-            // InternalPoST.g:15236:2: ( ruleDataTypeName )
-            // InternalPoST.g:15237:3: ruleDataTypeName
+            // InternalPoST.g:15202:2: ( ruleDataTypeName )
+            // InternalPoST.g:15203:3: ruleDataTypeName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarInitDeclarationAccess().getTypeDataTypeNameParserRuleCall_4_0()); 
@@ -49741,23 +49643,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__ConstAssignment_2"
-    // InternalPoST.g:15246:1: rule__GlobalVarDeclaration__ConstAssignment_2 : ( ( 'CONSTANT' ) ) ;
+    // InternalPoST.g:15212:1: rule__GlobalVarDeclaration__ConstAssignment_2 : ( ( 'CONSTANT' ) ) ;
     public final void rule__GlobalVarDeclaration__ConstAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15250:1: ( ( ( 'CONSTANT' ) ) )
-            // InternalPoST.g:15251:2: ( ( 'CONSTANT' ) )
+            // InternalPoST.g:15216:1: ( ( ( 'CONSTANT' ) ) )
+            // InternalPoST.g:15217:2: ( ( 'CONSTANT' ) )
             {
-            // InternalPoST.g:15251:2: ( ( 'CONSTANT' ) )
-            // InternalPoST.g:15252:3: ( 'CONSTANT' )
+            // InternalPoST.g:15217:2: ( ( 'CONSTANT' ) )
+            // InternalPoST.g:15218:3: ( 'CONSTANT' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getConstCONSTANTKeyword_2_0()); 
             }
-            // InternalPoST.g:15253:3: ( 'CONSTANT' )
-            // InternalPoST.g:15254:4: 'CONSTANT'
+            // InternalPoST.g:15219:3: ( 'CONSTANT' )
+            // InternalPoST.g:15220:4: 'CONSTANT'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getConstCONSTANTKeyword_2_0()); 
@@ -49794,17 +49696,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0"
-    // InternalPoST.g:15265:1: rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 : ( ruleVarInitDeclaration ) ;
+    // InternalPoST.g:15231:1: rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0 : ( ruleVarInitDeclaration ) ;
     public final void rule__GlobalVarDeclaration__VarsSimpleAssignment_3_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15269:1: ( ( ruleVarInitDeclaration ) )
-            // InternalPoST.g:15270:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15235:1: ( ( ruleVarInitDeclaration ) )
+            // InternalPoST.g:15236:2: ( ruleVarInitDeclaration )
             {
-            // InternalPoST.g:15270:2: ( ruleVarInitDeclaration )
-            // InternalPoST.g:15271:3: ruleVarInitDeclaration
+            // InternalPoST.g:15236:2: ( ruleVarInitDeclaration )
+            // InternalPoST.g:15237:3: ruleVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getVarsSimpleVarInitDeclarationParserRuleCall_3_0_0_0()); 
@@ -49839,17 +49741,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0"
-    // InternalPoST.g:15280:1: rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 : ( ruleGlobalVarInitDeclaration ) ;
+    // InternalPoST.g:15246:1: rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0 : ( ruleGlobalVarInitDeclaration ) ;
     public final void rule__GlobalVarDeclaration__VarsAsAssignment_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15284:1: ( ( ruleGlobalVarInitDeclaration ) )
-            // InternalPoST.g:15285:2: ( ruleGlobalVarInitDeclaration )
+            // InternalPoST.g:15250:1: ( ( ruleGlobalVarInitDeclaration ) )
+            // InternalPoST.g:15251:2: ( ruleGlobalVarInitDeclaration )
             {
-            // InternalPoST.g:15285:2: ( ruleGlobalVarInitDeclaration )
-            // InternalPoST.g:15286:3: ruleGlobalVarInitDeclaration
+            // InternalPoST.g:15251:2: ( ruleGlobalVarInitDeclaration )
+            // InternalPoST.g:15252:3: ruleGlobalVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getGlobalVarDeclarationAccess().getVarsAsGlobalVarInitDeclarationParserRuleCall_3_1_0_0()); 
@@ -49884,17 +49786,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVariable__NameAssignment"
-    // InternalPoST.g:15295:1: rule__ProcessVariable__NameAssignment : ( RULE_ID ) ;
+    // InternalPoST.g:15261:1: rule__ProcessVariable__NameAssignment : ( RULE_ID ) ;
     public final void rule__ProcessVariable__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15299:1: ( ( RULE_ID ) )
-            // InternalPoST.g:15300:2: ( RULE_ID )
+            // InternalPoST.g:15265:1: ( ( RULE_ID ) )
+            // InternalPoST.g:15266:2: ( RULE_ID )
             {
-            // InternalPoST.g:15300:2: ( RULE_ID )
-            // InternalPoST.g:15301:3: RULE_ID
+            // InternalPoST.g:15266:2: ( RULE_ID )
+            // InternalPoST.g:15267:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVariableAccess().getNameIDTerminalRuleCall_0()); 
@@ -49925,17 +49827,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__VarsAssignment_0"
-    // InternalPoST.g:15310:1: rule__ProcessVarList__VarsAssignment_0 : ( ruleProcessVariable ) ;
+    // InternalPoST.g:15276:1: rule__ProcessVarList__VarsAssignment_0 : ( ruleProcessVariable ) ;
     public final void rule__ProcessVarList__VarsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15314:1: ( ( ruleProcessVariable ) )
-            // InternalPoST.g:15315:2: ( ruleProcessVariable )
+            // InternalPoST.g:15280:1: ( ( ruleProcessVariable ) )
+            // InternalPoST.g:15281:2: ( ruleProcessVariable )
             {
-            // InternalPoST.g:15315:2: ( ruleProcessVariable )
-            // InternalPoST.g:15316:3: ruleProcessVariable
+            // InternalPoST.g:15281:2: ( ruleProcessVariable )
+            // InternalPoST.g:15282:3: ruleProcessVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListAccess().getVarsProcessVariableParserRuleCall_0_0()); 
@@ -49970,17 +49872,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarList__VarsAssignment_1_1"
-    // InternalPoST.g:15325:1: rule__ProcessVarList__VarsAssignment_1_1 : ( ruleProcessVariable ) ;
+    // InternalPoST.g:15291:1: rule__ProcessVarList__VarsAssignment_1_1 : ( ruleProcessVariable ) ;
     public final void rule__ProcessVarList__VarsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15329:1: ( ( ruleProcessVariable ) )
-            // InternalPoST.g:15330:2: ( ruleProcessVariable )
+            // InternalPoST.g:15295:1: ( ( ruleProcessVariable ) )
+            // InternalPoST.g:15296:2: ( ruleProcessVariable )
             {
-            // InternalPoST.g:15330:2: ( ruleProcessVariable )
-            // InternalPoST.g:15331:3: ruleProcessVariable
+            // InternalPoST.g:15296:2: ( ruleProcessVariable )
+            // InternalPoST.g:15297:3: ruleProcessVariable
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarListAccess().getVarsProcessVariableParserRuleCall_1_1_0()); 
@@ -50015,17 +49917,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__VarListAssignment_0"
-    // InternalPoST.g:15340:1: rule__ProcessVarInitDeclaration__VarListAssignment_0 : ( ruleProcessVarList ) ;
+    // InternalPoST.g:15306:1: rule__ProcessVarInitDeclaration__VarListAssignment_0 : ( ruleProcessVarList ) ;
     public final void rule__ProcessVarInitDeclaration__VarListAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15344:1: ( ( ruleProcessVarList ) )
-            // InternalPoST.g:15345:2: ( ruleProcessVarList )
+            // InternalPoST.g:15310:1: ( ( ruleProcessVarList ) )
+            // InternalPoST.g:15311:2: ( ruleProcessVarList )
             {
-            // InternalPoST.g:15345:2: ( ruleProcessVarList )
-            // InternalPoST.g:15346:3: ruleProcessVarList
+            // InternalPoST.g:15311:2: ( ruleProcessVarList )
+            // InternalPoST.g:15312:3: ruleProcessVarList
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationAccess().getVarListProcessVarListParserRuleCall_0_0()); 
@@ -50060,23 +49962,23 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarInitDeclaration__ProcessAssignment_2"
-    // InternalPoST.g:15355:1: rule__ProcessVarInitDeclaration__ProcessAssignment_2 : ( ( RULE_ID ) ) ;
+    // InternalPoST.g:15321:1: rule__ProcessVarInitDeclaration__ProcessAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__ProcessVarInitDeclaration__ProcessAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15359:1: ( ( ( RULE_ID ) ) )
-            // InternalPoST.g:15360:2: ( ( RULE_ID ) )
+            // InternalPoST.g:15325:1: ( ( ( RULE_ID ) ) )
+            // InternalPoST.g:15326:2: ( ( RULE_ID ) )
             {
-            // InternalPoST.g:15360:2: ( ( RULE_ID ) )
-            // InternalPoST.g:15361:3: ( RULE_ID )
+            // InternalPoST.g:15326:2: ( ( RULE_ID ) )
+            // InternalPoST.g:15327:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationAccess().getProcessProcessCrossReference_2_0()); 
             }
-            // InternalPoST.g:15362:3: ( RULE_ID )
-            // InternalPoST.g:15363:4: RULE_ID
+            // InternalPoST.g:15328:3: ( RULE_ID )
+            // InternalPoST.g:15329:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarInitDeclarationAccess().getProcessProcessIDTerminalRuleCall_2_0_1()); 
@@ -50113,17 +50015,17 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ProcessVarDeclaration__VarsAssignment_2_0"
-    // InternalPoST.g:15374:1: rule__ProcessVarDeclaration__VarsAssignment_2_0 : ( ruleProcessVarInitDeclaration ) ;
+    // InternalPoST.g:15340:1: rule__ProcessVarDeclaration__VarsAssignment_2_0 : ( ruleProcessVarInitDeclaration ) ;
     public final void rule__ProcessVarDeclaration__VarsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPoST.g:15378:1: ( ( ruleProcessVarInitDeclaration ) )
-            // InternalPoST.g:15379:2: ( ruleProcessVarInitDeclaration )
+            // InternalPoST.g:15344:1: ( ( ruleProcessVarInitDeclaration ) )
+            // InternalPoST.g:15345:2: ( ruleProcessVarInitDeclaration )
             {
-            // InternalPoST.g:15379:2: ( ruleProcessVarInitDeclaration )
-            // InternalPoST.g:15380:3: ruleProcessVarInitDeclaration
+            // InternalPoST.g:15345:2: ( ruleProcessVarInitDeclaration )
+            // InternalPoST.g:15346:3: ruleProcessVarInitDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProcessVarDeclarationAccess().getVarsProcessVarInitDeclarationParserRuleCall_2_0_0()); 
@@ -50155,6 +50057,104 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
         return ;
     }
     // $ANTLR end "rule__ProcessVarDeclaration__VarsAssignment_2_0"
+
+
+    // $ANTLR start "rule__ArrayVariable__VariableAssignment_0"
+    // InternalPoST.g:15355:1: rule__ArrayVariable__VariableAssignment_0 : ( ( RULE_ID ) ) ;
+    public final void rule__ArrayVariable__VariableAssignment_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:15359:1: ( ( ( RULE_ID ) ) )
+            // InternalPoST.g:15360:2: ( ( RULE_ID ) )
+            {
+            // InternalPoST.g:15360:2: ( ( RULE_ID ) )
+            // InternalPoST.g:15361:3: ( RULE_ID )
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableCrossReference_0_0()); 
+            }
+            // InternalPoST.g:15362:3: ( RULE_ID )
+            // InternalPoST.g:15363:4: RULE_ID
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableIDTerminalRuleCall_0_0_1()); 
+            }
+            match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableIDTerminalRuleCall_0_0_1()); 
+            }
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getVariableSymbolicVariableCrossReference_0_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__VariableAssignment_0"
+
+
+    // $ANTLR start "rule__ArrayVariable__IndexAssignment_2"
+    // InternalPoST.g:15374:1: rule__ArrayVariable__IndexAssignment_2 : ( ruleExpression ) ;
+    public final void rule__ArrayVariable__IndexAssignment_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalPoST.g:15378:1: ( ( ruleExpression ) )
+            // InternalPoST.g:15379:2: ( ruleExpression )
+            {
+            // InternalPoST.g:15379:2: ( ruleExpression )
+            // InternalPoST.g:15380:3: ruleExpression
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getArrayVariableAccess().getIndexExpressionParserRuleCall_2_0()); 
+            }
+            pushFollow(FOLLOW_2);
+            ruleExpression();
+
+            state._fsp--;
+            if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getArrayVariableAccess().getIndexExpressionParserRuleCall_2_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ArrayVariable__IndexAssignment_2"
 
 
     // $ANTLR start "rule__ArraySpecificationInit__InitAssignment_0"
@@ -51111,16 +51111,16 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     protected DFA22 dfa22 = new DFA22(this);
     static final String dfa_1s = "\6\uffff";
     static final String dfa_2s = "\1\26\1\75\1\26\2\uffff\1\75";
-    static final String dfa_3s = "\1\26\1\157\1\26\2\uffff\1\157";
-    static final String dfa_4s = "\3\uffff\1\2\1\1\1\uffff";
+    static final String dfa_3s = "\1\26\1\155\1\26\2\uffff\1\155";
+    static final String dfa_4s = "\3\uffff\1\1\1\2\1\uffff";
     static final String dfa_5s = "\6\uffff}>";
     static final String[] dfa_6s = {
             "\1\1",
-            "\1\2\1\uffff\1\4\57\uffff\1\3",
+            "\1\2\1\uffff\1\3\55\uffff\1\4",
             "\1\5",
             "",
             "",
-            "\1\2\1\uffff\1\4\57\uffff\1\3"
+            "\1\2\1\uffff\1\3\55\uffff\1\4"
     };
 
     static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
@@ -51152,11 +51152,11 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0060000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0040000000000002L,0x0001000000000000L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0060000000000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0040000000000002L,0x0000400000000000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x4400000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000000002L,0x0001000000000000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x4400000000000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000000002L,0x0000400000000000L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x4400000000000002L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0200000000000000L});
@@ -51175,12 +51175,12 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0001000004E03F80L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000400000L,0x0020000000000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000000000L,0x00007D0000000006L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000000000002L,0x00007D0000000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000000000L,0x00001F4000000006L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000000000002L,0x00001F4000000000L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000000L,0x00007D0000000012L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000000L,0x00023D0000000060L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000002L,0x00023D0000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000000L,0x00001F4000000012L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000000L,0x00008F4000000060L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000002L,0x00008F4000000000L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000400000L,0x00400032848A3D00L});
     public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004080L});
@@ -51232,31 +51232,31 @@ public class InternalPoSTParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_81 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
     public static final BitSet FOLLOW_82 = new BitSet(new long[]{0x0000000000000000L,0x0000001000000000L});
     public static final BitSet FOLLOW_83 = new BitSet(new long[]{0x0000000000000000L,0x0000002000000000L});
-    public static final BitSet FOLLOW_84 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
-    public static final BitSet FOLLOW_85 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_86 = new BitSet(new long[]{0x00000000000003F0L});
-    public static final BitSet FOLLOW_87 = new BitSet(new long[]{0x00000000000003F0L,0x0004000000000000L});
-    public static final BitSet FOLLOW_88 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
-    public static final BitSet FOLLOW_89 = new BitSet(new long[]{0x0000000000400000L,0x0000020000000000L});
-    public static final BitSet FOLLOW_90 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_84 = new BitSet(new long[]{0x00000000000003F0L});
+    public static final BitSet FOLLOW_85 = new BitSet(new long[]{0x00000000000003F0L,0x0004000000000000L});
+    public static final BitSet FOLLOW_86 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
+    public static final BitSet FOLLOW_87 = new BitSet(new long[]{0x0000000000400000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_88 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_89 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_90 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
     public static final BitSet FOLLOW_91 = new BitSet(new long[]{0x0000000000000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_92 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
-    public static final BitSet FOLLOW_93 = new BitSet(new long[]{0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_94 = new BitSet(new long[]{0x0000000000400000L,0x0200020000000000L});
+    public static final BitSet FOLLOW_92 = new BitSet(new long[]{0x0000000000400000L,0x0200008000000000L});
+    public static final BitSet FOLLOW_93 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_94 = new BitSet(new long[]{0x0000000000000000L,0x00001F4000000000L});
     public static final BitSet FOLLOW_95 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_96 = new BitSet(new long[]{0x0000000000000000L,0x00007D0000000000L});
-    public static final BitSet FOLLOW_97 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
-    public static final BitSet FOLLOW_98 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_96 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_97 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_98 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
     public static final BitSet FOLLOW_99 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
     public static final BitSet FOLLOW_100 = new BitSet(new long[]{0x0000000000000000L,0x0002000000000000L});
     public static final BitSet FOLLOW_101 = new BitSet(new long[]{0x0809004004E03F80L,0x0000000000000002L});
     public static final BitSet FOLLOW_102 = new BitSet(new long[]{0x0000000000000000L,0x0008000000000000L});
-    public static final BitSet FOLLOW_103 = new BitSet(new long[]{0x2000000000000000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_103 = new BitSet(new long[]{0x2000000000000000L,0x0002000000000000L});
     public static final BitSet FOLLOW_104 = new BitSet(new long[]{0x0000000000000000L,0x0010000000000000L});
     public static final BitSet FOLLOW_105 = new BitSet(new long[]{0x0001000002000000L});
     public static final BitSet FOLLOW_106 = new BitSet(new long[]{0x0001000004800380L});
     public static final BitSet FOLLOW_107 = new BitSet(new long[]{0x4000000000000002L});
     public static final BitSet FOLLOW_108 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_109 = new BitSet(new long[]{0x4010000000000002L,0x0001000000000008L});
+    public static final BitSet FOLLOW_109 = new BitSet(new long[]{0x4010000000000002L,0x0000400000000008L});
 
 }

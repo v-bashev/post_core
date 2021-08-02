@@ -581,13 +581,6 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.ARRAY_VARIABLE:
-      {
-        ArrayVariable arrayVariable = (ArrayVariable)theEObject;
-        T result = caseArrayVariable(arrayVariable);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case PoSTPackage.SYMBOLIC_VARIABLE:
       {
         SymbolicVariable symbolicVariable = (SymbolicVariable)theEObject;
@@ -706,6 +699,13 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         ProcessVarDeclaration processVarDeclaration = (ProcessVarDeclaration)theEObject;
         T result = caseProcessVarDeclaration(processVarDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.ARRAY_VARIABLE:
+      {
+        ArrayVariable arrayVariable = (ArrayVariable)theEObject;
+        T result = caseArrayVariable(arrayVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1602,22 +1602,6 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Array Variable</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Array Variable</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseArrayVariable(ArrayVariable object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Symbolic Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1885,6 +1869,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseProcessVarDeclaration(ProcessVarDeclaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Array Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Array Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseArrayVariable(ArrayVariable object)
   {
     return null;
   }
