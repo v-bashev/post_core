@@ -483,15 +483,6 @@ public interface PoSTFactory extends EFactory
   ExitStatement createExitStatement();
 
   /**
-   * Returns a new object of class '<em>Array Variable</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Array Variable</em>'.
-   * @generated
-   */
-  ArrayVariable createArrayVariable();
-
-  /**
    * Returns a new object of class '<em>Symbolic Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -643,6 +634,15 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   ProcessVarDeclaration createProcessVarDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Array Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Array Variable</em>'.
+   * @generated
+   */
+  ArrayVariable createArrayVariable();
 
   /**
    * Returns a new object of class '<em>Array Specification Init</em>'.

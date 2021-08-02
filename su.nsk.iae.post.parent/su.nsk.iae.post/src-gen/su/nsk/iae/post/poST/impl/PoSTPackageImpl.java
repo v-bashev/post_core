@@ -468,13 +468,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass arrayVariableEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass symbolicVariableEClass = null;
 
   /**
@@ -588,6 +581,13 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass processVarDeclarationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arrayVariableEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2519,39 +2519,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EClass getArrayVariable()
-  {
-    return arrayVariableEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getArrayVariable_Variable()
-  {
-    return (EReference)arrayVariableEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getArrayVariable_Index()
-  {
-    return (EReference)arrayVariableEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getSymbolicVariable()
   {
     return symbolicVariableEClass;
@@ -3017,6 +2984,39 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EReference getProcessVarDeclaration_Vars()
   {
     return (EReference)processVarDeclarationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getArrayVariable()
+  {
+    return arrayVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getArrayVariable_Variable()
+  {
+    return (EReference)arrayVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getArrayVariable_Index()
+  {
+    return (EReference)arrayVariableEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3623,10 +3623,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     exitStatementEClass = createEClass(EXIT_STATEMENT);
 
-    arrayVariableEClass = createEClass(ARRAY_VARIABLE);
-    createEReference(arrayVariableEClass, ARRAY_VARIABLE__VARIABLE);
-    createEReference(arrayVariableEClass, ARRAY_VARIABLE__INDEX);
-
     symbolicVariableEClass = createEClass(SYMBOLIC_VARIABLE);
 
     simpleSpecificationInitEClass = createEClass(SIMPLE_SPECIFICATION_INIT);
@@ -3686,6 +3682,10 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     processVarDeclarationEClass = createEClass(PROCESS_VAR_DECLARATION);
     createEReference(processVarDeclarationEClass, PROCESS_VAR_DECLARATION__VARS);
+
+    arrayVariableEClass = createEClass(ARRAY_VARIABLE);
+    createEReference(arrayVariableEClass, ARRAY_VARIABLE__VARIABLE);
+    createEReference(arrayVariableEClass, ARRAY_VARIABLE__INDEX);
 
     arraySpecificationInitEClass = createEClass(ARRAY_SPECIFICATION_INIT);
     createEReference(arraySpecificationInitEClass, ARRAY_SPECIFICATION_INIT__INIT);
@@ -4007,10 +4007,6 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     initEClass(exitStatementEClass, ExitStatement.class, "ExitStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(arrayVariableEClass, ArrayVariable.class, "ArrayVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArrayVariable_Variable(), this.getSymbolicVariable(), null, "variable", null, 0, 1, ArrayVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArrayVariable_Index(), this.getExpression(), null, "index", null, 0, 1, ArrayVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(symbolicVariableEClass, SymbolicVariable.class, "SymbolicVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(simpleSpecificationInitEClass, SimpleSpecificationInit.class, "SimpleSpecificationInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4070,6 +4066,10 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     initEClass(processVarDeclarationEClass, ProcessVarDeclaration.class, "ProcessVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcessVarDeclaration_Vars(), this.getProcessVarInitDeclaration(), null, "vars", null, 0, -1, ProcessVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(arrayVariableEClass, ArrayVariable.class, "ArrayVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArrayVariable_Variable(), this.getSymbolicVariable(), null, "variable", null, 0, 1, ArrayVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayVariable_Index(), this.getExpression(), null, "index", null, 0, 1, ArrayVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arraySpecificationInitEClass, ArraySpecificationInit.class, "ArraySpecificationInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArraySpecificationInit_Init(), this.getArraySpecification(), null, "init", null, 0, 1, ArraySpecificationInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
