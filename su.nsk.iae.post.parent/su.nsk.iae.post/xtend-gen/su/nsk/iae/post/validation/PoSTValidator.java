@@ -487,6 +487,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkProcess_Unreachable(final su.nsk.iae.post.poST.Process ele) {
+    boolean _isTemplate = this.isTemplate(ele);
+    if (_isTemplate) {
+      return;
+    }
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
     if ((program != null)) {
       int _indexOf = program.getProcesses().indexOf(ele);

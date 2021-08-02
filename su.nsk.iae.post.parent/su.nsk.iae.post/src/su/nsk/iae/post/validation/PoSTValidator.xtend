@@ -352,6 +352,9 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	def checkProcess_Unreachable(Process ele) {
+		if (ele.template) {
+			return
+		}
 		val program = ele.getContainerOfType(Program)
 		if (program !== null) {
 			if (program.processes.indexOf(ele) === 0) {
