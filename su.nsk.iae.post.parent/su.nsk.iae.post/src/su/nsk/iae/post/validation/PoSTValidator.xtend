@@ -49,6 +49,11 @@ import su.nsk.iae.post.poST.Variable
 import static extension java.lang.Character.isLowerCase
 import static extension java.lang.Character.isUpperCase
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import su.nsk.iae.post.poST.IfStatement
+import su.nsk.iae.post.poST.CaseElement
+import su.nsk.iae.post.poST.ForStatement
+import su.nsk.iae.post.poST.WhileStatement
+import su.nsk.iae.post.poST.RepeatStatement
 
 class PoSTValidator extends AbstractPoSTValidator {
 	
@@ -115,7 +120,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkSimpleSpecificationInit_NeverUse(SimpleSpecificationInit ele) {
+	def checkSimpleSpecificationInit_Init(SimpleSpecificationInit ele) {
 		if (ele.value !== null) {
 			if (ele.checkContainer(InputVarDeclaration)) {
 				error("Initialization error: Input Variable cannot be initialized",
@@ -375,7 +380,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkProcess_NameConflicts(su.nsk.iae.post.poST.State ele) {
+	def checkState_NameConflicts(su.nsk.iae.post.poST.State ele) {
 		val process = ele.getContainerOfType(Process)
 		if (process.checkNameRepetition(ele)) {
 			error("Name error: Process already has a State with this name", ePackage.state_Name)
@@ -383,14 +388,14 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkProcess_Empty(su.nsk.iae.post.poST.State ele) {
+	def checkState_Empty(su.nsk.iae.post.poST.State ele) {
 		if (ele.statement.statements.empty && (ele.timeout === null)) {
 			error("Statement error: State can't be empty", ePackage.state_Name)
 		}
 	}
 	
 	@Check
-	def checkProcess_Unreachable(su.nsk.iae.post.poST.State ele) {
+	def checkState_Unreachable(su.nsk.iae.post.poST.State ele) {
 		val process = ele.getContainerOfType(Process)
 		val stateIndex = process.states.indexOf(ele)
 		if (stateIndex === 0 ||
@@ -403,7 +408,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkProcess_Looped(su.nsk.iae.post.poST.State ele) {
+	def checkState_Looped(su.nsk.iae.post.poST.State ele) {
 		var check = ele.containsType(SetStateStatement) ||
 					ele.containsType(StartProcessStatement) ||
 					ele.containsType(StopProcessStatement) ||
@@ -423,7 +428,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkSetStateStatement_NameConflicts(SetStateStatement ele) {
+	def checkSetStateStatement_InvalidArgument(SetStateStatement ele) {
 		if (ele.next) {
 			return
 		}
@@ -432,6 +437,10 @@ class PoSTValidator extends AbstractPoSTValidator {
 			error("Name error: Process does not contain a State with this name", ePackage.setStateStatement_State)
 			return
 		}
+	}
+	
+	@Check
+	def checkSetStateStatement_Useless(SetStateStatement ele) {
 		val state = ele.getContainerOfType(su.nsk.iae.post.poST.State)
 		if (state === ele.state) {
 			warning("Useless statement, use RESET TIMER", ePackage.setStateStatement_State)
@@ -451,23 +460,23 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkStartProcessStatement_NameConflicts(StartProcessStatement ele) {
-		ele.checkProcessStatement_NameConflicts(ele.process)
+	def checkStartProcessStatement_InvalidArgument(StartProcessStatement ele) {
+		ele.checkProcessStatement_InvalidArgument(ele.process)
 	}
 	
 	@Check
-	def checkStopProcessStatement_NameConflicts(StopProcessStatement ele) {
-		ele.checkProcessStatement_NameConflicts(ele.process)
+	def checkStopProcessStatement_InvalidArgument(StopProcessStatement ele) {
+		ele.checkProcessStatement_InvalidArgument(ele.process)
 	}
 	
 	@Check
-	def checkErrorProcessStatement_NameConflicts(ErrorProcessStatement ele) {
-		ele.checkProcessStatement_NameConflicts(ele.process)
+	def checkErrorProcessStatement_InvalidArgument(ErrorProcessStatement ele) {
+		ele.checkProcessStatement_InvalidArgument(ele.process)
 	}
 	
 	@Check
-	def checkProcessStatusExpression_NameConflicts(ProcessStatusExpression ele) {
-		ele.checkProcessStatement_NameConflicts(ele.process)
+	def checkProcessStatusExpression_InvalidArgument(ProcessStatusExpression ele) {
+		ele.checkProcessStatement_InvalidArgument(ele.process)
 	}
 	
 	@Check
@@ -477,7 +486,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 		}
 	}
 	
-	private def checkProcessStatement_NameConflicts(EObject context, Variable ele) {
+	private def checkProcessStatement_InvalidArgument(EObject context, Variable ele) {
 		if (ele === null) {
 			return
 		}
@@ -495,12 +504,17 @@ class PoSTValidator extends AbstractPoSTValidator {
 /* ======================= START ST Checks ======================= */
 	
 	@Check
-	def checkAssignmentStatement_Modify(AssignmentStatement ele) {
+	def checkAssignmentStatement_ModifyInput(AssignmentStatement ele) {
 		val varEle = ele.variable
 		if (varEle.checkContainer(InputVarDeclaration)) {
 			warning("Modification of input Variable", ePackage.assignmentStatement_Variable)
 			return
 		}
+	}
+	
+	@Check
+	def checkAssignmentStatement_ModifyConst(AssignmentStatement ele) {
+		val varEle = ele.variable
 		val varDecl = varEle.getContainerOfType(VarDeclaration)
 		val globDecl = varEle.getContainerOfType(GlobalVarDeclaration)
 		val extDecl = varEle.getContainerOfType(ExternalVarDeclaration)
@@ -509,6 +523,49 @@ class PoSTValidator extends AbstractPoSTValidator {
 			((extDecl !== null) && extDecl.const)
 		) {
 			error("Assignment error: Couldn't modify constant Variable", ePackage.assignmentStatement_Variable);
+		}
+	}
+	
+	@Check
+	def checkIfStatement_Empty(IfStatement ele) {
+		if (ele.mainStatement.statements.empty) {
+			error("Statement error: IF can't be empty", ePackage.variable_Name)
+		}
+		for (e : ele.elseIfStatements) {
+			if (e.statements.empty) {
+				error("Statement error: ELSIF can't be empty", ePackage.variable_Name)
+			}
+		}
+		if ((ele.elseStatement !== null) && ele.elseStatement.statements.empty) {
+			error("Statement error: ELSE can't be empty", ePackage.variable_Name)
+		}
+	}
+	
+	@Check
+	def checkCaseElement_Empty(CaseElement ele) {
+		if (ele.statement.statements.empty) {
+			error("Statement error: CASE can't be empty", ePackage.variable_Name)
+		}
+	}
+	
+	@Check
+	def checkForStatement_Empty(ForStatement ele) {
+		if (ele.statement.statements.empty) {
+			error("Statement error: FOR can't be empty", ePackage.variable_Name)
+		}
+	}
+	
+	@Check
+	def checkWhileStatement_Empty(WhileStatement ele) {
+		if (ele.statement.statements.empty) {
+			error("Statement error: WHILE can't be empty", ePackage.variable_Name)
+		}
+	}
+	
+	@Check
+	def checkRepeatStatement_Empty(RepeatStatement ele) {
+		if (ele.statement.statements.empty) {
+			error("Statement error: REPEAT can't be empty", ePackage.variable_Name)
 		}
 	}
 	

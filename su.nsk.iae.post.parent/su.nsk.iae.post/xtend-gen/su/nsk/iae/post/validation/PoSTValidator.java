@@ -17,14 +17,17 @@ import su.nsk.iae.post.poST.ArraySpecification;
 import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
+import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ErrorProcessStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
+import su.nsk.iae.post.poST.IfStatement;
 import su.nsk.iae.post.poST.InputOutputVarDeclaration;
 import su.nsk.iae.post.poST.InputVarDeclaration;
 import su.nsk.iae.post.poST.Model;
@@ -38,11 +41,13 @@ import su.nsk.iae.post.poST.Program;
 import su.nsk.iae.post.poST.ProgramConfElement;
 import su.nsk.iae.post.poST.ProgramConfElements;
 import su.nsk.iae.post.poST.ProgramConfiguration;
+import su.nsk.iae.post.poST.RepeatStatement;
 import su.nsk.iae.post.poST.Resource;
 import su.nsk.iae.post.poST.SetStateStatement;
 import su.nsk.iae.post.poST.SimpleSpecificationInit;
 import su.nsk.iae.post.poST.StartProcessStatement;
 import su.nsk.iae.post.poST.Statement;
+import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.StopProcessStatement;
 import su.nsk.iae.post.poST.SymbolicVariable;
 import su.nsk.iae.post.poST.Task;
@@ -54,6 +59,7 @@ import su.nsk.iae.post.poST.TimeoutStatement;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
 import su.nsk.iae.post.poST.Variable;
+import su.nsk.iae.post.poST.WhileStatement;
 
 @SuppressWarnings("all")
 public class PoSTValidator extends AbstractPoSTValidator {
@@ -131,7 +137,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkSimpleSpecificationInit_NeverUse(final SimpleSpecificationInit ele) {
+  public void checkSimpleSpecificationInit_Init(final SimpleSpecificationInit ele) {
     Expression _value = ele.getValue();
     boolean _tripleNotEquals = (_value != null);
     if (_tripleNotEquals) {
@@ -519,7 +525,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkProcess_NameConflicts(final su.nsk.iae.post.poST.State ele) {
+  public void checkState_NameConflicts(final su.nsk.iae.post.poST.State ele) {
     final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
     boolean _checkNameRepetition = this.checkNameRepetition(process, ele);
     if (_checkNameRepetition) {
@@ -528,14 +534,14 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkProcess_Empty(final su.nsk.iae.post.poST.State ele) {
+  public void checkState_Empty(final su.nsk.iae.post.poST.State ele) {
     if ((ele.getStatement().getStatements().isEmpty() && (ele.getTimeout() == null))) {
       this.error("Statement error: State can\'t be empty", this.ePackage.getState_Name());
     }
   }
   
   @Check
-  public void checkProcess_Unreachable(final su.nsk.iae.post.poST.State ele) {
+  public void checkState_Unreachable(final su.nsk.iae.post.poST.State ele) {
     final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
     final int stateIndex = process.getStates().indexOf(ele);
     if ((((stateIndex == 0) || 
@@ -547,7 +553,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkProcess_Looped(final su.nsk.iae.post.poST.State ele) {
+  public void checkState_Looped(final su.nsk.iae.post.poST.State ele) {
     boolean check = (((this.<SetStateStatement>containsType(ele, SetStateStatement.class) || 
       this.<StartProcessStatement>containsType(ele, StartProcessStatement.class)) || 
       this.<StopProcessStatement>containsType(ele, StopProcessStatement.class)) || 
@@ -570,7 +576,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkSetStateStatement_NameConflicts(final SetStateStatement ele) {
+  public void checkSetStateStatement_InvalidArgument(final SetStateStatement ele) {
     boolean _isNext = ele.isNext();
     if (_isNext) {
       return;
@@ -582,6 +588,10 @@ public class PoSTValidator extends AbstractPoSTValidator {
       this.error("Name error: Process does not contain a State with this name", this.ePackage.getSetStateStatement_State());
       return;
     }
+  }
+  
+  @Check
+  public void checkSetStateStatement_Useless(final SetStateStatement ele) {
     final su.nsk.iae.post.poST.State state = EcoreUtil2.<su.nsk.iae.post.poST.State>getContainerOfType(ele, su.nsk.iae.post.poST.State.class);
     su.nsk.iae.post.poST.State _state = ele.getState();
     boolean _tripleEquals = (state == _state);
@@ -607,23 +617,23 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkStartProcessStatement_NameConflicts(final StartProcessStatement ele) {
-    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
+  public void checkStartProcessStatement_InvalidArgument(final StartProcessStatement ele) {
+    this.checkProcessStatement_InvalidArgument(ele, ele.getProcess());
   }
   
   @Check
-  public void checkStopProcessStatement_NameConflicts(final StopProcessStatement ele) {
-    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
+  public void checkStopProcessStatement_InvalidArgument(final StopProcessStatement ele) {
+    this.checkProcessStatement_InvalidArgument(ele, ele.getProcess());
   }
   
   @Check
-  public void checkErrorProcessStatement_NameConflicts(final ErrorProcessStatement ele) {
-    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
+  public void checkErrorProcessStatement_InvalidArgument(final ErrorProcessStatement ele) {
+    this.checkProcessStatement_InvalidArgument(ele, ele.getProcess());
   }
   
   @Check
-  public void checkProcessStatusExpression_NameConflicts(final ProcessStatusExpression ele) {
-    this.checkProcessStatement_NameConflicts(ele, ele.getProcess());
+  public void checkProcessStatusExpression_InvalidArgument(final ProcessStatusExpression ele) {
+    this.checkProcessStatement_InvalidArgument(ele, ele.getProcess());
   }
   
   @Check
@@ -634,7 +644,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
     }
   }
   
-  private void checkProcessStatement_NameConflicts(final EObject context, final Variable ele) {
+  private void checkProcessStatement_InvalidArgument(final EObject context, final Variable ele) {
     if ((ele == null)) {
       return;
     }
@@ -653,18 +663,73 @@ public class PoSTValidator extends AbstractPoSTValidator {
    * ======================= START ST Checks =======================
    */
   @Check
-  public void checkAssignmentStatement_Modify(final AssignmentStatement ele) {
+  public void checkAssignmentStatement_ModifyInput(final AssignmentStatement ele) {
     final SymbolicVariable varEle = ele.getVariable();
     boolean _checkContainer = this.<InputVarDeclaration>checkContainer(varEle, InputVarDeclaration.class);
     if (_checkContainer) {
       this.warning("Modification of input Variable", this.ePackage.getAssignmentStatement_Variable());
       return;
     }
+  }
+  
+  @Check
+  public void checkAssignmentStatement_ModifyConst(final AssignmentStatement ele) {
+    final SymbolicVariable varEle = ele.getVariable();
     final VarDeclaration varDecl = EcoreUtil2.<VarDeclaration>getContainerOfType(varEle, VarDeclaration.class);
     final GlobalVarDeclaration globDecl = EcoreUtil2.<GlobalVarDeclaration>getContainerOfType(varEle, GlobalVarDeclaration.class);
     final ExternalVarDeclaration extDecl = EcoreUtil2.<ExternalVarDeclaration>getContainerOfType(varEle, ExternalVarDeclaration.class);
     if (((((varDecl != null) && varDecl.isConst()) || ((globDecl != null) && globDecl.isConst())) || ((extDecl != null) && extDecl.isConst()))) {
       this.error("Assignment error: Couldn\'t modify constant Variable", this.ePackage.getAssignmentStatement_Variable());
+    }
+  }
+  
+  @Check
+  public void checkIfStatement_Empty(final IfStatement ele) {
+    boolean _isEmpty = ele.getMainStatement().getStatements().isEmpty();
+    if (_isEmpty) {
+      this.error("Statement error: IF can\'t be empty", this.ePackage.getVariable_Name());
+    }
+    EList<StatementList> _elseIfStatements = ele.getElseIfStatements();
+    for (final StatementList e : _elseIfStatements) {
+      boolean _isEmpty_1 = e.getStatements().isEmpty();
+      if (_isEmpty_1) {
+        this.error("Statement error: ELSIF can\'t be empty", this.ePackage.getVariable_Name());
+      }
+    }
+    if (((ele.getElseStatement() != null) && ele.getElseStatement().getStatements().isEmpty())) {
+      this.error("Statement error: ELSE can\'t be empty", this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkCaseElement_Empty(final CaseElement ele) {
+    boolean _isEmpty = ele.getStatement().getStatements().isEmpty();
+    if (_isEmpty) {
+      this.error("Statement error: CASE can\'t be empty", this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkForStatement_Empty(final ForStatement ele) {
+    boolean _isEmpty = ele.getStatement().getStatements().isEmpty();
+    if (_isEmpty) {
+      this.error("Statement error: FOR can\'t be empty", this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkWhileStatement_Empty(final WhileStatement ele) {
+    boolean _isEmpty = ele.getStatement().getStatements().isEmpty();
+    if (_isEmpty) {
+      this.error("Statement error: WHILE can\'t be empty", this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkRepeatStatement_Empty(final RepeatStatement ele) {
+    boolean _isEmpty = ele.getStatement().getStatements().isEmpty();
+    if (_isEmpty) {
+      this.error("Statement error: REPEAT can\'t be empty", this.ePackage.getVariable_Name());
     }
   }
   
