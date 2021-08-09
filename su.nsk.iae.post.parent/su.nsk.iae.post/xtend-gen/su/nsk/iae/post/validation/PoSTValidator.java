@@ -272,7 +272,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkAttachVariableConfElement_AttachType(final AttachVariableConfElement ele) {
+  public void checkAttachVariableConfElement_AttachBlockType(final AttachVariableConfElement ele) {
     if ((Objects.equal(ele.getAssig(), AssignmentType.IN) && (!this.<InputVarDeclaration>checkContainer(ele.getProgramVar(), InputVarDeclaration.class)))) {
       this.error("Attach error: Must be a input Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
@@ -281,6 +281,21 @@ public class PoSTValidator extends AbstractPoSTValidator {
     if ((Objects.equal(ele.getAssig(), AssignmentType.OUT) && (!this.<OutputVarDeclaration>checkContainer(ele.getProgramVar(), OutputVarDeclaration.class)))) {
       this.error("Attach error: Must be a output Variable", 
         this.ePackage.getAttachVariableConfElement_ProgramVar());
+    }
+  }
+  
+  @Check
+  public void checkAttachVariableConfElement_AttachVarType(final AttachVariableConfElement ele) {
+    if (((ele.getProgramVar() instanceof SymbolicVariable) && (ele.getAttVar() instanceof SymbolicVariable))) {
+      String _varType = this.getVarType(ele.getProgramVar());
+      String _varType_1 = this.getVarType(ele.getAttVar());
+      boolean _notEquals = (!Objects.equal(_varType, _varType_1));
+      if (_notEquals) {
+        String _varType_2 = this.getVarType(ele.getProgramVar());
+        String _plus = ("Attach error: Variable must be " + _varType_2);
+        this.error(_plus, 
+          this.ePackage.getAttachVariableConfElement_AttVar());
+      }
     }
   }
   
@@ -381,7 +396,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   }
   
   @Check
-  public void checkTemplateProcessAttachVariableConfElement_AttachType(final TemplateProcessAttachVariableConfElement ele) {
+  public void checkTemplateProcessAttachVariableConfElement_AttachBlockType(final TemplateProcessAttachVariableConfElement ele) {
     final Variable programVar = ele.getProgramVar();
     final Variable attVar = ele.getAttVar();
     if ((programVar instanceof SymbolicVariable)) {
@@ -401,6 +416,40 @@ public class PoSTValidator extends AbstractPoSTValidator {
         this.error("Process attach error: Process attach Variable must be a Template Process", 
           this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
         return;
+      }
+    }
+  }
+  
+  @Check
+  public void checkTemplateProcessAttachVariableConfElement_AttachVarType(final TemplateProcessAttachVariableConfElement ele) {
+    if (((ele.getProgramVar() instanceof SymbolicVariable) && (ele.getAttVar() instanceof SymbolicVariable))) {
+      Variable _programVar = ele.getProgramVar();
+      final SymbolicVariable programVar = ((SymbolicVariable) _programVar);
+      Variable _attVar = ele.getAttVar();
+      final SymbolicVariable attVar = ((SymbolicVariable) _attVar);
+      String _varType = this.getVarType(programVar);
+      String _varType_1 = this.getVarType(attVar);
+      boolean _notEquals = (!Objects.equal(_varType, _varType_1));
+      if (_notEquals) {
+        String _varType_2 = this.getVarType(programVar);
+        String _plus = ("Attach error: Process Variable must be " + _varType_2);
+        this.error(_plus, 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
+      }
+    }
+    if (((ele.getProgramVar() instanceof ProcessVariable) && (ele.getAttVar() instanceof TemplateProcessConfElement))) {
+      Variable _programVar_1 = ele.getProgramVar();
+      final ProcessVariable programVar_1 = ((ProcessVariable) _programVar_1);
+      Variable _attVar_1 = ele.getAttVar();
+      final TemplateProcessConfElement attVar_1 = ((TemplateProcessConfElement) _attVar_1);
+      String _name = EcoreUtil2.<ProcessVarInitDeclaration>getContainerOfType(programVar_1, ProcessVarInitDeclaration.class).getProcess().getName();
+      String _name_1 = attVar_1.getProcess().getName();
+      boolean _notEquals_1 = (!Objects.equal(_name, _name_1));
+      if (_notEquals_1) {
+        String _name_2 = attVar_1.getProcess().getName();
+        String _plus_1 = ("Attach error: Process Variable must be " + _name_2);
+        this.error(_plus_1, 
+          this.ePackage.getTemplateProcessAttachVariableConfElement_AttVar());
       }
     }
   }
@@ -796,6 +845,25 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   private boolean isTemplate(final su.nsk.iae.post.poST.Process process) {
     return ((((!process.getProcInVars().isEmpty()) || (!process.getProcOutVars().isEmpty())) || (!process.getProcInOutVars().isEmpty())) || (!process.getProcProcessVars().isEmpty()));
+  }
+  
+  private String getVarType(final SymbolicVariable ele) {
+    final VarInitDeclaration simple = EcoreUtil2.<VarInitDeclaration>getContainerOfType(ele, VarInitDeclaration.class);
+    if ((simple != null)) {
+      SimpleSpecificationInit _spec = simple.getSpec();
+      boolean _tripleNotEquals = (_spec != null);
+      if (_tripleNotEquals) {
+        return simple.getSpec().getType();
+      }
+      String _type = simple.getArrSpec().getInit().getType();
+      return ("ARRAY." + _type);
+    }
+    final GlobalVarInitDeclaration global = EcoreUtil2.<GlobalVarInitDeclaration>getContainerOfType(ele, GlobalVarInitDeclaration.class);
+    if ((global != null)) {
+      return global.getType();
+    }
+    final ExternalVarInitDeclaration ext = EcoreUtil2.<ExternalVarInitDeclaration>getContainerOfType(ele, ExternalVarInitDeclaration.class);
+    return ext.getType();
   }
   
   private boolean checkNameRepetition(final Model model, final Program ele) {

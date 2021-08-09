@@ -204,15 +204,25 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkAttachVariableConfElement_AttachType(AttachVariableConfElement ele) {
+	def checkAttachVariableConfElement_AttachBlockType(AttachVariableConfElement ele) {
 		if ((ele.assig == AssignmentType.IN) && !ele.programVar.checkContainer(InputVarDeclaration)) {
 			error("Attach error: Must be a input Variable",
-					ePackage.attachVariableConfElement_ProgramVar);
+					ePackage.attachVariableConfElement_ProgramVar)
 			return
 		} 
 		if ((ele.assig == AssignmentType.OUT) && !ele.programVar.checkContainer(OutputVarDeclaration)) {
 			error("Attach error: Must be a output Variable",
 					ePackage.attachVariableConfElement_ProgramVar)
+		}
+	}
+	
+	@Check
+	def checkAttachVariableConfElement_AttachVarType(AttachVariableConfElement ele) {
+		if ((ele.programVar instanceof SymbolicVariable) && (ele.attVar instanceof SymbolicVariable)) {
+			if (ele.programVar.varType != ele.attVar.varType) {
+				error("Attach error: Variable must be " + ele.programVar.varType,
+						ePackage.attachVariableConfElement_AttVar)
+			}
 		}
 	}
 	
@@ -256,7 +266,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	}
 	
 	@Check
-	def checkTemplateProcessAttachVariableConfElement_AttachType(TemplateProcessAttachVariableConfElement ele) {
+	def checkTemplateProcessAttachVariableConfElement_AttachBlockType(TemplateProcessAttachVariableConfElement ele) {
 		val programVar = ele.programVar
 		val attVar = ele.attVar
 		if (programVar instanceof SymbolicVariable) {
@@ -276,6 +286,26 @@ class PoSTValidator extends AbstractPoSTValidator {
 				error("Process attach error: Process attach Variable must be a Template Process",
 						ePackage.templateProcessAttachVariableConfElement_AttVar)
 				return
+			}
+		}
+	}
+	
+	@Check
+	def checkTemplateProcessAttachVariableConfElement_AttachVarType(TemplateProcessAttachVariableConfElement ele) {
+		if ((ele.programVar instanceof SymbolicVariable) && (ele.attVar instanceof SymbolicVariable)) {
+			val programVar = ele.programVar as SymbolicVariable
+			val attVar = ele.attVar as SymbolicVariable
+			if (programVar.varType != attVar.varType) {
+				error("Attach error: Process Variable must be " + programVar.varType,
+						ePackage.templateProcessAttachVariableConfElement_AttVar)
+			}
+		}
+		if ((ele.programVar instanceof ProcessVariable) && (ele.attVar instanceof TemplateProcessConfElement)) {
+			val programVar = ele.programVar as ProcessVariable
+			val attVar = ele.attVar as TemplateProcessConfElement
+			if (programVar.getContainerOfType(ProcessVarInitDeclaration).process.name != attVar.process.name) {
+				error("Attach error: Process Variable must be " + attVar.process.name,
+						ePackage.templateProcessAttachVariableConfElement_AttVar)
 			}
 		}
 	}
@@ -522,7 +552,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 			((globDecl !== null) && globDecl.const) ||
 			((extDecl !== null) && extDecl.const)
 		) {
-			error("Assignment error: Couldn't modify constant Variable", ePackage.assignmentStatement_Variable);
+			error("Assignment error: Couldn't modify constant Variable", ePackage.assignmentStatement_Variable)
 		}
 	}
 	
@@ -578,7 +608,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 		val EcoreUtil2.ElementReferenceAcceptor acceptor = 
 			[EObject referrer, EObject referenced, EReference reference, int index | {
 				res.add(reference)
-			}];
+			}]
 		context.findCrossReferences(targetSet, acceptor)
 		return !res.isEmpty()
 	}
@@ -609,6 +639,22 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	private def boolean isTemplate(Process process) {
 		return !process.procInVars.empty || !process.procOutVars.empty || !process.procInOutVars.empty || !process.procProcessVars.empty
+	}
+	
+	private def String getVarType(SymbolicVariable ele) {
+		val simple = ele.getContainerOfType(VarInitDeclaration)
+		if (simple !== null) {
+			if (simple.spec !== null) {
+				return simple.spec.type
+			}
+			return "ARRAY." + simple.arrSpec.init.type
+		}
+		val global = ele.getContainerOfType(GlobalVarInitDeclaration)
+		if (global !== null) {
+			return global.type
+		}
+		val ext = ele.getContainerOfType(ExternalVarInitDeclaration)
+		return ext.type
 	}
 	
 	private def boolean checkNameRepetition(Model model, Program ele) {
