@@ -5,7 +5,7 @@ import org.eclipse.xtext.ui.wizard.template.AbstractFileTemplate;
 import org.eclipse.xtext.ui.wizard.template.FileTemplate;
 import org.eclipse.xtext.ui.wizard.template.IFileGenerator;
 
-@FileTemplate(label = "Empty File", icon = "file_template.png", description = "Create an empty poST file.")
+@FileTemplate(label = "Empty File", icon = "PoST_file.png", description = "Create an empty poST file.")
 @SuppressWarnings("all")
 public final class EmptyFile extends AbstractFileTemplate {
   @Override

@@ -8,6 +8,7 @@
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="post"
+			icon="icons/PoST_file.png"
 			id="su.nsk.iae.post.PoST"
 			name="PoST Editor">
 		</editor>
@@ -440,7 +441,7 @@
 			class="su.nsk.iae.post.ui.PoSTExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewProjectWizard"
 			id="su.nsk.iae.post.ui.wizard.PoSTNewProjectWizard"
 			name="PoST Project"
-			icon="icons/new_PoST_proj.gif"
+			icon="icons/new_PoST_proj.png"
 			project="true">
 		</wizard>
 	</extension>

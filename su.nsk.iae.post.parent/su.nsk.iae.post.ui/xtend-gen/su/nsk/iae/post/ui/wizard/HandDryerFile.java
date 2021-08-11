@@ -5,7 +5,7 @@ import org.eclipse.xtext.ui.wizard.template.AbstractFileTemplate;
 import org.eclipse.xtext.ui.wizard.template.FileTemplate;
 import org.eclipse.xtext.ui.wizard.template.IFileGenerator;
 
-@FileTemplate(label = "Hand Dryer Program", icon = "file_template.png", description = "Create a Hand Dryer poST program.")
+@FileTemplate(label = "Hand Dryer Program", icon = "PoST_file.png", description = "Create a Hand Dryer poST program.")
 @SuppressWarnings("all")
 public final class HandDryerFile extends AbstractFileTemplate {
   @Override
