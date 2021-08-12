@@ -81,27 +81,29 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	}
 	
 	private def getAvailableVar(Model model, Program program, Process process) {
-		val conf = model.conf
-		val resources = model.conf.resources
-		return Stream.concat(
+		var res = Stream.concat(
 			Stream.concat(
-				Stream.concat(
-					process.processInOutVar.stream,
-					process.processVar.stream
-				),
-				Stream.concat(
-					program.programInOutVar.stream,
-					program.programVar.stream
-				)
+				process.processInOutVar.stream,
+				process.processVar.stream
 			),
 			Stream.concat(
-				model.globVars.globalVars.stream,
+				program.programInOutVar.stream,
+				program.programVar.stream
+			)
+		)
+		res = Stream.concat(res, model.globVars.globalVars.stream)
+		val conf = model.conf
+		if (conf !== null) {
+			val resources = model.conf.resources
+			res = Stream.concat(
+				res,
 				Stream.concat(
 					conf.confGlobVars.globalVars.stream,
 					resources.stream.map([x | x.resGlobVars.globalVars]).flatMap([x | x.stream])
 				)
 			)
-		).collect(Collectors.toList)
+		}
+		return res.collect(Collectors.toList)
 	}
 	
 	private static def getGlobalVars(EList<GlobalVarDeclaration> list) {

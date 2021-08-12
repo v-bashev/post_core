@@ -118,27 +118,29 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
   }
   
   private List<SymbolicVariable> getAvailableVar(final Model model, final Program program, final su.nsk.iae.post.poST.Process process) {
+    Stream<SymbolicVariable> res = Stream.<SymbolicVariable>concat(
+      Stream.<SymbolicVariable>concat(
+        PoSTScopeProvider.getProcessInOutVar(process).stream(), 
+        PoSTScopeProvider.getProcessVar(process).stream()), 
+      Stream.<SymbolicVariable>concat(
+        PoSTScopeProvider.getProgramInOutVar(program).stream(), 
+        PoSTScopeProvider.getProgramVar(program).stream()));
+    res = Stream.<SymbolicVariable>concat(res, PoSTScopeProvider.getGlobalVars(model.getGlobVars()).stream());
     final Configuration conf = model.getConf();
-    final EList<Resource> resources = model.getConf().getResources();
-    final java.util.function.Function<Resource, List<SymbolicVariable>> _function = (Resource x) -> {
-      return PoSTScopeProvider.getGlobalVars(x.getResGlobVars());
-    };
-    final java.util.function.Function<List<SymbolicVariable>, Stream<SymbolicVariable>> _function_1 = (List<SymbolicVariable> x) -> {
-      return x.stream();
-    };
-    return Stream.<SymbolicVariable>concat(
-      Stream.<SymbolicVariable>concat(
-        Stream.<SymbolicVariable>concat(
-          PoSTScopeProvider.getProcessInOutVar(process).stream(), 
-          PoSTScopeProvider.getProcessVar(process).stream()), 
-        Stream.<SymbolicVariable>concat(
-          PoSTScopeProvider.getProgramInOutVar(program).stream(), 
-          PoSTScopeProvider.getProgramVar(program).stream())), 
-      Stream.<SymbolicVariable>concat(
-        PoSTScopeProvider.getGlobalVars(model.getGlobVars()).stream(), 
+    if ((conf != null)) {
+      final EList<Resource> resources = model.getConf().getResources();
+      final java.util.function.Function<Resource, List<SymbolicVariable>> _function = (Resource x) -> {
+        return PoSTScopeProvider.getGlobalVars(x.getResGlobVars());
+      };
+      final java.util.function.Function<List<SymbolicVariable>, Stream<SymbolicVariable>> _function_1 = (List<SymbolicVariable> x) -> {
+        return x.stream();
+      };
+      res = Stream.<SymbolicVariable>concat(res, 
         Stream.<SymbolicVariable>concat(
           PoSTScopeProvider.getGlobalVars(conf.getConfGlobVars()).stream(), 
-          resources.stream().<List<SymbolicVariable>>map(_function).<SymbolicVariable>flatMap(_function_1)))).collect(Collectors.<SymbolicVariable>toList());
+          resources.stream().<List<SymbolicVariable>>map(_function).<SymbolicVariable>flatMap(_function_1)));
+    }
+    return res.collect(Collectors.<SymbolicVariable>toList());
   }
   
   private static List<SymbolicVariable> getGlobalVars(final EList<GlobalVarDeclaration> list) {
