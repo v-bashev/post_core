@@ -5,6 +5,12 @@ import org.eclipse.xtext.ui.wizard.template.IProjectTemplateProvider;
 
 @SuppressWarnings("all")
 public class PoSTProjectTemplateProvider implements IProjectTemplateProvider {
+  public static String srcFolder = "src";
+  
+  public static String genFolder = "src-gen";
+  
+  public static String libFolder = "Tool Library";
+  
   @Override
   public AbstractProjectTemplate[] getProjectTemplates() {
     EmptyProject _emptyProject = new EmptyProject();
