@@ -1,6 +1,10 @@
 package su.nsk.iae.post.ui.wizard
 
-import org.eclipse.jdt.core.JavaCore
+import java.nio.file.Files
+import java.nio.file.Paths
+import org.eclipse.core.runtime.FileLocator
+import org.eclipse.core.runtime.Path
+import org.eclipse.core.runtime.Platform
 import org.eclipse.xtext.ui.XtextProjectHelper
 import org.eclipse.xtext.ui.util.ProjectFactory
 import org.eclipse.xtext.ui.wizard.template.IProjectGenerator
@@ -8,14 +12,6 @@ import org.eclipse.xtext.ui.wizard.template.IProjectTemplateProvider
 import org.eclipse.xtext.ui.wizard.template.ProjectTemplate
 
 import static su.nsk.iae.post.ui.wizard.PoSTProgramCodeUtil.*
-import java.nio.file.Files
-import java.nio.file.Paths
-import org.eclipse.xtext.ui.wizard.template.AbstractProjectTemplate
-import java.util.List
-import java.io.File
-import org.eclipse.core.runtime.FileLocator
-import org.eclipse.core.runtime.Platform
-import org.eclipse.core.runtime.Path
 
 class PoSTProjectTemplateProvider implements IProjectTemplateProvider {
 	
