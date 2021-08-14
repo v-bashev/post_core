@@ -168,6 +168,15 @@ public interface PoSTFactory extends EFactory
   FunctionBlock createFunctionBlock();
 
   /**
+   * Returns a new object of class '<em>Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function</em>'.
+   * @generated
+   */
+  Function createFunction();
+
+  /**
    * Returns a new object of class '<em>Process</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

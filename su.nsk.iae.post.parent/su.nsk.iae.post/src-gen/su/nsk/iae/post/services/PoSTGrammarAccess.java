@@ -984,6 +984,113 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'END_FUNCTION_BLOCK'
 		public Keyword getEND_FUNCTION_BLOCKKeyword_4() { return cEND_FUNCTION_BLOCKKeyword_4; }
 	}
+	public class FunctionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.Function");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cFUNCTIONKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cTypeDataTypeNameParserRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Assignment cFunInVarsAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
+		private final RuleCall cFunInVarsInputVarDeclarationParserRuleCall_4_0_0 = (RuleCall)cFunInVarsAssignment_4_0.eContents().get(0);
+		private final Assignment cFunOutVarsAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final RuleCall cFunOutVarsOutputVarDeclarationParserRuleCall_4_1_0 = (RuleCall)cFunOutVarsAssignment_4_1.eContents().get(0);
+		private final Assignment cFunInOutVarsAssignment_4_2 = (Assignment)cAlternatives_4.eContents().get(2);
+		private final RuleCall cFunInOutVarsInputOutputVarDeclarationParserRuleCall_4_2_0 = (RuleCall)cFunInOutVarsAssignment_4_2.eContents().get(0);
+		private final Assignment cFunVarsAssignment_4_3 = (Assignment)cAlternatives_4.eContents().get(3);
+		private final RuleCall cFunVarsVarDeclarationParserRuleCall_4_3_0 = (RuleCall)cFunVarsAssignment_4_3.eContents().get(0);
+		private final Assignment cStatementAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cStatementStatementListParserRuleCall_5_0 = (RuleCall)cStatementAssignment_5.eContents().get(0);
+		private final Keyword cEND_FUNCTIONKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		///* ======================= END FB ======================= */
+		///* ======================= START Function ======================= */
+		//Function:
+		//    'FUNCTION' name=ID ':' type=DataTypeName
+		//        (
+		//            funInVars+=InputVarDeclaration |
+		//            funOutVars+=OutputVarDeclaration |
+		//            funInOutVars+=InputOutputVarDeclaration |
+		//            funVars+=VarDeclaration
+		//        )*
+		//        statement=StatementList
+		//    'END_FUNCTION'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'FUNCTION' name=ID ':' type=DataTypeName
+		//    (
+		//        funInVars+=InputVarDeclaration |
+		//        funOutVars+=OutputVarDeclaration |
+		//        funInOutVars+=InputOutputVarDeclaration |
+		//        funVars+=VarDeclaration
+		//    )*
+		//    statement=StatementList
+		//'END_FUNCTION'
+		public Group getGroup() { return cGroup; }
+		
+		//'FUNCTION'
+		public Keyword getFUNCTIONKeyword_0() { return cFUNCTIONKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//':'
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		
+		//type=DataTypeName
+		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
+		
+		//DataTypeName
+		public RuleCall getTypeDataTypeNameParserRuleCall_3_0() { return cTypeDataTypeNameParserRuleCall_3_0; }
+		
+		//(
+		//    funInVars+=InputVarDeclaration |
+		//    funOutVars+=OutputVarDeclaration |
+		//    funInOutVars+=InputOutputVarDeclaration |
+		//    funVars+=VarDeclaration
+		//)*
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		
+		//funInVars+=InputVarDeclaration
+		public Assignment getFunInVarsAssignment_4_0() { return cFunInVarsAssignment_4_0; }
+		
+		//InputVarDeclaration
+		public RuleCall getFunInVarsInputVarDeclarationParserRuleCall_4_0_0() { return cFunInVarsInputVarDeclarationParserRuleCall_4_0_0; }
+		
+		//funOutVars+=OutputVarDeclaration
+		public Assignment getFunOutVarsAssignment_4_1() { return cFunOutVarsAssignment_4_1; }
+		
+		//OutputVarDeclaration
+		public RuleCall getFunOutVarsOutputVarDeclarationParserRuleCall_4_1_0() { return cFunOutVarsOutputVarDeclarationParserRuleCall_4_1_0; }
+		
+		//funInOutVars+=InputOutputVarDeclaration
+		public Assignment getFunInOutVarsAssignment_4_2() { return cFunInOutVarsAssignment_4_2; }
+		
+		//InputOutputVarDeclaration
+		public RuleCall getFunInOutVarsInputOutputVarDeclarationParserRuleCall_4_2_0() { return cFunInOutVarsInputOutputVarDeclarationParserRuleCall_4_2_0; }
+		
+		//funVars+=VarDeclaration
+		public Assignment getFunVarsAssignment_4_3() { return cFunVarsAssignment_4_3; }
+		
+		//VarDeclaration
+		public RuleCall getFunVarsVarDeclarationParserRuleCall_4_3_0() { return cFunVarsVarDeclarationParserRuleCall_4_3_0; }
+		
+		//statement=StatementList
+		public Assignment getStatementAssignment_5() { return cStatementAssignment_5; }
+		
+		//StatementList
+		public RuleCall getStatementStatementListParserRuleCall_5_0() { return cStatementStatementListParserRuleCall_5_0; }
+		
+		//'END_FUNCTION'
+		public Keyword getEND_FUNCTIONKeyword_6() { return cEND_FUNCTIONKeyword_6; }
+	}
 	public class ProcessElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.Process");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1007,7 +1114,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cStatesStateParserRuleCall_3_0 = (RuleCall)cStatesAssignment_3.eContents().get(0);
 		private final Keyword cEND_PROCESSKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		///* ======================= END FB ======================= */
+		///* ======================= END Function ======================= */
 		///* ======================= START Process and State  ======================= */
 		//Process:
 		//    'PROCESS' name=ID
@@ -4012,6 +4119,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final TemplateProcessAttachVariableConfElementElements pTemplateProcessAttachVariableConfElement;
 	private final ProgramElements pProgram;
 	private final FunctionBlockElements pFunctionBlock;
+	private final FunctionElements pFunction;
 	private final ProcessElements pProcess;
 	private final StateElements pState;
 	private final SetStateStatementElements pSetStateStatement;
@@ -4140,6 +4248,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pTemplateProcessAttachVariableConfElement = new TemplateProcessAttachVariableConfElementElements();
 		this.pProgram = new ProgramElements();
 		this.pFunctionBlock = new FunctionBlockElements();
+		this.pFunction = new FunctionElements();
 		this.pProcess = new ProcessElements();
 		this.pState = new StateElements();
 		this.pSetStateStatement = new SetStateStatementElements();
@@ -4501,6 +4610,27 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	///* ======================= END FB ======================= */
+	///* ======================= START Function ======================= */
+	//Function:
+	//    'FUNCTION' name=ID ':' type=DataTypeName
+	//        (
+	//            funInVars+=InputVarDeclaration |
+	//            funOutVars+=OutputVarDeclaration |
+	//            funInOutVars+=InputOutputVarDeclaration |
+	//            funVars+=VarDeclaration
+	//        )*
+	//        statement=StatementList
+	//    'END_FUNCTION'
+	//;
+	public FunctionElements getFunctionAccess() {
+		return pFunction;
+	}
+	
+	public ParserRule getFunctionRule() {
+		return getFunctionAccess().getRule();
+	}
+	
+	///* ======================= END Function ======================= */
 	///* ======================= START Process and State  ======================= */
 	//Process:
 	//    'PROCESS' name=ID

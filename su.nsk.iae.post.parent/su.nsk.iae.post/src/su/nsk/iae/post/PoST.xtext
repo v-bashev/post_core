@@ -120,6 +120,22 @@ FunctionBlock:
 
 /* ======================= END FB ======================= */
 
+/* ======================= START Function ======================= */
+
+Function:
+	'FUNCTION' name=ID ':' type=DataTypeName
+		(
+			funInVars+=InputVarDeclaration | 
+			funOutVars+=OutputVarDeclaration |
+			funInOutVars+=InputOutputVarDeclaration |
+			funVars+=VarDeclaration
+		)*
+		statement=StatementList
+	'END_FUNCTION'
+;
+
+/* ======================= END Function ======================= */
+
 /* ======================= START Process and State  ======================= */
 
 Process: 

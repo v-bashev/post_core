@@ -40,6 +40,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTemplateProcessAttachVariableConfElementAccess().getAlternatives_2(), "rule__TemplateProcessAttachVariableConfElement__Alternatives_2");
 			builder.put(grammarAccess.getProgramAccess().getAlternatives_2(), "rule__Program__Alternatives_2");
 			builder.put(grammarAccess.getFunctionBlockAccess().getAlternatives_2(), "rule__FunctionBlock__Alternatives_2");
+			builder.put(grammarAccess.getFunctionAccess().getAlternatives_4(), "rule__Function__Alternatives_4");
 			builder.put(grammarAccess.getProcessAccess().getAlternatives_2(), "rule__Process__Alternatives_2");
 			builder.put(grammarAccess.getSetStateStatementAccess().getAlternatives_2(), "rule__SetStateStatement__Alternatives_2");
 			builder.put(grammarAccess.getProcessStatementsAccess().getAlternatives(), "rule__ProcessStatements__Alternatives");
@@ -89,6 +90,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTemplateProcessAttachVariableConfElementAccess().getGroup(), "rule__TemplateProcessAttachVariableConfElement__Group__0");
 			builder.put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 			builder.put(grammarAccess.getFunctionBlockAccess().getGroup(), "rule__FunctionBlock__Group__0");
+			builder.put(grammarAccess.getFunctionAccess().getGroup(), "rule__Function__Group__0");
 			builder.put(grammarAccess.getProcessAccess().getGroup(), "rule__Process__Group__0");
 			builder.put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 			builder.put(grammarAccess.getSetStateStatementAccess().getGroup(), "rule__SetStateStatement__Group__0");
@@ -238,6 +240,13 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionBlockAccess().getFbTempVarsAssignment_2_4(), "rule__FunctionBlock__FbTempVarsAssignment_2_4");
 			builder.put(grammarAccess.getFunctionBlockAccess().getFbExternVarsAssignment_2_5(), "rule__FunctionBlock__FbExternVarsAssignment_2_5");
 			builder.put(grammarAccess.getFunctionBlockAccess().getProcessesAssignment_3(), "rule__FunctionBlock__ProcessesAssignment_3");
+			builder.put(grammarAccess.getFunctionAccess().getNameAssignment_1(), "rule__Function__NameAssignment_1");
+			builder.put(grammarAccess.getFunctionAccess().getTypeAssignment_3(), "rule__Function__TypeAssignment_3");
+			builder.put(grammarAccess.getFunctionAccess().getFunInVarsAssignment_4_0(), "rule__Function__FunInVarsAssignment_4_0");
+			builder.put(grammarAccess.getFunctionAccess().getFunOutVarsAssignment_4_1(), "rule__Function__FunOutVarsAssignment_4_1");
+			builder.put(grammarAccess.getFunctionAccess().getFunInOutVarsAssignment_4_2(), "rule__Function__FunInOutVarsAssignment_4_2");
+			builder.put(grammarAccess.getFunctionAccess().getFunVarsAssignment_4_3(), "rule__Function__FunVarsAssignment_4_3");
+			builder.put(grammarAccess.getFunctionAccess().getStatementAssignment_5(), "rule__Function__StatementAssignment_5");
 			builder.put(grammarAccess.getProcessAccess().getNameAssignment_1(), "rule__Process__NameAssignment_1");
 			builder.put(grammarAccess.getProcessAccess().getProcInVarsAssignment_2_0(), "rule__Process__ProcInVarsAssignment_2_0");
 			builder.put(grammarAccess.getProcessAccess().getProcOutVarsAssignment_2_1(), "rule__Process__ProcOutVarsAssignment_2_1");

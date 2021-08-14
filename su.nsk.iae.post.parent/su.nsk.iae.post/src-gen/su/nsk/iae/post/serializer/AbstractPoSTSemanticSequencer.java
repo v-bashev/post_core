@@ -37,6 +37,7 @@ import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
 import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
+import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
@@ -170,6 +171,9 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 				return; 
 			case PoSTPackage.FOR_STATEMENT:
 				sequence_ForStatement(context, (ForStatement) semanticObject); 
+				return; 
+			case PoSTPackage.FUNCTION:
+				sequence_Function(context, (Function) semanticObject); 
 				return; 
 			case PoSTPackage.FUNCTION_BLOCK:
 				sequence_FunctionBlock(context, (FunctionBlock) semanticObject); 
@@ -769,6 +773,23 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     )
 	 */
 	protected void sequence_FunctionBlock(ISerializationContext context, FunctionBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns Function
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=ID 
+	 *         type=DataTypeName 
+	 *         (funInVars+=InputVarDeclaration | funOutVars+=OutputVarDeclaration | funInOutVars+=InputOutputVarDeclaration | funVars+=VarDeclaration)* 
+	 *         statement=StatementList
+	 *     )
+	 */
+	protected void sequence_Function(ISerializationContext context, Function semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

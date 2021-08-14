@@ -840,6 +840,88 @@ public interface PoSTPackage extends EPackage
   int FUNCTION_BLOCK_FEATURE_COUNT = 8;
 
   /**
+   * The meta object id for the '{@link su.nsk.iae.post.poST.impl.FunctionImpl <em>Function</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see su.nsk.iae.post.poST.impl.FunctionImpl
+   * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getFunction()
+   * @generated
+   */
+  int FUNCTION = 16;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__TYPE = 1;
+
+  /**
+   * The feature id for the '<em><b>Fun In Vars</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__FUN_IN_VARS = 2;
+
+  /**
+   * The feature id for the '<em><b>Fun Out Vars</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__FUN_OUT_VARS = 3;
+
+  /**
+   * The feature id for the '<em><b>Fun In Out Vars</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__FUN_IN_OUT_VARS = 4;
+
+  /**
+   * The feature id for the '<em><b>Fun Vars</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__FUN_VARS = 5;
+
+  /**
+   * The feature id for the '<em><b>Statement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION__STATEMENT = 6;
+
+  /**
+   * The number of structural features of the '<em>Function</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_FEATURE_COUNT = 7;
+
+  /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.impl.ProcessImpl <em>Process</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -847,7 +929,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcess()
    * @generated
    */
-  int PROCESS = 16;
+  int PROCESS = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -938,7 +1020,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getState()
    * @generated
    */
-  int STATE = 17;
+  int STATE = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -993,7 +1075,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getStatement()
    * @generated
    */
-  int STATEMENT = 37;
+  int STATEMENT = 38;
 
   /**
    * The number of structural features of the '<em>Statement</em>' class.
@@ -1012,7 +1094,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getSetStateStatement()
    * @generated
    */
-  int SET_STATE_STATEMENT = 18;
+  int SET_STATE_STATEMENT = 19;
 
   /**
    * The feature id for the '<em><b>State</b></em>' reference.
@@ -1049,7 +1131,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessStatements()
    * @generated
    */
-  int PROCESS_STATEMENTS = 19;
+  int PROCESS_STATEMENTS = 20;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1077,7 +1159,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessStatusExpression()
    * @generated
    */
-  int PROCESS_STATUS_EXPRESSION = 20;
+  int PROCESS_STATUS_EXPRESSION = 21;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1141,7 +1223,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getStartProcessStatement()
    * @generated
    */
-  int START_PROCESS_STATEMENT = 21;
+  int START_PROCESS_STATEMENT = 22;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1169,7 +1251,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getStopProcessStatement()
    * @generated
    */
-  int STOP_PROCESS_STATEMENT = 22;
+  int STOP_PROCESS_STATEMENT = 23;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1197,7 +1279,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getErrorProcessStatement()
    * @generated
    */
-  int ERROR_PROCESS_STATEMENT = 23;
+  int ERROR_PROCESS_STATEMENT = 24;
 
   /**
    * The feature id for the '<em><b>Process</b></em>' reference.
@@ -1225,7 +1307,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getTimeoutStatement()
    * @generated
    */
-  int TIMEOUT_STATEMENT = 24;
+  int TIMEOUT_STATEMENT = 25;
 
   /**
    * The feature id for the '<em><b>Const</b></em>' containment reference.
@@ -1271,7 +1353,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getResetTimerStatement()
    * @generated
    */
-  int RESET_TIMER_STATEMENT = 25;
+  int RESET_TIMER_STATEMENT = 26;
 
   /**
    * The number of structural features of the '<em>Reset Timer Statement</em>' class.
@@ -1290,7 +1372,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 26;
+  int EXPRESSION = 27;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1327,7 +1409,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getXorExpression()
    * @generated
    */
-  int XOR_EXPRESSION = 27;
+  int XOR_EXPRESSION = 28;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1364,7 +1446,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 28;
+  int AND_EXPRESSION = 29;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1401,7 +1483,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getCompExpression()
    * @generated
    */
-  int COMP_EXPRESSION = 29;
+  int COMP_EXPRESSION = 30;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1447,7 +1529,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getEquExpression()
    * @generated
    */
-  int EQU_EXPRESSION = 30;
+  int EQU_EXPRESSION = 31;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1502,7 +1584,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getAddExpression()
    * @generated
    */
-  int ADD_EXPRESSION = 31;
+  int ADD_EXPRESSION = 32;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1566,7 +1648,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getMulExpression()
    * @generated
    */
-  int MUL_EXPRESSION = 32;
+  int MUL_EXPRESSION = 33;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1639,7 +1721,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getPowerExpression()
    * @generated
    */
-  int POWER_EXPRESSION = 33;
+  int POWER_EXPRESSION = 34;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1712,7 +1794,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getUnaryExpression()
    * @generated
    */
-  int UNARY_EXPRESSION = 34;
+  int UNARY_EXPRESSION = 35;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1794,7 +1876,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getPrimaryExpression()
    * @generated
    */
-  int PRIMARY_EXPRESSION = 35;
+  int PRIMARY_EXPRESSION = 36;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1921,7 +2003,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getStatementList()
    * @generated
    */
-  int STATEMENT_LIST = 36;
+  int STATEMENT_LIST = 37;
 
   /**
    * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -1949,7 +2031,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getAssignmentStatement()
    * @generated
    */
-  int ASSIGNMENT_STATEMENT = 38;
+  int ASSIGNMENT_STATEMENT = 39;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -1995,7 +2077,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getSelectionStatement()
    * @generated
    */
-  int SELECTION_STATEMENT = 39;
+  int SELECTION_STATEMENT = 40;
 
   /**
    * The feature id for the '<em><b>Else Statement</b></em>' containment reference.
@@ -2023,7 +2105,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getIfStatement()
    * @generated
    */
-  int IF_STATEMENT = 40;
+  int IF_STATEMENT = 41;
 
   /**
    * The feature id for the '<em><b>Else Statement</b></em>' containment reference.
@@ -2087,7 +2169,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getCaseStatement()
    * @generated
    */
-  int CASE_STATEMENT = 41;
+  int CASE_STATEMENT = 42;
 
   /**
    * The feature id for the '<em><b>Else Statement</b></em>' containment reference.
@@ -2133,7 +2215,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getCaseElement()
    * @generated
    */
-  int CASE_ELEMENT = 42;
+  int CASE_ELEMENT = 43;
 
   /**
    * The feature id for the '<em><b>Case List</b></em>' containment reference.
@@ -2170,7 +2252,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getCaseList()
    * @generated
    */
-  int CASE_LIST = 43;
+  int CASE_LIST = 44;
 
   /**
    * The feature id for the '<em><b>Case List Element</b></em>' containment reference list.
@@ -2198,7 +2280,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getIterationStatement()
    * @generated
    */
-  int ITERATION_STATEMENT = 44;
+  int ITERATION_STATEMENT = 45;
 
   /**
    * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -2226,7 +2308,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getForStatement()
    * @generated
    */
-  int FOR_STATEMENT = 45;
+  int FOR_STATEMENT = 46;
 
   /**
    * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -2272,7 +2354,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getForList()
    * @generated
    */
-  int FOR_LIST = 46;
+  int FOR_LIST = 47;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -2318,7 +2400,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getWhileStatement()
    * @generated
    */
-  int WHILE_STATEMENT = 47;
+  int WHILE_STATEMENT = 48;
 
   /**
    * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -2355,7 +2437,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getRepeatStatement()
    * @generated
    */
-  int REPEAT_STATEMENT = 48;
+  int REPEAT_STATEMENT = 49;
 
   /**
    * The feature id for the '<em><b>Statement</b></em>' containment reference.
@@ -2392,7 +2474,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getSubprogramControlStatement()
    * @generated
    */
-  int SUBPROGRAM_CONTROL_STATEMENT = 49;
+  int SUBPROGRAM_CONTROL_STATEMENT = 50;
 
   /**
    * The number of structural features of the '<em>Subprogram Control Statement</em>' class.
@@ -2411,7 +2493,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getExitStatement()
    * @generated
    */
-  int EXIT_STATEMENT = 50;
+  int EXIT_STATEMENT = 51;
 
   /**
    * The number of structural features of the '<em>Exit Statement</em>' class.
@@ -2430,7 +2512,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getSymbolicVariable()
    * @generated
    */
-  int SYMBOLIC_VARIABLE = 51;
+  int SYMBOLIC_VARIABLE = 52;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2458,7 +2540,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getSimpleSpecificationInit()
    * @generated
    */
-  int SIMPLE_SPECIFICATION_INIT = 52;
+  int SIMPLE_SPECIFICATION_INIT = 53;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -2495,7 +2577,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getVarList()
    * @generated
    */
-  int VAR_LIST = 53;
+  int VAR_LIST = 54;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference list.
@@ -2523,7 +2605,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getVarInitDeclaration()
    * @generated
    */
-  int VAR_INIT_DECLARATION = 54;
+  int VAR_INIT_DECLARATION = 55;
 
   /**
    * The feature id for the '<em><b>Var List</b></em>' containment reference.
@@ -2569,7 +2651,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getInputVarDeclaration()
    * @generated
    */
-  int INPUT_VAR_DECLARATION = 55;
+  int INPUT_VAR_DECLARATION = 56;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference list.
@@ -2597,7 +2679,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getOutputVarDeclaration()
    * @generated
    */
-  int OUTPUT_VAR_DECLARATION = 56;
+  int OUTPUT_VAR_DECLARATION = 57;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference list.
@@ -2625,7 +2707,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getInputOutputVarDeclaration()
    * @generated
    */
-  int INPUT_OUTPUT_VAR_DECLARATION = 57;
+  int INPUT_OUTPUT_VAR_DECLARATION = 58;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference list.
@@ -2653,7 +2735,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getVarDeclaration()
    * @generated
    */
-  int VAR_DECLARATION = 58;
+  int VAR_DECLARATION = 59;
 
   /**
    * The feature id for the '<em><b>Const</b></em>' attribute.
@@ -2690,7 +2772,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getTempVarDeclaration()
    * @generated
    */
-  int TEMP_VAR_DECLARATION = 59;
+  int TEMP_VAR_DECLARATION = 60;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference list.
@@ -2718,7 +2800,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getExternalVarInitDeclaration()
    * @generated
    */
-  int EXTERNAL_VAR_INIT_DECLARATION = 60;
+  int EXTERNAL_VAR_INIT_DECLARATION = 61;
 
   /**
    * The feature id for the '<em><b>Var List</b></em>' containment reference.
@@ -2755,7 +2837,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getExternalVarDeclaration()
    * @generated
    */
-  int EXTERNAL_VAR_DECLARATION = 61;
+  int EXTERNAL_VAR_DECLARATION = 62;
 
   /**
    * The feature id for the '<em><b>Const</b></em>' attribute.
@@ -2792,7 +2874,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getGlobalVarInitDeclaration()
    * @generated
    */
-  int GLOBAL_VAR_INIT_DECLARATION = 62;
+  int GLOBAL_VAR_INIT_DECLARATION = 63;
 
   /**
    * The feature id for the '<em><b>Var List</b></em>' containment reference.
@@ -2838,7 +2920,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getGlobalVarDeclaration()
    * @generated
    */
-  int GLOBAL_VAR_DECLARATION = 63;
+  int GLOBAL_VAR_DECLARATION = 64;
 
   /**
    * The feature id for the '<em><b>Const</b></em>' attribute.
@@ -2884,7 +2966,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessVariable()
    * @generated
    */
-  int PROCESS_VARIABLE = 64;
+  int PROCESS_VARIABLE = 65;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2912,7 +2994,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessVarList()
    * @generated
    */
-  int PROCESS_VAR_LIST = 65;
+  int PROCESS_VAR_LIST = 66;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference list.
@@ -2940,7 +3022,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessVarInitDeclaration()
    * @generated
    */
-  int PROCESS_VAR_INIT_DECLARATION = 66;
+  int PROCESS_VAR_INIT_DECLARATION = 67;
 
   /**
    * The feature id for the '<em><b>Var List</b></em>' containment reference.
@@ -2977,7 +3059,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getProcessVarDeclaration()
    * @generated
    */
-  int PROCESS_VAR_DECLARATION = 67;
+  int PROCESS_VAR_DECLARATION = 68;
 
   /**
    * The feature id for the '<em><b>Vars</b></em>' containment reference list.
@@ -3005,7 +3087,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getArrayVariable()
    * @generated
    */
-  int ARRAY_VARIABLE = 68;
+  int ARRAY_VARIABLE = 69;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -3042,7 +3124,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getArraySpecificationInit()
    * @generated
    */
-  int ARRAY_SPECIFICATION_INIT = 69;
+  int ARRAY_SPECIFICATION_INIT = 70;
 
   /**
    * The feature id for the '<em><b>Init</b></em>' containment reference.
@@ -3079,7 +3161,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getArraySpecification()
    * @generated
    */
-  int ARRAY_SPECIFICATION = 70;
+  int ARRAY_SPECIFICATION = 71;
 
   /**
    * The feature id for the '<em><b>Interval</b></em>' containment reference.
@@ -3116,7 +3198,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getArrayInterval()
    * @generated
    */
-  int ARRAY_INTERVAL = 71;
+  int ARRAY_INTERVAL = 72;
 
   /**
    * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -3153,7 +3235,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getArrayInitialization()
    * @generated
    */
-  int ARRAY_INITIALIZATION = 72;
+  int ARRAY_INITIALIZATION = 73;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -3181,7 +3263,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getTimeLiteral()
    * @generated
    */
-  int TIME_LITERAL = 73;
+  int TIME_LITERAL = 74;
 
   /**
    * The feature id for the '<em><b>Interval</b></em>' attribute.
@@ -3209,7 +3291,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 74;
+  int CONSTANT = 75;
 
   /**
    * The feature id for the '<em><b>Num</b></em>' containment reference.
@@ -3255,7 +3337,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getSignedInteger()
    * @generated
    */
-  int SIGNED_INTEGER = 75;
+  int SIGNED_INTEGER = 76;
 
   /**
    * The feature id for the '<em><b>ISig</b></em>' attribute.
@@ -3292,7 +3374,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getNumericLiteral()
    * @generated
    */
-  int NUMERIC_LITERAL = 76;
+  int NUMERIC_LITERAL = 77;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3320,7 +3402,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getIntegerLiteral()
    * @generated
    */
-  int INTEGER_LITERAL = 77;
+  int INTEGER_LITERAL = 78;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3357,7 +3439,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getRealLiteral()
    * @generated
    */
-  int REAL_LITERAL = 78;
+  int REAL_LITERAL = 79;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3403,7 +3485,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getAssignmentType()
    * @generated
    */
-  int ASSIGNMENT_TYPE = 79;
+  int ASSIGNMENT_TYPE = 80;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.CompOperator <em>Comp Operator</em>}' enum.
@@ -3413,7 +3495,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getCompOperator()
    * @generated
    */
-  int COMP_OPERATOR = 80;
+  int COMP_OPERATOR = 81;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.EquOperator <em>Equ Operator</em>}' enum.
@@ -3423,7 +3505,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getEquOperator()
    * @generated
    */
-  int EQU_OPERATOR = 81;
+  int EQU_OPERATOR = 82;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.AddOperator <em>Add Operator</em>}' enum.
@@ -3433,7 +3515,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getAddOperator()
    * @generated
    */
-  int ADD_OPERATOR = 82;
+  int ADD_OPERATOR = 83;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.MulOperator <em>Mul Operator</em>}' enum.
@@ -3443,7 +3525,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getMulOperator()
    * @generated
    */
-  int MUL_OPERATOR = 83;
+  int MUL_OPERATOR = 84;
 
   /**
    * The meta object id for the '{@link su.nsk.iae.post.poST.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -3453,7 +3535,7 @@ public interface PoSTPackage extends EPackage
    * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getUnaryOperator()
    * @generated
    */
-  int UNARY_OPERATOR = 84;
+  int UNARY_OPERATOR = 85;
 
 
   /**
@@ -4187,6 +4269,93 @@ public interface PoSTPackage extends EPackage
    * @generated
    */
   EReference getFunctionBlock_Processes();
+
+  /**
+   * Returns the meta object for class '{@link su.nsk.iae.post.poST.Function <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Function</em>'.
+   * @see su.nsk.iae.post.poST.Function
+   * @generated
+   */
+  EClass getFunction();
+
+  /**
+   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.Function#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see su.nsk.iae.post.poST.Function#getName()
+   * @see #getFunction()
+   * @generated
+   */
+  EAttribute getFunction_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link su.nsk.iae.post.poST.Function#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see su.nsk.iae.post.poST.Function#getType()
+   * @see #getFunction()
+   * @generated
+   */
+  EAttribute getFunction_Type();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Function#getFunInVars <em>Fun In Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Fun In Vars</em>'.
+   * @see su.nsk.iae.post.poST.Function#getFunInVars()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_FunInVars();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Function#getFunOutVars <em>Fun Out Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Fun Out Vars</em>'.
+   * @see su.nsk.iae.post.poST.Function#getFunOutVars()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_FunOutVars();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Function#getFunInOutVars <em>Fun In Out Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Fun In Out Vars</em>'.
+   * @see su.nsk.iae.post.poST.Function#getFunInOutVars()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_FunInOutVars();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link su.nsk.iae.post.poST.Function#getFunVars <em>Fun Vars</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Fun Vars</em>'.
+   * @see su.nsk.iae.post.poST.Function#getFunVars()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_FunVars();
+
+  /**
+   * Returns the meta object for the containment reference '{@link su.nsk.iae.post.poST.Function#getStatement <em>Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Statement</em>'.
+   * @see su.nsk.iae.post.poST.Function#getStatement()
+   * @see #getFunction()
+   * @generated
+   */
+  EReference getFunction_Statement();
 
   /**
    * Returns the meta object for class '{@link su.nsk.iae.post.poST.Process <em>Process</em>}'.
@@ -6587,6 +6756,72 @@ public interface PoSTPackage extends EPackage
      * @generated
      */
     EReference FUNCTION_BLOCK__PROCESSES = eINSTANCE.getFunctionBlock_Processes();
+
+    /**
+     * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.FunctionImpl <em>Function</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see su.nsk.iae.post.poST.impl.FunctionImpl
+     * @see su.nsk.iae.post.poST.impl.PoSTPackageImpl#getFunction()
+     * @generated
+     */
+    EClass FUNCTION = eINSTANCE.getFunction();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION__NAME = eINSTANCE.getFunction_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION__TYPE = eINSTANCE.getFunction_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Fun In Vars</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__FUN_IN_VARS = eINSTANCE.getFunction_FunInVars();
+
+    /**
+     * The meta object literal for the '<em><b>Fun Out Vars</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__FUN_OUT_VARS = eINSTANCE.getFunction_FunOutVars();
+
+    /**
+     * The meta object literal for the '<em><b>Fun In Out Vars</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__FUN_IN_OUT_VARS = eINSTANCE.getFunction_FunInOutVars();
+
+    /**
+     * The meta object literal for the '<em><b>Fun Vars</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__FUN_VARS = eINSTANCE.getFunction_FunVars();
+
+    /**
+     * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FUNCTION__STATEMENT = eINSTANCE.getFunction_Statement();
 
     /**
      * The meta object literal for the '{@link su.nsk.iae.post.poST.impl.ProcessImpl <em>Process</em>}' class.

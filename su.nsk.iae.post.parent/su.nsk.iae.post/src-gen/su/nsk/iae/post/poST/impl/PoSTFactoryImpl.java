@@ -39,6 +39,7 @@ import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
 import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
+import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
@@ -167,6 +168,7 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.TEMPLATE_PROCESS_ATTACH_VARIABLE_CONF_ELEMENT: return createTemplateProcessAttachVariableConfElement();
       case PoSTPackage.PROGRAM: return createProgram();
       case PoSTPackage.FUNCTION_BLOCK: return createFunctionBlock();
+      case PoSTPackage.FUNCTION: return createFunction();
       case PoSTPackage.PROCESS: return createProcess();
       case PoSTPackage.STATE: return createState();
       case PoSTPackage.SET_STATE_STATEMENT: return createSetStateStatement();
@@ -479,6 +481,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     FunctionBlockImpl functionBlock = new FunctionBlockImpl();
     return functionBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Function createFunction()
+  {
+    FunctionImpl function = new FunctionImpl();
+    return function;
   }
 
   /**
