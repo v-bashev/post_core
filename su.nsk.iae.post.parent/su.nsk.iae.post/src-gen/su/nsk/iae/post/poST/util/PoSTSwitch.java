@@ -33,6 +33,8 @@ import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
+import su.nsk.iae.post.poST.FunctionCallElements;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -44,6 +46,7 @@ import su.nsk.iae.post.poST.Model;
 import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ParamAssignment;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
@@ -351,6 +354,27 @@ public class PoSTSwitch<T> extends Switch<T>
         ResetTimerStatement resetTimerStatement = (ResetTimerStatement)theEObject;
         T result = caseResetTimerStatement(resetTimerStatement);
         if (result == null) result = caseStatement(resetTimerStatement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.FUNCTION_CALL:
+      {
+        FunctionCall functionCall = (FunctionCall)theEObject;
+        T result = caseFunctionCall(functionCall);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.FUNCTION_CALL_ELEMENTS:
+      {
+        FunctionCallElements functionCallElements = (FunctionCallElements)theEObject;
+        T result = caseFunctionCallElements(functionCallElements);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.PARAM_ASSIGNMENT:
+      {
+        ParamAssignment paramAssignment = (ParamAssignment)theEObject;
+        T result = caseParamAssignment(paramAssignment);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1221,6 +1245,54 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseResetTimerStatement(ResetTimerStatement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionCall(FunctionCall object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Function Call Elements</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Function Call Elements</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFunctionCallElements(FunctionCallElements object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Param Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Param Assignment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseParamAssignment(ParamAssignment object)
   {
     return null;
   }

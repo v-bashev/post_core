@@ -37,18 +37,22 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cProgramsProgramParserRuleCall_2_0 = (RuleCall)cProgramsAssignment_2.eContents().get(0);
 		private final Assignment cFbsAssignment_3 = (Assignment)cUnorderedGroup.eContents().get(3);
 		private final RuleCall cFbsFunctionBlockParserRuleCall_3_0 = (RuleCall)cFbsAssignment_3.eContents().get(0);
+		private final Assignment cFunsAssignment_4 = (Assignment)cUnorderedGroup.eContents().get(4);
+		private final RuleCall cFunsFunctionParserRuleCall_4_0 = (RuleCall)cFunsAssignment_4.eContents().get(0);
 		
 		//Model:
 		//    (conf=Configuration)? &
 		//    (globVars+=GlobalVarDeclaration)* &
 		//    (programs+=Program)* &
-		//    (fbs+=FunctionBlock)*;
+		//    (fbs+=FunctionBlock)* &
+		//    (funs+=Function)*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//(conf=Configuration)? &
 		//(globVars+=GlobalVarDeclaration)* &
 		//(programs+=Program)* &
-		//(fbs+=FunctionBlock)*
+		//(fbs+=FunctionBlock)* &
+		//(funs+=Function)*
 		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
 		
 		//(conf=Configuration)?
@@ -74,6 +78,12 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//FunctionBlock
 		public RuleCall getFbsFunctionBlockParserRuleCall_3_0() { return cFbsFunctionBlockParserRuleCall_3_0; }
+		
+		//(funs+=Function)*
+		public Assignment getFunsAssignment_4() { return cFunsAssignment_4; }
+		
+		//Function
+		public RuleCall getFunsFunctionParserRuleCall_4_0() { return cFunsFunctionParserRuleCall_4_0; }
 	}
 	public class VariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.Variable");
@@ -1279,7 +1289,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cNextNEXTKeyword_2_1_0 = (Keyword)cNextAssignment_2_1.eContents().get(0);
 		
 		///* ======================= END Process and State  ======================= */
-		///* ======================= START poST Expression ======================= */
+		///* ======================= START poST Statements ======================= */
 		//SetStateStatement:
 		//    {SetStateStatement} 'SET' ('STATE' state=[State] | next?='NEXT');
 		@Override public ParserRule getRule() { return rule; }
@@ -1626,6 +1636,122 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'TIMER'
 		public Keyword getTIMERKeyword_2() { return cTIMERKeyword_2; }
 	}
+	public class FunctionCallElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.FunctionCall");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cFunctionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cFunctionFunctionCrossReference_0_0 = (CrossReference)cFunctionAssignment_0.eContents().get(0);
+		private final RuleCall cFunctionFunctionIDTerminalRuleCall_0_0_1 = (RuleCall)cFunctionFunctionCrossReference_0_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cArgsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cArgsFunctionCallElementsParserRuleCall_2_0 = (RuleCall)cArgsAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		///* ======================= END poST Statements ======================= */
+		///* ======================= START Subprogram Call ======================= */
+		//FunctionCall:
+		//    function=[Function] '(' args=FunctionCallElements ')'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//function=[Function] '(' args=FunctionCallElements ')'
+		public Group getGroup() { return cGroup; }
+		
+		//function=[Function]
+		public Assignment getFunctionAssignment_0() { return cFunctionAssignment_0; }
+		
+		//[Function]
+		public CrossReference getFunctionFunctionCrossReference_0_0() { return cFunctionFunctionCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getFunctionFunctionIDTerminalRuleCall_0_0_1() { return cFunctionFunctionIDTerminalRuleCall_0_0_1; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
+		//args=FunctionCallElements
+		public Assignment getArgsAssignment_2() { return cArgsAssignment_2; }
+		
+		//FunctionCallElements
+		public RuleCall getArgsFunctionCallElementsParserRuleCall_2_0() { return cArgsFunctionCallElementsParserRuleCall_2_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
+	public class FunctionCallElementsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.FunctionCallElements");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cElementsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cElementsParamAssignmentParserRuleCall_0_0 = (RuleCall)cElementsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cElementsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cElementsParamAssignmentParserRuleCall_1_1_0 = (RuleCall)cElementsAssignment_1_1.eContents().get(0);
+		
+		//FunctionCallElements:
+		//    elements+=ParamAssignment (',' elements+=ParamAssignment)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//elements+=ParamAssignment (',' elements+=ParamAssignment)*
+		public Group getGroup() { return cGroup; }
+		
+		//elements+=ParamAssignment
+		public Assignment getElementsAssignment_0() { return cElementsAssignment_0; }
+		
+		//ParamAssignment
+		public RuleCall getElementsParamAssignmentParserRuleCall_0_0() { return cElementsParamAssignmentParserRuleCall_0_0; }
+		
+		//(',' elements+=ParamAssignment)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//','
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		
+		//elements+=ParamAssignment
+		public Assignment getElementsAssignment_1_1() { return cElementsAssignment_1_1; }
+		
+		//ParamAssignment
+		public RuleCall getElementsParamAssignmentParserRuleCall_1_1_0() { return cElementsParamAssignmentParserRuleCall_1_1_0; }
+	}
+	public class ParamAssignmentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.ParamAssignment");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVariableAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cVariableSymbolicVariableCrossReference_0_0 = (CrossReference)cVariableAssignment_0.eContents().get(0);
+		private final RuleCall cVariableSymbolicVariableIDTerminalRuleCall_0_0_1 = (RuleCall)cVariableSymbolicVariableCrossReference_0_0.eContents().get(1);
+		private final Assignment cAssigAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cAssigAssignmentTypeEnumRuleCall_1_0 = (RuleCall)cAssigAssignment_1.eContents().get(0);
+		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValueExpressionParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		
+		//ParamAssignment:
+		//    variable=[SymbolicVariable] assig=AssignmentType value=Expression;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//variable=[SymbolicVariable] assig=AssignmentType value=Expression
+		public Group getGroup() { return cGroup; }
+		
+		//variable=[SymbolicVariable]
+		public Assignment getVariableAssignment_0() { return cVariableAssignment_0; }
+		
+		//[SymbolicVariable]
+		public CrossReference getVariableSymbolicVariableCrossReference_0_0() { return cVariableSymbolicVariableCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getVariableSymbolicVariableIDTerminalRuleCall_0_0_1() { return cVariableSymbolicVariableIDTerminalRuleCall_0_0_1; }
+		
+		//assig=AssignmentType
+		public Assignment getAssigAssignment_1() { return cAssigAssignment_1; }
+		
+		//AssignmentType
+		public RuleCall getAssigAssignmentTypeEnumRuleCall_1_0() { return cAssigAssignmentTypeEnumRuleCall_1_0; }
+		
+		//value=Expression
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+		
+		//Expression
+		public RuleCall getValueExpressionParserRuleCall_2_0() { return cValueExpressionParserRuleCall_2_0; }
+	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.Expression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1636,8 +1762,8 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightXorExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		///* ======================= END poST Expression ======================= */
-		///* ======================= START ST Expression ======================= */
+		///* ======================= END Subprogram Call ======================= */
+		///* ======================= START Expression ======================= */
 		//Expression:
 		//    XorExpression ({Expression.left=current} OR_OPERATOR right=XorExpression)*;
 		@Override public ParserRule getRule() { return rule; }
@@ -1971,17 +2097,19 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cArrayArrayVariableParserRuleCall_2_0 = (RuleCall)cArrayAssignment_2.eContents().get(0);
 		private final Assignment cProcStatusAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cProcStatusProcessStatusExpressionParserRuleCall_3_0 = (RuleCall)cProcStatusAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Keyword cLeftParenthesisKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cNestExprAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cNestExprExpressionParserRuleCall_4_1_0 = (RuleCall)cNestExprAssignment_4_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		private final Assignment cFunCallAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cFunCallFunctionCallParserRuleCall_4_0 = (RuleCall)cFunCallAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cNestExprAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cNestExprExpressionParserRuleCall_5_1_0 = (RuleCall)cNestExprAssignment_5_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//PrimaryExpression:
-		//    const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | '(' nestExpr=Expression ')';
+		//    const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | funCall=FunctionCall | '(' nestExpr=Expression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | '(' nestExpr=Expression ')'
+		//const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | funCall=FunctionCall | '(' nestExpr=Expression ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//const=Constant
@@ -2011,20 +2139,26 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//ProcessStatusExpression
 		public RuleCall getProcStatusProcessStatusExpressionParserRuleCall_3_0() { return cProcStatusProcessStatusExpressionParserRuleCall_3_0; }
 		
+		//funCall=FunctionCall
+		public Assignment getFunCallAssignment_4() { return cFunCallAssignment_4; }
+		
+		//FunctionCall
+		public RuleCall getFunCallFunctionCallParserRuleCall_4_0() { return cFunCallFunctionCallParserRuleCall_4_0; }
+		
 		//'(' nestExpr=Expression ')'
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_4_0() { return cLeftParenthesisKeyword_4_0; }
+		public Keyword getLeftParenthesisKeyword_5_0() { return cLeftParenthesisKeyword_5_0; }
 		
 		//nestExpr=Expression
-		public Assignment getNestExprAssignment_4_1() { return cNestExprAssignment_4_1; }
+		public Assignment getNestExprAssignment_5_1() { return cNestExprAssignment_5_1; }
 		
 		//Expression
-		public RuleCall getNestExprExpressionParserRuleCall_4_1_0() { return cNestExprExpressionParserRuleCall_4_1_0; }
+		public RuleCall getNestExprExpressionParserRuleCall_5_1_0() { return cNestExprExpressionParserRuleCall_5_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_4_2() { return cRightParenthesisKeyword_4_2; }
+		public Keyword getRightParenthesisKeyword_5_2() { return cRightParenthesisKeyword_5_2; }
 	}
 	public class StatementListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.StatementList");
@@ -2033,6 +2167,8 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cStatementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cStatementsStatementParserRuleCall_1_0 = (RuleCall)cStatementsAssignment_1.eContents().get(0);
 		
+		///* ======================= END Expression ======================= */
+		///* ======================= START ST Statements ======================= */
 		//StatementList:
 		//    {StatementList} (statements+=Statement)*;
 		@Override public ParserRule getRule() { return rule; }
@@ -2714,7 +2850,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
-		///* ======================= END ST Expression ======================= */
+		///* ======================= END ST Statements ======================= */
 		///* ======================= START Variables ======================= */
 		//SymbolicVariable:
 		//    name=ID;
@@ -4130,6 +4266,9 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final ErrorProcessStatementElements pErrorProcessStatement;
 	private final TimeoutStatementElements pTimeoutStatement;
 	private final ResetTimerStatementElements pResetTimerStatement;
+	private final FunctionCallElements pFunctionCall;
+	private final FunctionCallElementsElements pFunctionCallElements;
+	private final ParamAssignmentElements pParamAssignment;
 	private final ExpressionElements pExpression;
 	private final TerminalRule tOR_OPERATOR;
 	private final XorExpressionElements pXorExpression;
@@ -4259,6 +4398,9 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pErrorProcessStatement = new ErrorProcessStatementElements();
 		this.pTimeoutStatement = new TimeoutStatementElements();
 		this.pResetTimerStatement = new ResetTimerStatementElements();
+		this.pFunctionCall = new FunctionCallElements();
+		this.pFunctionCallElements = new FunctionCallElementsElements();
+		this.pParamAssignment = new ParamAssignmentElements();
 		this.pExpression = new ExpressionElements();
 		this.tOR_OPERATOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.OR_OPERATOR");
 		this.pXorExpression = new XorExpressionElements();
@@ -4380,7 +4522,8 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	//    (conf=Configuration)? &
 	//    (globVars+=GlobalVarDeclaration)* &
 	//    (programs+=Program)* &
-	//    (fbs+=FunctionBlock)*;
+	//    (fbs+=FunctionBlock)* &
+	//    (funs+=Function)*;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -4666,7 +4809,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	///* ======================= END Process and State  ======================= */
-	///* ======================= START poST Expression ======================= */
+	///* ======================= START poST Statements ======================= */
 	//SetStateStatement:
 	//    {SetStateStatement} 'SET' ('STATE' state=[State] | next?='NEXT');
 	public SetStateStatementElements getSetStateStatementAccess() {
@@ -4749,8 +4892,41 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getResetTimerStatementAccess().getRule();
 	}
 	
-	///* ======================= END poST Expression ======================= */
-	///* ======================= START ST Expression ======================= */
+	///* ======================= END poST Statements ======================= */
+	///* ======================= START Subprogram Call ======================= */
+	//FunctionCall:
+	//    function=[Function] '(' args=FunctionCallElements ')'
+	//;
+	public FunctionCallElements getFunctionCallAccess() {
+		return pFunctionCall;
+	}
+	
+	public ParserRule getFunctionCallRule() {
+		return getFunctionCallAccess().getRule();
+	}
+	
+	//FunctionCallElements:
+	//    elements+=ParamAssignment (',' elements+=ParamAssignment)*;
+	public FunctionCallElementsElements getFunctionCallElementsAccess() {
+		return pFunctionCallElements;
+	}
+	
+	public ParserRule getFunctionCallElementsRule() {
+		return getFunctionCallElementsAccess().getRule();
+	}
+	
+	//ParamAssignment:
+	//    variable=[SymbolicVariable] assig=AssignmentType value=Expression;
+	public ParamAssignmentElements getParamAssignmentAccess() {
+		return pParamAssignment;
+	}
+	
+	public ParserRule getParamAssignmentRule() {
+		return getParamAssignmentAccess().getRule();
+	}
+	
+	///* ======================= END Subprogram Call ======================= */
+	///* ======================= START Expression ======================= */
 	//Expression:
 	//    XorExpression ({Expression.left=current} OR_OPERATOR right=XorExpression)*;
 	public ExpressionElements getExpressionAccess() {
@@ -4916,7 +5092,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//PrimaryExpression:
-	//    const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | '(' nestExpr=Expression ')';
+	//    const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | funCall=FunctionCall | '(' nestExpr=Expression ')';
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return pPrimaryExpression;
 	}
@@ -4925,6 +5101,8 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getPrimaryExpressionAccess().getRule();
 	}
 	
+	///* ======================= END Expression ======================= */
+	///* ======================= START ST Statements ======================= */
 	//StatementList:
 	//    {StatementList} (statements+=Statement)*;
 	public StatementListElements getStatementListAccess() {
@@ -5101,7 +5279,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getExitStatementAccess().getRule();
 	}
 	
-	///* ======================= END ST Expression ======================= */
+	///* ======================= END ST Statements ======================= */
 	///* ======================= START Variables ======================= */
 	//SymbolicVariable:
 	//    name=ID;

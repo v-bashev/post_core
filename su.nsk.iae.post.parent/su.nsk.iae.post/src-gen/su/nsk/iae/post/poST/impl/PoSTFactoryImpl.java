@@ -41,6 +41,8 @@ import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
+import su.nsk.iae.post.poST.FunctionCallElements;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -53,6 +55,7 @@ import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.MulOperator;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ParamAssignment;
 import su.nsk.iae.post.poST.PoSTFactory;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
@@ -179,6 +182,9 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.ERROR_PROCESS_STATEMENT: return createErrorProcessStatement();
       case PoSTPackage.TIMEOUT_STATEMENT: return createTimeoutStatement();
       case PoSTPackage.RESET_TIMER_STATEMENT: return createResetTimerStatement();
+      case PoSTPackage.FUNCTION_CALL: return createFunctionCall();
+      case PoSTPackage.FUNCTION_CALL_ELEMENTS: return createFunctionCallElements();
+      case PoSTPackage.PARAM_ASSIGNMENT: return createParamAssignment();
       case PoSTPackage.EXPRESSION: return createExpression();
       case PoSTPackage.XOR_EXPRESSION: return createXorExpression();
       case PoSTPackage.AND_EXPRESSION: return createAndExpression();
@@ -613,6 +619,42 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ResetTimerStatementImpl resetTimerStatement = new ResetTimerStatementImpl();
     return resetTimerStatement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FunctionCall createFunctionCall()
+  {
+    FunctionCallImpl functionCall = new FunctionCallImpl();
+    return functionCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FunctionCallElements createFunctionCallElements()
+  {
+    FunctionCallElementsImpl functionCallElements = new FunctionCallElementsImpl();
+    return functionCallElements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ParamAssignment createParamAssignment()
+  {
+    ParamAssignmentImpl paramAssignment = new ParamAssignmentImpl();
+    return paramAssignment;
   }
 
   /**

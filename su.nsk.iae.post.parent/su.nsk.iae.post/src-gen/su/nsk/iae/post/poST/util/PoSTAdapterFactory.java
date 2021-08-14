@@ -35,6 +35,8 @@ import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
+import su.nsk.iae.post.poST.FunctionCallElements;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -46,6 +48,7 @@ import su.nsk.iae.post.poST.Model;
 import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ParamAssignment;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
@@ -288,6 +291,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseResetTimerStatement(ResetTimerStatement object)
       {
         return createResetTimerStatementAdapter();
+      }
+      @Override
+      public Adapter caseFunctionCall(FunctionCall object)
+      {
+        return createFunctionCallAdapter();
+      }
+      @Override
+      public Adapter caseFunctionCallElements(FunctionCallElements object)
+      {
+        return createFunctionCallElementsAdapter();
+      }
+      @Override
+      public Adapter caseParamAssignment(ParamAssignment object)
+      {
+        return createParamAssignmentAdapter();
       }
       @Override
       public Adapter caseExpression(Expression object)
@@ -977,6 +995,51 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createResetTimerStatementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.FunctionCall <em>Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.FunctionCall
+   * @generated
+   */
+  public Adapter createFunctionCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.FunctionCallElements <em>Function Call Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.FunctionCallElements
+   * @generated
+   */
+  public Adapter createFunctionCallElementsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ParamAssignment <em>Param Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.ParamAssignment
+   * @generated
+   */
+  public Adapter createParamAssignmentAdapter()
   {
     return null;
   }

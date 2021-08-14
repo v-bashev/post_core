@@ -267,6 +267,33 @@ public interface PoSTFactory extends EFactory
   ResetTimerStatement createResetTimerStatement();
 
   /**
+   * Returns a new object of class '<em>Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Call</em>'.
+   * @generated
+   */
+  FunctionCall createFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>Function Call Elements</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Call Elements</em>'.
+   * @generated
+   */
+  FunctionCallElements createFunctionCallElements();
+
+  /**
+   * Returns a new object of class '<em>Param Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Param Assignment</em>'.
+   * @generated
+   */
+  ParamAssignment createParamAssignment();
+
+  /**
    * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

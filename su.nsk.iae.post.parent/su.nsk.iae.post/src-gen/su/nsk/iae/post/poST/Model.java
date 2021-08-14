@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link su.nsk.iae.post.poST.Model#getGlobVars <em>Glob Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Model#getPrograms <em>Programs</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.Model#getFbs <em>Fbs</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.Model#getFuns <em>Funs</em>}</li>
  * </ul>
  *
  * @see su.nsk.iae.post.poST.PoSTPackage#getModel()
@@ -85,5 +86,17 @@ public interface Model extends EObject
    * @generated
    */
   EList<FunctionBlock> getFbs();
+
+  /**
+   * Returns the value of the '<em><b>Funs</b></em>' containment reference list.
+   * The list contents are of type {@link su.nsk.iae.post.poST.Function}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Funs</em>' containment reference list.
+   * @see su.nsk.iae.post.poST.PoSTPackage#getModel_Funs()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Function> getFuns();
 
 } // Model

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import su.nsk.iae.post.poST.ArrayVariable;
 import su.nsk.iae.post.poST.Constant;
 import su.nsk.iae.post.poST.Expression;
+import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PrimaryExpression;
 import su.nsk.iae.post.poST.ProcessStatusExpression;
@@ -31,6 +32,7 @@ import su.nsk.iae.post.poST.SymbolicVariable;
  *   <li>{@link su.nsk.iae.post.poST.impl.PrimaryExpressionImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.PrimaryExpressionImpl#getArray <em>Array</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.PrimaryExpressionImpl#getProcStatus <em>Proc Status</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.PrimaryExpressionImpl#getFunCall <em>Fun Call</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.PrimaryExpressionImpl#getNestExpr <em>Nest Expr</em>}</li>
  * </ul>
  *
@@ -77,6 +79,16 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @ordered
    */
   protected ProcessStatusExpression procStatus;
+
+  /**
+   * The cached value of the '{@link #getFunCall() <em>Fun Call</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFunCall()
+   * @generated
+   * @ordered
+   */
+  protected FunctionCall funCall;
 
   /**
    * The cached value of the '{@link #getNestExpr() <em>Nest Expr</em>}' containment reference.
@@ -310,6 +322,56 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
    * @generated
    */
   @Override
+  public FunctionCall getFunCall()
+  {
+    return funCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetFunCall(FunctionCall newFunCall, NotificationChain msgs)
+  {
+    FunctionCall oldFunCall = funCall;
+    funCall = newFunCall;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL, oldFunCall, newFunCall);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setFunCall(FunctionCall newFunCall)
+  {
+    if (newFunCall != funCall)
+    {
+      NotificationChain msgs = null;
+      if (funCall != null)
+        msgs = ((InternalEObject)funCall).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL, null, msgs);
+      if (newFunCall != null)
+        msgs = ((InternalEObject)newFunCall).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL, null, msgs);
+      msgs = basicSetFunCall(newFunCall, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL, newFunCall, newFunCall));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Expression getNestExpr()
   {
     return nestExpr;
@@ -370,6 +432,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return basicSetArray(null, msgs);
       case PoSTPackage.PRIMARY_EXPRESSION__PROC_STATUS:
         return basicSetProcStatus(null, msgs);
+      case PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL:
+        return basicSetFunCall(null, msgs);
       case PoSTPackage.PRIMARY_EXPRESSION__NEST_EXPR:
         return basicSetNestExpr(null, msgs);
     }
@@ -395,6 +459,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return getArray();
       case PoSTPackage.PRIMARY_EXPRESSION__PROC_STATUS:
         return getProcStatus();
+      case PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL:
+        return getFunCall();
       case PoSTPackage.PRIMARY_EXPRESSION__NEST_EXPR:
         return getNestExpr();
     }
@@ -422,6 +488,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return;
       case PoSTPackage.PRIMARY_EXPRESSION__PROC_STATUS:
         setProcStatus((ProcessStatusExpression)newValue);
+        return;
+      case PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL:
+        setFunCall((FunctionCall)newValue);
         return;
       case PoSTPackage.PRIMARY_EXPRESSION__NEST_EXPR:
         setNestExpr((Expression)newValue);
@@ -452,6 +521,9 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
       case PoSTPackage.PRIMARY_EXPRESSION__PROC_STATUS:
         setProcStatus((ProcessStatusExpression)null);
         return;
+      case PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL:
+        setFunCall((FunctionCall)null);
+        return;
       case PoSTPackage.PRIMARY_EXPRESSION__NEST_EXPR:
         setNestExpr((Expression)null);
         return;
@@ -477,6 +549,8 @@ public class PrimaryExpressionImpl extends UnaryExpressionImpl implements Primar
         return array != null;
       case PoSTPackage.PRIMARY_EXPRESSION__PROC_STATUS:
         return procStatus != null;
+      case PoSTPackage.PRIMARY_EXPRESSION__FUN_CALL:
+        return funCall != null;
       case PoSTPackage.PRIMARY_EXPRESSION__NEST_EXPR:
         return nestExpr != null;
     }

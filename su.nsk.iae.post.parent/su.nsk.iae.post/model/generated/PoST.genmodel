@@ -38,6 +38,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/globVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/programs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/fbs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Model/funs"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Variable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//Variable/name"/>
@@ -163,6 +164,18 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TimeoutStatement/statement"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ResetTimerStatement"/>
+    <genClasses ecoreClass="PoST.ecore#//FunctionCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionCall/function"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionCall/args"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//FunctionCallElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionCallElements/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//ParamAssignment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ParamAssignment/variable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PoST.ecore#//ParamAssignment/assig"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ParamAssignment/value"/>
+    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Expression/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//Expression/right"/>
@@ -190,6 +203,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//PrimaryExpression/variable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//PrimaryExpression/array"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//PrimaryExpression/procStatus"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//PrimaryExpression/funCall"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//PrimaryExpression/nestExpr"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//StatementList">

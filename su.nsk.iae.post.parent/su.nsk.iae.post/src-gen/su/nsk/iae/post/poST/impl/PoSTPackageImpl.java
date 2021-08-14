@@ -40,6 +40,8 @@ import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
+import su.nsk.iae.post.poST.FunctionCallElements;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -52,6 +54,7 @@ import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.MulOperator;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ParamAssignment;
 import su.nsk.iae.post.poST.PoSTFactory;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
@@ -295,6 +298,27 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass resetTimerStatementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionCallElementsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass paramAssignmentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -825,6 +849,17 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EReference getModel_Fbs()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getModel_Funs()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1966,6 +2001,105 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
+  public EClass getFunctionCall()
+  {
+    return functionCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunctionCall_Function()
+  {
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunctionCall_Args()
+  {
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFunctionCallElements()
+  {
+    return functionCallElementsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunctionCallElements_Elements()
+  {
+    return (EReference)functionCallElementsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getParamAssignment()
+  {
+    return paramAssignmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getParamAssignment_Variable()
+  {
+    return (EReference)paramAssignmentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getParamAssignment_Assig()
+  {
+    return (EAttribute)paramAssignmentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getParamAssignment_Value()
+  {
+    return (EReference)paramAssignmentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getExpression()
   {
     return expressionEClass;
@@ -2197,9 +2331,20 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getPrimaryExpression_NestExpr()
+  public EReference getPrimaryExpression_FunCall()
   {
     return (EReference)primaryExpressionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getPrimaryExpression_NestExpr()
+  {
+    return (EReference)primaryExpressionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -3514,6 +3659,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(modelEClass, MODEL__GLOB_VARS);
     createEReference(modelEClass, MODEL__PROGRAMS);
     createEReference(modelEClass, MODEL__FBS);
+    createEReference(modelEClass, MODEL__FUNS);
 
     variableEClass = createEClass(VARIABLE);
     createEAttribute(variableEClass, VARIABLE__NAME);
@@ -3644,6 +3790,18 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     resetTimerStatementEClass = createEClass(RESET_TIMER_STATEMENT);
 
+    functionCallEClass = createEClass(FUNCTION_CALL);
+    createEReference(functionCallEClass, FUNCTION_CALL__FUNCTION);
+    createEReference(functionCallEClass, FUNCTION_CALL__ARGS);
+
+    functionCallElementsEClass = createEClass(FUNCTION_CALL_ELEMENTS);
+    createEReference(functionCallElementsEClass, FUNCTION_CALL_ELEMENTS__ELEMENTS);
+
+    paramAssignmentEClass = createEClass(PARAM_ASSIGNMENT);
+    createEReference(paramAssignmentEClass, PARAM_ASSIGNMENT__VARIABLE);
+    createEAttribute(paramAssignmentEClass, PARAM_ASSIGNMENT__ASSIG);
+    createEReference(paramAssignmentEClass, PARAM_ASSIGNMENT__VALUE);
+
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__LEFT);
     createEReference(expressionEClass, EXPRESSION__RIGHT);
@@ -3674,6 +3832,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__VARIABLE);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__ARRAY);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__PROC_STATUS);
+    createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__FUN_CALL);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__NEST_EXPR);
 
     statementListEClass = createEClass(STATEMENT_LIST);
@@ -3907,6 +4066,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getModel_GlobVars(), this.getGlobalVarDeclaration(), null, "globVars", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Programs(), this.getProgram(), null, "programs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Fbs(), this.getFunctionBlock(), null, "fbs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Funs(), this.getFunction(), null, "funs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4037,6 +4197,18 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     initEClass(resetTimerStatementEClass, ResetTimerStatement.class, "ResetTimerStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFunctionCall_Function(), this.getFunction(), null, "function", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionCall_Args(), this.getFunctionCallElements(), null, "args", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(functionCallElementsEClass, FunctionCallElements.class, "FunctionCallElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFunctionCallElements_Elements(), this.getParamAssignment(), null, "elements", null, 0, -1, FunctionCallElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(paramAssignmentEClass, ParamAssignment.class, "ParamAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParamAssignment_Variable(), this.getSymbolicVariable(), null, "variable", null, 0, 1, ParamAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getParamAssignment_Assig(), this.getAssignmentType(), "assig", null, 0, 1, ParamAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParamAssignment_Value(), this.getExpression(), null, "value", null, 0, 1, ParamAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpression_Left(), this.getExpression(), null, "left", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExpression_Right(), this.getXorExpression(), null, "right", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4067,6 +4239,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getPrimaryExpression_Variable(), this.getSymbolicVariable(), null, "variable", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_Array(), this.getArrayVariable(), null, "array", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_ProcStatus(), this.getProcessStatusExpression(), null, "procStatus", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPrimaryExpression_FunCall(), this.getFunctionCall(), null, "funCall", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_NestExpr(), this.getExpression(), null, "nestExpr", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(statementListEClass, StatementList.class, "StatementList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

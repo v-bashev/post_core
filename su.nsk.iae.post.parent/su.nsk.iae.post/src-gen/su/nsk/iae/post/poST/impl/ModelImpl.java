@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import su.nsk.iae.post.poST.Configuration;
+import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.Model;
@@ -38,6 +39,7 @@ import su.nsk.iae.post.poST.Program;
  *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getGlobVars <em>Glob Vars</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getPrograms <em>Programs</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getFbs <em>Fbs</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ModelImpl#getFuns <em>Funs</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,6 +85,16 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected EList<FunctionBlock> fbs;
+
+  /**
+   * The cached value of the '{@link #getFuns() <em>Funs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFuns()
+   * @generated
+   * @ordered
+   */
+  protected EList<Function> funs;
 
   /**
    * <!-- begin-user-doc -->
@@ -206,6 +218,21 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
+  public EList<Function> getFuns()
+  {
+    if (funs == null)
+    {
+      funs = new EObjectContainmentEList<Function>(Function.class, this, PoSTPackage.MODEL__FUNS);
+    }
+    return funs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -218,6 +245,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return ((InternalEList<?>)getPrograms()).basicRemove(otherEnd, msgs);
       case PoSTPackage.MODEL__FBS:
         return ((InternalEList<?>)getFbs()).basicRemove(otherEnd, msgs);
+      case PoSTPackage.MODEL__FUNS:
+        return ((InternalEList<?>)getFuns()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -240,6 +269,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return getPrograms();
       case PoSTPackage.MODEL__FBS:
         return getFbs();
+      case PoSTPackage.MODEL__FUNS:
+        return getFuns();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -270,6 +301,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         getFbs().clear();
         getFbs().addAll((Collection<? extends FunctionBlock>)newValue);
         return;
+      case PoSTPackage.MODEL__FUNS:
+        getFuns().clear();
+        getFuns().addAll((Collection<? extends Function>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -296,6 +331,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case PoSTPackage.MODEL__FBS:
         getFbs().clear();
         return;
+      case PoSTPackage.MODEL__FUNS:
+        getFuns().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -318,6 +356,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return programs != null && !programs.isEmpty();
       case PoSTPackage.MODEL__FBS:
         return fbs != null && !fbs.isEmpty();
+      case PoSTPackage.MODEL__FUNS:
+        return funs != null && !funs.isEmpty();
     }
     return super.eIsSet(featureID);
   }
