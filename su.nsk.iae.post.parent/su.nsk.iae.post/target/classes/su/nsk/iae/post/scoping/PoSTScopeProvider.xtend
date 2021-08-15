@@ -1,16 +1,15 @@
 package su.nsk.iae.post.scoping
 
-import com.google.common.base.Function
 import java.util.stream.Collectors
 import java.util.stream.Stream
+import javax.inject.Inject
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import su.nsk.iae.post.library.PoSTLibraryProvider
-import su.nsk.iae.post.naming.PoSTQualifiedNameProvider
 import su.nsk.iae.post.poST.GlobalVarDeclaration
 import su.nsk.iae.post.poST.Model
 import su.nsk.iae.post.poST.PoSTPackage
@@ -25,6 +24,9 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	
 	val ePackage = PoSTPackage.eINSTANCE
 	val libraryProvider = new PoSTLibraryProvider
+	
+	@Inject
+	IQualifiedNameProvider qualifiedNameProvider
 	
 	def IScope getPoSTScope(EObject context, EReference reference) {
 		return getScope(context, reference, false)
@@ -59,7 +61,7 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 		if (simple) {
 			return Scopes.scopeFor(elements)
 		}
-		return Scopes.scopeFor(elements, new PoSTScope, IScope.NULLSCOPE)
+		return Scopes.scopeFor(elements, [x | qualifiedNameProvider.getFullyQualifiedName(x)], IScope.NULLSCOPE)
 	}
 	
 	private def IScope scopeSuper(EObject context, EReference reference, Iterable<? extends EObject> elements, boolean simple) {
@@ -175,10 +177,4 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 		).flatMap([x | x.stream]).collect(Collectors.toList)
 	}
 	
-	static class PoSTScope <T extends EObject> implements Function<T, QualifiedName> {
-		static val qualifiedNameProvider = new PoSTQualifiedNameProvider;
-		override apply(T ele) {
-			return qualifiedNameProvider.qualifiedPoSTName(ele)
-		}
-	}
 }

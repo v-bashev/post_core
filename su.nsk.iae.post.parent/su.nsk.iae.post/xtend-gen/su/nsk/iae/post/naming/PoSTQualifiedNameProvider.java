@@ -25,10 +25,6 @@ import su.nsk.iae.post.poST.Variable;
 
 @SuppressWarnings("all")
 public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
-  public QualifiedName qualifiedPoSTName(final Object ele) {
-    return this.qualifiedName(ele);
-  }
-  
   @Override
   protected QualifiedName qualifiedName(final Object ele) {
     if ((ele instanceof Variable)) {

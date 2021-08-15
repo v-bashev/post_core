@@ -5,15 +5,16 @@ import com.google.common.base.Objects;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import su.nsk.iae.post.library.PoSTLibraryProvider;
-import su.nsk.iae.post.naming.PoSTQualifiedNameProvider;
 import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
@@ -39,18 +40,12 @@ import su.nsk.iae.post.poST.Variable;
 
 @SuppressWarnings("all")
 public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
-  public static class PoSTScope<T extends EObject> implements Function<T, QualifiedName> {
-    private static final PoSTQualifiedNameProvider qualifiedNameProvider = new PoSTQualifiedNameProvider();
-    
-    @Override
-    public QualifiedName apply(final T ele) {
-      return PoSTScopeProvider.PoSTScope.qualifiedNameProvider.qualifiedPoSTName(ele);
-    }
-  }
-  
   private final PoSTPackage ePackage = PoSTPackage.eINSTANCE;
   
   private final PoSTLibraryProvider libraryProvider = new PoSTLibraryProvider();
+  
+  @Inject
+  private IQualifiedNameProvider qualifiedNameProvider;
   
   public IScope getPoSTScope(final EObject context, final EReference reference) {
     return this.getScope(context, reference, false);
@@ -115,8 +110,10 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
     if (simple) {
       return Scopes.scopeFor(elements);
     }
-    PoSTScopeProvider.PoSTScope<EObject> _poSTScope = new PoSTScopeProvider.PoSTScope<EObject>();
-    return Scopes.<EObject>scopeFor(elements, _poSTScope, IScope.NULLSCOPE);
+    final Function<EObject, QualifiedName> _function = (EObject x) -> {
+      return this.qualifiedNameProvider.getFullyQualifiedName(x);
+    };
+    return Scopes.<EObject>scopeFor(elements, _function, IScope.NULLSCOPE);
   }
   
   private IScope scopeSuper(final EObject context, final EReference reference, final Iterable<? extends EObject> elements, final boolean simple) {

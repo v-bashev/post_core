@@ -16,10 +16,6 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 
 class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 	
-	def QualifiedName qualifiedPoSTName(Object ele) {
-		return qualifiedName(ele)
-	}
-	
 	override protected QualifiedName qualifiedName(Object ele) {
 		if (ele instanceof Variable) {
 			if (ele.checkVarInitDeclaration) {
