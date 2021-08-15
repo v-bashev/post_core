@@ -46,7 +46,7 @@ public final class HandDryerProject extends AbstractProjectTemplate {
         final URL handDryerUrl = FileLocator.resolve(FileLocator.find(bundle, _path, null));
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(PoSTProjectTemplateProvider.srcFolder);
-        _builder.append("/template.post");
+        _builder.append("/handDryer.post");
         this.addFile(it, _builder, Files.readString(Paths.get(handDryerUrl.toURI())));
         Path _path_1 = new Path("/resources/library");
         final URL libUrl = FileLocator.resolve(FileLocator.find(bundle, _path_1, null));

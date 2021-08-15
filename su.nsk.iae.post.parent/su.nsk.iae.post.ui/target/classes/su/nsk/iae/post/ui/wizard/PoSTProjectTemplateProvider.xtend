@@ -88,7 +88,7 @@ final class HandDryerProject {
 			
 			val bundle = Platform.getBundle("su.nsk.iae.post.ui")
 			val handDryerUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/examples/HandDryer.post"), null))
-			addFile('''«PoSTProjectTemplateProvider.srcFolder»/template.post''', Files.readString(Paths.get(handDryerUrl.toURI)))
+			addFile('''«PoSTProjectTemplateProvider.srcFolder»/handDryer.post''', Files.readString(Paths.get(handDryerUrl.toURI)))
 			val libUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
 			Files.walk(Paths.get(libUrl.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
 				Files.walk(dir).filter([file | Files.isRegularFile(file)]).forEach([file |
