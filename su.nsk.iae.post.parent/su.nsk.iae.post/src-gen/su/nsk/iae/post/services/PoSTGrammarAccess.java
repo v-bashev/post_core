@@ -1650,8 +1650,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		///* ======================= END poST Statements ======================= */
 		///* ======================= START Subprogram Call ======================= */
 		//FunctionCall:
-		//    function=[Function] '(' args=FunctionCallElements ')'
-		//;
+		//    function=[Function] '(' args=FunctionCallElements ')';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//function=[Function] '(' args=FunctionCallElements ')'
@@ -4895,8 +4894,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	///* ======================= END poST Statements ======================= */
 	///* ======================= START Subprogram Call ======================= */
 	//FunctionCall:
-	//    function=[Function] '(' args=FunctionCallElements ')'
-	//;
+	//    function=[Function] '(' args=FunctionCallElements ')';
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
 	}
