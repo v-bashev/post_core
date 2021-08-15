@@ -50,32 +50,22 @@ public final class EmptyTemplateProject extends AbstractProjectTemplate {
         this.addFile(it, _builder, Files.readString(Paths.get(templateUrl.toURI())));
         Path _path_1 = new Path("/resources/library");
         final URL libUrl = FileLocator.resolve(FileLocator.find(bundle, _path_1, null));
-        final Predicate<java.nio.file.Path> _function_1 = (java.nio.file.Path dir) -> {
-          return Files.isDirectory(dir);
+        final Predicate<java.nio.file.Path> _function_1 = (java.nio.file.Path file) -> {
+          return Files.isRegularFile(file);
         };
-        final Consumer<java.nio.file.Path> _function_2 = (java.nio.file.Path dir) -> {
+        final Consumer<java.nio.file.Path> _function_2 = (java.nio.file.Path file) -> {
           try {
-            final Predicate<java.nio.file.Path> _function_3 = (java.nio.file.Path file) -> {
-              return Files.isRegularFile(file);
-            };
-            final Consumer<java.nio.file.Path> _function_4 = (java.nio.file.Path file) -> {
-              try {
-                StringConcatenation _builder_1 = new StringConcatenation();
-                _builder_1.append(PoSTProjectTemplateProvider.libFolder);
-                _builder_1.append("/");
-                int _size = IterableExtensions.size(file);
-                int _minus = (_size - 2);
-                java.nio.file.Path _name = file.getName(_minus);
-                _builder_1.append(_name);
-                _builder_1.append("/");
-                java.nio.file.Path _last = IterableExtensions.<java.nio.file.Path>last(file);
-                _builder_1.append(_last);
-                this.addFile(it, _builder_1, Files.readString(file));
-              } catch (Throwable _e) {
-                throw Exceptions.sneakyThrow(_e);
-              }
-            };
-            Files.walk(dir).filter(_function_3).forEach(_function_4);
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append(PoSTProjectTemplateProvider.libFolder);
+            _builder_1.append("/");
+            int _size = IterableExtensions.size(file);
+            int _minus = (_size - 2);
+            java.nio.file.Path _name = file.getName(_minus);
+            _builder_1.append(_name);
+            _builder_1.append("/");
+            java.nio.file.Path _last = IterableExtensions.<java.nio.file.Path>last(file);
+            _builder_1.append(_last);
+            this.addFile(it, _builder_1, Files.readString(file));
           } catch (Throwable _e) {
             throw Exceptions.sneakyThrow(_e);
           }

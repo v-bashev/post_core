@@ -44,32 +44,22 @@ public final class EmptyProject extends AbstractProjectTemplate {
         final Bundle bundle = Platform.getBundle("su.nsk.iae.post.ui");
         Path _path = new Path("/resources/library");
         final URL libUrl = FileLocator.resolve(FileLocator.find(bundle, _path, null));
-        final Predicate<java.nio.file.Path> _function_1 = (java.nio.file.Path dir) -> {
-          return Files.isDirectory(dir);
+        final Predicate<java.nio.file.Path> _function_1 = (java.nio.file.Path file) -> {
+          return Files.isRegularFile(file);
         };
-        final Consumer<java.nio.file.Path> _function_2 = (java.nio.file.Path dir) -> {
+        final Consumer<java.nio.file.Path> _function_2 = (java.nio.file.Path file) -> {
           try {
-            final Predicate<java.nio.file.Path> _function_3 = (java.nio.file.Path file) -> {
-              return Files.isRegularFile(file);
-            };
-            final Consumer<java.nio.file.Path> _function_4 = (java.nio.file.Path file) -> {
-              try {
-                StringConcatenation _builder = new StringConcatenation();
-                _builder.append(PoSTProjectTemplateProvider.libFolder);
-                _builder.append("/");
-                int _size = IterableExtensions.size(file);
-                int _minus = (_size - 2);
-                java.nio.file.Path _name = file.getName(_minus);
-                _builder.append(_name);
-                _builder.append("/");
-                java.nio.file.Path _last = IterableExtensions.<java.nio.file.Path>last(file);
-                _builder.append(_last);
-                this.addFile(it, _builder, Files.readString(file));
-              } catch (Throwable _e) {
-                throw Exceptions.sneakyThrow(_e);
-              }
-            };
-            Files.walk(dir).filter(_function_3).forEach(_function_4);
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append(PoSTProjectTemplateProvider.libFolder);
+            _builder.append("/");
+            int _size = IterableExtensions.size(file);
+            int _minus = (_size - 2);
+            java.nio.file.Path _name = file.getName(_minus);
+            _builder.append(_name);
+            _builder.append("/");
+            java.nio.file.Path _last = IterableExtensions.<java.nio.file.Path>last(file);
+            _builder.append(_last);
+            this.addFile(it, _builder, Files.readString(file));
           } catch (Throwable _e) {
             throw Exceptions.sneakyThrow(_e);
           }

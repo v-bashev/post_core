@@ -38,10 +38,8 @@ final class EmptyProject {
 			
 			val bundle = Platform.getBundle("su.nsk.iae.post.ui")
 			val libUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
-			Files.walk(Paths.get(libUrl.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
-				Files.walk(dir).filter([file | Files.isRegularFile(file)]).forEach([file |
-					addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
-				])
+			Files.walk(Paths.get(libUrl.toURI)).filter([file | Files.isRegularFile(file)]).forEach([file |
+				addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
 			])
 		])
 	}
@@ -64,10 +62,8 @@ final class EmptyTemplateProject {
 			val templateUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/examples/Template.post"), null))
 			addFile('''«PoSTProjectTemplateProvider.srcFolder»/template.post''', Files.readString(Paths.get(templateUrl.toURI)))
 			val libUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
-			Files.walk(Paths.get(libUrl.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
-				Files.walk(dir).filter([file | Files.isRegularFile(file)]).forEach([file |
-					addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
-				])
+			Files.walk(Paths.get(libUrl.toURI)).filter([file | Files.isRegularFile(file)]).forEach([file |
+				addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
 			])
 		])
 	}
@@ -90,10 +86,8 @@ final class HandDryerProject {
 			val handDryerUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/examples/HandDryer.post"), null))
 			addFile('''«PoSTProjectTemplateProvider.srcFolder»/handDryer.post''', Files.readString(Paths.get(handDryerUrl.toURI)))
 			val libUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
-			Files.walk(Paths.get(libUrl.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
-				Files.walk(dir).filter([file | Files.isRegularFile(file)]).forEach([file |
-					addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
-				])
+			Files.walk(Paths.get(libUrl.toURI)).filter([file | Files.isRegularFile(file)]).forEach([file |
+				addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
 			])
 		])
 	}
