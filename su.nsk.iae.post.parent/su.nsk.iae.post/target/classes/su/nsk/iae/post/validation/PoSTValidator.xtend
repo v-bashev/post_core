@@ -54,6 +54,7 @@ import su.nsk.iae.post.poST.CaseElement
 import su.nsk.iae.post.poST.ForStatement
 import su.nsk.iae.post.poST.WhileStatement
 import su.nsk.iae.post.poST.RepeatStatement
+import su.nsk.iae.post.poST.FunctionCall
 
 class PoSTValidator extends AbstractPoSTValidator {
 	
@@ -596,6 +597,20 @@ class PoSTValidator extends AbstractPoSTValidator {
 	def checkRepeatStatement_Empty(RepeatStatement ele) {
 		if (ele.statement.statements.empty) {
 			error("Statement error: REPEAT can't be empty", ePackage.variable_Name)
+		}
+	}
+	
+	@Check
+	def checkFunctionCall_NumberOfArgs(FunctionCall ele) {
+		val function = ele.function
+		val attachVars = function.funInVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
+						 function.funOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count +
+						 function.funInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).count
+		val programVars = ele.args.elements.stream.count
+		if (attachVars != programVars) {
+			if (!ele.checkContainer(InputVarDeclaration) && !ele.checkContainer(InputOutputVarDeclaration)) {
+				error("Attach error: Not all input and output Variables are used", ePackage.functionCall_Function)
+			}
 		}
 	}
 	
