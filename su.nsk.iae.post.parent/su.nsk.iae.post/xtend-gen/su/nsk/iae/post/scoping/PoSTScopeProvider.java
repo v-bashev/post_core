@@ -12,6 +12,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
+import su.nsk.iae.post.library.PoSTLibraryProvider;
 import su.nsk.iae.post.naming.PoSTQualifiedNameProvider;
 import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
@@ -48,6 +49,8 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
   }
   
   private final PoSTPackage ePackage = PoSTPackage.eINSTANCE;
+  
+  private final PoSTLibraryProvider libraryProvider = new PoSTLibraryProvider();
   
   public IScope getPoSTScope(final EObject context, final EReference reference) {
     return this.getScope(context, reference, false);
@@ -134,8 +137,7 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
   }
   
   private IScope scopeForFunctionCall_Function(final EObject context, final EReference reference, final boolean simple) {
-    final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class);
-    return this.scopeForVar(PoSTScopeProvider.getProgramInOutVar(programConf.getProgram()), simple);
+    return this.scopeSuper(context, reference, this.libraryProvider.getLibraryFunctions(context), simple);
   }
   
   private IScope scopeForAttachVariableConfElement_ProgramVar(final EObject context, final EReference reference, final boolean simple) {

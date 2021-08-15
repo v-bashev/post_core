@@ -3,12 +3,16 @@ package su.nsk.iae.post.scoping
 import com.google.common.base.Function
 import java.util.stream.Collectors
 import java.util.stream.Stream
+import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
+import su.nsk.iae.post.library.PoSTLibraryProvider
 import su.nsk.iae.post.naming.PoSTQualifiedNameProvider
+import su.nsk.iae.post.poST.GlobalVarDeclaration
+import su.nsk.iae.post.poST.Model
 import su.nsk.iae.post.poST.PoSTPackage
 import su.nsk.iae.post.poST.Process
 import su.nsk.iae.post.poST.Program
@@ -16,13 +20,11 @@ import su.nsk.iae.post.poST.ProgramConfiguration
 import su.nsk.iae.post.poST.TemplateProcessConfElement
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import su.nsk.iae.post.poST.Model
-import org.eclipse.emf.common.util.EList
-import su.nsk.iae.post.poST.GlobalVarDeclaration
 
 class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	
 	val ePackage = PoSTPackage.eINSTANCE
+	val libraryProvider = new PoSTLibraryProvider
 	
 	def IScope getPoSTScope(EObject context, EReference reference) {
 		return getScope(context, reference, false)
@@ -78,8 +80,7 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	}
 	
 	private def IScope scopeForFunctionCall_Function(EObject context, EReference reference, boolean simple) {
-		val programConf = context.getContainerOfType(ProgramConfiguration)
-		return scopeForVar(programConf.program.programInOutVar, simple)
+		return scopeSuper(context, reference, libraryProvider.getLibraryFunctions(context), simple)
 	}
 	
 	private def IScope scopeForAttachVariableConfElement_ProgramVar(EObject context, EReference reference, boolean simple) {
