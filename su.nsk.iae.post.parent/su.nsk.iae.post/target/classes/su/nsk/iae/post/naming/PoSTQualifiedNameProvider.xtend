@@ -4,6 +4,7 @@ import java.util.stream.Stream
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
+import su.nsk.iae.post.poST.Function
 import su.nsk.iae.post.poST.FunctionBlock
 import su.nsk.iae.post.poST.Process
 import su.nsk.iae.post.poST.ProcessVarInitDeclaration
@@ -21,14 +22,19 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 	
 	override protected QualifiedName qualifiedName(Object ele) {
-		if (ele instanceof SymbolicVariable) {
-			return ele.symbolicVariableQualifiedName
-		}
-		if (ele instanceof TemplateProcessConfElement) {
-			return ele.getTemplateProcessConfElementQualifiedName
-		}
-		if (ele instanceof Task) {
-			return ele.taskQualifiedName
+		switch ele {
+			SymbolicVariable:
+				return ele.symbolicVariableQualifiedName
+			TemplateProcessConfElement:
+				return ele.templateProcessConfElementQualifiedName
+			Task:
+				return ele.taskQualifiedName
+			Program:
+				return QualifiedName.create(ele.name)
+			FunctionBlock:
+				return QualifiedName.create(ele.name)
+			Function:
+				return QualifiedName.create(ele.name)
 		}
 		return super.qualifiedName(ele)	
 	}

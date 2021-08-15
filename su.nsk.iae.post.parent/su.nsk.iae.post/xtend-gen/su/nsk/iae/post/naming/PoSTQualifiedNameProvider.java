@@ -1,6 +1,5 @@
 package su.nsk.iae.post.naming;
 
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
@@ -8,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
+import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.InputOutputVarDeclaration;
 import su.nsk.iae.post.poST.InputVarDeclaration;
@@ -31,14 +31,40 @@ import su.nsk.iae.post.poST.Variable;
 public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
   @Override
   protected QualifiedName qualifiedName(final Object ele) {
-    if ((ele instanceof SymbolicVariable)) {
+    boolean _matched = false;
+    if (ele instanceof SymbolicVariable) {
+      _matched=true;
       return this.getSymbolicVariableQualifiedName(((SymbolicVariable)ele));
     }
-    if ((ele instanceof TemplateProcessConfElement)) {
-      return this.getTemplateProcessConfElementQualifiedName(((TemplateProcessConfElement)ele));
+    if (!_matched) {
+      if (ele instanceof TemplateProcessConfElement) {
+        _matched=true;
+        return this.getTemplateProcessConfElementQualifiedName(((TemplateProcessConfElement)ele));
+      }
     }
-    if ((ele instanceof Task)) {
-      return this.getTaskQualifiedName(((Task)ele));
+    if (!_matched) {
+      if (ele instanceof Task) {
+        _matched=true;
+        return this.getTaskQualifiedName(((Task)ele));
+      }
+    }
+    if (!_matched) {
+      if (ele instanceof Program) {
+        _matched=true;
+        return QualifiedName.create(((Program)ele).getName());
+      }
+    }
+    if (!_matched) {
+      if (ele instanceof FunctionBlock) {
+        _matched=true;
+        return QualifiedName.create(((FunctionBlock)ele).getName());
+      }
+    }
+    if (!_matched) {
+      if (ele instanceof Function) {
+        _matched=true;
+        return QualifiedName.create(((Function)ele).getName());
+      }
     }
     return super.qualifiedName(ele);
   }
@@ -104,20 +130,20 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   
   public static boolean checkProgramVars(final Program program, final String eleName) {
     return (Stream.<EList<SymbolicVariable>>concat(
-      program.getProgVars().stream().<EList<VarInitDeclaration>>map(((Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
+      program.getProgVars().stream().<EList<VarInitDeclaration>>map(((java.util.function.Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
         return x.getVars();
-      })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
+      })).<VarInitDeclaration>flatMap(((java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
         return x.stream();
-      })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
+      })).<EList<SymbolicVariable>>map(((java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
         return x.getVarList().getVars();
       })), 
-      program.getProgTempVars().stream().<EList<VarInitDeclaration>>map(((Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
+      program.getProgTempVars().stream().<EList<VarInitDeclaration>>map(((java.util.function.Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
         return x.getVars();
-      })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
+      })).<VarInitDeclaration>flatMap(((java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
         return x.stream();
-      })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
+      })).<EList<SymbolicVariable>>map(((java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
         return x.getVarList().getVars();
-      }))).<SymbolicVariable>flatMap(((Function<EList<SymbolicVariable>, Stream<SymbolicVariable>>) (EList<SymbolicVariable> x) -> {
+      }))).<SymbolicVariable>flatMap(((java.util.function.Function<EList<SymbolicVariable>, Stream<SymbolicVariable>>) (EList<SymbolicVariable> x) -> {
       return x.stream();
     })).anyMatch(((Predicate<SymbolicVariable>) (SymbolicVariable x) -> {
       return x.getName().equals(eleName);
@@ -125,34 +151,34 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   }
   
   public static boolean checkProgramInOutVars(final Program program, final String eleName) {
-    final Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+    final java.util.function.Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
+    final java.util.function.Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
+    final java.util.function.Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
+    final java.util.function.Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
       return x.stream();
     };
     final Predicate<SymbolicVariable> _function_10 = (SymbolicVariable x) -> {
@@ -167,20 +193,20 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   
   public static boolean checkFBVars(final FunctionBlock fb, final String eleName) {
     return (Stream.<EList<SymbolicVariable>>concat(
-      fb.getFbVars().stream().<EList<VarInitDeclaration>>map(((Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
+      fb.getFbVars().stream().<EList<VarInitDeclaration>>map(((java.util.function.Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
         return x.getVars();
-      })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
+      })).<VarInitDeclaration>flatMap(((java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
         return x.stream();
-      })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
+      })).<EList<SymbolicVariable>>map(((java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
         return x.getVarList().getVars();
       })), 
-      fb.getFbTempVars().stream().<EList<VarInitDeclaration>>map(((Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
+      fb.getFbTempVars().stream().<EList<VarInitDeclaration>>map(((java.util.function.Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
         return x.getVars();
-      })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
+      })).<VarInitDeclaration>flatMap(((java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
         return x.stream();
-      })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
+      })).<EList<SymbolicVariable>>map(((java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
         return x.getVarList().getVars();
-      }))).<SymbolicVariable>flatMap(((Function<EList<SymbolicVariable>, Stream<SymbolicVariable>>) (EList<SymbolicVariable> x) -> {
+      }))).<SymbolicVariable>flatMap(((java.util.function.Function<EList<SymbolicVariable>, Stream<SymbolicVariable>>) (EList<SymbolicVariable> x) -> {
       return x.stream();
     })).anyMatch(((Predicate<SymbolicVariable>) (SymbolicVariable x) -> {
       return x.getName().equals(eleName);
@@ -188,34 +214,34 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   }
   
   public static boolean checkFBInOutVars(final FunctionBlock fb, final String eleName) {
-    final Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+    final java.util.function.Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
+    final java.util.function.Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
+    final java.util.function.Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
+    final java.util.function.Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
       return x.stream();
     };
     final Predicate<SymbolicVariable> _function_10 = (SymbolicVariable x) -> {
@@ -230,28 +256,28 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   
   public static boolean checkProcessVars(final su.nsk.iae.post.poST.Process process, final String eleName) {
     return (Stream.<EList<? extends Variable>>concat(
-      process.getProcVars().stream().<EList<VarInitDeclaration>>map(((Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
+      process.getProcVars().stream().<EList<VarInitDeclaration>>map(((java.util.function.Function<VarDeclaration, EList<VarInitDeclaration>>) (VarDeclaration x) -> {
         return x.getVars();
-      })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
+      })).<VarInitDeclaration>flatMap(((java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
         return x.stream();
-      })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
+      })).<EList<SymbolicVariable>>map(((java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
         return x.getVarList().getVars();
       })), 
       Stream.<EList<? extends Variable>>concat(
-        process.getProcTempVars().stream().<EList<VarInitDeclaration>>map(((Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
+        process.getProcTempVars().stream().<EList<VarInitDeclaration>>map(((java.util.function.Function<TempVarDeclaration, EList<VarInitDeclaration>>) (TempVarDeclaration x) -> {
           return x.getVars();
-        })).<VarInitDeclaration>flatMap(((Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
+        })).<VarInitDeclaration>flatMap(((java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>>) (EList<VarInitDeclaration> x) -> {
           return x.stream();
-        })).<EList<SymbolicVariable>>map(((Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
+        })).<EList<SymbolicVariable>>map(((java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>>) (VarInitDeclaration x) -> {
           return x.getVarList().getVars();
         })), 
-        process.getProcProcessVars().stream().<EList<ProcessVarInitDeclaration>>map(((Function<ProcessVarDeclaration, EList<ProcessVarInitDeclaration>>) (ProcessVarDeclaration x) -> {
+        process.getProcProcessVars().stream().<EList<ProcessVarInitDeclaration>>map(((java.util.function.Function<ProcessVarDeclaration, EList<ProcessVarInitDeclaration>>) (ProcessVarDeclaration x) -> {
           return x.getVars();
-        })).<ProcessVarInitDeclaration>flatMap(((Function<EList<ProcessVarInitDeclaration>, Stream<ProcessVarInitDeclaration>>) (EList<ProcessVarInitDeclaration> x) -> {
+        })).<ProcessVarInitDeclaration>flatMap(((java.util.function.Function<EList<ProcessVarInitDeclaration>, Stream<ProcessVarInitDeclaration>>) (EList<ProcessVarInitDeclaration> x) -> {
           return x.stream();
-        })).<EList<ProcessVariable>>map(((Function<ProcessVarInitDeclaration, EList<ProcessVariable>>) (ProcessVarInitDeclaration x) -> {
+        })).<EList<ProcessVariable>>map(((java.util.function.Function<ProcessVarInitDeclaration, EList<ProcessVariable>>) (ProcessVarInitDeclaration x) -> {
           return x.getVarList().getVars();
-        })))).<Variable>flatMap(((Function<EList<? extends Variable>, Stream<? extends Variable>>) (EList<? extends Variable> x) -> {
+        })))).<Variable>flatMap(((java.util.function.Function<EList<? extends Variable>, Stream<? extends Variable>>) (EList<? extends Variable> x) -> {
       return x.stream();
     })).anyMatch(((Predicate<Variable>) (Variable x) -> {
       return x.getName().equals(eleName);
@@ -259,34 +285,34 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
   }
   
   public static boolean checkProcessInOutVars(final su.nsk.iae.post.poST.Process process, final String eleName) {
-    final Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+    final java.util.function.Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
+    final java.util.function.Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
+    final java.util.function.Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
       return x.getVars();
     };
-    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
       return x.stream();
     };
-    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
       return x.getVarList().getVars();
     };
-    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
+    final java.util.function.Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
       return x.stream();
     };
     final Predicate<SymbolicVariable> _function_10 = (SymbolicVariable x) -> {
