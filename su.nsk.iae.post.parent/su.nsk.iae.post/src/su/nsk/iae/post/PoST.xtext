@@ -194,8 +194,7 @@ ResetTimerStatement:
 /* ======================= START Subprogram Call ======================= */
 
 FunctionCall:
-	function=[Function] '(' args=FunctionCallElements ')'
-;
+	function=[Function] '(' args=FunctionCallElements ')';
 
 FunctionCallElements:
 	elements+=ParamAssignment (',' elements+=ParamAssignment)*;

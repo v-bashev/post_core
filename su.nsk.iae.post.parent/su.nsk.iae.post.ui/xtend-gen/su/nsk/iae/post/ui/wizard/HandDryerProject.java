@@ -41,13 +41,15 @@ public final class HandDryerProject extends AbstractProjectTemplate {
         _folders_1.add(PoSTProjectTemplateProvider.genFolder);
         List<String> _folders_2 = it.getFolders();
         _folders_2.add(PoSTProjectTemplateProvider.libFolder);
+        final Bundle bundle = Platform.getBundle("su.nsk.iae.post.ui");
+        Path _path = new Path("/resources/examples/HandDryer.post");
+        final URL handDryerUrl = FileLocator.resolve(FileLocator.find(bundle, _path, null));
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(PoSTProjectTemplateProvider.srcFolder);
-        _builder.append("/handDryer.post");
-        this.addFile(it, _builder, PoSTProgramCodeUtil.getHandDryerProgram());
-        final Bundle bundle = Platform.getBundle("su.nsk.iae.post.ui");
-        Path _path = new Path("/resources/library");
-        final URL url = FileLocator.resolve(FileLocator.find(bundle, _path, null));
+        _builder.append("/template.post");
+        this.addFile(it, _builder, Files.readString(Paths.get(handDryerUrl.toURI())));
+        Path _path_1 = new Path("/resources/library");
+        final URL libUrl = FileLocator.resolve(FileLocator.find(bundle, _path_1, null));
         final Predicate<java.nio.file.Path> _function_1 = (java.nio.file.Path dir) -> {
           return Files.isDirectory(dir);
         };
@@ -78,7 +80,7 @@ public final class HandDryerProject extends AbstractProjectTemplate {
             throw Exceptions.sneakyThrow(_e);
           }
         };
-        Files.walk(Paths.get(url.toURI())).filter(_function_1).forEach(_function_2);
+        Files.walk(Paths.get(libUrl.toURI())).filter(_function_1).forEach(_function_2);
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
       }

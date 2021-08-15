@@ -1,0 +1,23 @@
+CONFIGURATION Conf
+
+	RESOURCE Res1 ON TestCPU
+
+		TASK T1 (INTERVAL := T#100ms, PRIORITY := 1);
+
+		PROGRAM p1 WITH T1 : Program1;
+
+	END_RESOURCE
+
+END_CONFIGURATION
+
+PROGRAM Program1
+
+    PROCESS Process1
+
+        STATE State1
+            
+        END_STATE
+
+    END_PROCESS
+
+END_PROGRAM

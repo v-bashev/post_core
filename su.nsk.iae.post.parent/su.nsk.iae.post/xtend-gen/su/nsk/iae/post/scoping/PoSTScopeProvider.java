@@ -3,7 +3,6 @@ package su.nsk.iae.post.scoping;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
@@ -64,38 +63,52 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
   }
   
   public IScope getScope(final EObject context, final EReference reference, final boolean simple) {
-    EReference _attachVariableConfElement_ProgramVar = this.ePackage.getAttachVariableConfElement_ProgramVar();
-    boolean _equals = Objects.equal(reference, _attachVariableConfElement_ProgramVar);
-    if (_equals) {
-      final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class);
-      return this.scopeForVar(PoSTScopeProvider.getProgramInOutVar(programConf.getProgram()), simple);
-    }
-    EReference _templateProcessAttachVariableConfElement_ProgramVar = this.ePackage.getTemplateProcessAttachVariableConfElement_ProgramVar();
-    boolean _equals_1 = Objects.equal(reference, _templateProcessAttachVariableConfElement_ProgramVar);
-    if (_equals_1) {
-      final TemplateProcessConfElement processConf = EcoreUtil2.<TemplateProcessConfElement>getContainerOfType(context, TemplateProcessConfElement.class);
-      return this.scopeForVar(PoSTScopeProvider.getProcessTemplateVar(processConf.getProcess()), simple);
-    }
-    EReference _templateProcessConfElement_Process = this.ePackage.getTemplateProcessConfElement_Process();
-    boolean _equals_2 = Objects.equal(reference, _templateProcessConfElement_Process);
-    if (_equals_2) {
-      final ProgramConfiguration programConf_1 = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class);
-      return this.scopeSuper(context, reference, this.getProcessList(programConf_1.getProgram()), simple);
-    }
+    boolean _matched = false;
     EReference _assignmentStatement_Variable = this.ePackage.getAssignmentStatement_Variable();
-    boolean _equals_3 = Objects.equal(reference, _assignmentStatement_Variable);
-    if (_equals_3) {
-      final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(context, su.nsk.iae.post.poST.Process.class);
-      if ((process != null)) {
-        final Program program = EcoreUtil2.<Program>getContainerOfType(process, Program.class);
-        final Model model = EcoreUtil2.<Model>getContainerOfType(program, Model.class);
-        return this.scopeForVar(this.getAvailableVar(model, program, process), simple);
+    if (Objects.equal(reference, _assignmentStatement_Variable)) {
+      _matched=true;
+    }
+    if (!_matched) {
+      EReference _primaryExpression_Variable = this.ePackage.getPrimaryExpression_Variable();
+      if (Objects.equal(reference, _primaryExpression_Variable)) {
+        _matched=true;
+      }
+    }
+    if (_matched) {
+      return this.scopeForAssignmentStatementAndPrimaryExpression_Variable(context, reference, simple);
+    }
+    if (!_matched) {
+      EReference _functionCall_Function = this.ePackage.getFunctionCall_Function();
+      if (Objects.equal(reference, _functionCall_Function)) {
+        _matched=true;
+        return this.scopeForFunctionCall_Function(context, reference, simple);
+      }
+    }
+    if (!_matched) {
+      EReference _attachVariableConfElement_ProgramVar = this.ePackage.getAttachVariableConfElement_ProgramVar();
+      if (Objects.equal(reference, _attachVariableConfElement_ProgramVar)) {
+        _matched=true;
+        return this.scopeForAttachVariableConfElement_ProgramVar(context, reference, simple);
+      }
+    }
+    if (!_matched) {
+      EReference _templateProcessAttachVariableConfElement_ProgramVar = this.ePackage.getTemplateProcessAttachVariableConfElement_ProgramVar();
+      if (Objects.equal(reference, _templateProcessAttachVariableConfElement_ProgramVar)) {
+        _matched=true;
+        return this.scopeForTemplateProcessAttachVariableConfElement_ProgramVar(context, reference, simple);
+      }
+    }
+    if (!_matched) {
+      EReference _templateProcessConfElement_Process = this.ePackage.getTemplateProcessConfElement_Process();
+      if (Objects.equal(reference, _templateProcessConfElement_Process)) {
+        _matched=true;
+        return this.scopeForTemplateProcessConfElement_Process(context, reference, simple);
       }
     }
     return null;
   }
   
-  public IScope scopeForVar(final Iterable<? extends EObject> elements, final boolean simple) {
+  private IScope scopeForVar(final Iterable<? extends EObject> elements, final boolean simple) {
     if (simple) {
       return Scopes.scopeFor(elements);
     }
@@ -103,18 +116,41 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
     return Scopes.<EObject>scopeFor(elements, _poSTScope, IScope.NULLSCOPE);
   }
   
-  public IScope scopeSuper(final EObject context, final EReference reference, final Iterable<? extends EObject> elements, final boolean simple) {
+  private IScope scopeSuper(final EObject context, final EReference reference, final Iterable<? extends EObject> elements, final boolean simple) {
     if (simple) {
       return Scopes.scopeFor(elements);
     }
     return super.getScope(context, reference);
   }
   
-  private List<su.nsk.iae.post.poST.Process> getProcessList(final Program program) {
-    final Predicate<su.nsk.iae.post.poST.Process> _function = (su.nsk.iae.post.poST.Process x) -> {
-      return ((((!x.getProcInVars().isEmpty()) || (!x.getProcOutVars().isEmpty())) || (!x.getProcInOutVars().isEmpty())) || (!x.getProcProcessVars().isEmpty()));
-    };
-    return program.getProcesses().stream().filter(_function).collect(Collectors.<su.nsk.iae.post.poST.Process>toList());
+  private IScope scopeForAssignmentStatementAndPrimaryExpression_Variable(final EObject context, final EReference reference, final boolean simple) {
+    final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(context, su.nsk.iae.post.poST.Process.class);
+    if ((process != null)) {
+      final Program program = EcoreUtil2.<Program>getContainerOfType(process, Program.class);
+      final Model model = EcoreUtil2.<Model>getContainerOfType(program, Model.class);
+      return this.scopeForVar(this.getAvailableVar(model, program, process), simple);
+    }
+    return null;
+  }
+  
+  private IScope scopeForFunctionCall_Function(final EObject context, final EReference reference, final boolean simple) {
+    final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class);
+    return this.scopeForVar(PoSTScopeProvider.getProgramInOutVar(programConf.getProgram()), simple);
+  }
+  
+  private IScope scopeForAttachVariableConfElement_ProgramVar(final EObject context, final EReference reference, final boolean simple) {
+    final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class);
+    return this.scopeForVar(PoSTScopeProvider.getProgramInOutVar(programConf.getProgram()), simple);
+  }
+  
+  private IScope scopeForTemplateProcessAttachVariableConfElement_ProgramVar(final EObject context, final EReference reference, final boolean simple) {
+    final TemplateProcessConfElement processConf = EcoreUtil2.<TemplateProcessConfElement>getContainerOfType(context, TemplateProcessConfElement.class);
+    return this.scopeForVar(PoSTScopeProvider.getProcessTemplateVar(processConf.getProcess()), simple);
+  }
+  
+  private IScope scopeForTemplateProcessConfElement_Process(final EObject context, final EReference reference, final boolean simple) {
+    final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(context, ProgramConfiguration.class);
+    return this.scopeSuper(context, reference, programConf.getProgram().getProcesses(), simple);
   }
   
   private List<SymbolicVariable> getAvailableVar(final Model model, final Program program, final su.nsk.iae.post.poST.Process process) {

@@ -43,7 +43,7 @@ public final class EmptyProject extends AbstractProjectTemplate {
         _folders_2.add(PoSTProjectTemplateProvider.libFolder);
         final Bundle bundle = Platform.getBundle("su.nsk.iae.post.ui");
         Path _path = new Path("/resources/library");
-        final URL url = FileLocator.resolve(FileLocator.find(bundle, _path, null));
+        final URL libUrl = FileLocator.resolve(FileLocator.find(bundle, _path, null));
         final Predicate<java.nio.file.Path> _function_1 = (java.nio.file.Path dir) -> {
           return Files.isDirectory(dir);
         };
@@ -74,7 +74,7 @@ public final class EmptyProject extends AbstractProjectTemplate {
             throw Exceptions.sneakyThrow(_e);
           }
         };
-        Files.walk(Paths.get(url.toURI())).filter(_function_1).forEach(_function_2);
+        Files.walk(Paths.get(libUrl.toURI())).filter(_function_1).forEach(_function_2);
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
       }

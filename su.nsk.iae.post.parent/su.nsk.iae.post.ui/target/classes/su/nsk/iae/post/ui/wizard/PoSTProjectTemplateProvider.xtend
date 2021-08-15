@@ -11,8 +11,6 @@ import org.eclipse.xtext.ui.wizard.template.IProjectGenerator
 import org.eclipse.xtext.ui.wizard.template.IProjectTemplateProvider
 import org.eclipse.xtext.ui.wizard.template.ProjectTemplate
 
-import static su.nsk.iae.post.ui.wizard.PoSTProgramCodeUtil.*
-
 class PoSTProjectTemplateProvider implements IProjectTemplateProvider {
 	
 	public static String srcFolder = "src"
@@ -39,8 +37,8 @@ final class EmptyProject {
 			folders += PoSTProjectTemplateProvider.libFolder
 			
 			val bundle = Platform.getBundle("su.nsk.iae.post.ui")
-			val url = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
-			Files.walk(Paths.get(url.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
+			val libUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
+			Files.walk(Paths.get(libUrl.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
 				Files.walk(dir).filter([file | Files.isRegularFile(file)]).forEach([file |
 					addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
 				])
@@ -61,11 +59,12 @@ final class EmptyTemplateProject {
 			folders += PoSTProjectTemplateProvider.srcFolder
 			folders += PoSTProjectTemplateProvider.genFolder
 			folders += PoSTProjectTemplateProvider.libFolder
-			addFile('''«PoSTProjectTemplateProvider.srcFolder»/template.post''', teplateProgram)
 			
 			val bundle = Platform.getBundle("su.nsk.iae.post.ui")
-			val url = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
-			Files.walk(Paths.get(url.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
+			val templateUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/examples/Template.post"), null))
+			addFile('''«PoSTProjectTemplateProvider.srcFolder»/template.post''', Files.readString(Paths.get(templateUrl.toURI)))
+			val libUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
+			Files.walk(Paths.get(libUrl.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
 				Files.walk(dir).filter([file | Files.isRegularFile(file)]).forEach([file |
 					addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
 				])
@@ -86,11 +85,12 @@ final class HandDryerProject {
 			folders += PoSTProjectTemplateProvider.srcFolder
 			folders += PoSTProjectTemplateProvider.genFolder
 			folders += PoSTProjectTemplateProvider.libFolder
-			addFile('''«PoSTProjectTemplateProvider.srcFolder»/handDryer.post''', handDryerProgram)
 			
 			val bundle = Platform.getBundle("su.nsk.iae.post.ui")
-			val url = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
-			Files.walk(Paths.get(url.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
+			val handDryerUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/examples/HandDryer.post"), null))
+			addFile('''«PoSTProjectTemplateProvider.srcFolder»/template.post''', Files.readString(Paths.get(handDryerUrl.toURI)))
+			val libUrl = FileLocator.resolve(FileLocator.find(bundle, new Path("/resources/library"), null))
+			Files.walk(Paths.get(libUrl.toURI)).filter([dir | Files.isDirectory(dir)]).forEach([dir |
 				Files.walk(dir).filter([file | Files.isRegularFile(file)]).forEach([file |
 					addFile('''«PoSTProjectTemplateProvider.libFolder»/«file.getName(file.size - 2)»/«file.last»''', Files.readString(file))
 				])
