@@ -51,9 +51,7 @@ class PoSTLibraryProvider {
 	
 	List<Function> functions = new ArrayList
 	List<FunctionBlock> functionBlocks = new ArrayList
-	
-	
-	
+		
 	def List<Function> getLibraryFunctions(EObject context) {
 		context.parseLibrary
 		return functions
