@@ -806,19 +806,10 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     FunctionCall returns FunctionCall
 	 *
 	 * Constraint:
-	 *     (function=[Function|ID] args=FunctionCallElements)
+	 *     (function=[Function|ID] args=FunctionCallElements?)
 	 */
 	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.FUNCTION_CALL__FUNCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.FUNCTION_CALL__FUNCTION));
-			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.FUNCTION_CALL__ARGS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.FUNCTION_CALL__ARGS));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFunctionCallAccess().getFunctionFunctionIDTerminalRuleCall_0_0_1(), semanticObject.eGet(PoSTPackage.Literals.FUNCTION_CALL__FUNCTION, false));
-		feeder.accept(grammarAccess.getFunctionCallAccess().getArgsFunctionCallElementsParserRuleCall_2_0(), semanticObject.getArgs());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

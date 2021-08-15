@@ -1650,10 +1650,10 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		///* ======================= END poST Statements ======================= */
 		///* ======================= START Subprogram Call ======================= */
 		//FunctionCall:
-		//    function=[Function] '(' args=FunctionCallElements ')';
+		//    function=[Function] '(' (args=FunctionCallElements)? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//function=[Function] '(' args=FunctionCallElements ')'
+		//function=[Function] '(' (args=FunctionCallElements)? ')'
 		public Group getGroup() { return cGroup; }
 		
 		//function=[Function]
@@ -1668,7 +1668,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//args=FunctionCallElements
+		//(args=FunctionCallElements)?
 		public Assignment getArgsAssignment_2() { return cArgsAssignment_2; }
 		
 		//FunctionCallElements
@@ -4894,7 +4894,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	///* ======================= END poST Statements ======================= */
 	///* ======================= START Subprogram Call ======================= */
 	//FunctionCall:
-	//    function=[Function] '(' args=FunctionCallElements ')';
+	//    function=[Function] '(' (args=FunctionCallElements)? ')';
 	public FunctionCallElements getFunctionCallAccess() {
 		return pFunctionCall;
 	}

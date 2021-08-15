@@ -6825,7 +6825,7 @@ rule__FunctionCall__Group__2__Impl
 :
 (
 	{ before(grammarAccess.getFunctionCallAccess().getArgsAssignment_2()); }
-	(rule__FunctionCall__ArgsAssignment_2)
+	(rule__FunctionCall__ArgsAssignment_2)?
 	{ after(grammarAccess.getFunctionCallAccess().getArgsAssignment_2()); }
 )
 ;

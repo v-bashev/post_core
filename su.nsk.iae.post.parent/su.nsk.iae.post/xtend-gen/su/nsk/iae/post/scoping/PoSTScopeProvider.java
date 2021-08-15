@@ -18,6 +18,7 @@ import su.nsk.iae.post.library.PoSTLibraryProvider;
 import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.InputOutputVarDeclaration;
@@ -80,6 +81,13 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
       if (Objects.equal(reference, _functionCall_Function)) {
         _matched=true;
         return this.scopeForFunctionCall_Function(context);
+      }
+    }
+    if (!_matched) {
+      EReference _paramAssignment_Variable = this.ePackage.getParamAssignment_Variable();
+      if (Objects.equal(reference, _paramAssignment_Variable)) {
+        _matched=true;
+        return this.scopeForParamAssignment_Variable(context);
       }
     }
     if (!_matched) {
@@ -151,6 +159,11 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
   
   private IScope scopeForFunctionCall_Function(final EObject context) {
     return this.scopeFor(this.libraryProvider.getLibraryFunctions(context));
+  }
+  
+  private IScope scopeForParamAssignment_Variable(final EObject context) {
+    final su.nsk.iae.post.poST.Function function = EcoreUtil2.<FunctionCall>getContainerOfType(context, FunctionCall.class).getFunction();
+    return this.scopeFor(PoSTScopeProvider.getFunctionInOutVar(function));
   }
   
   private IScope scopeForAttachVariableConfElement_ProgramVar(final EObject context) {
@@ -282,6 +295,44 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
       Stream.<EList<SymbolicVariable>>concat(
         program.getProgOutVars().stream().<EList<VarInitDeclaration>>map(_function_3).<VarInitDeclaration>flatMap(_function_4).<EList<SymbolicVariable>>map(_function_5), 
         program.getProgInOutVars().stream().<EList<VarInitDeclaration>>map(_function_6).<VarInitDeclaration>flatMap(_function_7).<EList<SymbolicVariable>>map(_function_8))).<SymbolicVariable>flatMap(_function_9).collect(Collectors.<SymbolicVariable>toList());
+  }
+  
+  private static List<SymbolicVariable> getFunctionInOutVar(final su.nsk.iae.post.poST.Function function) {
+    final java.util.function.Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final java.util.function.Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final java.util.function.Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final java.util.function.Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    return Stream.<EList<SymbolicVariable>>concat(
+      function.getFunInVars().stream().<EList<VarInitDeclaration>>map(_function).<VarInitDeclaration>flatMap(_function_1).<EList<SymbolicVariable>>map(_function_2), 
+      Stream.<EList<SymbolicVariable>>concat(
+        function.getFunOutVars().stream().<EList<VarInitDeclaration>>map(_function_3).<VarInitDeclaration>flatMap(_function_4).<EList<SymbolicVariable>>map(_function_5), 
+        function.getFunInOutVars().stream().<EList<VarInitDeclaration>>map(_function_6).<VarInitDeclaration>flatMap(_function_7).<EList<SymbolicVariable>>map(_function_8))).<SymbolicVariable>flatMap(_function_9).collect(Collectors.<SymbolicVariable>toList());
   }
   
   private static List<SymbolicVariable> getProgramVar(final Program program) {

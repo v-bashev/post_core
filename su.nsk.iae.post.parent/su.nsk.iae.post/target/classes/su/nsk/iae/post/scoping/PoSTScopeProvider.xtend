@@ -21,6 +21,8 @@ import su.nsk.iae.post.poST.SymbolicVariable
 import su.nsk.iae.post.poST.TemplateProcessConfElement
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import su.nsk.iae.post.poST.FunctionCall
+import su.nsk.iae.post.poST.Function
 
 class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	
@@ -39,6 +41,8 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 				return context.scopeForStatementExpression_Variable
 			case ePackage.functionCall_Function:
 				return context.scopeForFunctionCall_Function
+			case ePackage.paramAssignment_Variable:
+				return context.scopeForParamAssignment_Variable
 			case ePackage.attachVariableConfElement_ProgramVar:
 				return context.scopeForAttachVariableConfElement_ProgramVar
 			case ePackage.templateProcessAttachVariableConfElement_ProgramVar: 
@@ -69,6 +73,11 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	
 	private def IScope scopeForFunctionCall_Function(EObject context) {
 		return scopeFor(libraryProvider.getLibraryFunctions(context))
+	}
+	
+	private def IScope scopeForParamAssignment_Variable(EObject context) {
+		val function = context.getContainerOfType(FunctionCall).function
+		return scopeFor(function.functionInOutVar)
 	}
 	
 	private def IScope scopeForAttachVariableConfElement_ProgramVar(EObject context) {
@@ -154,6 +163,16 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 			Stream.concat(
 				program.progOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
 				program.progInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars])
+			)
+		).flatMap([x | x.stream]).collect(Collectors.toList)
+	}
+	
+	private static def getFunctionInOutVar(Function function) {
+		return Stream.concat(
+			function.funInVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+			Stream.concat(
+				function.funOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+				function.funInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars])
 			)
 		).flatMap([x | x.stream]).collect(Collectors.toList)
 	}
