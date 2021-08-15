@@ -8,24 +8,50 @@ import su.nsk.iae.post.poST.FunctionBlock
 import su.nsk.iae.post.poST.Process
 import su.nsk.iae.post.poST.ProcessVarInitDeclaration
 import su.nsk.iae.post.poST.Program
+import su.nsk.iae.post.poST.ProgramConfiguration
+import su.nsk.iae.post.poST.Resource
 import su.nsk.iae.post.poST.StatementList
+import su.nsk.iae.post.poST.SymbolicVariable
+import su.nsk.iae.post.poST.Task
+import su.nsk.iae.post.poST.TemplateProcessConfElement
 import su.nsk.iae.post.poST.VarInitDeclaration
-import su.nsk.iae.post.poST.Variable
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 
 class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 	
 	override protected QualifiedName qualifiedName(Object ele) {
-		if (ele instanceof Variable) {
-			if (ele.checkVarInitDeclaration) {
-				return ele.initVariableQualifiedName
-			}
-			if (ele.checkStatementList) {
-				return ele.variableQualifiedName
-			}
+		if (ele instanceof SymbolicVariable) {
+			return ele.symbolicVariableQualifiedName
+		}
+		if (ele instanceof TemplateProcessConfElement) {
+			return ele.getTemplateProcessConfElementQualifiedName
+		}
+		if (ele instanceof Task) {
+			return ele.taskQualifiedName
 		}
 		return super.qualifiedName(ele)	
+	}
+	
+	private def QualifiedName getSymbolicVariableQualifiedName(SymbolicVariable ele) {
+		if (ele.checkVarInitDeclaration) {
+			return ele.initVariableQualifiedName
+		}
+		if (ele.checkStatementList) {
+			return ele.variableQualifiedName
+		}
+		return QualifiedName.create(ele.name)
+	}
+	
+	private def QualifiedName getTemplateProcessConfElementQualifiedName(TemplateProcessConfElement ele) {
+		val res = ele.getContainerOfType(Resource)
+		val programConf = ele.getContainerOfType(ProgramConfiguration)
+		return QualifiedName.create(res.name, programConf.name, ele.name)
+	}
+	
+	private def QualifiedName getTaskQualifiedName(Task ele) {
+		val res = ele.getContainerOfType(Resource)
+		return QualifiedName.create(res.name, ele.name)
 	}
 	
 	private def boolean checkVarInitDeclaration(EObject ele) {
@@ -36,7 +62,7 @@ class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider 
 		return ele.getContainerOfType(StatementList) !== null
 	}
 	
-	private def QualifiedName getInitVariableQualifiedName(Variable ele) {
+	private def QualifiedName getInitVariableQualifiedName(SymbolicVariable ele) {
 		val program = ele.getContainerOfType(Program)
 		if (program !== null) {
 			val process = ele.getContainerOfType(Process)
@@ -48,7 +74,7 @@ class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider 
 		return QualifiedName.create(ele.name)
 	}
 	
-	private def QualifiedName getVariableQualifiedName(Variable ele) {
+	private def QualifiedName getVariableQualifiedName(SymbolicVariable ele) {
 		val program = ele.getContainerOfType(Program)
 		if (program !== null) {
 			val process = ele.getContainerOfType(Process)

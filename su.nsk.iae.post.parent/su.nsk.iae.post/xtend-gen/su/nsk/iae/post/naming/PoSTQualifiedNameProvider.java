@@ -16,9 +16,13 @@ import su.nsk.iae.post.poST.ProcessVarDeclaration;
 import su.nsk.iae.post.poST.ProcessVarInitDeclaration;
 import su.nsk.iae.post.poST.ProcessVariable;
 import su.nsk.iae.post.poST.Program;
+import su.nsk.iae.post.poST.ProgramConfiguration;
+import su.nsk.iae.post.poST.Resource;
 import su.nsk.iae.post.poST.StatementList;
 import su.nsk.iae.post.poST.SymbolicVariable;
+import su.nsk.iae.post.poST.Task;
 import su.nsk.iae.post.poST.TempVarDeclaration;
+import su.nsk.iae.post.poST.TemplateProcessConfElement;
 import su.nsk.iae.post.poST.VarDeclaration;
 import su.nsk.iae.post.poST.VarInitDeclaration;
 import su.nsk.iae.post.poST.Variable;
@@ -27,17 +31,39 @@ import su.nsk.iae.post.poST.Variable;
 public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
   @Override
   protected QualifiedName qualifiedName(final Object ele) {
-    if ((ele instanceof Variable)) {
-      boolean _checkVarInitDeclaration = this.checkVarInitDeclaration(((EObject)ele));
-      if (_checkVarInitDeclaration) {
-        return this.getInitVariableQualifiedName(((Variable)ele));
-      }
-      boolean _checkStatementList = this.checkStatementList(((EObject)ele));
-      if (_checkStatementList) {
-        return this.getVariableQualifiedName(((Variable)ele));
-      }
+    if ((ele instanceof SymbolicVariable)) {
+      return this.getSymbolicVariableQualifiedName(((SymbolicVariable)ele));
+    }
+    if ((ele instanceof TemplateProcessConfElement)) {
+      return this.getTemplateProcessConfElementQualifiedName(((TemplateProcessConfElement)ele));
+    }
+    if ((ele instanceof Task)) {
+      return this.getTaskQualifiedName(((Task)ele));
     }
     return super.qualifiedName(ele);
+  }
+  
+  private QualifiedName getSymbolicVariableQualifiedName(final SymbolicVariable ele) {
+    boolean _checkVarInitDeclaration = this.checkVarInitDeclaration(ele);
+    if (_checkVarInitDeclaration) {
+      return this.getInitVariableQualifiedName(ele);
+    }
+    boolean _checkStatementList = this.checkStatementList(ele);
+    if (_checkStatementList) {
+      return this.getVariableQualifiedName(ele);
+    }
+    return QualifiedName.create(ele.getName());
+  }
+  
+  private QualifiedName getTemplateProcessConfElementQualifiedName(final TemplateProcessConfElement ele) {
+    final Resource res = EcoreUtil2.<Resource>getContainerOfType(ele, Resource.class);
+    final ProgramConfiguration programConf = EcoreUtil2.<ProgramConfiguration>getContainerOfType(ele, ProgramConfiguration.class);
+    return QualifiedName.create(res.getName(), programConf.getName(), ele.getName());
+  }
+  
+  private QualifiedName getTaskQualifiedName(final Task ele) {
+    final Resource res = EcoreUtil2.<Resource>getContainerOfType(ele, Resource.class);
+    return QualifiedName.create(res.getName(), ele.getName());
   }
   
   private boolean checkVarInitDeclaration(final EObject ele) {
@@ -49,7 +75,7 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
     return (_containerOfType != null);
   }
   
-  private QualifiedName getInitVariableQualifiedName(final Variable ele) {
+  private QualifiedName getInitVariableQualifiedName(final SymbolicVariable ele) {
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
     if ((program != null)) {
       final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);
@@ -61,7 +87,7 @@ public class PoSTQualifiedNameProvider extends DefaultDeclarativeQualifiedNamePr
     return QualifiedName.create(ele.getName());
   }
   
-  private QualifiedName getVariableQualifiedName(final Variable ele) {
+  private QualifiedName getVariableQualifiedName(final SymbolicVariable ele) {
     final Program program = EcoreUtil2.<Program>getContainerOfType(ele, Program.class);
     if ((program != null)) {
       final su.nsk.iae.post.poST.Process process = EcoreUtil2.<su.nsk.iae.post.poST.Process>getContainerOfType(ele, su.nsk.iae.post.poST.Process.class);

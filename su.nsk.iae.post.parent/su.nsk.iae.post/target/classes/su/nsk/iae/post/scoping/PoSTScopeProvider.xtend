@@ -16,6 +16,8 @@ import su.nsk.iae.post.poST.PoSTPackage
 import su.nsk.iae.post.poST.Process
 import su.nsk.iae.post.poST.Program
 import su.nsk.iae.post.poST.ProgramConfiguration
+import su.nsk.iae.post.poST.Resource
+import su.nsk.iae.post.poST.SymbolicVariable
 import su.nsk.iae.post.poST.TemplateProcessConfElement
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
@@ -27,90 +29,103 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	
 	@Inject
 	IQualifiedNameProvider qualifiedNameProvider
-	
-	def IScope getPoSTScope(EObject context, EReference reference) {
-		return getScope(context, reference, false)
-	}
 
 	override getScope(EObject context, EReference reference) {
-		val scope = getScope(context, reference, true)
-		if (scope !== null) {
-			return scope
+		switch reference {
+			case ePackage.primaryExpression_Variable,
+			case ePackage.assignmentStatement_Variable,
+			case ePackage.arrayVariable_Variable,
+			case ePackage.forStatement_Variable:
+				return context.scopeForStatementExpression_Variable
+			case ePackage.functionCall_Function:
+				return context.scopeForFunctionCall_Function
+			case ePackage.attachVariableConfElement_ProgramVar:
+				return context.scopeForAttachVariableConfElement_ProgramVar
+			case ePackage.templateProcessAttachVariableConfElement_ProgramVar: 
+				return context.scopeForTemplateProcessAttachVariableConfElement_ProgramVar
+			case ePackage.templateProcessConfElement_Process: 
+				return context.scopeForTemplateProcessConfElement_Process
+			case ePackage.processStatements_Process,
+			case ePackage.processStatusExpression_Process:
+				return context.scopeForProcessStatements_Process
+			case ePackage.setStateStatement_State:
+				return context.scopeForSetStateStatement_State
+			case ePackage.programConfiguration_Task:
+				return context.scopeForProgramConfiguration_Task
 		}
 		return super.getScope(context, reference)
 	}
 	
-	def IScope getScope(EObject context, EReference reference, boolean simple) {
-		switch reference {
-			case ePackage.assignmentStatement_Variable,
-			case ePackage.primaryExpression_Variable: 
-				return scopeForAssignmentStatementAndPrimaryExpression_Variable(context, reference, simple)
-			case ePackage.functionCall_Function:
-				return scopeForFunctionCall_Function(context, reference, simple)
-			case ePackage.attachVariableConfElement_ProgramVar:
-				return scopeForAttachVariableConfElement_ProgramVar(context, reference, simple)
-			case ePackage.templateProcessAttachVariableConfElement_ProgramVar: 
-				return scopeForTemplateProcessAttachVariableConfElement_ProgramVar(context, reference, simple)
-			case ePackage.templateProcessConfElement_Process: 
-				return scopeForTemplateProcessConfElement_Process(context, reference, simple)
-		}
-		return null
-	}
-	
-	private def IScope scopeForVar(Iterable<? extends EObject> elements, boolean simple) {
-		if (simple) {
-			return Scopes.scopeFor(elements)
-		}
+	private def IScope scopeFor(Iterable<? extends EObject> elements) {
 		return Scopes.scopeFor(elements, [x | qualifiedNameProvider.getFullyQualifiedName(x)], IScope.NULLSCOPE)
 	}
 	
-	private def IScope scopeSuper(EObject context, EReference reference, Iterable<? extends EObject> elements, boolean simple) {
-		if (simple) {
-			return Scopes.scopeFor(elements)
-		}
-		return super.getScope(context, reference)
-	}
-	
-	private def IScope scopeForAssignmentStatementAndPrimaryExpression_Variable(EObject context, EReference reference, boolean simple) {
+	private def IScope scopeForStatementExpression_Variable(EObject context) {
+		val model = context.getContainerOfType(Model)
+		val program = context.getContainerOfType(Program)
 		val process = context.getContainerOfType(Process)
-		if (process !== null) {
-			val program = process.getContainerOfType(Program)
-			val model = program.getContainerOfType(Model)
-			return scopeForVar(getAvailableVar(model, program, process), simple)
-		}
-		return null
+		return scopeFor(getAvailableVar(model, program, process))
 	}
 	
-	private def IScope scopeForFunctionCall_Function(EObject context, EReference reference, boolean simple) {
-		return scopeSuper(context, reference, libraryProvider.getLibraryFunctions(context), simple)
+	private def IScope scopeForFunctionCall_Function(EObject context) {
+		return scopeFor(libraryProvider.getLibraryFunctions(context))
 	}
 	
-	private def IScope scopeForAttachVariableConfElement_ProgramVar(EObject context, EReference reference, boolean simple) {
+	private def IScope scopeForAttachVariableConfElement_ProgramVar(EObject context) {
 		val programConf = context.getContainerOfType(ProgramConfiguration)
-		return scopeForVar(programConf.program.programInOutVar, simple)
+		return scopeFor(programConf.program.programInOutVar)
 	}
 	
-	private def IScope scopeForTemplateProcessAttachVariableConfElement_ProgramVar(EObject context, EReference reference, boolean simple) {
+	private def IScope scopeForTemplateProcessAttachVariableConfElement_ProgramVar(EObject context) {
 		val processConf = context.getContainerOfType(TemplateProcessConfElement)
-		return scopeForVar(processConf.process.processTemplateVar, simple)
+		return scopeFor(processConf.process.processTemplateVar)
 	}
 	
-	private def IScope scopeForTemplateProcessConfElement_Process(EObject context, EReference reference, boolean simple) {
+	private def IScope scopeForTemplateProcessConfElement_Process(EObject context) {
 		val programConf = context.getContainerOfType(ProgramConfiguration)
-		return scopeSuper(context, reference, programConf.program.processes, simple)
+		return scopeFor(programConf.program.processes)
+	}
+	
+	private def IScope scopeForProcessStatements_Process(EObject context) {
+		val process = context.getContainerOfType(Process)
+		val program = process.getContainerOfType(Program)
+		val res = Stream.concat(
+			process.processProcessVar.stream,
+			program.processes.stream
+		).collect(Collectors.toList)
+		return scopeFor(res)
+	}
+	
+	private def IScope scopeForSetStateStatement_State(EObject context) {
+		val process = context.getContainerOfType(Process)
+		return scopeFor(process.states)
+	}
+	
+	private def IScope scopeForProgramConfiguration_Task(EObject context) {
+		val res = context.getContainerOfType(Resource)
+		return scopeFor(res.resStatement.tasks)
 	}
 	
 	private def getAvailableVar(Model model, Program program, Process process) {
-		var res = Stream.concat(
-			Stream.concat(
-				process.processInOutVar.stream,
-				process.processVar.stream
-			),
-			Stream.concat(
-				program.programInOutVar.stream,
-				program.programVar.stream
+		var Stream<SymbolicVariable> res = Stream.of()
+		if (process !== null) {
+			res = Stream.concat(
+				res,
+				Stream.concat(
+					process.processInOutVar.stream,
+					process.processVar.stream
+				)
 			)
-		)
+		}
+		if (program !== null) {
+			res = Stream.concat(
+				res,
+				Stream.concat(
+					program.programInOutVar.stream,
+					program.programVar.stream
+				)
+			)
+		}
 		res = Stream.concat(res, model.globVars.globalVars.stream)
 		val conf = model.conf
 		if (conf !== null) {
@@ -156,8 +171,12 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	private static def getProcessTemplateVar(Process process) {
 		return Stream.concat(
 			process.processInOutVar.stream,
-			process.procProcessVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream])
+			process.processProcessVar.stream
 		).collect(Collectors.toList)
+	}
+	
+	private static def getProcessProcessVar(Process process) {
+		return process.procProcessVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]).flatMap([x | x.stream]).collect(Collectors.toList)
 	}
 	
 	private static def getProcessInOutVar(Process process) {
