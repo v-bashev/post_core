@@ -39,6 +39,7 @@ class PoSTLibraryProvider {
 	static final String varTag = "variable"
 	static final String varNameAttribute = "name"
 	static final String varTypeTag = "type"
+	static final String functionReturnTypeTag = "type"
 	static final String functionAttributeValue = "function"
 	static final String functionBlockAttributeValue = "functionBlock"
 	
@@ -90,8 +91,10 @@ class PoSTLibraryProvider {
 		 	val inOutVars = parseInOutVars(pou)
 		 	
 		 	if (pouType == functionAttributeValue) {
+		 		val retType = (pou.getElementsByTagName(functionReturnTypeTag).item(0) as Element).getElementsByTagName("*").item(0).nodeName
 		 		val function = eFactory.createFunction()
 		 		(function as FunctionImpl).eSet(PoSTPackage.FUNCTION__NAME, name)
+		 		(function as FunctionImpl).eSet(PoSTPackage.FUNCTION__TYPE, retType)
 		 		(function as FunctionImpl).eSet(PoSTPackage.FUNCTION__FUN_IN_VARS, Collections.singletonList(inVars))
 		 		(function as FunctionImpl).eSet(PoSTPackage.FUNCTION__FUN_OUT_VARS, Collections.singletonList(outVars))
 		 		(function as FunctionImpl).eSet(PoSTPackage.FUNCTION__FUN_IN_OUT_VARS, Collections.singletonList(inOutVars))

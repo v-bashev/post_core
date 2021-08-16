@@ -61,6 +61,8 @@ public class PoSTLibraryProvider {
   
   private static final String varTypeTag = "type";
   
+  private static final String functionReturnTypeTag = "type";
+  
   private static final String functionAttributeValue = "function";
   
   private static final String functionBlockAttributeValue = "functionBlock";
@@ -137,8 +139,11 @@ public class PoSTLibraryProvider {
           final InputOutputVarDeclaration inOutVars = this.parseInOutVars(pou);
           boolean _equals = Objects.equal(pouType, PoSTLibraryProvider.functionAttributeValue);
           if (_equals) {
+            Node _item_1 = pou.getElementsByTagName(PoSTLibraryProvider.functionReturnTypeTag).item(0);
+            final String retType = ((Element) _item_1).getElementsByTagName("*").item(0).getNodeName();
             final Function function = this.eFactory.createFunction();
             ((FunctionImpl) function).eSet(PoSTPackage.FUNCTION__NAME, name);
+            ((FunctionImpl) function).eSet(PoSTPackage.FUNCTION__TYPE, retType);
             ((FunctionImpl) function).eSet(PoSTPackage.FUNCTION__FUN_IN_VARS, Collections.<InputVarDeclaration>singletonList(inVars));
             ((FunctionImpl) function).eSet(PoSTPackage.FUNCTION__FUN_OUT_VARS, Collections.<OutputVarDeclaration>singletonList(outVars));
             ((FunctionImpl) function).eSet(PoSTPackage.FUNCTION__FUN_IN_OUT_VARS, Collections.<InputOutputVarDeclaration>singletonList(inOutVars));
