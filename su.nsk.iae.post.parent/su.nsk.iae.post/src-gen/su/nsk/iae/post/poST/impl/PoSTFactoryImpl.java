@@ -37,9 +37,12 @@ import su.nsk.iae.post.poST.ExitStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
+import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -52,6 +55,8 @@ import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.MulOperator;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ParamAssignment;
+import su.nsk.iae.post.poST.ParamAssignmentElements;
 import su.nsk.iae.post.poST.PoSTFactory;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
@@ -167,6 +172,7 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.TEMPLATE_PROCESS_ATTACH_VARIABLE_CONF_ELEMENT: return createTemplateProcessAttachVariableConfElement();
       case PoSTPackage.PROGRAM: return createProgram();
       case PoSTPackage.FUNCTION_BLOCK: return createFunctionBlock();
+      case PoSTPackage.FUNCTION: return createFunction();
       case PoSTPackage.PROCESS: return createProcess();
       case PoSTPackage.STATE: return createState();
       case PoSTPackage.SET_STATE_STATEMENT: return createSetStateStatement();
@@ -177,6 +183,10 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.ERROR_PROCESS_STATEMENT: return createErrorProcessStatement();
       case PoSTPackage.TIMEOUT_STATEMENT: return createTimeoutStatement();
       case PoSTPackage.RESET_TIMER_STATEMENT: return createResetTimerStatement();
+      case PoSTPackage.FB_INVOCATION: return createFBInvocation();
+      case PoSTPackage.FUNCTION_CALL: return createFunctionCall();
+      case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS: return createParamAssignmentElements();
+      case PoSTPackage.PARAM_ASSIGNMENT: return createParamAssignment();
       case PoSTPackage.EXPRESSION: return createExpression();
       case PoSTPackage.XOR_EXPRESSION: return createXorExpression();
       case PoSTPackage.AND_EXPRESSION: return createAndExpression();
@@ -487,6 +497,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
    * @generated
    */
   @Override
+  public Function createFunction()
+  {
+    FunctionImpl function = new FunctionImpl();
+    return function;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public su.nsk.iae.post.poST.Process createProcess()
   {
     ProcessImpl process = new ProcessImpl();
@@ -599,6 +621,54 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     ResetTimerStatementImpl resetTimerStatement = new ResetTimerStatementImpl();
     return resetTimerStatement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FBInvocation createFBInvocation()
+  {
+    FBInvocationImpl fbInvocation = new FBInvocationImpl();
+    return fbInvocation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FunctionCall createFunctionCall()
+  {
+    FunctionCallImpl functionCall = new FunctionCallImpl();
+    return functionCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ParamAssignmentElements createParamAssignmentElements()
+  {
+    ParamAssignmentElementsImpl paramAssignmentElements = new ParamAssignmentElementsImpl();
+    return paramAssignmentElements;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ParamAssignment createParamAssignment()
+  {
+    ParamAssignmentImpl paramAssignment = new ParamAssignmentImpl();
+    return paramAssignment;
   }
 
   /**

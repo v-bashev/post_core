@@ -3,7 +3,7 @@ Automatic-Module-Name: su.nsk.iae.post
 Bundle-ManifestVersion: 2
 Bundle-Name: su.nsk.iae.post
 Bundle-Vendor: Institute of Automation and Electrometry SB RAS
-Bundle-Version: 0.2.6
+Bundle-Version: 0.3.1
 Bundle-SymbolicName: su.nsk.iae.post; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.emf.common,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: su.nsk.iae.post.serializer,
  su.nsk.iae.post,

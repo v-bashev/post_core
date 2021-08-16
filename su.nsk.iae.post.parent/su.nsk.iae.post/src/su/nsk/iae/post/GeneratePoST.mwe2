@@ -44,6 +44,15 @@ Workflow {
 				generateXtendStub = true
 				generateJavaMain = true
 			}
+			projectWizard = {
+				generate = true
+				generateToolbarButton = true
+				pluginProject = false
+			}
+			fileWizard = {
+				generate = true
+				generateToolbarButton = true
+			}
 		}
 	}
 }

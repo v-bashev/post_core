@@ -10,6 +10,8 @@
         eType="#//Program" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fbs" upperBound="-1" eType="#//FunctionBlock"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funs" upperBound="-1" eType="#//Function"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -121,6 +123,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="processes" upperBound="-1"
         eType="#//Process" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Function">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funInVars" upperBound="-1"
+        eType="#//InputVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funOutVars" upperBound="-1"
+        eType="#//OutputVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funInOutVars" upperBound="-1"
+        eType="#//InputOutputVarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funVars" upperBound="-1"
+        eType="#//VarDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="#//StatementList"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//Variable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="procInVars" upperBound="-1"
         eType="#//InputVarDeclaration" containment="true"/>
@@ -170,6 +186,26 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResetTimerStatement" eSuperTypes="#//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FBInvocation" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fb" eType="#//SymbolicVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//ParamAssignmentElements"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//Function"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//ParamAssignmentElements"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParamAssignmentElements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ParamAssignment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParamAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//SymbolicVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assig" eType="#//AssignmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"
         containment="true"/>
@@ -224,6 +260,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//ArrayVariable"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procStatus" eType="#//ProcessStatusExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="funCall" eType="#//FunctionCall"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestExpr" eType="#//Expression"
         containment="true"/>
@@ -314,6 +352,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arrSpec" eType="#//ArraySpecificationInit"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fb" eType="#//FunctionBlock"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputVarDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//VarInitDeclaration"

@@ -36,9 +36,12 @@ import su.nsk.iae.post.poST.ExitStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
+import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -51,6 +54,8 @@ import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.MulOperator;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ParamAssignment;
+import su.nsk.iae.post.poST.ParamAssignmentElements;
 import su.nsk.iae.post.poST.PoSTFactory;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
@@ -223,6 +228,13 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass functionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass processEClass = null;
 
   /**
@@ -287,6 +299,34 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass resetTimerStatementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fbInvocationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass functionCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass paramAssignmentElementsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass paramAssignmentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -817,6 +857,17 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EReference getModel_Fbs()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getModel_Funs()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1518,6 +1569,94 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
+  public EClass getFunction()
+  {
+    return functionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFunction_Name()
+  {
+    return (EAttribute)functionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFunction_Type()
+  {
+    return (EAttribute)functionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunction_FunInVars()
+  {
+    return (EReference)functionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunction_FunOutVars()
+  {
+    return (EReference)functionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunction_FunInOutVars()
+  {
+    return (EReference)functionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunction_FunVars()
+  {
+    return (EReference)functionEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunction_Statement()
+  {
+    return (EReference)functionEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getProcess()
   {
     return processEClass;
@@ -1870,6 +2009,138 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
+  public EClass getFBInvocation()
+  {
+    return fbInvocationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFBInvocation_Fb()
+  {
+    return (EReference)fbInvocationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFBInvocation_Args()
+  {
+    return (EReference)fbInvocationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFunctionCall()
+  {
+    return functionCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunctionCall_Function()
+  {
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFunctionCall_Args()
+  {
+    return (EReference)functionCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getParamAssignmentElements()
+  {
+    return paramAssignmentElementsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getParamAssignmentElements_Elements()
+  {
+    return (EReference)paramAssignmentElementsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getParamAssignment()
+  {
+    return paramAssignmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getParamAssignment_Variable()
+  {
+    return (EReference)paramAssignmentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getParamAssignment_Assig()
+  {
+    return (EAttribute)paramAssignmentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getParamAssignment_Value()
+  {
+    return (EReference)paramAssignmentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getExpression()
   {
     return expressionEClass;
@@ -2101,9 +2372,20 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
-  public EReference getPrimaryExpression_NestExpr()
+  public EReference getPrimaryExpression_FunCall()
   {
     return (EReference)primaryExpressionEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getPrimaryExpression_NestExpr()
+  {
+    return (EReference)primaryExpressionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -2621,6 +2903,17 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
   public EReference getVarInitDeclaration_ArrSpec()
   {
     return (EReference)varInitDeclarationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getVarInitDeclaration_Fb()
+  {
+    return (EReference)varInitDeclarationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -3418,6 +3711,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(modelEClass, MODEL__GLOB_VARS);
     createEReference(modelEClass, MODEL__PROGRAMS);
     createEReference(modelEClass, MODEL__FBS);
+    createEReference(modelEClass, MODEL__FUNS);
 
     variableEClass = createEClass(VARIABLE);
     createEAttribute(variableEClass, VARIABLE__NAME);
@@ -3497,6 +3791,15 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(functionBlockEClass, FUNCTION_BLOCK__FB_EXTERN_VARS);
     createEReference(functionBlockEClass, FUNCTION_BLOCK__PROCESSES);
 
+    functionEClass = createEClass(FUNCTION);
+    createEAttribute(functionEClass, FUNCTION__NAME);
+    createEAttribute(functionEClass, FUNCTION__TYPE);
+    createEReference(functionEClass, FUNCTION__FUN_IN_VARS);
+    createEReference(functionEClass, FUNCTION__FUN_OUT_VARS);
+    createEReference(functionEClass, FUNCTION__FUN_IN_OUT_VARS);
+    createEReference(functionEClass, FUNCTION__FUN_VARS);
+    createEReference(functionEClass, FUNCTION__STATEMENT);
+
     processEClass = createEClass(PROCESS);
     createEReference(processEClass, PROCESS__PROC_IN_VARS);
     createEReference(processEClass, PROCESS__PROC_OUT_VARS);
@@ -3539,6 +3842,22 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     resetTimerStatementEClass = createEClass(RESET_TIMER_STATEMENT);
 
+    fbInvocationEClass = createEClass(FB_INVOCATION);
+    createEReference(fbInvocationEClass, FB_INVOCATION__FB);
+    createEReference(fbInvocationEClass, FB_INVOCATION__ARGS);
+
+    functionCallEClass = createEClass(FUNCTION_CALL);
+    createEReference(functionCallEClass, FUNCTION_CALL__FUNCTION);
+    createEReference(functionCallEClass, FUNCTION_CALL__ARGS);
+
+    paramAssignmentElementsEClass = createEClass(PARAM_ASSIGNMENT_ELEMENTS);
+    createEReference(paramAssignmentElementsEClass, PARAM_ASSIGNMENT_ELEMENTS__ELEMENTS);
+
+    paramAssignmentEClass = createEClass(PARAM_ASSIGNMENT);
+    createEReference(paramAssignmentEClass, PARAM_ASSIGNMENT__VARIABLE);
+    createEAttribute(paramAssignmentEClass, PARAM_ASSIGNMENT__ASSIG);
+    createEReference(paramAssignmentEClass, PARAM_ASSIGNMENT__VALUE);
+
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__LEFT);
     createEReference(expressionEClass, EXPRESSION__RIGHT);
@@ -3569,6 +3888,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__VARIABLE);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__ARRAY);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__PROC_STATUS);
+    createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__FUN_CALL);
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__NEST_EXPR);
 
     statementListEClass = createEClass(STATEMENT_LIST);
@@ -3636,6 +3956,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     createEReference(varInitDeclarationEClass, VAR_INIT_DECLARATION__VAR_LIST);
     createEReference(varInitDeclarationEClass, VAR_INIT_DECLARATION__SPEC);
     createEReference(varInitDeclarationEClass, VAR_INIT_DECLARATION__ARR_SPEC);
+    createEReference(varInitDeclarationEClass, VAR_INIT_DECLARATION__FB);
 
     inputVarDeclarationEClass = createEClass(INPUT_VAR_DECLARATION);
     createEReference(inputVarDeclarationEClass, INPUT_VAR_DECLARATION__VARS);
@@ -3772,6 +4093,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     stopProcessStatementEClass.getESuperTypes().add(this.getProcessStatements());
     errorProcessStatementEClass.getESuperTypes().add(this.getProcessStatements());
     resetTimerStatementEClass.getESuperTypes().add(this.getStatement());
+    fbInvocationEClass.getESuperTypes().add(this.getStatement());
     xorExpressionEClass.getESuperTypes().add(this.getExpression());
     andExpressionEClass.getESuperTypes().add(this.getXorExpression());
     compExpressionEClass.getESuperTypes().add(this.getAndExpression());
@@ -3802,6 +4124,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getModel_GlobVars(), this.getGlobalVarDeclaration(), null, "globVars", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Programs(), this.getProgram(), null, "programs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Fbs(), this.getFunctionBlock(), null, "fbs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Funs(), this.getFunction(), null, "funs", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3881,6 +4204,15 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getFunctionBlock_FbExternVars(), this.getExternalVarDeclaration(), null, "fbExternVars", null, 0, -1, FunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunctionBlock_Processes(), this.getProcess(), null, "processes", null, 0, -1, FunctionBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFunction_Name(), ecorePackage.getEString(), "name", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFunction_Type(), ecorePackage.getEString(), "type", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_FunInVars(), this.getInputVarDeclaration(), null, "funInVars", null, 0, -1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_FunOutVars(), this.getOutputVarDeclaration(), null, "funOutVars", null, 0, -1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_FunInOutVars(), this.getInputOutputVarDeclaration(), null, "funInOutVars", null, 0, -1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_FunVars(), this.getVarDeclaration(), null, "funVars", null, 0, -1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunction_Statement(), this.getStatementList(), null, "statement", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(processEClass, su.nsk.iae.post.poST.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getProcess_ProcInVars(), this.getInputVarDeclaration(), null, "procInVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProcess_ProcOutVars(), this.getOutputVarDeclaration(), null, "procOutVars", null, 0, -1, su.nsk.iae.post.poST.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3923,6 +4255,22 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
 
     initEClass(resetTimerStatementEClass, ResetTimerStatement.class, "ResetTimerStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(fbInvocationEClass, FBInvocation.class, "FBInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFBInvocation_Fb(), this.getSymbolicVariable(), null, "fb", null, 0, 1, FBInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFBInvocation_Args(), this.getParamAssignmentElements(), null, "args", null, 0, 1, FBInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFunctionCall_Function(), this.getFunction(), null, "function", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionCall_Args(), this.getParamAssignmentElements(), null, "args", null, 0, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(paramAssignmentElementsEClass, ParamAssignmentElements.class, "ParamAssignmentElements", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParamAssignmentElements_Elements(), this.getParamAssignment(), null, "elements", null, 0, -1, ParamAssignmentElements.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(paramAssignmentEClass, ParamAssignment.class, "ParamAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParamAssignment_Variable(), this.getSymbolicVariable(), null, "variable", null, 0, 1, ParamAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getParamAssignment_Assig(), this.getAssignmentType(), "assig", null, 0, 1, ParamAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParamAssignment_Value(), this.getExpression(), null, "value", null, 0, 1, ParamAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpression_Left(), this.getExpression(), null, "left", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExpression_Right(), this.getXorExpression(), null, "right", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3953,6 +4301,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getPrimaryExpression_Variable(), this.getSymbolicVariable(), null, "variable", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_Array(), this.getArrayVariable(), null, "array", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_ProcStatus(), this.getProcessStatusExpression(), null, "procStatus", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPrimaryExpression_FunCall(), this.getFunctionCall(), null, "funCall", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPrimaryExpression_NestExpr(), this.getExpression(), null, "nestExpr", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(statementListEClass, StatementList.class, "StatementList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4020,6 +4369,7 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getVarInitDeclaration_VarList(), this.getVarList(), null, "varList", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getVarInitDeclaration_Spec(), this.getSimpleSpecificationInit(), null, "spec", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getVarInitDeclaration_ArrSpec(), this.getArraySpecificationInit(), null, "arrSpec", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVarInitDeclaration_Fb(), this.getFunctionBlock(), null, "fb", null, 0, 1, VarInitDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(inputVarDeclarationEClass, InputVarDeclaration.class, "InputVarDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInputVarDeclaration_Vars(), this.getVarInitDeclaration(), null, "vars", null, 0, -1, InputVarDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

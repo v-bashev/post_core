@@ -168,6 +168,15 @@ public interface PoSTFactory extends EFactory
   FunctionBlock createFunctionBlock();
 
   /**
+   * Returns a new object of class '<em>Function</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function</em>'.
+   * @generated
+   */
+  Function createFunction();
+
+  /**
    * Returns a new object of class '<em>Process</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -256,6 +265,42 @@ public interface PoSTFactory extends EFactory
    * @generated
    */
   ResetTimerStatement createResetTimerStatement();
+
+  /**
+   * Returns a new object of class '<em>FB Invocation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>FB Invocation</em>'.
+   * @generated
+   */
+  FBInvocation createFBInvocation();
+
+  /**
+   * Returns a new object of class '<em>Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Function Call</em>'.
+   * @generated
+   */
+  FunctionCall createFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>Param Assignment Elements</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Param Assignment Elements</em>'.
+   * @generated
+   */
+  ParamAssignmentElements createParamAssignmentElements();
+
+  /**
+   * Returns a new object of class '<em>Param Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Param Assignment</em>'.
+   * @generated
+   */
+  ParamAssignment createParamAssignment();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.

@@ -35,9 +35,12 @@ import su.nsk.iae.post.poST.ExitStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
+import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -47,6 +50,8 @@ import su.nsk.iae.post.poST.IntegerLiteral;
 import su.nsk.iae.post.poST.Model;
 import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
+import su.nsk.iae.post.poST.ParamAssignment;
+import su.nsk.iae.post.poST.ParamAssignmentElements;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
@@ -165,14 +170,23 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 			case PoSTPackage.EXTERNAL_VAR_INIT_DECLARATION:
 				sequence_ExternalVarInitDeclaration(context, (ExternalVarInitDeclaration) semanticObject); 
 				return; 
+			case PoSTPackage.FB_INVOCATION:
+				sequence_FBInvocation(context, (FBInvocation) semanticObject); 
+				return; 
 			case PoSTPackage.FOR_LIST:
 				sequence_ForList(context, (ForList) semanticObject); 
 				return; 
 			case PoSTPackage.FOR_STATEMENT:
 				sequence_ForStatement(context, (ForStatement) semanticObject); 
 				return; 
+			case PoSTPackage.FUNCTION:
+				sequence_Function(context, (Function) semanticObject); 
+				return; 
 			case PoSTPackage.FUNCTION_BLOCK:
 				sequence_FunctionBlock(context, (FunctionBlock) semanticObject); 
+				return; 
+			case PoSTPackage.FUNCTION_CALL:
+				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
 				return; 
 			case PoSTPackage.GLOBAL_VAR_DECLARATION:
 				sequence_GlobalVarDeclaration(context, (GlobalVarDeclaration) semanticObject); 
@@ -200,6 +214,12 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 				return; 
 			case PoSTPackage.OUTPUT_VAR_DECLARATION:
 				sequence_OutputVarDeclaration(context, (OutputVarDeclaration) semanticObject); 
+				return; 
+			case PoSTPackage.PARAM_ASSIGNMENT:
+				sequence_ParamAssignment(context, (ParamAssignment) semanticObject); 
+				return; 
+			case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS:
+				sequence_ParamAssignmentElements(context, (ParamAssignmentElements) semanticObject); 
 				return; 
 			case PoSTPackage.POWER_EXPRESSION:
 				sequence_PowerExpression(context, (PowerExpression) semanticObject); 
@@ -714,6 +734,19 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Contexts:
+	 *     FBInvocation returns FBInvocation
+	 *     Statement returns FBInvocation
+	 *
+	 * Constraint:
+	 *     (fb=[SymbolicVariable|ID] args=ParamAssignmentElements?)
+	 */
+	protected void sequence_FBInvocation(ISerializationContext context, FBInvocation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ForList returns ForList
 	 *
 	 * Constraint:
@@ -769,6 +802,35 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     )
 	 */
 	protected void sequence_FunctionBlock(ISerializationContext context, FunctionBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FunctionCall returns FunctionCall
+	 *
+	 * Constraint:
+	 *     (function=[Function|ID] args=ParamAssignmentElements?)
+	 */
+	protected void sequence_FunctionCall(ISerializationContext context, FunctionCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Function returns Function
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=ID 
+	 *         type=DataTypeName 
+	 *         (funInVars+=InputVarDeclaration | funOutVars+=OutputVarDeclaration | funInOutVars+=InputOutputVarDeclaration | funVars+=VarDeclaration)* 
+	 *         statement=StatementList
+	 *     )
+	 */
+	protected void sequence_Function(ISerializationContext context, Function semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -865,7 +927,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (conf=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock)+
+	 *     (conf=Configuration | globVars+=GlobalVarDeclaration | programs+=Program | fbs+=FunctionBlock | funs+=Function)+
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -918,6 +980,42 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 */
 	protected void sequence_OutputVarDeclaration(ISerializationContext context, OutputVarDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ParamAssignmentElements returns ParamAssignmentElements
+	 *
+	 * Constraint:
+	 *     (elements+=ParamAssignment elements+=ParamAssignment*)
+	 */
+	protected void sequence_ParamAssignmentElements(ISerializationContext context, ParamAssignmentElements semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ParamAssignment returns ParamAssignment
+	 *
+	 * Constraint:
+	 *     (variable=[SymbolicVariable|ID] assig=AssignmentType value=Expression)
+	 */
+	protected void sequence_ParamAssignment(ISerializationContext context, ParamAssignment semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PARAM_ASSIGNMENT__VARIABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PARAM_ASSIGNMENT__VARIABLE));
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PARAM_ASSIGNMENT__ASSIG) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PARAM_ASSIGNMENT__ASSIG));
+			if (transientValues.isValueTransient(semanticObject, PoSTPackage.Literals.PARAM_ASSIGNMENT__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PoSTPackage.Literals.PARAM_ASSIGNMENT__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getParamAssignmentAccess().getVariableSymbolicVariableIDTerminalRuleCall_0_0_1(), semanticObject.eGet(PoSTPackage.Literals.PARAM_ASSIGNMENT__VARIABLE, false));
+		feeder.accept(grammarAccess.getParamAssignmentAccess().getAssigAssignmentTypeEnumRuleCall_1_0(), semanticObject.getAssig());
+		feeder.accept(grammarAccess.getParamAssignmentAccess().getValueExpressionParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -979,7 +1077,14 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     PrimaryExpression returns PrimaryExpression
 	 *
 	 * Constraint:
-	 *     (const=Constant | variable=[SymbolicVariable|ID] | array=ArrayVariable | procStatus=ProcessStatusExpression | nestExpr=Expression)
+	 *     (
+	 *         const=Constant | 
+	 *         variable=[SymbolicVariable|ID] | 
+	 *         array=ArrayVariable | 
+	 *         procStatus=ProcessStatusExpression | 
+	 *         funCall=FunctionCall | 
+	 *         nestExpr=Expression
+	 *     )
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, PrimaryExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1494,7 +1599,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     VarInitDeclaration returns VarInitDeclaration
 	 *
 	 * Constraint:
-	 *     (varList=VarList (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit))
+	 *     (varList=VarList (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit | fb=[FunctionBlock|ID]))
 	 */
 	protected void sequence_VarInitDeclaration(ISerializationContext context, VarInitDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

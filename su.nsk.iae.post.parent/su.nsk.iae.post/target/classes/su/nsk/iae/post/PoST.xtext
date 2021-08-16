@@ -8,7 +8,8 @@ Model:
 	(conf=Configuration)? &
 	(globVars+=GlobalVarDeclaration)* &
 	(programs+=Program)* &
-	(fbs+=FunctionBlock)*;
+	(fbs+=FunctionBlock)* &
+	(funs+=Function)*;
 	
 /* ======================= START Variable ======================= */
 
@@ -120,6 +121,22 @@ FunctionBlock:
 
 /* ======================= END FB ======================= */
 
+/* ======================= START Function ======================= */
+
+Function:
+	'FUNCTION' name=ID ':' type=DataTypeName
+		(
+			funInVars+=InputVarDeclaration | 
+			funOutVars+=OutputVarDeclaration |
+			funInOutVars+=InputOutputVarDeclaration |
+			funVars+=VarDeclaration
+		)*
+		statement=StatementList
+	'END_FUNCTION'
+;
+
+/* ======================= END Function ======================= */
+
 /* ======================= START Process and State  ======================= */
 
 Process: 
@@ -144,7 +161,7 @@ State:
 	
 /* ======================= END Process and State  ======================= */
 	
-/* ======================= START poST Expression ======================= */
+/* ======================= START poST Statements ======================= */
 
 SetStateStatement:
 	{SetStateStatement} 'SET' ('STATE' state=[State] | next?='NEXT');
@@ -172,9 +189,25 @@ TimeoutStatement:
 ResetTimerStatement:
 	{ResetTimerStatement} 'RESET' 'TIMER';
 
-/* ======================= END poST Expression ======================= */
+/* ======================= END poST Statements ======================= */
+
+/* ======================= START Subprogram Call ======================= */
+
+FBInvocation:
+	fb=[SymbolicVariable] '(' (args=ParamAssignmentElements)? ')';
+
+FunctionCall:
+	function=[Function] '(' (args=ParamAssignmentElements)? ')';
+
+ParamAssignmentElements:
+	elements+=ParamAssignment (',' elements+=ParamAssignment)*;
+
+ParamAssignment:
+	variable=[SymbolicVariable] assig=AssignmentType value=Expression;
+
+/* ======================= END Subprogram Call ======================= */
 	
-/* ======================= START ST Expression ======================= */
+/* ======================= START Expression ======================= */
 
 Expression:
 	XorExpression ({Expression.left=current} OR_OPERATOR right=XorExpression)*;
@@ -231,7 +264,11 @@ enum UnaryOperator:
 	NOT='NOT' | UNMINUS='-';
 
 PrimaryExpression:
-	const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | '(' nestExpr=Expression ')';
+	const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | funCall=FunctionCall | '(' nestExpr=Expression ')';
+
+/* ======================= END Expression ======================= */
+
+/* ======================= START ST Statements ======================= */
 
 StatementList:
 	{StatementList} (statements+=Statement)*;
@@ -240,6 +277,7 @@ Statement:
 	(AssignmentStatement ';') |
 	SelectionStatement |
 	IterationStatement |
+	(FBInvocation ';') |
 	(SubprogramControlStatement ';') |
 	(ExitStatement ';') |
 	(ProcessStatements ';') |
@@ -305,7 +343,7 @@ SubprogramControlStatement:
 ExitStatement:
 	{ExitStatement} 'EXIT';
 
-/* ======================= END ST Expression ======================= */
+/* ======================= END ST Statements ======================= */
 	
 /* ======================= START Variables ======================= */
 
@@ -319,7 +357,7 @@ VarList:
 	vars+=SymbolicVariable (',' vars+=SymbolicVariable)*;
 
 VarInitDeclaration:
-	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit);
+	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit | fb=[FunctionBlock]);
 
 InputVarDeclaration:
 	{InputVarDeclaration}

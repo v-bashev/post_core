@@ -17,6 +17,7 @@ package su.nsk.iae.post.poST;
  *   <li>{@link su.nsk.iae.post.poST.PrimaryExpression#getVariable <em>Variable</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.PrimaryExpression#getArray <em>Array</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.PrimaryExpression#getProcStatus <em>Proc Status</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.PrimaryExpression#getFunCall <em>Fun Call</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.PrimaryExpression#getNestExpr <em>Nest Expr</em>}</li>
  * </ul>
  *
@@ -113,6 +114,28 @@ public interface PrimaryExpression extends UnaryExpression
    * @generated
    */
   void setProcStatus(ProcessStatusExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Fun Call</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Fun Call</em>' containment reference.
+   * @see #setFunCall(FunctionCall)
+   * @see su.nsk.iae.post.poST.PoSTPackage#getPrimaryExpression_FunCall()
+   * @model containment="true"
+   * @generated
+   */
+  FunctionCall getFunCall();
+
+  /**
+   * Sets the value of the '{@link su.nsk.iae.post.poST.PrimaryExpression#getFunCall <em>Fun Call</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Fun Call</em>' containment reference.
+   * @see #getFunCall()
+   * @generated
+   */
+  void setFunCall(FunctionCall value);
 
   /**
    * Returns the value of the '<em><b>Nest Expr</b></em>' containment reference.

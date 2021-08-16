@@ -8,6 +8,7 @@
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="post"
+			icon="icons/PoST_file.png"
 			id="su.nsk.iae.post.PoST"
 			name="PoST Editor">
 		</editor>
@@ -430,5 +431,106 @@
 			extension="post"
 			type="text">
 		</fileTypes>
+	</extension>
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category id="su.nsk.iae.post.ui.category" name="PoST">
+		</category>
+		<wizard
+			category="su.nsk.iae.post.ui.category"
+			class="su.nsk.iae.post.ui.PoSTExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewProjectWizard"
+			id="su.nsk.iae.post.ui.wizard.PoSTNewProjectWizard"
+			name="PoST Project"
+			icon="icons/new_PoST_proj.png"
+			project="true">
+		</wizard>
+	</extension>
+	<extension
+		point="org.eclipse.xtext.ui.projectTemplate">
+		<projectTemplateProvider
+			class="su.nsk.iae.post.ui.PoSTExecutableExtensionFactory:su.nsk.iae.post.ui.wizard.PoSTProjectTemplateProvider"
+			grammarName="su.nsk.iae.post.PoST">
+		</projectTemplateProvider>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+			<newWizardShortcut id="su.nsk.iae.post.ui.wizard.PoSTNewProjectWizard"/>
+		</perspectiveExtension>
+		<perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+			<newWizardShortcut id="su.nsk.iae.post.ui.wizard.PoSTNewProjectWizard"/>
+		</perspectiveExtension>
+	</extension>
+	<extension
+		point="org.eclipse.ui.menus">
+		<menuContribution
+			allPopups="false"
+			locationURI="toolbar:org.eclipse.ui.main.toolbar">
+			<toolbar
+				id="su.nsk.iae.post.ui.toolbar">
+				<!--
+					For some reason the tooltip is not shown when hovering over the toolbar button
+					See also https://www.eclipse.org/forums/index.php/t/1079111/
+				-->
+				<command
+					commandId="org.eclipse.ui.newWizard"
+					tooltip="Create a new PoST project">
+					<parameter
+						name="newWizardId"
+						value="su.nsk.iae.post.ui.wizard.PoSTNewProjectWizard">
+					</parameter>
+				</command>
+			</toolbar>
+		</menuContribution>
+	</extension>
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category id="su.nsk.iae.post.ui.category" name="PoST">
+		</category>
+		<wizard
+			category="su.nsk.iae.post.ui.category"
+			class="su.nsk.iae.post.ui.PoSTExecutableExtensionFactory:org.eclipse.xtext.ui.wizard.template.TemplateNewFileWizard"
+			id="su.nsk.iae.post.ui.wizard.PoSTNewFileWizard"
+			name="PoST File"
+			icon="icons/new_PoST_file.png">
+		</wizard>
+	</extension>
+	<extension
+		point="org.eclipse.xtext.ui.fileTemplate">
+		<fileTemplateProvider
+			class="su.nsk.iae.post.ui.PoSTExecutableExtensionFactory:su.nsk.iae.post.ui.wizard.PoSTFileTemplateProvider"
+			grammarName="su.nsk.iae.post.PoST">
+		</fileTemplateProvider>
+	</extension>
+	<extension
+		point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+			<newWizardShortcut id="su.nsk.iae.post.ui.wizard.PoSTNewFileWizard"/>
+		</perspectiveExtension>
+		<perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+			<newWizardShortcut id="su.nsk.iae.post.ui.wizard.PoSTNewFileWizard"/>
+		</perspectiveExtension>
+	</extension>
+	<extension
+		point="org.eclipse.ui.menus">
+		<menuContribution
+			allPopups="false"
+			locationURI="toolbar:org.eclipse.ui.main.toolbar">
+			<toolbar
+				id="su.nsk.iae.post.ui.toolbar">
+				<!--
+					For some reason the tooltip is not shown when hovering over the toolbar button
+					See also https://www.eclipse.org/forums/index.php/t/1079111/
+				-->
+				<command
+					commandId="org.eclipse.ui.newWizard"
+					tooltip="Create a new PoST file">
+					<parameter
+						name="newWizardId"
+						value="su.nsk.iae.post.ui.wizard.PoSTNewFileWizard">
+					</parameter>
+				</command>
+			</toolbar>
+		</menuContribution>
 	</extension>
 </plugin>

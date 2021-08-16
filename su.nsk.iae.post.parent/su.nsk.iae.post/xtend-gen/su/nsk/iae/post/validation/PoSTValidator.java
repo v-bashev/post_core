@@ -23,8 +23,10 @@ import su.nsk.iae.post.poST.ErrorProcessStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.FunctionBlock;
+import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -779,6 +781,66 @@ public class PoSTValidator extends AbstractPoSTValidator {
     boolean _isEmpty = ele.getStatement().getStatements().isEmpty();
     if (_isEmpty) {
       this.error("Statement error: REPEAT can\'t be empty", this.ePackage.getVariable_Name());
+    }
+  }
+  
+  @Check
+  public void checkFunctionCall_NumberOfArgs(final FunctionCall ele) {
+    final su.nsk.iae.post.poST.Function function = ele.getFunction();
+    final Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_3 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count = function.getFunInVars().stream().<EList<VarInitDeclaration>>map(_function).<VarInitDeclaration>flatMap(_function_1).<EList<SymbolicVariable>>map(_function_2).<SymbolicVariable>flatMap(_function_3).count();
+    final Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_4 = (OutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_5 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_6 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_7 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count_1 = function.getFunOutVars().stream().<EList<VarInitDeclaration>>map(_function_4).<VarInitDeclaration>flatMap(_function_5).<EList<SymbolicVariable>>map(_function_6).<SymbolicVariable>flatMap(_function_7).count();
+    long _plus = (_count + _count_1);
+    final Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_8 = (InputOutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_9 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final Function<VarInitDeclaration, EList<SymbolicVariable>> _function_10 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_11 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    long _count_2 = function.getFunInOutVars().stream().<EList<VarInitDeclaration>>map(_function_8).<VarInitDeclaration>flatMap(_function_9).<EList<SymbolicVariable>>map(_function_10).<SymbolicVariable>flatMap(_function_11).count();
+    final long attachVars = (_plus + _count_2);
+    final long programVars = ele.getArgs().getElements().stream().count();
+    if ((attachVars != programVars)) {
+      if (((!this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class)) && (!this.<InputOutputVarDeclaration>checkContainer(ele, InputOutputVarDeclaration.class)))) {
+        this.error("Attach error: Not all input and output Variables are used", this.ePackage.getFunctionCall_Function());
+      }
+    }
+  }
+  
+  @Check
+  public void checkFBInvocation_InvalidArgument(final FBInvocation ele) {
+    final VarInitDeclaration varDecl = EcoreUtil2.<VarInitDeclaration>getContainerOfType(ele.getFb(), VarInitDeclaration.class);
+    if (((varDecl == null) || (varDecl.getFb() == null))) {
+      this.error("Statement error: Must be FunctionBlock", this.ePackage.getFBInvocation_Fb());
     }
   }
   
