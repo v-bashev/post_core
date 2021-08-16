@@ -617,7 +617,7 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	def checkFBInvocation_InvalidArgument(FBInvocation ele) {
-		val varDecl = ele.getContainerOfType(VarInitDeclaration)
+		val varDecl = ele.fb.getContainerOfType(VarInitDeclaration)
 		if ((varDecl === null) || (varDecl.fb === null)) {
 			error("Statement error: Must be FunctionBlock", ePackage.FBInvocation_Fb)
 		}

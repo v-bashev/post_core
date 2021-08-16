@@ -2,6 +2,7 @@ package su.nsk.iae.post.scoping;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,6 +19,7 @@ import su.nsk.iae.post.library.PoSTLibraryProvider;
 import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
@@ -182,8 +184,18 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
   }
   
   private IScope scopeForParamAssignment_Variable(final EObject context) {
-    final su.nsk.iae.post.poST.Function function = EcoreUtil2.<FunctionCall>getContainerOfType(context, FunctionCall.class).getFunction();
-    return this.scopeFor(PoSTScopeProvider.getFunctionInOutVar(function));
+    FunctionCall _containerOfType = EcoreUtil2.<FunctionCall>getContainerOfType(context, FunctionCall.class);
+    boolean _tripleNotEquals = (_containerOfType != null);
+    if (_tripleNotEquals) {
+      final su.nsk.iae.post.poST.Function function = EcoreUtil2.<FunctionCall>getContainerOfType(context, FunctionCall.class).getFunction();
+      return this.scopeFor(PoSTScopeProvider.getFunctionInOutVar(function));
+    }
+    final SymbolicVariable fbDecl = EcoreUtil2.<FBInvocation>getContainerOfType(context, FBInvocation.class).getFb();
+    final FunctionBlock fb = EcoreUtil2.<VarInitDeclaration>getContainerOfType(fbDecl, VarInitDeclaration.class).getFb();
+    if ((fb != null)) {
+      return this.scopeFor(PoSTScopeProvider.getFunctionBlockInOutVar(fb));
+    }
+    return this.scopeFor(Collections.<EObject>emptyList());
   }
   
   private IScope scopeForAttachVariableConfElement_ProgramVar(final EObject context) {
@@ -315,6 +327,44 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
       Stream.<EList<SymbolicVariable>>concat(
         program.getProgOutVars().stream().<EList<VarInitDeclaration>>map(_function_3).<VarInitDeclaration>flatMap(_function_4).<EList<SymbolicVariable>>map(_function_5), 
         program.getProgInOutVars().stream().<EList<VarInitDeclaration>>map(_function_6).<VarInitDeclaration>flatMap(_function_7).<EList<SymbolicVariable>>map(_function_8))).<SymbolicVariable>flatMap(_function_9).collect(Collectors.<SymbolicVariable>toList());
+  }
+  
+  private static List<SymbolicVariable> getFunctionBlockInOutVar(final FunctionBlock fb) {
+    final java.util.function.Function<InputVarDeclaration, EList<VarInitDeclaration>> _function = (InputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_1 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_2 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final java.util.function.Function<OutputVarDeclaration, EList<VarInitDeclaration>> _function_3 = (OutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_4 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_5 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final java.util.function.Function<InputOutputVarDeclaration, EList<VarInitDeclaration>> _function_6 = (InputOutputVarDeclaration x) -> {
+      return x.getVars();
+    };
+    final java.util.function.Function<EList<VarInitDeclaration>, Stream<VarInitDeclaration>> _function_7 = (EList<VarInitDeclaration> x) -> {
+      return x.stream();
+    };
+    final java.util.function.Function<VarInitDeclaration, EList<SymbolicVariable>> _function_8 = (VarInitDeclaration x) -> {
+      return x.getVarList().getVars();
+    };
+    final java.util.function.Function<EList<SymbolicVariable>, Stream<SymbolicVariable>> _function_9 = (EList<SymbolicVariable> x) -> {
+      return x.stream();
+    };
+    return Stream.<EList<SymbolicVariable>>concat(
+      fb.getFbInVars().stream().<EList<VarInitDeclaration>>map(_function).<VarInitDeclaration>flatMap(_function_1).<EList<SymbolicVariable>>map(_function_2), 
+      Stream.<EList<SymbolicVariable>>concat(
+        fb.getFbOutVars().stream().<EList<VarInitDeclaration>>map(_function_3).<VarInitDeclaration>flatMap(_function_4).<EList<SymbolicVariable>>map(_function_5), 
+        fb.getFbInOutVars().stream().<EList<VarInitDeclaration>>map(_function_6).<VarInitDeclaration>flatMap(_function_7).<EList<SymbolicVariable>>map(_function_8))).<SymbolicVariable>flatMap(_function_9).collect(Collectors.<SymbolicVariable>toList());
   }
   
   private static List<SymbolicVariable> getFunctionInOutVar(final su.nsk.iae.post.poST.Function function) {

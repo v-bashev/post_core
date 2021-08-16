@@ -1,5 +1,6 @@
 package su.nsk.iae.post.scoping
 
+import java.util.Collections
 import java.util.stream.Collectors
 import java.util.stream.Stream
 import javax.inject.Inject
@@ -10,6 +11,10 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
 import su.nsk.iae.post.library.PoSTLibraryProvider
+import su.nsk.iae.post.poST.FBInvocation
+import su.nsk.iae.post.poST.Function
+import su.nsk.iae.post.poST.FunctionBlock
+import su.nsk.iae.post.poST.FunctionCall
 import su.nsk.iae.post.poST.GlobalVarDeclaration
 import su.nsk.iae.post.poST.Model
 import su.nsk.iae.post.poST.PoSTPackage
@@ -19,10 +24,9 @@ import su.nsk.iae.post.poST.ProgramConfiguration
 import su.nsk.iae.post.poST.Resource
 import su.nsk.iae.post.poST.SymbolicVariable
 import su.nsk.iae.post.poST.TemplateProcessConfElement
+import su.nsk.iae.post.poST.VarInitDeclaration
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import su.nsk.iae.post.poST.FunctionCall
-import su.nsk.iae.post.poST.Function
 
 class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	
@@ -92,8 +96,16 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	}
 	
 	private def IScope scopeForParamAssignment_Variable(EObject context) {
-		val function = context.getContainerOfType(FunctionCall).function
-		return scopeFor(function.functionInOutVar)
+		if (context.getContainerOfType(FunctionCall) !== null) {
+			val function = context.getContainerOfType(FunctionCall).function
+			return scopeFor(function.functionInOutVar)
+		}
+		val fbDecl = context.getContainerOfType(FBInvocation).fb
+		val fb = fbDecl.getContainerOfType(VarInitDeclaration).fb
+		if (fb !== null) {
+			return scopeFor(fb.functionBlockInOutVar)
+		}
+		return scopeFor(Collections.emptyList)
 	}
 	
 	private def IScope scopeForAttachVariableConfElement_ProgramVar(EObject context) {
@@ -179,6 +191,16 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 			Stream.concat(
 				program.progOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
 				program.progInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars])
+			)
+		).flatMap([x | x.stream]).collect(Collectors.toList)
+	}
+	
+	private static def getFunctionBlockInOutVar(FunctionBlock fb) {
+		return Stream.concat(
+			fb.fbInVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+			Stream.concat(
+				fb.fbOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars]),
+				fb.fbInOutVars.stream.map([x | x.vars]).flatMap([x | x.stream]).map([x | x.varList.vars])
 			)
 		).flatMap([x | x.stream]).collect(Collectors.toList)
 	}

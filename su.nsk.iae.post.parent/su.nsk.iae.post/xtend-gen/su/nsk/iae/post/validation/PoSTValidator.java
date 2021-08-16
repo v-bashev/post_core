@@ -838,7 +838,7 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkFBInvocation_InvalidArgument(final FBInvocation ele) {
-    final VarInitDeclaration varDecl = EcoreUtil2.<VarInitDeclaration>getContainerOfType(ele, VarInitDeclaration.class);
+    final VarInitDeclaration varDecl = EcoreUtil2.<VarInitDeclaration>getContainerOfType(ele.getFb(), VarInitDeclaration.class);
     if (((varDecl == null) || (varDecl.getFb() == null))) {
       this.error("Statement error: Must be FunctionBlock", this.ePackage.getFBInvocation_Fb());
     }
