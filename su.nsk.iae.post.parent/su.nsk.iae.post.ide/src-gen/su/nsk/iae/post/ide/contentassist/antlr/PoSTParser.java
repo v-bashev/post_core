@@ -105,9 +105,10 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getErrorProcessStatementAccess().getGroup_2(), "rule__ErrorProcessStatement__Group_2__0");
 			builder.put(grammarAccess.getTimeoutStatementAccess().getGroup(), "rule__TimeoutStatement__Group__0");
 			builder.put(grammarAccess.getResetTimerStatementAccess().getGroup(), "rule__ResetTimerStatement__Group__0");
+			builder.put(grammarAccess.getFBInvocationAccess().getGroup(), "rule__FBInvocation__Group__0");
 			builder.put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
-			builder.put(grammarAccess.getFunctionCallElementsAccess().getGroup(), "rule__FunctionCallElements__Group__0");
-			builder.put(grammarAccess.getFunctionCallElementsAccess().getGroup_1(), "rule__FunctionCallElements__Group_1__0");
+			builder.put(grammarAccess.getParamAssignmentElementsAccess().getGroup(), "rule__ParamAssignmentElements__Group__0");
+			builder.put(grammarAccess.getParamAssignmentElementsAccess().getGroup_1(), "rule__ParamAssignmentElements__Group_1__0");
 			builder.put(grammarAccess.getParamAssignmentAccess().getGroup(), "rule__ParamAssignment__Group__0");
 			builder.put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
 			builder.put(grammarAccess.getExpressionAccess().getGroup_1(), "rule__Expression__Group_1__0");
@@ -134,6 +135,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStatementAccess().getGroup_5(), "rule__Statement__Group_5__0");
 			builder.put(grammarAccess.getStatementAccess().getGroup_6(), "rule__Statement__Group_6__0");
 			builder.put(grammarAccess.getStatementAccess().getGroup_7(), "rule__Statement__Group_7__0");
+			builder.put(grammarAccess.getStatementAccess().getGroup_8(), "rule__Statement__Group_8__0");
 			builder.put(grammarAccess.getAssignmentStatementAccess().getGroup(), "rule__AssignmentStatement__Group__0");
 			builder.put(grammarAccess.getIfStatementAccess().getGroup(), "rule__IfStatement__Group__0");
 			builder.put(grammarAccess.getIfStatementAccess().getGroup_4(), "rule__IfStatement__Group_4__0");
@@ -277,10 +279,12 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTimeoutStatementAccess().getConstAssignment_1_0(), "rule__TimeoutStatement__ConstAssignment_1_0");
 			builder.put(grammarAccess.getTimeoutStatementAccess().getVariableAssignment_1_1(), "rule__TimeoutStatement__VariableAssignment_1_1");
 			builder.put(grammarAccess.getTimeoutStatementAccess().getStatementAssignment_3(), "rule__TimeoutStatement__StatementAssignment_3");
+			builder.put(grammarAccess.getFBInvocationAccess().getFbAssignment_0(), "rule__FBInvocation__FbAssignment_0");
+			builder.put(grammarAccess.getFBInvocationAccess().getArgsAssignment_2(), "rule__FBInvocation__ArgsAssignment_2");
 			builder.put(grammarAccess.getFunctionCallAccess().getFunctionAssignment_0(), "rule__FunctionCall__FunctionAssignment_0");
 			builder.put(grammarAccess.getFunctionCallAccess().getArgsAssignment_2(), "rule__FunctionCall__ArgsAssignment_2");
-			builder.put(grammarAccess.getFunctionCallElementsAccess().getElementsAssignment_0(), "rule__FunctionCallElements__ElementsAssignment_0");
-			builder.put(grammarAccess.getFunctionCallElementsAccess().getElementsAssignment_1_1(), "rule__FunctionCallElements__ElementsAssignment_1_1");
+			builder.put(grammarAccess.getParamAssignmentElementsAccess().getElementsAssignment_0(), "rule__ParamAssignmentElements__ElementsAssignment_0");
+			builder.put(grammarAccess.getParamAssignmentElementsAccess().getElementsAssignment_1_1(), "rule__ParamAssignmentElements__ElementsAssignment_1_1");
 			builder.put(grammarAccess.getParamAssignmentAccess().getVariableAssignment_0(), "rule__ParamAssignment__VariableAssignment_0");
 			builder.put(grammarAccess.getParamAssignmentAccess().getAssigAssignment_1(), "rule__ParamAssignment__AssigAssignment_1");
 			builder.put(grammarAccess.getParamAssignmentAccess().getValueAssignment_2(), "rule__ParamAssignment__ValueAssignment_2");
@@ -338,6 +342,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getVarInitDeclarationAccess().getVarListAssignment_0(), "rule__VarInitDeclaration__VarListAssignment_0");
 			builder.put(grammarAccess.getVarInitDeclarationAccess().getSpecAssignment_2_0(), "rule__VarInitDeclaration__SpecAssignment_2_0");
 			builder.put(grammarAccess.getVarInitDeclarationAccess().getArrSpecAssignment_2_1(), "rule__VarInitDeclaration__ArrSpecAssignment_2_1");
+			builder.put(grammarAccess.getVarInitDeclarationAccess().getFbAssignment_2_2(), "rule__VarInitDeclaration__FbAssignment_2_2");
 			builder.put(grammarAccess.getInputVarDeclarationAccess().getVarsAssignment_2_0(), "rule__InputVarDeclaration__VarsAssignment_2_0");
 			builder.put(grammarAccess.getOutputVarDeclarationAccess().getVarsAssignment_2_0(), "rule__OutputVarDeclaration__VarsAssignment_2_0");
 			builder.put(grammarAccess.getInputOutputVarDeclarationAccess().getVarsAssignment_2_0(), "rule__InputOutputVarDeclaration__VarsAssignment_2_0");

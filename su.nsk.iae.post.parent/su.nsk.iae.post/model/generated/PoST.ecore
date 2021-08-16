@@ -186,12 +186,17 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResetTimerStatement" eSuperTypes="#//Statement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//Function"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//FunctionCallElements"
+  <eClassifiers xsi:type="ecore:EClass" name="FBInvocation" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fb" eType="#//SymbolicVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//ParamAssignmentElements"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionCallElements">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//Function"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//ParamAssignmentElements"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParamAssignmentElements">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ParamAssignment" containment="true"/>
   </eClassifiers>
@@ -347,6 +352,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arrSpec" eType="#//ArraySpecificationInit"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fb" eType="#//FunctionBlock"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputVarDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="vars" upperBound="-1" eType="#//VarInitDeclaration"

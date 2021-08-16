@@ -17,24 +17,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import su.nsk.iae.post.poST.FunctionCallElements;
 import su.nsk.iae.post.poST.ParamAssignment;
+import su.nsk.iae.post.poST.ParamAssignmentElements;
 import su.nsk.iae.post.poST.PoSTPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Function Call Elements</b></em>'.
+ * An implementation of the model object '<em><b>Param Assignment Elements</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link su.nsk.iae.post.poST.impl.FunctionCallElementsImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.ParamAssignmentElementsImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container implements FunctionCallElements
+public class ParamAssignmentElementsImpl extends MinimalEObjectImpl.Container implements ParamAssignmentElements
 {
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
@@ -51,7 +51,7 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FunctionCallElementsImpl()
+  protected ParamAssignmentElementsImpl()
   {
     super();
   }
@@ -64,7 +64,7 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
   @Override
   protected EClass eStaticClass()
   {
-    return PoSTPackage.Literals.FUNCTION_CALL_ELEMENTS;
+    return PoSTPackage.Literals.PARAM_ASSIGNMENT_ELEMENTS;
   }
 
   /**
@@ -77,7 +77,7 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
   {
     if (elements == null)
     {
-      elements = new EObjectContainmentEList<ParamAssignment>(ParamAssignment.class, this, PoSTPackage.FUNCTION_CALL_ELEMENTS__ELEMENTS);
+      elements = new EObjectContainmentEList<ParamAssignment>(ParamAssignment.class, this, PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS__ELEMENTS);
     }
     return elements;
   }
@@ -92,7 +92,7 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case PoSTPackage.FUNCTION_CALL_ELEMENTS__ELEMENTS:
+      case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS__ELEMENTS:
         return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -108,7 +108,7 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case PoSTPackage.FUNCTION_CALL_ELEMENTS__ELEMENTS:
+      case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS__ELEMENTS:
         return getElements();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -125,7 +125,7 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case PoSTPackage.FUNCTION_CALL_ELEMENTS__ELEMENTS:
+      case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS__ELEMENTS:
         getElements().clear();
         getElements().addAll((Collection<? extends ParamAssignment>)newValue);
         return;
@@ -143,7 +143,7 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case PoSTPackage.FUNCTION_CALL_ELEMENTS__ELEMENTS:
+      case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS__ELEMENTS:
         getElements().clear();
         return;
     }
@@ -160,10 +160,10 @@ public class FunctionCallElementsImpl extends MinimalEObjectImpl.Container imple
   {
     switch (featureID)
     {
-      case PoSTPackage.FUNCTION_CALL_ELEMENTS__ELEMENTS:
+      case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS__ELEMENTS:
         return elements != null && !elements.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //FunctionCallElementsImpl
+} //ParamAssignmentElementsImpl

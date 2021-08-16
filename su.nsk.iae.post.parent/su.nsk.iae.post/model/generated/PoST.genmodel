@@ -164,12 +164,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//TimeoutStatement/statement"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ResetTimerStatement"/>
+    <genClasses ecoreClass="PoST.ecore#//FBInvocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//FBInvocation/fb"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FBInvocation/args"/>
+    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//FunctionCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionCall/function"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionCall/args"/>
     </genClasses>
-    <genClasses ecoreClass="PoST.ecore#//FunctionCallElements">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//FunctionCallElements/elements"/>
+    <genClasses ecoreClass="PoST.ecore#//ParamAssignmentElements">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//ParamAssignmentElements/elements"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//ParamAssignment">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//ParamAssignment/variable"/>
@@ -267,6 +271,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarInitDeclaration/varList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarInitDeclaration/spec"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//VarInitDeclaration/arrSpec"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//VarInitDeclaration/fb"/>
     </genClasses>
     <genClasses ecoreClass="PoST.ecore#//InputVarDeclaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//InputVarDeclaration/vars"/>

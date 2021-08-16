@@ -11,13 +11,18 @@ import su.nsk.iae.post.poST.ArraySpecification
 import su.nsk.iae.post.poST.AssignmentStatement
 import su.nsk.iae.post.poST.AssignmentType
 import su.nsk.iae.post.poST.AttachVariableConfElement
+import su.nsk.iae.post.poST.CaseElement
 import su.nsk.iae.post.poST.Configuration
 import su.nsk.iae.post.poST.ErrorProcessStatement
 import su.nsk.iae.post.poST.ExternalVarDeclaration
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration
+import su.nsk.iae.post.poST.FBInvocation
+import su.nsk.iae.post.poST.ForStatement
 import su.nsk.iae.post.poST.FunctionBlock
+import su.nsk.iae.post.poST.FunctionCall
 import su.nsk.iae.post.poST.GlobalVarDeclaration
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration
+import su.nsk.iae.post.poST.IfStatement
 import su.nsk.iae.post.poST.InputOutputVarDeclaration
 import su.nsk.iae.post.poST.InputVarDeclaration
 import su.nsk.iae.post.poST.Model
@@ -30,6 +35,7 @@ import su.nsk.iae.post.poST.ProcessVarInitDeclaration
 import su.nsk.iae.post.poST.ProcessVariable
 import su.nsk.iae.post.poST.Program
 import su.nsk.iae.post.poST.ProgramConfiguration
+import su.nsk.iae.post.poST.RepeatStatement
 import su.nsk.iae.post.poST.Resource
 import su.nsk.iae.post.poST.SetStateStatement
 import su.nsk.iae.post.poST.SimpleSpecificationInit
@@ -45,16 +51,11 @@ import su.nsk.iae.post.poST.TimeoutStatement
 import su.nsk.iae.post.poST.VarDeclaration
 import su.nsk.iae.post.poST.VarInitDeclaration
 import su.nsk.iae.post.poST.Variable
+import su.nsk.iae.post.poST.WhileStatement
 
 import static extension java.lang.Character.isLowerCase
 import static extension java.lang.Character.isUpperCase
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import su.nsk.iae.post.poST.IfStatement
-import su.nsk.iae.post.poST.CaseElement
-import su.nsk.iae.post.poST.ForStatement
-import su.nsk.iae.post.poST.WhileStatement
-import su.nsk.iae.post.poST.RepeatStatement
-import su.nsk.iae.post.poST.FunctionCall
 
 class PoSTValidator extends AbstractPoSTValidator {
 	
@@ -611,6 +612,14 @@ class PoSTValidator extends AbstractPoSTValidator {
 			if (!ele.checkContainer(InputVarDeclaration) && !ele.checkContainer(InputOutputVarDeclaration)) {
 				error("Attach error: Not all input and output Variables are used", ePackage.functionCall_Function)
 			}
+		}
+	}
+	
+	@Check
+	def checkFBInvocation_InvalidArgument(FBInvocation ele) {
+		val varDecl = ele.getContainerOfType(VarInitDeclaration)
+		if ((varDecl === null) || (varDecl.fb === null)) {
+			error("Statement error: Must be FunctionBlock", ePackage.FBInvocation_Fb)
 		}
 	}
 	

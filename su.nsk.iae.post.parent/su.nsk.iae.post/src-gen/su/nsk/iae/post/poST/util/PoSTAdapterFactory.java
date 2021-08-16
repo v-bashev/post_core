@@ -31,12 +31,12 @@ import su.nsk.iae.post.poST.ExitStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.FunctionCall;
-import su.nsk.iae.post.poST.FunctionCallElements;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -49,6 +49,7 @@ import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
 import su.nsk.iae.post.poST.ParamAssignment;
+import su.nsk.iae.post.poST.ParamAssignmentElements;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
@@ -293,14 +294,19 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
         return createResetTimerStatementAdapter();
       }
       @Override
+      public Adapter caseFBInvocation(FBInvocation object)
+      {
+        return createFBInvocationAdapter();
+      }
+      @Override
       public Adapter caseFunctionCall(FunctionCall object)
       {
         return createFunctionCallAdapter();
       }
       @Override
-      public Adapter caseFunctionCallElements(FunctionCallElements object)
+      public Adapter caseParamAssignmentElements(ParamAssignmentElements object)
       {
-        return createFunctionCallElementsAdapter();
+        return createParamAssignmentElementsAdapter();
       }
       @Override
       public Adapter caseParamAssignment(ParamAssignment object)
@@ -1000,6 +1006,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.FBInvocation <em>FB Invocation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.FBInvocation
+   * @generated
+   */
+  public Adapter createFBInvocationAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.FunctionCall <em>Function Call</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1015,16 +1036,16 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.FunctionCallElements <em>Function Call Elements</em>}'.
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.ParamAssignmentElements <em>Param Assignment Elements</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see su.nsk.iae.post.poST.FunctionCallElements
+   * @see su.nsk.iae.post.poST.ParamAssignmentElements
    * @generated
    */
-  public Adapter createFunctionCallElementsAdapter()
+  public Adapter createParamAssignmentElementsAdapter()
   {
     return null;
   }

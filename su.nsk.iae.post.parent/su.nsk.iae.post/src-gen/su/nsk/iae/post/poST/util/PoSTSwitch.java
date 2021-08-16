@@ -29,12 +29,12 @@ import su.nsk.iae.post.poST.ExitStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.ForList;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.FunctionCall;
-import su.nsk.iae.post.poST.FunctionCallElements;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
 import su.nsk.iae.post.poST.IfStatement;
@@ -47,6 +47,7 @@ import su.nsk.iae.post.poST.MulExpression;
 import su.nsk.iae.post.poST.NumericLiteral;
 import su.nsk.iae.post.poST.OutputVarDeclaration;
 import su.nsk.iae.post.poST.ParamAssignment;
+import su.nsk.iae.post.poST.ParamAssignmentElements;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.PowerExpression;
 import su.nsk.iae.post.poST.PrimaryExpression;
@@ -357,6 +358,14 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PoSTPackage.FB_INVOCATION:
+      {
+        FBInvocation fbInvocation = (FBInvocation)theEObject;
+        T result = caseFBInvocation(fbInvocation);
+        if (result == null) result = caseStatement(fbInvocation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case PoSTPackage.FUNCTION_CALL:
       {
         FunctionCall functionCall = (FunctionCall)theEObject;
@@ -364,10 +373,10 @@ public class PoSTSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PoSTPackage.FUNCTION_CALL_ELEMENTS:
+      case PoSTPackage.PARAM_ASSIGNMENT_ELEMENTS:
       {
-        FunctionCallElements functionCallElements = (FunctionCallElements)theEObject;
-        T result = caseFunctionCallElements(functionCallElements);
+        ParamAssignmentElements paramAssignmentElements = (ParamAssignmentElements)theEObject;
+        T result = caseParamAssignmentElements(paramAssignmentElements);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1250,6 +1259,22 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>FB Invocation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>FB Invocation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFBInvocation(FBInvocation object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Function Call</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1266,17 +1291,17 @@ public class PoSTSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Function Call Elements</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Param Assignment Elements</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Function Call Elements</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Param Assignment Elements</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFunctionCallElements(FunctionCallElements object)
+  public T caseParamAssignmentElements(ParamAssignmentElements object)
   {
     return null;
   }

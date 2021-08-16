@@ -23,6 +23,7 @@ import su.nsk.iae.post.poST.ErrorProcessStatement;
 import su.nsk.iae.post.poST.Expression;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FBInvocation;
 import su.nsk.iae.post.poST.ForStatement;
 import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.FunctionCall;
@@ -832,6 +833,14 @@ public class PoSTValidator extends AbstractPoSTValidator {
       if (((!this.<InputVarDeclaration>checkContainer(ele, InputVarDeclaration.class)) && (!this.<InputOutputVarDeclaration>checkContainer(ele, InputOutputVarDeclaration.class)))) {
         this.error("Attach error: Not all input and output Variables are used", this.ePackage.getFunctionCall_Function());
       }
+    }
+  }
+  
+  @Check
+  public void checkFBInvocation_InvalidArgument(final FBInvocation ele) {
+    final VarInitDeclaration varDecl = EcoreUtil2.<VarInitDeclaration>getContainerOfType(ele, VarInitDeclaration.class);
+    if (((varDecl == null) || (varDecl.getFb() == null))) {
+      this.error("Statement error: Must be FunctionBlock", this.ePackage.getFBInvocation_Fb());
     }
   }
   

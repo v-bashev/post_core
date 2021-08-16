@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link su.nsk.iae.post.poST.VarInitDeclaration#getVarList <em>Var List</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.VarInitDeclaration#getSpec <em>Spec</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.VarInitDeclaration#getArrSpec <em>Arr Spec</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.VarInitDeclaration#getFb <em>Fb</em>}</li>
  * </ul>
  *
  * @see su.nsk.iae.post.poST.PoSTPackage#getVarInitDeclaration()
@@ -90,5 +91,27 @@ public interface VarInitDeclaration extends EObject
    * @generated
    */
   void setArrSpec(ArraySpecificationInit value);
+
+  /**
+   * Returns the value of the '<em><b>Fb</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Fb</em>' reference.
+   * @see #setFb(FunctionBlock)
+   * @see su.nsk.iae.post.poST.PoSTPackage#getVarInitDeclaration_Fb()
+   * @model
+   * @generated
+   */
+  FunctionBlock getFb();
+
+  /**
+   * Sets the value of the '{@link su.nsk.iae.post.poST.VarInitDeclaration#getFb <em>Fb</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Fb</em>' reference.
+   * @see #getFb()
+   * @generated
+   */
+  void setFb(FunctionBlock value);
 
 } // VarInitDeclaration

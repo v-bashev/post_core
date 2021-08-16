@@ -18,6 +18,7 @@ import su.nsk.iae.post.library.PoSTLibraryProvider;
 import su.nsk.iae.post.poST.Configuration;
 import su.nsk.iae.post.poST.ExternalVarDeclaration;
 import su.nsk.iae.post.poST.ExternalVarInitDeclaration;
+import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.FunctionCall;
 import su.nsk.iae.post.poST.GlobalVarDeclaration;
 import su.nsk.iae.post.poST.GlobalVarInitDeclaration;
@@ -81,6 +82,13 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
       if (Objects.equal(reference, _functionCall_Function)) {
         _matched=true;
         return this.scopeForFunctionCall_Function(context);
+      }
+    }
+    if (!_matched) {
+      EReference _varInitDeclaration_Fb = this.ePackage.getVarInitDeclaration_Fb();
+      if (Objects.equal(reference, _varInitDeclaration_Fb)) {
+        _matched=true;
+        return this.scopeForVarInitDeclaration_Fb(context);
       }
     }
     if (!_matched) {
@@ -158,7 +166,19 @@ public class PoSTScopeProvider extends AbstractPoSTScopeProvider {
   }
   
   private IScope scopeForFunctionCall_Function(final EObject context) {
-    return this.scopeFor(this.libraryProvider.getLibraryFunctions(context));
+    final Model model = EcoreUtil2.<Model>getContainerOfType(context, Model.class);
+    final List<su.nsk.iae.post.poST.Function> res = Stream.<su.nsk.iae.post.poST.Function>concat(
+      model.getFuns().stream(), 
+      this.libraryProvider.getLibraryFunctions(context).stream()).collect(Collectors.<su.nsk.iae.post.poST.Function>toList());
+    return this.scopeFor(res);
+  }
+  
+  private IScope scopeForVarInitDeclaration_Fb(final EObject context) {
+    final Model model = EcoreUtil2.<Model>getContainerOfType(context, Model.class);
+    final List<FunctionBlock> res = Stream.<FunctionBlock>concat(
+      model.getFbs().stream(), 
+      this.libraryProvider.getLibraryFunctionBlocks(context).stream()).collect(Collectors.<FunctionBlock>toList());
+    return this.scopeFor(res);
   }
   
   private IScope scopeForParamAssignment_Variable(final EObject context) {

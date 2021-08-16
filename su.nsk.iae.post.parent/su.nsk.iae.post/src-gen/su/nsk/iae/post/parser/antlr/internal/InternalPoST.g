@@ -2539,6 +2539,65 @@ ruleResetTimerStatement returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleFBInvocation
+entryRuleFBInvocation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFBInvocationRule()); }
+	iv_ruleFBInvocation=ruleFBInvocation
+	{ $current=$iv_ruleFBInvocation.current; }
+	EOF;
+
+// Rule FBInvocation
+ruleFBInvocation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFBInvocationRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getFBInvocationAccess().getFbSymbolicVariableCrossReference_0_0());
+				}
+			)
+		)
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getFBInvocationAccess().getLeftParenthesisKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFBInvocationAccess().getArgsParamAssignmentElementsParserRuleCall_2_0());
+				}
+				lv_args_2_0=ruleParamAssignmentElements
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFBInvocationRule());
+					}
+					set(
+						$current,
+						"args",
+						lv_args_2_0,
+						"su.nsk.iae.post.PoST.ParamAssignmentElements");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_3=')'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getFBInvocationAccess().getRightParenthesisKeyword_3());
+		}
+	)
+;
+
 // Entry rule entryRuleFunctionCall
 entryRuleFunctionCall returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getFunctionCallRule()); }
@@ -2575,9 +2634,9 @@ ruleFunctionCall returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFunctionCallAccess().getArgsFunctionCallElementsParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getFunctionCallAccess().getArgsParamAssignmentElementsParserRuleCall_2_0());
 				}
-				lv_args_2_0=ruleFunctionCallElements
+				lv_args_2_0=ruleParamAssignmentElements
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFunctionCallRule());
@@ -2586,7 +2645,7 @@ ruleFunctionCall returns [EObject current=null]
 						$current,
 						"args",
 						lv_args_2_0,
-						"su.nsk.iae.post.PoST.FunctionCallElements");
+						"su.nsk.iae.post.PoST.ParamAssignmentElements");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2598,15 +2657,15 @@ ruleFunctionCall returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleFunctionCallElements
-entryRuleFunctionCallElements returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFunctionCallElementsRule()); }
-	iv_ruleFunctionCallElements=ruleFunctionCallElements
-	{ $current=$iv_ruleFunctionCallElements.current; }
+// Entry rule entryRuleParamAssignmentElements
+entryRuleParamAssignmentElements returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getParamAssignmentElementsRule()); }
+	iv_ruleParamAssignmentElements=ruleParamAssignmentElements
+	{ $current=$iv_ruleParamAssignmentElements.current; }
 	EOF;
 
-// Rule FunctionCallElements
-ruleFunctionCallElements returns [EObject current=null]
+// Rule ParamAssignmentElements
+ruleParamAssignmentElements returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2617,12 +2676,12 @@ ruleFunctionCallElements returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFunctionCallElementsAccess().getElementsParamAssignmentParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getParamAssignmentElementsAccess().getElementsParamAssignmentParserRuleCall_0_0());
 				}
 				lv_elements_0_0=ruleParamAssignment
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFunctionCallElementsRule());
+						$current = createModelElementForParent(grammarAccess.getParamAssignmentElementsRule());
 					}
 					add(
 						$current,
@@ -2636,17 +2695,17 @@ ruleFunctionCallElements returns [EObject current=null]
 		(
 			otherlv_1=','
 			{
-				newLeafNode(otherlv_1, grammarAccess.getFunctionCallElementsAccess().getCommaKeyword_1_0());
+				newLeafNode(otherlv_1, grammarAccess.getParamAssignmentElementsAccess().getCommaKeyword_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFunctionCallElementsAccess().getElementsParamAssignmentParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getParamAssignmentElementsAccess().getElementsParamAssignmentParserRuleCall_1_1_0());
 					}
 					lv_elements_2_0=ruleParamAssignment
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getFunctionCallElementsRule());
+							$current = createModelElementForParent(grammarAccess.getParamAssignmentElementsRule());
 						}
 						add(
 							$current,
@@ -3569,11 +3628,11 @@ ruleStatement returns [EObject current=null]
 		    |
 		(
 			{
-				newCompositeNode(grammarAccess.getStatementAccess().getSubprogramControlStatementParserRuleCall_3_0());
+				newCompositeNode(grammarAccess.getStatementAccess().getFBInvocationParserRuleCall_3_0());
 			}
-			this_SubprogramControlStatement_4=ruleSubprogramControlStatement
+			this_FBInvocation_4=ruleFBInvocation
 			{
-				$current = $this_SubprogramControlStatement_4.current;
+				$current = $this_FBInvocation_4.current;
 				afterParserOrEnumRuleCall();
 			}
 			otherlv_5=';'
@@ -3584,11 +3643,11 @@ ruleStatement returns [EObject current=null]
 		    |
 		(
 			{
-				newCompositeNode(grammarAccess.getStatementAccess().getExitStatementParserRuleCall_4_0());
+				newCompositeNode(grammarAccess.getStatementAccess().getSubprogramControlStatementParserRuleCall_4_0());
 			}
-			this_ExitStatement_6=ruleExitStatement
+			this_SubprogramControlStatement_6=ruleSubprogramControlStatement
 			{
-				$current = $this_ExitStatement_6.current;
+				$current = $this_SubprogramControlStatement_6.current;
 				afterParserOrEnumRuleCall();
 			}
 			otherlv_7=';'
@@ -3599,11 +3658,11 @@ ruleStatement returns [EObject current=null]
 		    |
 		(
 			{
-				newCompositeNode(grammarAccess.getStatementAccess().getProcessStatementsParserRuleCall_5_0());
+				newCompositeNode(grammarAccess.getStatementAccess().getExitStatementParserRuleCall_5_0());
 			}
-			this_ProcessStatements_8=ruleProcessStatements
+			this_ExitStatement_8=ruleExitStatement
 			{
-				$current = $this_ProcessStatements_8.current;
+				$current = $this_ExitStatement_8.current;
 				afterParserOrEnumRuleCall();
 			}
 			otherlv_9=';'
@@ -3614,11 +3673,11 @@ ruleStatement returns [EObject current=null]
 		    |
 		(
 			{
-				newCompositeNode(grammarAccess.getStatementAccess().getSetStateStatementParserRuleCall_6_0());
+				newCompositeNode(grammarAccess.getStatementAccess().getProcessStatementsParserRuleCall_6_0());
 			}
-			this_SetStateStatement_10=ruleSetStateStatement
+			this_ProcessStatements_10=ruleProcessStatements
 			{
-				$current = $this_SetStateStatement_10.current;
+				$current = $this_ProcessStatements_10.current;
 				afterParserOrEnumRuleCall();
 			}
 			otherlv_11=';'
@@ -3629,16 +3688,31 @@ ruleStatement returns [EObject current=null]
 		    |
 		(
 			{
-				newCompositeNode(grammarAccess.getStatementAccess().getResetTimerStatementParserRuleCall_7_0());
+				newCompositeNode(grammarAccess.getStatementAccess().getSetStateStatementParserRuleCall_7_0());
 			}
-			this_ResetTimerStatement_12=ruleResetTimerStatement
+			this_SetStateStatement_12=ruleSetStateStatement
 			{
-				$current = $this_ResetTimerStatement_12.current;
+				$current = $this_SetStateStatement_12.current;
 				afterParserOrEnumRuleCall();
 			}
 			otherlv_13=';'
 			{
 				newLeafNode(otherlv_13, grammarAccess.getStatementAccess().getSemicolonKeyword_7_1());
+			}
+		)
+		    |
+		(
+			{
+				newCompositeNode(grammarAccess.getStatementAccess().getResetTimerStatementParserRuleCall_8_0());
+			}
+			this_ResetTimerStatement_14=ruleResetTimerStatement
+			{
+				$current = $this_ResetTimerStatement_14.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_15=';'
+			{
+				newLeafNode(otherlv_15, grammarAccess.getStatementAccess().getSemicolonKeyword_8_1());
 			}
 		)
 	)
@@ -4776,6 +4850,20 @@ ruleVarInitDeclaration returns [EObject current=null]
 							lv_arrSpec_3_0,
 							"su.nsk.iae.post.PoST.ArraySpecificationInit");
 						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getVarInitDeclarationRule());
+						}
+					}
+					otherlv_4=RULE_ID
+					{
+						newLeafNode(otherlv_4, grammarAccess.getVarInitDeclarationAccess().getFbFunctionBlockCrossReference_2_2_0());
 					}
 				)
 			)

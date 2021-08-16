@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.Function;
 import su.nsk.iae.post.poST.FunctionCall;
-import su.nsk.iae.post.poST.FunctionCallElements;
+import su.nsk.iae.post.poST.ParamAssignmentElements;
 import su.nsk.iae.post.poST.PoSTPackage;
 
 /**
@@ -51,7 +51,7 @@ public class FunctionCallImpl extends MinimalEObjectImpl.Container implements Fu
    * @generated
    * @ordered
    */
-  protected FunctionCallElements args;
+  protected ParamAssignmentElements args;
 
   /**
    * <!-- begin-user-doc -->
@@ -125,7 +125,7 @@ public class FunctionCallImpl extends MinimalEObjectImpl.Container implements Fu
    * @generated
    */
   @Override
-  public FunctionCallElements getArgs()
+  public ParamAssignmentElements getArgs()
   {
     return args;
   }
@@ -135,9 +135,9 @@ public class FunctionCallImpl extends MinimalEObjectImpl.Container implements Fu
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArgs(FunctionCallElements newArgs, NotificationChain msgs)
+  public NotificationChain basicSetArgs(ParamAssignmentElements newArgs, NotificationChain msgs)
   {
-    FunctionCallElements oldArgs = args;
+    ParamAssignmentElements oldArgs = args;
     args = newArgs;
     if (eNotificationRequired())
     {
@@ -153,7 +153,7 @@ public class FunctionCallImpl extends MinimalEObjectImpl.Container implements Fu
    * @generated
    */
   @Override
-  public void setArgs(FunctionCallElements newArgs)
+  public void setArgs(ParamAssignmentElements newArgs)
   {
     if (newArgs != args)
     {
@@ -218,7 +218,7 @@ public class FunctionCallImpl extends MinimalEObjectImpl.Container implements Fu
         setFunction((Function)newValue);
         return;
       case PoSTPackage.FUNCTION_CALL__ARGS:
-        setArgs((FunctionCallElements)newValue);
+        setArgs((ParamAssignmentElements)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,7 +238,7 @@ public class FunctionCallImpl extends MinimalEObjectImpl.Container implements Fu
         setFunction((Function)null);
         return;
       case PoSTPackage.FUNCTION_CALL__ARGS:
-        setArgs((FunctionCallElements)null);
+        setArgs((ParamAssignmentElements)null);
         return;
     }
     super.eUnset(featureID);

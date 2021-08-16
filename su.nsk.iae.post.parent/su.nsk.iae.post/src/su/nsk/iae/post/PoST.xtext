@@ -193,10 +193,13 @@ ResetTimerStatement:
 
 /* ======================= START Subprogram Call ======================= */
 
-FunctionCall:
-	function=[Function] '(' (args=FunctionCallElements)? ')';
+FBInvocation:
+	fb=[SymbolicVariable] '(' (args=ParamAssignmentElements)? ')';
 
-FunctionCallElements:
+FunctionCall:
+	function=[Function] '(' (args=ParamAssignmentElements)? ')';
+
+ParamAssignmentElements:
 	elements+=ParamAssignment (',' elements+=ParamAssignment)*;
 
 ParamAssignment:
@@ -274,6 +277,7 @@ Statement:
 	(AssignmentStatement ';') |
 	SelectionStatement |
 	IterationStatement |
+	(FBInvocation ';') |
 	(SubprogramControlStatement ';') |
 	(ExitStatement ';') |
 	(ProcessStatements ';') |
@@ -353,7 +357,7 @@ VarList:
 	vars+=SymbolicVariable (',' vars+=SymbolicVariable)*;
 
 VarInitDeclaration:
-	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit);
+	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit | fb=[FunctionBlock]);
 
 InputVarDeclaration:
 	{InputVarDeclaration}

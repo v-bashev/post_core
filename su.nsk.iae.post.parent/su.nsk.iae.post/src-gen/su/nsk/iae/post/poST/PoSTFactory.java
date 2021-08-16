@@ -267,6 +267,15 @@ public interface PoSTFactory extends EFactory
   ResetTimerStatement createResetTimerStatement();
 
   /**
+   * Returns a new object of class '<em>FB Invocation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>FB Invocation</em>'.
+   * @generated
+   */
+  FBInvocation createFBInvocation();
+
+  /**
    * Returns a new object of class '<em>Function Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -276,13 +285,13 @@ public interface PoSTFactory extends EFactory
   FunctionCall createFunctionCall();
 
   /**
-   * Returns a new object of class '<em>Function Call Elements</em>'.
+   * Returns a new object of class '<em>Param Assignment Elements</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Function Call Elements</em>'.
+   * @return a new object of class '<em>Param Assignment Elements</em>'.
    * @generated
    */
-  FunctionCallElements createFunctionCallElements();
+  ParamAssignmentElements createParamAssignmentElements();
 
   /**
    * Returns a new object of class '<em>Param Assignment</em>'.

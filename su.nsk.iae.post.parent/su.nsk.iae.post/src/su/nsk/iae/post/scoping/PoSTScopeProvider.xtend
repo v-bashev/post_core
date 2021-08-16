@@ -41,6 +41,8 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 				return context.scopeForStatementExpression_Variable
 			case ePackage.functionCall_Function:
 				return context.scopeForFunctionCall_Function
+			case ePackage.varInitDeclaration_Fb:
+				return context.scopeForVarInitDeclaration_Fb
 			case ePackage.paramAssignment_Variable:
 				return context.scopeForParamAssignment_Variable
 			case ePackage.attachVariableConfElement_ProgramVar:
@@ -72,7 +74,21 @@ class PoSTScopeProvider extends AbstractPoSTScopeProvider {
 	}
 	
 	private def IScope scopeForFunctionCall_Function(EObject context) {
-		return scopeFor(libraryProvider.getLibraryFunctions(context))
+		val model = context.getContainerOfType(Model)
+		val res = Stream.concat(
+			model.funs.stream,
+			libraryProvider.getLibraryFunctions(context).stream
+		).collect(Collectors.toList)
+		return scopeFor(res)
+	}
+	
+	private def IScope scopeForVarInitDeclaration_Fb(EObject context) {
+		val model = context.getContainerOfType(Model)
+		val res = Stream.concat(
+			model.fbs.stream,
+			libraryProvider.getLibraryFunctionBlocks(context).stream
+		).collect(Collectors.toList)
+		return scopeFor(res)
 	}
 	
 	private def IScope scopeForParamAssignment_Variable(EObject context) {

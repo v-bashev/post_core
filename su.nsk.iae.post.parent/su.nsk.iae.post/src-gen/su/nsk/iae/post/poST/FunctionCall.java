@@ -51,12 +51,12 @@ public interface FunctionCall extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Args</em>' containment reference.
-   * @see #setArgs(FunctionCallElements)
+   * @see #setArgs(ParamAssignmentElements)
    * @see su.nsk.iae.post.poST.PoSTPackage#getFunctionCall_Args()
    * @model containment="true"
    * @generated
    */
-  FunctionCallElements getArgs();
+  ParamAssignmentElements getArgs();
 
   /**
    * Sets the value of the '{@link su.nsk.iae.post.poST.FunctionCall#getArgs <em>Args</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface FunctionCall extends EObject
    * @see #getArgs()
    * @generated
    */
-  void setArgs(FunctionCallElements value);
+  void setArgs(ParamAssignmentElements value);
 
 } // FunctionCall

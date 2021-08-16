@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import su.nsk.iae.post.poST.ArraySpecificationInit;
+import su.nsk.iae.post.poST.FunctionBlock;
 import su.nsk.iae.post.poST.PoSTPackage;
 import su.nsk.iae.post.poST.SimpleSpecificationInit;
 import su.nsk.iae.post.poST.VarInitDeclaration;
@@ -29,6 +30,7 @@ import su.nsk.iae.post.poST.VarList;
  *   <li>{@link su.nsk.iae.post.poST.impl.VarInitDeclarationImpl#getVarList <em>Var List</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.VarInitDeclarationImpl#getSpec <em>Spec</em>}</li>
  *   <li>{@link su.nsk.iae.post.poST.impl.VarInitDeclarationImpl#getArrSpec <em>Arr Spec</em>}</li>
+ *   <li>{@link su.nsk.iae.post.poST.impl.VarInitDeclarationImpl#getFb <em>Fb</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,6 +66,16 @@ public class VarInitDeclarationImpl extends MinimalEObjectImpl.Container impleme
    * @ordered
    */
   protected ArraySpecificationInit arrSpec;
+
+  /**
+   * The cached value of the '{@link #getFb() <em>Fb</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFb()
+   * @generated
+   * @ordered
+   */
+  protected FunctionBlock fb;
 
   /**
    * <!-- begin-user-doc -->
@@ -242,6 +254,51 @@ public class VarInitDeclarationImpl extends MinimalEObjectImpl.Container impleme
    * @generated
    */
   @Override
+  public FunctionBlock getFb()
+  {
+    if (fb != null && fb.eIsProxy())
+    {
+      InternalEObject oldFb = (InternalEObject)fb;
+      fb = (FunctionBlock)eResolveProxy(oldFb);
+      if (fb != oldFb)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PoSTPackage.VAR_INIT_DECLARATION__FB, oldFb, fb));
+      }
+    }
+    return fb;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionBlock basicGetFb()
+  {
+    return fb;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setFb(FunctionBlock newFb)
+  {
+    FunctionBlock oldFb = fb;
+    fb = newFb;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PoSTPackage.VAR_INIT_DECLARATION__FB, oldFb, fb));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -272,6 +329,9 @@ public class VarInitDeclarationImpl extends MinimalEObjectImpl.Container impleme
         return getSpec();
       case PoSTPackage.VAR_INIT_DECLARATION__ARR_SPEC:
         return getArrSpec();
+      case PoSTPackage.VAR_INIT_DECLARATION__FB:
+        if (resolve) return getFb();
+        return basicGetFb();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -294,6 +354,9 @@ public class VarInitDeclarationImpl extends MinimalEObjectImpl.Container impleme
         return;
       case PoSTPackage.VAR_INIT_DECLARATION__ARR_SPEC:
         setArrSpec((ArraySpecificationInit)newValue);
+        return;
+      case PoSTPackage.VAR_INIT_DECLARATION__FB:
+        setFb((FunctionBlock)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -318,6 +381,9 @@ public class VarInitDeclarationImpl extends MinimalEObjectImpl.Container impleme
       case PoSTPackage.VAR_INIT_DECLARATION__ARR_SPEC:
         setArrSpec((ArraySpecificationInit)null);
         return;
+      case PoSTPackage.VAR_INIT_DECLARATION__FB:
+        setFb((FunctionBlock)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -338,6 +404,8 @@ public class VarInitDeclarationImpl extends MinimalEObjectImpl.Container impleme
         return spec != null;
       case PoSTPackage.VAR_INIT_DECLARATION__ARR_SPEC:
         return arrSpec != null;
+      case PoSTPackage.VAR_INIT_DECLARATION__FB:
+        return fb != null;
     }
     return super.eIsSet(featureID);
   }
