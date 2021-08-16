@@ -3,7 +3,7 @@ Automatic-Module-Name: su.nsk.iae.post.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: su.nsk.iae.post.ui
 Bundle-Vendor: Institute of Automation and Electrometry SB RAS
-Bundle-Version: 0.2.1
+Bundle-Version: 0.2.2
 Bundle-SymbolicName: su.nsk.iae.post.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: su.nsk.iae.post,

@@ -1,11 +1,7 @@
 package su.nsk.iae.post.ui.wizard;
 
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -15,8 +11,8 @@ import org.eclipse.xtext.ui.util.ProjectFactory;
 import org.eclipse.xtext.ui.wizard.template.AbstractProjectTemplate;
 import org.eclipse.xtext.ui.wizard.template.IProjectGenerator;
 import org.eclipse.xtext.ui.wizard.template.ProjectTemplate;
+import org.eclipse.xtext.util.Files;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.osgi.framework.Bundle;
@@ -43,34 +39,22 @@ public final class EmptyTemplateProject extends AbstractProjectTemplate {
         _folders_2.add(PoSTProjectTemplateProvider.libFolder);
         final Bundle bundle = Platform.getBundle("su.nsk.iae.post.ui");
         Path _path = new Path("/resources/examples/Template.post");
-        final URL templateUrl = FileLocator.resolve(FileLocator.find(bundle, _path, null));
+        final InputStream templateStream = FileLocator.resolve(FileLocator.find(bundle, _path, null)).openStream();
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(PoSTProjectTemplateProvider.srcFolder);
         _builder.append("/template.post");
-        this.addFile(it, _builder, Files.readString(Paths.get(templateUrl.toURI())));
-        Path _path_1 = new Path("/resources/library");
-        final URL libUrl = FileLocator.resolve(FileLocator.find(bundle, _path_1, null));
-        final Predicate<java.nio.file.Path> _function_1 = (java.nio.file.Path file) -> {
-          return Files.isRegularFile(file);
-        };
-        final Consumer<java.nio.file.Path> _function_2 = (java.nio.file.Path file) -> {
-          try {
+        this.addFile(it, _builder, Files.readStreamIntoString(templateStream));
+        for (final String lib : PoSTProjectTemplateProvider.libFiles) {
+          {
+            Path _path_1 = new Path(("/resources/library/" + lib));
+            final InputStream libStream = FileLocator.resolve(FileLocator.find(bundle, _path_1, null)).openStream();
             StringConcatenation _builder_1 = new StringConcatenation();
             _builder_1.append(PoSTProjectTemplateProvider.libFolder);
             _builder_1.append("/");
-            int _size = IterableExtensions.size(file);
-            int _minus = (_size - 2);
-            java.nio.file.Path _name = file.getName(_minus);
-            _builder_1.append(_name);
-            _builder_1.append("/");
-            java.nio.file.Path _last = IterableExtensions.<java.nio.file.Path>last(file);
-            _builder_1.append(_last);
-            this.addFile(it, _builder_1, Files.readString(file));
-          } catch (Throwable _e) {
-            throw Exceptions.sneakyThrow(_e);
+            _builder_1.append(lib);
+            this.addFile(it, _builder_1, Files.readStreamIntoString(libStream));
           }
-        };
-        Files.walk(Paths.get(libUrl.toURI())).filter(_function_1).forEach(_function_2);
+        }
       } catch (Throwable _e) {
         throw Exceptions.sneakyThrow(_e);
       }
