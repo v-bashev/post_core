@@ -67,7 +67,7 @@ class PoSTLibraryProvider {
 		if (libDir === null) {
 			context.initLibDirPath
 		}
-		if (libDir.exists && check—hanges) {
+		if (libDir.exists && checkChanges) {
 			parseLibrary
 		}
 	}
@@ -145,7 +145,7 @@ class PoSTLibraryProvider {
 		return res
 	}
 	
-	private def constructVarInitDeclaration(String name, String type) {
+	private def VarInitDeclaration constructVarInitDeclaration(String name, String type) {
 		val symbolicVariable = eFactory.createSymbolicVariable()
 		symbolicVariable.name = name
 		val varList = eFactory.createVarList()
@@ -158,13 +158,13 @@ class PoSTLibraryProvider {
 		return varInitDeclaration
 	}
 	
-	private def initLibDirPath(EObject context) {
+	private def void initLibDirPath(EObject context) {
 		val project = ResourcesPlugin.workspace.root.getProject(context.eResource.URI.segment(1))
 		libDir = project.getFolder(libDirName)
 		libDirPath = Paths.get(libDir.locationURI)
 	}
 	
-	private def boolean check—hanges() {
+	private def boolean checkChanges() {
 		val newHash = Files.walk(libDirPath).filter([file | Files.isRegularFile(file)]).count
 		if (hash != newHash) {
 			hash = newHash

@@ -105,7 +105,7 @@ public class PoSTLibraryProvider {
     if ((this.libDir == null)) {
       this.initLibDirPath(context);
     }
-    if ((this.libDir.exists() && this.check—hanges())) {
+    if ((this.libDir.exists() && this.checkChanges())) {
       this.parseLibrary();
     }
   }
@@ -221,17 +221,13 @@ public class PoSTLibraryProvider {
     return varInitDeclaration;
   }
   
-  private Path initLibDirPath(final EObject context) {
-    Path _xblockexpression = null;
-    {
-      final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(context.eResource().getURI().segment(1));
-      this.libDir = project.getFolder(PoSTLibraryProvider.libDirName);
-      _xblockexpression = this.libDirPath = Paths.get(this.libDir.getLocationURI());
-    }
-    return _xblockexpression;
+  private void initLibDirPath(final EObject context) {
+    final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(context.eResource().getURI().segment(1));
+    this.libDir = project.getFolder(PoSTLibraryProvider.libDirName);
+    this.libDirPath = Paths.get(this.libDir.getLocationURI());
   }
   
-  private boolean check—hanges() {
+  private boolean checkChanges() {
     try {
       final Predicate<Path> _function = (Path file) -> {
         return Files.isRegularFile(file);

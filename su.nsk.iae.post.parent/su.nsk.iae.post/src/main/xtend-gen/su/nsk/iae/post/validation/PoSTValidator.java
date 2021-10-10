@@ -288,16 +288,14 @@ public class PoSTValidator extends AbstractPoSTValidator {
   
   @Check
   public void checkAttachVariableConfElement_AttachVarType(final AttachVariableConfElement ele) {
-    if (((ele.getProgramVar() instanceof SymbolicVariable) && (ele.getAttVar() instanceof SymbolicVariable))) {
-      String _varType = this.getVarType(ele.getProgramVar());
-      String _varType_1 = this.getVarType(ele.getAttVar());
-      boolean _notEquals = (!Objects.equal(_varType, _varType_1));
-      if (_notEquals) {
-        String _varType_2 = this.getVarType(ele.getProgramVar());
-        String _plus = ("Attach error: Variable must be " + _varType_2);
-        this.error(_plus, 
-          this.ePackage.getAttachVariableConfElement_AttVar());
-      }
+    String _varType = this.getVarType(ele.getProgramVar());
+    String _varType_1 = this.getVarType(ele.getAttVar());
+    boolean _notEquals = (!Objects.equal(_varType, _varType_1));
+    if (_notEquals) {
+      String _varType_2 = this.getVarType(ele.getProgramVar());
+      String _plus = ("Attach error: Variable must be " + _varType_2);
+      this.error(_plus, 
+        this.ePackage.getAttachVariableConfElement_AttVar());
     }
   }
   

@@ -220,11 +220,9 @@ class PoSTValidator extends AbstractPoSTValidator {
 	
 	@Check
 	def checkAttachVariableConfElement_AttachVarType(AttachVariableConfElement ele) {
-		if ((ele.programVar instanceof SymbolicVariable) && (ele.attVar instanceof SymbolicVariable)) {
-			if (ele.programVar.varType != ele.attVar.varType) {
-				error("Attach error: Variable must be " + ele.programVar.varType,
-						ePackage.attachVariableConfElement_AttVar)
-			}
+		if (ele.programVar.varType != ele.attVar.varType) {
+			error("Attach error: Variable must be " + ele.programVar.varType,
+					ePackage.attachVariableConfElement_AttVar)
 		}
 	}
 	
