@@ -1,0 +1,584 @@
+grammar su.nsk.iae.post.PoST hidden(WS, ML_COMMENT, SL_COMMENT)
+
+generate poST "http://www.nsk.su/iae/post/PoST"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Model:
+	(conf=Configuration)? &
+	(globVars+=GlobalVarDeclaration)* &
+	(programs+=Program)* &
+	(fbs+=FunctionBlock)* &
+	(funs+=Function)*;
+	
+/* ======================= START Variable ======================= */
+
+Variable:
+	SymbolicVariable | ProcessVariable | Process | TemplateProcessConfElement;
+
+/* ======================= END Variable ======================= */
+
+/* ======================= START Configuration ======================= */
+
+Configuration:
+	'CONFIGURATION' name=ID
+		(
+			confGlobVars+=GlobalVarDeclaration |
+			resources+=Resource
+		)*
+	'END_CONFIGURATION';
+
+Resource:
+	'RESOURCE' name=ID 'ON' type=ID
+		(resGlobVars+=GlobalVarDeclaration)*
+		resStatement=SingleResource
+	'END_RESOURCE';
+
+SingleResource:
+	{SingleResource} 
+	(
+		(tasks+=Task ';') |
+		(programConfs+=ProgramConfiguration ';')
+	)*;
+
+Task:
+	'TASK' name=ID '(' init=TaskInitialization ')';
+
+TaskInitialization:
+	(SINGLE_DECLARATION ':=' single=Constant) | (INTERVAL_DECLARATION ':=' interval=Constant) 
+	',' PRIORITY_DECLARATION ':=' priority=INTEGER;
+
+terminal SINGLE_DECLARATION:
+	'SINGLE';
+
+terminal INTERVAL_DECLARATION:
+	'INTERVAL';
+
+terminal PRIORITY_DECLARATION:
+	'PRIORITY';
+
+ProgramConfiguration:
+	'PROGRAM' name=ID ('WITH' task=[Task])? ':' program=[Program] ('(' args=ProgramConfElements ')')?;
+
+ProgramConfElements:
+	elements+=ProgramConfElement (',' elements+=ProgramConfElement)*;
+
+ProgramConfElement:
+	AttachVariableConfElement | TemplateProcessConfElement;
+
+AttachVariableConfElement:
+	programVar=[SymbolicVariable] assig=AssignmentType (attVar=[SymbolicVariable] | const=Constant);
+
+enum AssignmentType:
+	in=':=' | out='=>';
+
+/* ======================= END Configuration ======================= */
+
+/* ======================= START Template Configuration ======================= */
+
+TemplateProcessConfElement:
+	'PROCESS' (active?='ACTIVE')? name=ID ':' process=[Process] ('(' args=TemplateProcessElements ')')?;
+
+TemplateProcessElements:
+	elements+=TemplateProcessAttachVariableConfElement (',' elements+=TemplateProcessAttachVariableConfElement)*;
+	
+TemplateProcessAttachVariableConfElement:
+	programVar=[Variable] assig=AssignmentType (attVar=[Variable] | const=Constant);
+
+/* ======================= END Template Configuration ======================= */
+
+/* ======================= START Program ======================= */
+	
+Program: 
+	'PROGRAM' name=ID
+		(
+			progInVars+=InputVarDeclaration | 
+			progOutVars+=OutputVarDeclaration |
+			progInOutVars+=InputOutputVarDeclaration |
+			progVars+=VarDeclaration |
+			progTempVars+=TempVarDeclaration |
+			progExternVars+=ExternalVarDeclaration
+		)*
+		(processes+=Process )*
+	'END_PROGRAM';
+
+/* ======================= END Program ======================= */
+
+/* ======================= START FB ======================= */
+	
+FunctionBlock: 
+	'FUNCTION_BLOCK' name=ID
+		(
+			fbInVars+=InputVarDeclaration | 
+			fbOutVars+=OutputVarDeclaration |
+			fbInOutVars+=InputOutputVarDeclaration |
+			fbVars+=VarDeclaration |
+			fbTempVars+=TempVarDeclaration |
+			fbExternVars+=ExternalVarDeclaration
+		)*
+		(processes+=Process )*
+	'END_FUNCTION_BLOCK';
+
+/* ======================= END FB ======================= */
+
+/* ======================= START Function ======================= */
+
+Function:
+	'FUNCTION' name=ID ':' type=DataTypeName
+		(
+			funInVars+=InputVarDeclaration | 
+			funOutVars+=OutputVarDeclaration |
+			funInOutVars+=InputOutputVarDeclaration |
+			funVars+=VarDeclaration
+		)*
+		statement=StatementList
+	'END_FUNCTION'
+;
+
+/* ======================= END Function ======================= */
+
+/* ======================= START Process and State  ======================= */
+
+Process: 
+	'PROCESS' name=ID 
+		(
+			procInVars+=InputVarDeclaration | 
+			procOutVars+=OutputVarDeclaration |
+			procInOutVars+=InputOutputVarDeclaration |
+			procProcessVars+=ProcessVarDeclaration |
+			procVars+=VarDeclaration | 
+			procTempVars+=TempVarDeclaration
+		)*
+		(states+=State)*
+	'END_PROCESS';
+
+
+State:
+	'STATE' name=ID (looped?='LOOPED')?
+		statement=StatementList
+		timeout=TimeoutStatement?
+	'END_STATE';
+	
+/* ======================= END Process and State  ======================= */
+	
+/* ======================= START poST Statements ======================= */
+
+SetStateStatement:
+	{SetStateStatement} 'SET' ('STATE' state=[State] | next?='NEXT');
+
+ProcessStatements:
+	StartProcessStatement | StopProcessStatement | ErrorProcessStatement;
+
+ProcessStatusExpression:
+	'PROCESS' process=[Variable] 'IN' 'STATE' (active?='ACTIVE' | inactive?="INACTIVE" | stop?='STOP' | error?='ERROR');
+
+StartProcessStatement:
+	{StartProcessStatement} ('START' 'PROCESS' process=[Variable]) | {StartProcessStatement} 'RESTART';
+
+StopProcessStatement:
+	{StopProcessStatement} 'STOP' ('PROCESS' process=[Variable])?;
+
+ErrorProcessStatement:
+	{ErrorProcessStatement} 'ERROR' ('PROCESS' process=[Variable])?;
+
+TimeoutStatement:
+	'TIMEOUT' (const=Constant | variable=[SymbolicVariable]) 'THEN'
+		statement=StatementList
+	'END_TIMEOUT';
+
+ResetTimerStatement:
+	{ResetTimerStatement} 'RESET' 'TIMER';
+
+/* ======================= END poST Statements ======================= */
+
+/* ======================= START Subprogram Call ======================= */
+
+FBInvocation:
+	fb=[SymbolicVariable] '(' (args=ParamAssignmentElements)? ')';
+
+FunctionCall:
+	function=[Function] '(' (args=ParamAssignmentElements)? ')';
+
+ParamAssignmentElements:
+	elements+=ParamAssignment (',' elements+=ParamAssignment)*;
+
+ParamAssignment:
+	variable=[SymbolicVariable] assig=AssignmentType value=Expression;
+
+/* ======================= END Subprogram Call ======================= */
+	
+/* ======================= START Expression ======================= */
+
+Expression:
+	XorExpression ({Expression.left=current} OR_OPERATOR right=XorExpression)*;
+
+terminal OR_OPERATOR:
+	'OR';
+
+XorExpression:
+	AndExpression ({XorExpression.left=current} XOR_OPERATOR right=AndExpression)*;
+
+terminal XOR_OPERATOR:
+	'XOR';
+
+AndExpression:
+	CompExpression ({AndExpression.left=current} AND_OPERATOR right=CompExpression)*;
+
+terminal AND_OPERATOR:
+	'&' | 'AND';
+
+CompExpression:
+	EquExpression ({CompExpression.left=current} compOp=CompOperator right=EquExpression)*;
+
+enum CompOperator:
+	EQUAL='=' | NOT_EQUAL='<>';
+
+EquExpression:
+	AddExpression ({EquExpression.left=current} equOp=EquOperator right=AddExpression)*;
+
+enum EquOperator:
+	LESS='<' | GREATER='>' | LESS_EQU='<=' | GREATER_EQU='>=';
+
+AddExpression:
+	MulExpression ({AddExpression.left=current} addOp=AddOperator right=MulExpression)*;
+
+enum AddOperator:
+	PLUS='+' | MINUS='-';
+
+MulExpression:
+	PowerExpression ({MulExpression.left=current} mulOp=MulOperator right=PowerExpression)*;
+
+enum MulOperator:
+	MUL='*' | DIV='/' | MOD='MOD';
+
+PowerExpression:
+	UnaryExpression ({PowerExpression.left=current} POWER_OPERATOR right=UnaryExpression)*;
+
+terminal POWER_OPERATOR:
+	'**';
+
+UnaryExpression:
+	PrimaryExpression | (unOp=UnaryOperator right=PrimaryExpression);
+
+enum UnaryOperator:
+	NOT='NOT' | UNMINUS='-';
+
+PrimaryExpression:
+	const=Constant | variable=[SymbolicVariable] | array=ArrayVariable | procStatus=ProcessStatusExpression | funCall=FunctionCall | '(' nestExpr=Expression ')';
+
+/* ======================= END Expression ======================= */
+
+/* ======================= START ST Statements ======================= */
+
+StatementList:
+	{StatementList} (statements+=Statement)*;
+
+Statement:
+	(AssignmentStatement ';') |
+	SelectionStatement |
+	IterationStatement |
+	(FBInvocation ';') |
+	(SubprogramControlStatement ';') |
+	(ExitStatement ';') |
+	(ProcessStatements ';') |
+	(SetStateStatement ';') |
+	(ResetTimerStatement ';');
+
+AssignmentStatement:
+	(variable=[SymbolicVariable] | array=ArrayVariable) ':=' value=Expression;
+
+SelectionStatement:
+	IfStatement | CaseStatement;
+
+IfStatement:
+	'IF' mainCond=Expression 'THEN'
+		mainStatement=StatementList
+	('ELSIF' elseIfCond+=Expression 'THEN'
+		elseIfStatements+=StatementList
+	)*
+	('ELSE'
+		elseStatement=StatementList
+	)?
+	'END_IF';
+
+CaseStatement:
+	'CASE' cond=Expression 'OF'
+		(caseElements+=CaseElement)+
+	('ELSE'
+		elseStatement=StatementList
+	)?
+	'END_CASE';
+
+CaseElement:
+	caseList=CaseList ':' statement=StatementList;
+
+CaseList:
+	caseListElement+=SignedInteger (',' caseListElement+=SignedInteger)*;
+
+IterationStatement:
+	ForStatement | WhileStatement | RepeatStatement;
+
+ForStatement:
+	'FOR' variable=[SymbolicVariable] ':=' forList=ForList 'DO'
+		statement=StatementList
+	'END_FOR';
+
+ForList:
+	start=Expression 'TO' end=Expression ('BY' step=Expression)?;
+
+WhileStatement:
+	'WHILE' cond=Expression 'DO'
+		statement=StatementList
+	'END_WHILE';
+
+RepeatStatement:
+	'REPEAT'
+		statement=StatementList
+	'UNTIL' cond=Expression 'END_REPEAT';
+
+SubprogramControlStatement:
+	{SubprogramControlStatement} 'RETURN';
+	
+
+ExitStatement:
+	{ExitStatement} 'EXIT';
+
+/* ======================= END ST Statements ======================= */
+	
+/* ======================= START Variables ======================= */
+
+SymbolicVariable:
+	name=ID;
+	
+SimpleSpecificationInit:
+	{SimpleSpecificationInit} type=DataTypeName (':=' value=Expression)?;
+	
+VarList:
+	vars+=SymbolicVariable (',' vars+=SymbolicVariable)*;
+
+VarInitDeclaration:
+	varList=VarList ':' (spec=SimpleSpecificationInit | arrSpec=ArraySpecificationInit | fb=[FunctionBlock]);
+
+InputVarDeclaration:
+	{InputVarDeclaration}
+	'VAR_INPUT'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+OutputVarDeclaration:
+	{OutputVarDeclaration}
+	'VAR_OUTPUT'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+InputOutputVarDeclaration:
+	{InputOutputVarDeclaration}
+	'VAR_IN_OUT'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+VarDeclaration:
+	{VarDeclaration}
+	'VAR' (const?='CONSTANT')?
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+TempVarDeclaration:
+	{TempVarDeclaration}
+	'VAR_TEMP'
+		(vars+=VarInitDeclaration ';')*
+	'END_VAR';
+
+ExternalVarInitDeclaration:
+	varList=VarList ':' type=DataTypeName;
+	
+ExternalVarDeclaration:
+	{ExternalVarDeclaration}
+	'VAR_EXTERNAL' (const?='CONSTANT')?
+		(vars+=ExternalVarInitDeclaration ';')*
+	'END_VAR';
+	
+GlobalVarInitDeclaration:
+	varList=VarList 'AT' location=DIRECT_VARIABLE ':' type=DataTypeName;
+
+GlobalVarDeclaration:
+	{GlobalVarDeclaration}
+	'VAR_GLOBAL' (const?='CONSTANT')?
+		(
+			(varsSimple+=VarInitDeclaration ';') | 
+			(varsAs+=GlobalVarInitDeclaration ';')
+		)*
+	'END_VAR';
+
+/* ======================= END Variables ======================= */
+
+/* ======================= START poST Variables ======================= */
+
+ProcessVariable:
+	name=ID;
+	
+ProcessVarList:
+	vars+=ProcessVariable (',' vars+=ProcessVariable)*;
+	
+ProcessVarInitDeclaration:
+	varList=ProcessVarList ':' process=[Process];
+
+ProcessVarDeclaration:
+	{ProcessVarDeclaration}
+	'VAR_PROCESS'
+		(vars+=ProcessVarInitDeclaration ';')*
+	'END_VAR';
+
+/* ======================= END poST Variables ======================= */
+
+/* ======================= START Array ======================= */
+
+ArrayVariable:
+	variable=[SymbolicVariable] '[' index=Expression ']';
+	
+ArraySpecificationInit:
+	init=ArraySpecification (':=' values=ArrayInitialization)?;
+
+ArraySpecification:
+	'ARRAY' '[' (interval=ArrayInterval | '*') ']' 'OF' type=DataTypeName;
+	
+ArrayInterval:
+	start=Expression '..' end=Expression;
+
+ArrayInitialization :
+	'[' elements+=Expression (',' elements+=Expression)* ']';
+
+/* ======================= END Array ======================= */
+	
+/* ======================= START Time Literals ======================= */
+
+TimeLiteral:
+	 TIME_PREF_LITERAL '#' '-'? interval=INTERVAL;
+
+terminal TIME_PREF_LITERAL:
+	'T';
+
+terminal INTERVAL returns ecore::EString:
+	(INTEGER 'd')? (INTEGER 'h')? (INTEGER 'm')? (INTEGER 's')? (INTEGER 'ms')?;
+
+/* ======================= END Time Literals ======================= */
+
+/* ======================= START Direct Variables ======================= */
+
+terminal DIRECT_VARIABLE returns ecore::EString:
+	'%' DIRECT_TYPE_PREFIX DIRECT_SIZE_PREFIX INTEGER ('.' INTEGER)*;
+
+terminal fragment DIRECT_TYPE_PREFIX:
+	'I' | 'Q' | 'M';
+
+terminal fragment DIRECT_SIZE_PREFIX:
+	'X' | 'B' | 'W' | 'D' | 'L';
+	
+/* ======================= END Direct Variables ======================= */
+	
+/* ======================= START Elementary data types ======================= */
+
+DataTypeName returns ecore::EString:
+	NumericTypeName | BIT_STRING_TYPE_NAME | TIME_TYPE_NAME| STRING_TYPE_NAME;
+
+NumericTypeName returns ecore::EString:
+	IntegerTypeName | REAL_TYPE_NAME;
+
+IntegerTypeName returns ecore::EString:
+	SIGNED_INTEGER_TYPE_NAME | UNSIGNED_INTEGER_TYPE_NAME;
+
+terminal SIGNED_INTEGER_TYPE_NAME returns ecore::EString:
+	'SINT' | 'INT' | 'DINT' | 'LINT';
+
+terminal UNSIGNED_INTEGER_TYPE_NAME  returns ecore::EString:
+	'USINT' | 'UINT' | 'UDINT' | 'ULINT';
+
+terminal REAL_TYPE_NAME returns ecore::EString:
+	'REAL' | 'LREAL';
+
+terminal BIT_STRING_TYPE_NAME returns ecore::EString:
+	'BOOL' | 'BYTE' | 'WORD' | 'DWORD' | 'LWORD';
+	
+terminal TIME_TYPE_NAME returns ecore::EString:
+	'TIME';
+	
+terminal STRING_TYPE_NAME returns ecore::EString:
+	'STRING' | 'WSTRING';
+
+/* ======================= END Elementary data types ======================= */
+	
+/* ======================= START Numeric Literals ======================= */
+
+Constant:
+	num=NumericLiteral | 
+	time=TimeLiteral | 
+	oth=(BINARY_INTEGER | 
+		OCTAL_INTEGER | 
+		HEX_INTEGER | 
+		BOOLEAN_LITERAL);
+
+terminal INTEGER returns ecore::EString:
+	DIGIT+;
+
+SignedInteger:
+	(iSig?='-')? value=INTEGER;
+	
+terminal REAL returns ecore::EString:
+	INTEGER '.' INTEGER;
+
+terminal BINARY_INTEGER returns ecore::EString:
+	'2#' BIT+;
+
+terminal OCTAL_INTEGER returns ecore::EString:
+	'8#' OCTAL_DIGIT+;
+
+terminal HEX_INTEGER returns ecore::EString:
+	'16#' HEX_DIGIT+;
+	
+NumericLiteral:
+	IntegerLiteral | RealLiteral;
+
+IntegerLiteral:
+	(type=IntegerTypeName '#')? value=SignedInteger;
+
+RealLiteral:
+	(type=REAL_TYPE_NAME '#')? (rSig?='-')? value=REAL;
+
+terminal BOOLEAN_LITERAL:
+	'TRUE' | 'FALSE';
+
+/* ======================= END Numeric Literals ======================= */
+	
+/* ======================= START Identifiers ======================= */
+
+terminal fragment LETTER:
+	'A'..'Z' | 'a'..'z' | '_';
+
+terminal fragment BIT:
+	'0' | '1';
+	
+terminal fragment OCTAL_DIGIT:
+	'0'..'7';
+
+terminal fragment DIGIT:
+	'0'..'9';
+
+terminal fragment HEX_DIGIT:
+	DIGIT | 'A'..'F';
+
+terminal ID returns ecore::EString:
+	LETTER (LETTER | DIGIT)*;
+
+terminal ML_COMMENT:
+    '/*' -> '*/' | '(*' -> '*)';
+ 
+terminal SL_COMMENT:
+    '//' !('\n'|'\r')* ('\r'? '\n')?;
+ 
+terminal WS:
+    (' '|'\t'|'\r'|'\n')+;
+ 
+terminal ANY_OTHER:
+    .;
+
+/* ======================= END Identifiers ======================= */
