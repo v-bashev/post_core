@@ -4,6 +4,7 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -23,12 +24,15 @@ public class PoSTGenerator extends AbstractGenerator {
   
   public static void initGenerators() {
     try {
-      final IConfigurationElement[] configuration = Platform.getExtensionRegistry().getConfigurationElementsFor(PoSTGenerator.EXTENSION_ID);
-      for (final IConfigurationElement el : configuration) {
-        {
-          final Object obj = el.createExecutableExtension("class");
-          if ((obj instanceof IPoSTGenerator)) {
-            PoSTGenerator.generators.add(((IPoSTGenerator)obj));
+      final IExtensionRegistry platformExtension = Platform.getExtensionRegistry();
+      if ((platformExtension != null)) {
+        final IConfigurationElement[] configuration = platformExtension.getConfigurationElementsFor(PoSTGenerator.EXTENSION_ID);
+        for (final IConfigurationElement el : configuration) {
+          {
+            final Object obj = el.createExecutableExtension("class");
+            if ((obj instanceof IPoSTGenerator)) {
+              PoSTGenerator.generators.add(((IPoSTGenerator)obj));
+            }
           }
         }
       }

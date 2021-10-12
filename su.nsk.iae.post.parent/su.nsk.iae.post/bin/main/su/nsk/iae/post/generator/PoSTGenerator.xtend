@@ -15,11 +15,14 @@ class PoSTGenerator extends AbstractGenerator {
 	static final List<IPoSTGenerator> generators = new ArrayList
 	
 	static def void initGenerators() {
-		val configuration = Platform.extensionRegistry.getConfigurationElementsFor(EXTENSION_ID)
-		for (el : configuration) {
-			val obj = el.createExecutableExtension("class")
-			if (obj instanceof IPoSTGenerator) {
-				generators.add(obj)
+		val platformExtension = Platform.extensionRegistry
+		if (platformExtension !== null) {
+			val configuration = platformExtension.getConfigurationElementsFor(EXTENSION_ID)
+			for (el : configuration) {
+				val obj = el.createExecutableExtension("class")
+				if (obj instanceof IPoSTGenerator) {
+					generators.add(obj)
+				}
 			}
 		}
 	}
