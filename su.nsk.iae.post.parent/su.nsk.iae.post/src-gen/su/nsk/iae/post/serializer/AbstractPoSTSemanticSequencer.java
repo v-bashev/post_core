@@ -25,6 +25,7 @@ import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
+import su.nsk.iae.post.poST.CaseListElement;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
 import su.nsk.iae.post.poST.Configuration;
@@ -139,6 +140,9 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 				return; 
 			case PoSTPackage.CASE_LIST:
 				sequence_CaseList(context, (CaseList) semanticObject); 
+				return; 
+			case PoSTPackage.CASE_LIST_ELEMENT:
+				sequence_CaseListElement(context, (CaseListElement) semanticObject); 
 				return; 
 			case PoSTPackage.CASE_STATEMENT:
 				sequence_CaseStatement(context, (CaseStatement) semanticObject); 
@@ -531,10 +535,22 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Contexts:
+	 *     CaseListElement returns CaseListElement
+	 *
+	 * Constraint:
+	 *     (num=SignedInteger | variable=[SymbolicVariable|ID])
+	 */
+	protected void sequence_CaseListElement(ISerializationContext context, CaseListElement semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     CaseList returns CaseList
 	 *
 	 * Constraint:
-	 *     (caseListElement+=SignedInteger caseListElement+=SignedInteger*)
+	 *     (caseListElement+=CaseListElement caseListElement+=CaseListElement*)
 	 */
 	protected void sequence_CaseList(ISerializationContext context, CaseList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -548,7 +564,7 @@ public abstract class AbstractPoSTSemanticSequencer extends AbstractDelegatingSe
 	 *     CaseStatement returns CaseStatement
 	 *
 	 * Constraint:
-	 *     (cond=Expression caseElements+=CaseElement+ elseStatement=StatementList?)
+	 *     (cond=Expression caseElements+=CaseElement* elseStatement=StatementList?)
 	 */
 	protected void sequence_CaseStatement(ISerializationContext context, CaseStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
