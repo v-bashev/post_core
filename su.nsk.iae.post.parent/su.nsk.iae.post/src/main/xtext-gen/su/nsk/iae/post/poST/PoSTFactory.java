@@ -465,6 +465,15 @@ public interface PoSTFactory extends EFactory
   CaseList createCaseList();
 
   /**
+   * Returns a new object of class '<em>Case List Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Case List Element</em>'.
+   * @generated
+   */
+  CaseListElement createCaseListElement();
+
+  /**
    * Returns a new object of class '<em>Iteration Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

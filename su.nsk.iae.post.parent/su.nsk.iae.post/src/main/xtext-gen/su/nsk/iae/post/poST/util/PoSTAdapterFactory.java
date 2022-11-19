@@ -21,6 +21,7 @@ import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
+import su.nsk.iae.post.poST.CaseListElement;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
 import su.nsk.iae.post.poST.Configuration;
@@ -402,6 +403,11 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCaseList(CaseList object)
       {
         return createCaseListAdapter();
+      }
+      @Override
+      public Adapter caseCaseListElement(CaseListElement object)
+      {
+        return createCaseListElementAdapter();
       }
       @Override
       public Adapter caseIterationStatement(IterationStatement object)
@@ -1331,6 +1337,21 @@ public class PoSTAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCaseListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link su.nsk.iae.post.poST.CaseListElement <em>Case List Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see su.nsk.iae.post.poST.CaseListElement
+   * @generated
+   */
+  public Adapter createCaseListElementAdapter()
   {
     return null;
   }

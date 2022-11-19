@@ -4034,7 +4034,7 @@ ruleCaseStatement returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)+
+		)*
 		(
 			otherlv_4='ELSE'
 			{
@@ -4147,9 +4147,9 @@ ruleCaseList returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCaseListAccess().getCaseListElementSignedIntegerParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getCaseListAccess().getCaseListElementCaseListElementParserRuleCall_0_0());
 				}
-				lv_caseListElement_0_0=ruleSignedInteger
+				lv_caseListElement_0_0=ruleCaseListElement
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCaseListRule());
@@ -4158,7 +4158,7 @@ ruleCaseList returns [EObject current=null]
 						$current,
 						"caseListElement",
 						lv_caseListElement_0_0,
-						"su.nsk.iae.post.PoST.SignedInteger");
+						"su.nsk.iae.post.PoST.CaseListElement");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -4171,9 +4171,9 @@ ruleCaseList returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getCaseListAccess().getCaseListElementSignedIntegerParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getCaseListAccess().getCaseListElementCaseListElementParserRuleCall_1_1_0());
 					}
-					lv_caseListElement_2_0=ruleSignedInteger
+					lv_caseListElement_2_0=ruleCaseListElement
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getCaseListRule());
@@ -4182,12 +4182,64 @@ ruleCaseList returns [EObject current=null]
 							$current,
 							"caseListElement",
 							lv_caseListElement_2_0,
-							"su.nsk.iae.post.PoST.SignedInteger");
+							"su.nsk.iae.post.PoST.CaseListElement");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleCaseListElement
+entryRuleCaseListElement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getCaseListElementRule()); }
+	iv_ruleCaseListElement=ruleCaseListElement
+	{ $current=$iv_ruleCaseListElement.current; }
+	EOF;
+
+// Rule CaseListElement
+ruleCaseListElement returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getCaseListElementAccess().getNumSignedIntegerParserRuleCall_0_0());
+				}
+				lv_num_0_0=ruleSignedInteger
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCaseListElementRule());
+					}
+					set(
+						$current,
+						"num",
+						lv_num_0_0,
+						"su.nsk.iae.post.PoST.SignedInteger");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCaseListElementRule());
+					}
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getCaseListElementAccess().getVariableSymbolicVariableCrossReference_1_0());
+				}
+			)
+		)
 	)
 ;
 

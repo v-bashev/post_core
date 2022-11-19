@@ -24,6 +24,7 @@ import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
+import su.nsk.iae.post.poST.CaseListElement;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
 import su.nsk.iae.post.poST.CompOperator;
@@ -453,6 +454,13 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   private EClass caseListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass caseListElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2636,6 +2644,39 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
    * @generated
    */
   @Override
+  public EClass getCaseListElement()
+  {
+    return caseListElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCaseListElement_Num()
+  {
+    return (EReference)caseListElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCaseListElement_Variable()
+  {
+    return (EReference)caseListElementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getIterationStatement()
   {
     return iterationStatementEClass;
@@ -3921,6 +3962,10 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     caseListEClass = createEClass(CASE_LIST);
     createEReference(caseListEClass, CASE_LIST__CASE_LIST_ELEMENT);
 
+    caseListElementEClass = createEClass(CASE_LIST_ELEMENT);
+    createEReference(caseListElementEClass, CASE_LIST_ELEMENT__NUM);
+    createEReference(caseListElementEClass, CASE_LIST_ELEMENT__VARIABLE);
+
     iterationStatementEClass = createEClass(ITERATION_STATEMENT);
     createEReference(iterationStatementEClass, ITERATION_STATEMENT__STATEMENT);
 
@@ -4332,7 +4377,11 @@ public class PoSTPackageImpl extends EPackageImpl implements PoSTPackage
     initEReference(getCaseElement_Statement(), this.getStatementList(), null, "statement", null, 0, 1, CaseElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(caseListEClass, CaseList.class, "CaseList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCaseList_CaseListElement(), this.getSignedInteger(), null, "caseListElement", null, 0, -1, CaseList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCaseList_CaseListElement(), this.getCaseListElement(), null, "caseListElement", null, 0, -1, CaseList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(caseListElementEClass, CaseListElement.class, "CaseListElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCaseListElement_Num(), this.getSignedInteger(), null, "num", null, 0, 1, CaseListElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCaseListElement_Variable(), this.getSymbolicVariable(), null, "variable", null, 0, 1, CaseListElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(iterationStatementEClass, IterationStatement.class, "IterationStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIterationStatement_Statement(), this.getStatementList(), null, "statement", null, 0, 1, IterationStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

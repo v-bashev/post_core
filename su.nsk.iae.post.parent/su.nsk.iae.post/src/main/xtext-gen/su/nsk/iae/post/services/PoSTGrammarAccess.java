@@ -2528,7 +2528,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		
 		//CaseStatement:
 		//    'CASE' cond=Expression 'OF'
-		//        (caseElements+=CaseElement)+
+		//        (caseElements+=CaseElement)*
 		//    ('ELSE'
 		//        elseStatement=StatementList
 		//    )?
@@ -2536,7 +2536,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'CASE' cond=Expression 'OF'
-		//    (caseElements+=CaseElement)+
+		//    (caseElements+=CaseElement)*
 		//('ELSE'
 		//    elseStatement=StatementList
 		//)?
@@ -2555,7 +2555,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//'OF'
 		public Keyword getOFKeyword_2() { return cOFKeyword_2; }
 		
-		//(caseElements+=CaseElement)+
+		//(caseElements+=CaseElement)*
 		public Assignment getCaseElementsAssignment_3() { return cCaseElementsAssignment_3; }
 		
 		//CaseElement
@@ -2613,36 +2613,67 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.CaseList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cCaseListElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cCaseListElementSignedIntegerParserRuleCall_0_0 = (RuleCall)cCaseListElementAssignment_0.eContents().get(0);
+		private final RuleCall cCaseListElementCaseListElementParserRuleCall_0_0 = (RuleCall)cCaseListElementAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cCaseListElementAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cCaseListElementSignedIntegerParserRuleCall_1_1_0 = (RuleCall)cCaseListElementAssignment_1_1.eContents().get(0);
+		private final RuleCall cCaseListElementCaseListElementParserRuleCall_1_1_0 = (RuleCall)cCaseListElementAssignment_1_1.eContents().get(0);
 		
 		//CaseList:
-		//    caseListElement+=SignedInteger (',' caseListElement+=SignedInteger)*;
+		//    caseListElement+=CaseListElement (',' caseListElement+=CaseListElement)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//caseListElement+=SignedInteger (',' caseListElement+=SignedInteger)*
+		//caseListElement+=CaseListElement (',' caseListElement+=CaseListElement)*
 		public Group getGroup() { return cGroup; }
 		
-		//caseListElement+=SignedInteger
+		//caseListElement+=CaseListElement
 		public Assignment getCaseListElementAssignment_0() { return cCaseListElementAssignment_0; }
 		
-		//SignedInteger
-		public RuleCall getCaseListElementSignedIntegerParserRuleCall_0_0() { return cCaseListElementSignedIntegerParserRuleCall_0_0; }
+		//CaseListElement
+		public RuleCall getCaseListElementCaseListElementParserRuleCall_0_0() { return cCaseListElementCaseListElementParserRuleCall_0_0; }
 		
-		//(',' caseListElement+=SignedInteger)*
+		//(',' caseListElement+=CaseListElement)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 		
-		//caseListElement+=SignedInteger
+		//caseListElement+=CaseListElement
 		public Assignment getCaseListElementAssignment_1_1() { return cCaseListElementAssignment_1_1; }
 		
+		//CaseListElement
+		public RuleCall getCaseListElementCaseListElementParserRuleCall_1_1_0() { return cCaseListElementCaseListElementParserRuleCall_1_1_0; }
+	}
+	public class CaseListElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.CaseListElement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cNumAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cNumSignedIntegerParserRuleCall_0_0 = (RuleCall)cNumAssignment_0.eContents().get(0);
+		private final Assignment cVariableAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final CrossReference cVariableSymbolicVariableCrossReference_1_0 = (CrossReference)cVariableAssignment_1.eContents().get(0);
+		private final RuleCall cVariableSymbolicVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cVariableSymbolicVariableCrossReference_1_0.eContents().get(1);
+		
+		//CaseListElement:
+		//    num=SignedInteger | variable=[SymbolicVariable];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//num=SignedInteger | variable=[SymbolicVariable]
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//num=SignedInteger
+		public Assignment getNumAssignment_0() { return cNumAssignment_0; }
+		
 		//SignedInteger
-		public RuleCall getCaseListElementSignedIntegerParserRuleCall_1_1_0() { return cCaseListElementSignedIntegerParserRuleCall_1_1_0; }
+		public RuleCall getNumSignedIntegerParserRuleCall_0_0() { return cNumSignedIntegerParserRuleCall_0_0; }
+		
+		//variable=[SymbolicVariable]
+		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
+		
+		//[SymbolicVariable]
+		public CrossReference getVariableSymbolicVariableCrossReference_1_0() { return cVariableSymbolicVariableCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getVariableSymbolicVariableIDTerminalRuleCall_1_0_1() { return cVariableSymbolicVariableIDTerminalRuleCall_1_0_1; }
 	}
 	public class IterationStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "su.nsk.iae.post.PoST.IterationStatement");
@@ -4361,6 +4392,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	private final CaseStatementElements pCaseStatement;
 	private final CaseElementElements pCaseElement;
 	private final CaseListElements pCaseList;
+	private final CaseListElementElements pCaseListElement;
 	private final IterationStatementElements pIterationStatement;
 	private final ForStatementElements pForStatement;
 	private final ForListElements pForList;
@@ -4494,6 +4526,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		this.pCaseStatement = new CaseStatementElements();
 		this.pCaseElement = new CaseElementElements();
 		this.pCaseList = new CaseListElements();
+		this.pCaseListElement = new CaseListElementElements();
 		this.pIterationStatement = new IterationStatementElements();
 		this.pForStatement = new ForStatementElements();
 		this.pForList = new ForListElements();
@@ -5246,7 +5279,7 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	//CaseStatement:
 	//    'CASE' cond=Expression 'OF'
-	//        (caseElements+=CaseElement)+
+	//        (caseElements+=CaseElement)*
 	//    ('ELSE'
 	//        elseStatement=StatementList
 	//    )?
@@ -5270,13 +5303,23 @@ public class PoSTGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//CaseList:
-	//    caseListElement+=SignedInteger (',' caseListElement+=SignedInteger)*;
+	//    caseListElement+=CaseListElement (',' caseListElement+=CaseListElement)*;
 	public CaseListElements getCaseListAccess() {
 		return pCaseList;
 	}
 	
 	public ParserRule getCaseListRule() {
 		return getCaseListAccess().getRule();
+	}
+	
+	//CaseListElement:
+	//    num=SignedInteger | variable=[SymbolicVariable];
+	public CaseListElementElements getCaseListElementAccess() {
+		return pCaseListElement;
+	}
+	
+	public ParserRule getCaseListElementRule() {
+		return getCaseListElementAccess().getRule();
 	}
 	
 	//IterationStatement:

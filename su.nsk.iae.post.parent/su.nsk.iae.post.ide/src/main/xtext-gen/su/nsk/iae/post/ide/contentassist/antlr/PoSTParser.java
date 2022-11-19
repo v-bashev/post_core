@@ -52,6 +52,7 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
 			builder.put(grammarAccess.getAssignmentStatementAccess().getAlternatives_0(), "rule__AssignmentStatement__Alternatives_0");
 			builder.put(grammarAccess.getSelectionStatementAccess().getAlternatives(), "rule__SelectionStatement__Alternatives");
+			builder.put(grammarAccess.getCaseListElementAccess().getAlternatives(), "rule__CaseListElement__Alternatives");
 			builder.put(grammarAccess.getIterationStatementAccess().getAlternatives(), "rule__IterationStatement__Alternatives");
 			builder.put(grammarAccess.getVarInitDeclarationAccess().getAlternatives_2(), "rule__VarInitDeclaration__Alternatives_2");
 			builder.put(grammarAccess.getGlobalVarDeclarationAccess().getAlternatives_3(), "rule__GlobalVarDeclaration__Alternatives_3");
@@ -324,6 +325,8 @@ public class PoSTParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCaseElementAccess().getStatementAssignment_2(), "rule__CaseElement__StatementAssignment_2");
 			builder.put(grammarAccess.getCaseListAccess().getCaseListElementAssignment_0(), "rule__CaseList__CaseListElementAssignment_0");
 			builder.put(grammarAccess.getCaseListAccess().getCaseListElementAssignment_1_1(), "rule__CaseList__CaseListElementAssignment_1_1");
+			builder.put(grammarAccess.getCaseListElementAccess().getNumAssignment_0(), "rule__CaseListElement__NumAssignment_0");
+			builder.put(grammarAccess.getCaseListElementAccess().getVariableAssignment_1(), "rule__CaseListElement__VariableAssignment_1");
 			builder.put(grammarAccess.getForStatementAccess().getVariableAssignment_1(), "rule__ForStatement__VariableAssignment_1");
 			builder.put(grammarAccess.getForStatementAccess().getForListAssignment_3(), "rule__ForStatement__ForListAssignment_3");
 			builder.put(grammarAccess.getForStatementAccess().getStatementAssignment_5(), "rule__ForStatement__StatementAssignment_5");

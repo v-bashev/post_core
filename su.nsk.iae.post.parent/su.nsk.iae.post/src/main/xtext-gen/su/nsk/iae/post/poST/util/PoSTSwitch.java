@@ -19,6 +19,7 @@ import su.nsk.iae.post.poST.AssignmentStatement;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
+import su.nsk.iae.post.poST.CaseListElement;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
 import su.nsk.iae.post.poST.Configuration;
@@ -561,6 +562,13 @@ public class PoSTSwitch<T> extends Switch<T>
       {
         CaseList caseList = (CaseList)theEObject;
         T result = caseCaseList(caseList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PoSTPackage.CASE_LIST_ELEMENT:
+      {
+        CaseListElement caseListElement = (CaseListElement)theEObject;
+        T result = caseCaseListElement(caseListElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1606,6 +1614,22 @@ public class PoSTSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCaseList(CaseList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Case List Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Case List Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCaseListElement(CaseListElement object)
   {
     return null;
   }
