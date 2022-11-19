@@ -27,7 +27,7 @@ public interface CaseList extends EObject
 {
   /**
    * Returns the value of the '<em><b>Case List Element</b></em>' containment reference list.
-   * The list contents are of type {@link su.nsk.iae.post.poST.SignedInteger}.
+   * The list contents are of type {@link su.nsk.iae.post.poST.CaseListElement}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Case List Element</em>' containment reference list.
@@ -35,6 +35,6 @@ public interface CaseList extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<SignedInteger> getCaseListElement();
+  EList<CaseListElement> getCaseListElement();
 
 } // CaseList

@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import su.nsk.iae.post.poST.CaseList;
+import su.nsk.iae.post.poST.CaseListElement;
 import su.nsk.iae.post.poST.PoSTPackage;
-import su.nsk.iae.post.poST.SignedInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class CaseListImpl extends MinimalEObjectImpl.Container implements CaseLi
    * @generated
    * @ordered
    */
-  protected EList<SignedInteger> caseListElement;
+  protected EList<CaseListElement> caseListElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,11 +73,11 @@ public class CaseListImpl extends MinimalEObjectImpl.Container implements CaseLi
    * @generated
    */
   @Override
-  public EList<SignedInteger> getCaseListElement()
+  public EList<CaseListElement> getCaseListElement()
   {
     if (caseListElement == null)
     {
-      caseListElement = new EObjectContainmentEList<SignedInteger>(SignedInteger.class, this, PoSTPackage.CASE_LIST__CASE_LIST_ELEMENT);
+      caseListElement = new EObjectContainmentEList<CaseListElement>(CaseListElement.class, this, PoSTPackage.CASE_LIST__CASE_LIST_ELEMENT);
     }
     return caseListElement;
   }
@@ -127,7 +127,7 @@ public class CaseListImpl extends MinimalEObjectImpl.Container implements CaseLi
     {
       case PoSTPackage.CASE_LIST__CASE_LIST_ELEMENT:
         getCaseListElement().clear();
-        getCaseListElement().addAll((Collection<? extends SignedInteger>)newValue);
+        getCaseListElement().addAll((Collection<? extends CaseListElement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

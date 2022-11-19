@@ -303,7 +303,7 @@ IfStatement:
 
 CaseStatement:
 	'CASE' cond=Expression 'OF'
-		(caseElements+=CaseElement)+
+		(caseElements+=CaseElement)*
 	('ELSE'
 		elseStatement=StatementList
 	)?
@@ -313,7 +313,10 @@ CaseElement:
 	caseList=CaseList ':' statement=StatementList;
 
 CaseList:
-	caseListElement+=SignedInteger (',' caseListElement+=SignedInteger)*;
+	caseListElement+=CaseListElement (',' caseListElement+=CaseListElement)*;
+
+CaseListElement:
+	num=SignedInteger | variable=[SymbolicVariable];
 
 IterationStatement:
 	ForStatement | WhileStatement | RepeatStatement;

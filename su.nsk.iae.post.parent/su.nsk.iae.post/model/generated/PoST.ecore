@@ -306,7 +306,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CaseList">
     <eStructuralFeatures xsi:type="ecore:EReference" name="caseListElement" upperBound="-1"
-        eType="#//SignedInteger" containment="true"/>
+        eType="#//CaseListElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CaseListElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="num" eType="#//SignedInteger"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//SymbolicVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IterationStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="#//StatementList"

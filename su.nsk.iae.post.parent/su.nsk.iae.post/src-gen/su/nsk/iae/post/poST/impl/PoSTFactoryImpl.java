@@ -25,6 +25,7 @@ import su.nsk.iae.post.poST.AssignmentType;
 import su.nsk.iae.post.poST.AttachVariableConfElement;
 import su.nsk.iae.post.poST.CaseElement;
 import su.nsk.iae.post.poST.CaseList;
+import su.nsk.iae.post.poST.CaseListElement;
 import su.nsk.iae.post.poST.CaseStatement;
 import su.nsk.iae.post.poST.CompExpression;
 import su.nsk.iae.post.poST.CompOperator;
@@ -205,6 +206,7 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
       case PoSTPackage.CASE_STATEMENT: return createCaseStatement();
       case PoSTPackage.CASE_ELEMENT: return createCaseElement();
       case PoSTPackage.CASE_LIST: return createCaseList();
+      case PoSTPackage.CASE_LIST_ELEMENT: return createCaseListElement();
       case PoSTPackage.ITERATION_STATEMENT: return createIterationStatement();
       case PoSTPackage.FOR_STATEMENT: return createForStatement();
       case PoSTPackage.FOR_LIST: return createForList();
@@ -885,6 +887,18 @@ public class PoSTFactoryImpl extends EFactoryImpl implements PoSTFactory
   {
     CaseListImpl caseList = new CaseListImpl();
     return caseList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CaseListElement createCaseListElement()
+  {
+    CaseListElementImpl caseListElement = new CaseListElementImpl();
+    return caseListElement;
   }
 
   /**

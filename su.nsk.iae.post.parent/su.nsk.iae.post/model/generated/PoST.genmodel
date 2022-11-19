@@ -239,6 +239,10 @@
     <genClasses ecoreClass="PoST.ecore#//CaseList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//CaseList/caseListElement"/>
     </genClasses>
+    <genClasses ecoreClass="PoST.ecore#//CaseListElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//CaseListElement/num"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PoST.ecore#//CaseListElement/variable"/>
+    </genClasses>
     <genClasses ecoreClass="PoST.ecore#//IterationStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PoST.ecore#//IterationStatement/statement"/>
     </genClasses>
